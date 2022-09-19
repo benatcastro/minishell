@@ -34,9 +34,6 @@ mk_dirs:
 	@mkdir -p $(LIB_DIR)
 	@mkdir -p $(OBJ_DIR)
 
-minilibx: mk_dirs
-	@make -C minilibx
-
 libft: mk_dirs
 	@make -C srcs/libft
 	@echo "Libft Compiled"

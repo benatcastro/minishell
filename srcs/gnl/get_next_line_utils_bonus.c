@@ -74,7 +74,6 @@ void	ft_free_node(t_fd **head, t_fd *node)
 	{
 		aux = node;
 		(*head) = (*head)->next;
-		//printf("FIRST NODE FREE (%d) \n", aux->fd);
 		free(aux);
 	}
 	else
@@ -89,7 +88,6 @@ void	ft_free_node(t_fd **head, t_fd *node)
 			}
 			aux = aux->next;
 		}
-		//printf("NODE BEING FREE (%d)\n", node->fd);
 		free(node);
 	}
 }
