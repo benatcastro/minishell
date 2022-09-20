@@ -69,7 +69,7 @@ OBJF = .cache_exists
 all: $(OBJ)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CC_FLAGS) -I $(INCLUDES) -c $< -o $@
 
 clean:

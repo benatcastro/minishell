@@ -6,7 +6,7 @@
 #    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/20 17:06:05 by becastro         ###   ########.fr        #
+#    Updated: 2022/09/20 18:02:54 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ NAME = minishell
 ##########DIRECTORIES########
 SRC_DIR = srcs/
 OBJ_DIR = objs/
+MINISHELL_SRCS = $(SRC_DIR)$(NAME)/
 INC_DIR = includes/
 LIB_DIR = libraries/
 
@@ -23,10 +24,11 @@ LIB_DIR = libraries/
 SRC =	ms_main.c \
 
 ###########OBJS##############
-OBJS = $(CSRC:.c=.o)
+OBJS = $(SRC:.c=.o)
 
 #############UTILS###########
 CC = gcc
+RM = rm -rf
 42Lib = make -C srcs/
 #############FLAGS###########
 RD_FLAGS	= -I/Users/$(USER)/.brew/opt/readline/include -lreadline -L/Users/$(USER)/.brew/opt/readline/lib/
@@ -39,23 +41,20 @@ LIB_FLAGS	= $(LIB_DIR)/*.a
 all: $(NAME)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) -c $^ -o $@
+	 -c $^ -o $@
 
 $(NAME): $(OSRC)
 	@echo "\033[33mCompiling libft...\033[0m"
 	$(42Lib)
 	@echo "\033[33mCompiling minishell project...\033[0m"
-	@$(GCCCMD) $(CFLAGS) $(LDFLAGS) $(CPPFLAGS) libft.a $^ -o $(NAME)
+	@$(CC) $(CFLAGS) $(MINISHELL_SRCS)$(SRC) $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) $^ -o $(NAME)
 	@echo "\033[92mminishell has been successfully compiled!\033[0m"
 
 clean:
-	@rm -f $(OSRC)
-	@rm -f libft.a
-	@make -C libft/ clean
+	@$(RM) $(OBJ_DIR)
 
 fclean: clean
-	@rm -f $(NAME)
-	@make -C libft/ fclean
+	@rm $(NAME)
 
 re: fclean all
 
