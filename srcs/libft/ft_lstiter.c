@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 11:46:50 by becastro          #+#    #+#             */
-/*   Updated: 2022/04/25 12:27:56 by becastro         ###   ########.fr       */
+/*   Created: 2022/08/17 22:56:16 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 23:10:44 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+/**
+ * @brief iterates over a list and applies the function pointed by f to every
+ * node's content.
+ * 
+ * @param lst the starting node to iterate.
+ * @param f the function to be applied to every node's content.
+ */
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list	*newlst;
-	t_list	*aux;
-
-	if (!*f && !*del && !lst)
-		return (NULL);
-	newlst = NULL;
+	if (!lst)
+		return ;
 	while (lst)
 	{
-		aux = ft_lstnew((*f)(lst->content));
-		ft_lstadd_back(&newlst, aux);
+		f(lst->content);
 		lst = lst->next;
 	}
-	return (newlst);
 }

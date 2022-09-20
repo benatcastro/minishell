@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/23 00:58:08 by bena              #+#    #+#             */
-/*   Updated: 2022/04/25 09:32:06 by becastro         ###   ########.fr       */
+/*   Created: 2022/08/17 22:46:11 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 23:07:34 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief appends a node to the back of the list pointed by lst.
+ * 
+ * @param lst the head of the list.
+ * @param new the node to be added to the back of the list.
+ */
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*aux;
-
-	if (new)
-	{
-		if (!*lst)
-		{
-			*lst = new;
-			return ;
-		}
-		aux = ft_lstlast(*lst);
-		aux -> next = new;
-	}
+	if (!*lst)
+		*lst = new;
+	else
+		ft_lstlast(*lst)->next = new;
 }

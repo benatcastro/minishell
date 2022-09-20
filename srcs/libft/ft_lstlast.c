@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/22 11:52:11 by becastro          #+#    #+#             */
-/*   Updated: 2022/04/25 07:34:20 by bena             ###   ########.fr       */
+/*   Created: 2022/08/17 22:43:37 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 23:11:23 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief returns a pointer to the lists last node.
+ * 
+ * @param lst a pointer to the first node to be iterated.
+ * @return t_list* the last node of the list.
+ */
 t_list	*ft_lstlast(t_list *lst)
 {
 	if (!lst)
 		return (NULL);
-	{
-		while (lst->next)
-			lst = lst->next;
-	}
+	while (lst->next)
+		lst = lst->next;
 	return (lst);
 }

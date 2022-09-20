@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   checker_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/22 10:49:40 by becastro          #+#    #+#             */
-/*   Updated: 2022/04/22 11:24:44 by becastro         ###   ########.fr       */
+/*   Created: 2022/09/16 20:22:28 by becastro          #+#    #+#             */
+/*   Updated: 2022/09/19 19:10:43 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+/**
+ * @brief
+ * Str compare refactorized
+ * @param s1
+ * @param s2
+ * @return true
+ * @return false
+ */
+int	ft_strcmp(char *s1, char *s2)
 {
-	t_list	*new;
+	int32_t	i;
 
-	new = (t_list *)malloc(sizeof(t_list));
-	if (!(new))
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	if (ft_strlen(s1) != ft_strlen(s2))
+		return (0);
+	i = -1;
+	while (s1[++i])
+		if (s1[i] != s2[i])
+			return (0);
+	return (1);
 }

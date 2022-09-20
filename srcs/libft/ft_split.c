@@ -3,87 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/08 13:30:59 by bena              #+#    #+#             */
-/*   Updated: 2022/04/27 08:36:36 by bena             ###   ########.fr       */
+/*   Created: 2022/08/17 13:41:44 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 20:08:00 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-size_t		ft_sub_size(char const *s, char c);
-size_t		ft_count_substrs(char const *s, char c);
-const char	*ft_next_word(const char *s, char c);
-char		*ft_strldup(const char *s1, size_t len);
+/**
+ * @brief calculates the size of the double string for allocation.
+ * 
+ * @param s the string to be splitted.
+ * @param c the splitting character.
+ * @return int the number of strings needed on the double string result
+ * (not counting the NULL string).
+ */
+static int	ft_doublesize(const char *s, char c)
+{
+	int		size;
 
+	size = 0;
+	while (*s)
+	{
+		if ((s[1] == c || !s[1]) && *s != c)
+			size++;
+		s++;
+	}
+	return (size);
+}
+
+/**
+ * @brief takes the string pointed by s and creates a double
+ * array splitted by the character c (wich is eliminated).
+ * 
+ * @param s the string to split.
+ * @param c the splitting character.
+ * @return char** the resultant allocation of the splitted
+ * string pointed by s.
+ */
 char	**ft_split(char const *s, char c)
 {
-	char	**str;
-	size_t	count;
+	char	**result;
+	size_t	i;
+	int		j;
+	int		start;
 
 	if (!s)
 		return (NULL);
-	str = malloc(ft_count_substrs(s, c) * sizeof(char *));
-	if (!str)
+	result = (char **)malloc(sizeof(char *) * (ft_doublesize(s, c) + 1));
+	if (!result)
 		return (NULL);
-	count = 0;
-	while (*s)
+	start = -1;
+	i = -1;
+	j = 0;
+	while (++i <= ft_strlen(s))
 	{
-		if (*s != c)
+		if (s[i] != c && start < 0)
+			start = i;
+		else if (start >= 0 && (s[i] == c || i == ft_strlen(s)))
 		{
-			str[count++] = ft_strldup(s, ft_sub_size(s, c));
-			s = ft_next_word(s, c);
-			if (*s == 0)
-				break ;
+			result[j++] = ft_substr(s, start, (i - start));
+			start = -1;
 		}
-		s++;
 	}
-	str[count] = 0;
-	return (str);
-}
-
-const char	*ft_next_word(const char *s, char c)
-{
-	while (*s != 0 && *s != c)
-		s++;
-	return (s);
-}
-
-size_t	ft_sub_size(char const *s, char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (*s && s[1] != c)
-	{
-		i++;
-		s++;
-	}
-	return (i + 1);
-}
-
-size_t	ft_count_substrs(char const *s, char c)
-{
-	size_t	count;
-
-	count = 0;
-	while (*s)
-	{
-		if ((s[1] == c || s[1] == '\0') && *s != c)
-			count++;
-		s++;
-	}
-	return (count + 1);
-}
-
-char	*ft_strldup(const char *s1, size_t len)
-{
-	char	*str;
-
-	str = malloc((len + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	ft_strlcpy(str, s1, len + 1);
-	return (str);
+	result[j] = NULL;
+	return (result);
 }

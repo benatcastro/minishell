@@ -3,16 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/14 21:27:19 by becastro          #+#    #+#             */
-/*   Updated: 2022/04/27 14:53:30 by becastro         ###   ########.fr       */
+/*   Created: 2022/08/17 18:55:34 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 20:04:57 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
+/**
+ * @brief writes a string on a fd.
+ * 
+ * @param c string to write.
+ * @param fd fd to be written.
+ */
 void	ft_putstr_fd(char *s, int fd)
 {
-	write(fd, s, ft_strlen(s));
+	while (*s)
+	{
+		ft_putchar_fd(*s, fd);
+		s++;
+	}
 }

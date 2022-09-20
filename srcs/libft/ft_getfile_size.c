@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_getfile_size.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 19:25:53 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/08/17 23:28:36 by aalvarez         ###   ########.fr       */
+/*   Created: 2022/08/20 20:40:29 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/21 18:19:41 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
 /**
- * @brief fills n bytes of the s string with NULL bytes.
+ * @brief checks the number of lines a valid file has, giving an invalid file
+ * descriptor to this function may result in undefined behaviour.
  * 
- * @param s string to be filled.
- * @param n number of bytes to fill.
+ * @param fd the file descriptor to evaluate.
+ * @return int the number of lines the content of the file descriptor has.
  */
-void	ft_bzero(void *s, size_t n)
+int	ft_getfile_size(int fd)
 {
-	size_t	i;
+	char	character;
+	int		size;
 
-	i = -1;
-	if (s)
+	size = 0;
+	while (read(fd, &character, 1))
 	{
-		while (++i < n)
-			((unsigned char *)s)[i] = 0;
+		if (character == '\n')
+			size++;
 	}
+	return (size);
 }

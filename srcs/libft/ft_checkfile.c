@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_checkfile.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 18:40:55 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/08/17 19:52:38 by aalvarez         ###   ########.fr       */
+/*   Created: 2022/08/19 23:34:19 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/21 18:17:45 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <fcntl.h>
+#include <unistd.h>
 
 /**
- * @brief checks if the character c is alphabetic.
+ * @brief checks if the string pointed by file is a valid file descriptor.
  * 
- * @param c character to be evaluated.
- * @return int returns 1 if character is alphabetic, 0
- * otherwise.
+ * @param file the file to be checked.
+ * @return int returns 1 if the file is invalid (non existing, no reading
+ * permission, etc.) or 0 if file is valid to open and read.
  */
-int	ft_isalpha(int c)
+int	ft_checkfile(const char *file)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+	int	fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+	{
+		close(fd);
 		return (1);
+	}
+	close(fd);
 	return (0);
 }

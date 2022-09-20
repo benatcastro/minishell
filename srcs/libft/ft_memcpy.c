@@ -3,32 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/28 17:04:58 by becastro          #+#    #+#             */
-/*   Updated: 2022/04/27 14:51:49 by becastro         ###   ########.fr       */
+/*   Created: 2022/08/16 19:31:19 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/19 22:11:21 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+/**
+ * @brief copies up to n bytes from the void pointed by src to the
+ * void pointed by dst.
+ * 
+ * @param dst string to be filled with a copy of n bytes.
+ * @param src string to copy.
+ * @param n maximun number of bytes to copy.
+ * @return void* a pointer to the new string resultant of the copy.
+ */
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t	counter;
-	char	*dest2;
-	char	*src2;
+	size_t	i;
 
-	dest2 = (char *)dest;
-	src2 = (char *)src;
-	counter = 0;
-	if (dest || src)
+	i = -1;
+	if (dst && src)
 	{
-		while (counter < n)
-		{
-			dest2[counter] = src2[counter];
-			counter++;
-		}
-		return (dest2);
+		while (++i < n)
+			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
 	}
-	return (NULL);
+	return (dst);
 }

@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_checkext.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/22 11:40:52 by becastro          #+#    #+#             */
-/*   Updated: 2022/04/22 12:37:16 by becastro         ###   ########.fr       */
+/*   Created: 2022/08/19 23:09:32 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/19 23:21:55 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+int	ft_checkext(const char *str, const char *ext)
 {
-	int		counter;
-
-	counter = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		counter++;
-	}
-	return (counter);
+	if (!ft_strrchr(str, '.')
+		|| ft_strncmp(ft_strrchr(str, '.'), ext, ft_strlen(str)))
+		return (1);
+	return (0);
 }
