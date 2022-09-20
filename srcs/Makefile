@@ -5,6 +5,7 @@ GNL 		= gnl
 PRINTF 		= ft_printf
 #---------GCC and FLAGS----------
 
+RM			= rm -rf
 CC 	 		= gcc
 AR			= ar rc
 CFLAGS 		= -Wall -Wextra -Werror
@@ -13,7 +14,7 @@ VALGRIND 	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
 
 #---------DIRECTORIES-----------
 SRC_DIR = srcs/
-OBJ_DIR = objs/
+OBJ_DIR = ../objs/42lib/
 INC_DIR = includes/
 LIB_DIR = libraries/
 
@@ -48,14 +49,11 @@ gnl: mk_dirs
 	@echo "GNL Compiled"
 
 clean:
-	@make clean -C srcs/libft
-	@make clean -C srcs/ft_printf
-	@make clean -C srcs/gnl
+	$(RM) $(OBJ_DIR)
 	@clear
 	@echo "Clean done"
 
 fclean: clean
-	@rm -rf $(OBJ_DIR)
 	@rm -rf $(LIB_DIR)
 	@echo "Fclean done"
 re: clean all

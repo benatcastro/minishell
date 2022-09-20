@@ -9,7 +9,7 @@ RM = rm -f
 LIBRARIES_DIR = ../../libraries/
 NAME = $(LIBRARIES_DIR)gnl.a
 INCLUDES = ../../includes/
-OBJ_DIR = ../../objs/42lib
+OBJ_DIR = ../../objs/42lib/
 
 
 SRC = $(addsuffix .c, $(SRC_FILES))
@@ -21,6 +21,7 @@ all: $(OBJ)
 #	@$(AR) $(NAME) $(OBJ)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CC_FLAGS) -I $(INCLUDES) -c $< -o $@
 
 clean:
