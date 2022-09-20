@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 11:27:46 by becastro          #+#    #+#             */
-/*   Updated: 2022/04/27 14:57:36 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/20 16:21:17 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 typedef struct s_list
 {
@@ -27,6 +28,7 @@ int		ft_isalpha(int argument);
 int		ft_isdigit(int arg);
 int		ft_isalnum(int argument);
 int		ft_isascii(int c);
+bool	ft_isblank(unsigned char c);
 int		ft_isprint(int arg);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
