@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:40:01 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/09/20 12:17:32 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/20 12:38:46 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stddef.h>
 # include <stdint.h>
+
 typedef struct s_list
 {
 	void			*content;
