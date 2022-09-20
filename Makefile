@@ -23,7 +23,7 @@ LIB_DIR = libraries/
 SRC_LIBFT = $(addprefix $(SRC_DIR)libft/, $(addsuffix .c, $(FILES_LIBFT)))
 OBJ_LIBFT = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES_LIBFT)))
 
-all: minilibx 42lib
+all: 42lib
 
 42lib: libft gnl
 	@$(AR) $(LIB_DIR)$(LIB_NAME) $(OBJ_DIR)*
