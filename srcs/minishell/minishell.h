@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/19 12:56:35 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/09/20 17:54:38 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 int		main(int argc, char **argv, char **env);
 void	builtins(char *buf, char **env);
-// void	ft_echo(char *str);
-char	*ft_quote_checker(char *buf);
+int		ft_quote_checker(char *buf);
+char	**ft_export(char **env);
 
 #endif
