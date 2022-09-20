@@ -6,7 +6,7 @@
 #    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/20 18:02:54 by becastro         ###   ########.fr        #
+#    Updated: 2022/09/20 18:34:46 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,8 +54,8 @@ clean:
 	@$(RM) $(OBJ_DIR)
 
 fclean: clean
-	@rm $(NAME)
-
+	@$(RM) $(NAME)
+	@$(RM) $(LIB_DIR)
 re: fclean all
 
 PHONY: all clean fclean re

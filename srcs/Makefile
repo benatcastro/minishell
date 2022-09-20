@@ -16,7 +16,7 @@ VALGRIND 	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
 SRC_DIR = srcs/
 OBJ_DIR = ../objs/42lib/
 INC_DIR = includes/
-LIB_DIR = libraries/
+LIB_DIR = ../libraries/
 
 
 #---------------PREFIX and SUFFIX-----------------
