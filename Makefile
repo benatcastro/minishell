@@ -1,61 +1,62 @@
-#---------NAMES--------------
-LIB_NAME 	= 42lib.a
-LIBFT 		= libft
-GNL 		= gnl
-PRINTF 		= ft_printf
-#---------GCC and FLAGS----------
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
+#    Updated: 2022/09/20 17:06:05 by becastro         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-CC 	 		= gcc
-AR			= ar rc
-CFLAGS 		= -Wall -Wextra -Werror
-SANITIZE 	= -fsanitize=address -g3
-VALGRIND 	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
 
-#---------DIRECTORIES-----------
+#############NAMES###########
+NAME = minishell
+##########DIRECTORIES########
 SRC_DIR = srcs/
-OBJ_DIR = objs/42lib
+OBJ_DIR = objs/
 INC_DIR = includes/
 LIB_DIR = libraries/
 
+############SRCS##############
+SRC =	ms_main.c \
 
-#---------------PREFIX and SUFFIX-----------------
+###########OBJS##############
+OBJS = $(CSRC:.c=.o)
 
-SRC_LIBFT = $(addprefix $(SRC_DIR)libft/, $(addsuffix .c, $(FILES_LIBFT)))
-OBJ_LIBFT = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES_LIBFT)))
+#############UTILS###########
+CC = gcc
+42Lib = make -C srcs/
+#############FLAGS###########
+RD_FLAGS	= -I/Users/$(USER)/.brew/opt/readline/include -lreadline -L/Users/$(USER)/.brew/opt/readline/lib/
+SANITIZE	= -fsanitize=address -g3
+VALGRIND	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
+CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address
+INC_FLAGS	= -I $(INC_DIR)
+LIB_FLAGS	= $(LIB_DIR)/*.a
 
-all: 42lib
+all: $(NAME)
 
-42lib: libft gnl printf
-	@$(AR) $(LIB_DIR)$(LIB_NAME) $(OBJ_DIR)*.o
-	@ranlib $(LIB_DIR)$(LIB_NAME)
-	@echo "42 Lib Compiled"
+%.o: %.c
+	@$(CC) $(CFLAGS) $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) -c $^ -o $@
 
-mk_dirs:
-	@mkdir -p $(LIB_DIR)
-	@mkdir -p $(OBJ_DIR)
-
-libft: mk_dirs
-	@make -C srcs/libft
-	@echo "Libft Compiled"
-
-printf: mk_dirs libft
-	@make -C srcs/ft_printf
-	@clear
-	@echo "Printf Compiled"
-
-gnl: mk_dirs
-	@make -C srcs/gnl
-	@echo "GNL Compiled"
+$(NAME): $(OSRC)
+	@echo "\033[33mCompiling libft...\033[0m"
+	$(42Lib)
+	@echo "\033[33mCompiling minishell project...\033[0m"
+	@$(GCCCMD) $(CFLAGS) $(LDFLAGS) $(CPPFLAGS) libft.a $^ -o $(NAME)
+	@echo "\033[92mminishell has been successfully compiled!\033[0m"
 
 clean:
-	@make clean -C srcs/libft
-	@make clean -C srcs/ft_printf
-	@make clean -C srcs/gnl
-	@clear
-	@echo "Clean done"
+	@rm -f $(OSRC)
+	@rm -f libft.a
+	@make -C libft/ clean
 
 fclean: clean
-	@rm -rf $(OBJ_DIR)
-	@rm -rf $(LIB_DIR)
-	@echo "Fclean done"
-re: clean all
+	@rm -f $(NAME)
+	@make -C libft/ fclean
+
+re: fclean all
+
+PHONY: all clean fclean re
