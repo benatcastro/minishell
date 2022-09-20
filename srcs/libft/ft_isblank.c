@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_isblank.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/22 10:49:40 by becastro          #+#    #+#             */
-/*   Updated: 2022/04/22 11:24:44 by becastro         ###   ########.fr       */
+/*   Created: 2022/09/20 15:36:29 by becastro          #+#    #+#             */
+/*   Updated: 2022/09/20 16:20:46 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+bool	ft_isblank(unsigned char c)
 {
-	t_list	*new;
-
-	new = (t_list *)malloc(sizeof(t_list));
-	if (!(new))
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	if ((c == ' ' || c == '\t' || c == '\f'
+			|| c == '\r' || c == '\n' || c == '\v'))
+		return (true);
+	return (false);
 }

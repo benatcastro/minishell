@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 18:40:55 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/08/17 19:52:38 by aalvarez         ###   ########.fr       */
+/*   Created: 2022/08/17 22:43:37 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 23:11:23 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /**
- * @brief checks if the character c is alphabetic.
+ * @brief returns a pointer to the lists last node.
  * 
- * @param c character to be evaluated.
- * @return int returns 1 if character is alphabetic, 0
- * otherwise.
+ * @param lst a pointer to the first node to be iterated.
+ * @return t_list* the last node of the list.
  */
-int	ft_isalpha(int c)
+t_list	*ft_lstlast(t_list *lst)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
-	return (0);
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }

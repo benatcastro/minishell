@@ -3,54 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 23:57:55 by bena              #+#    #+#             */
-/*   Updated: 2022/04/27 14:54:31 by becastro         ###   ########.fr       */
+/*   Created: 2022/08/17 03:37:17 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/19 22:19:28 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-unsigned int	ft_check_in_set(char c, const char *set);
-
-char	*ft_strtrim(char const *s1, char const *set)
+/**
+ * @brief searches for the string pointed by set on the start and the end of
+ * the string pointed by s1 and returns an allocation of a new string without
+ * the set characters in the string s1.
+ * 
+ * @param s1 the string to be searched.
+ * @param set the string to search.
+ * @return char* the allocation result of the trimming.
+ */
+char	*ft_strtrim(const char *s1, const char *set)
 {
-	char	*str;
-	int		start;
-	int		end;
+	char	*result;
+	int		i;
 
-	if (s1 == NULL || set == NULL)
+	if (!s1)
 		return (NULL);
-	start = 0;
-	while (s1[start] != '\0')
-	{
-		if (!(ft_check_in_set(s1[start], set)))
-			break ;
-		start++;
-	}
-	end = ft_strlen(s1);
-	while (end--)
-	{
-		if (!(ft_check_in_set(s1[end], set)))
-			break ;
-	}
-	str = ft_substr(s1, start, (end - start) + 1);
-	return (str);
+	if (!set)
+		return ((char *)s1);
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	i = ft_strlen(s1);
+	while (i && ft_strchr(set, s1[i]))
+		i--;
+	result = ft_substr((char *)s1, 0, (i + 1));
+	return (result);
 }
-
-unsigned int	ft_check_in_set(char c, const char *set)
-{
-	while (*set)
-	{
-		if (c == *set)
-			return (1);
-		set++;
-	}
-	return (0);
-}
-// int	main(void)
-// {
-// 	char *s = ft_strtrim(""   xxx   xxx"", " x");
-// 	printf("%s", s);
-// }

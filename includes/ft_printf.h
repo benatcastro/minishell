@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 18:48:19 by becastro          #+#    #+#             */
-/*   Updated: 2022/07/12 23:59:10 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/20 12:38:30 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include "libft.h"
+# include <stdlib.h>
 # define LONG_MAX 9223372036854775807LL
 # define LONG_MIN -9223372036854775808
 # define ULONG_MAX 18446744073709551615ULL

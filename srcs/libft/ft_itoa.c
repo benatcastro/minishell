@@ -3,112 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/13 23:39:37 by bena              #+#    #+#             */
-/*   Updated: 2022/04/27 08:25:34 by bena             ###   ########.fr       */
+/*   Created: 2022/08/17 18:30:13 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 19:58:11 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-void	ft_makearr(char *str, long nbr);
-long	ft_power(int base, int exp);
-size_t	ft_intlen(int n);
-char	ft_getdigit(long nbr, int digit);
+/**
+ * @brief calculates the size of the allocation
+ * needed for the string.
+ * 
+ * @param n integer to be representd as a string.
+ * @return int the size needed to the allocation,
+ * this funtion does not count the NULL terminating
+ * byte.
+ */
+static int	ft_arrsize(int n)
+{
+	int	size;
 
+	size = 0;
+	if (n <= 0)
+		size++;
+	while (n)
+	{
+		size++;
+		n /= 10;
+	}
+	return (size);
+}
+
+/**
+ * @brief converts the integer
+ * n to its string representation.
+ * 
+ * @param n integer to be represented as a string.
+ * @return char* result of the string representation of n.
+ */
 char	*ft_itoa(int n)
 {
+	char	*result;
+	int		size;
 	long	nbr;
-	char	*str;
-	size_t	int_len;
 
+	size = ft_arrsize(n);
 	nbr = n;
-	if (nbr == -2147483648)
-		return (str = ft_strdup("-2147483648"));
-	else if (n == 0)
-		return (str = ft_strdup("0"));
-	int_len = ft_intlen(nbr) + 1;
+	result = malloc(sizeof(char) * (size + 1));
+	if (!result)
+		return (NULL);
 	if (nbr < 0)
 	{
-		str = malloc((int_len));
-		if (!(str))
-			return (NULL);
-		str[0] = '-';
+		result[0] = '-';
 		nbr *= -1;
 	}
-	else
-		str = malloc((int_len));
-	if (!(str))
-		return (NULL);
-	ft_makearr(str, nbr);
-	return (str);
-}
-
-size_t	ft_intlen(int n)
-{
-	size_t			counter;
-	unsigned long	multiplier;
-
-	counter = 0;
-	if (n < 0)
+	if (!nbr)
+		result[0] = '0';
+	result[size--] = 0;
+	while (nbr)
 	{
-		n *= -1;
-		counter++;
+		result[size--] = (nbr % 10) + '0';
+		nbr /= 10;
 	}
-	else if (n == 0)
-		return (1);
-	multiplier = 1;
-	while (multiplier <= (size_t)n)
-	{
-		counter++;
-		multiplier *= 10;
-	}
-	return (counter);
-}
-
-char	ft_getdigit(long nbr, int digit)
-{
-	digit += 1;
-	nbr /= ft_power(10, ft_intlen((int)nbr) - digit);
-	if (nbr >= 10)
-		nbr %= 10;
-	return (nbr + '0');
-}
-
-void	ft_makearr(char *str, long nbr)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	if (str[0] == '-')
-		i++;
-	while (j < ft_intlen(nbr))
-	{
-		str[i] = ft_getdigit(nbr, j);
-		i++;
-		j++;
-	}
-	str[i] = '\0';
-}
-
-long	ft_power(int base, int exp)
-{
-	int	count;
-	int	tmp;
-
-	if (exp == 1)
-		return (base);
-	else if (exp <= 0)
-		return (1);
-	tmp = base;
-	count = 1;
-	while (count < exp)
-	{
-		base *= tmp;
-		count++;
-	}
-	return (base);
+	return (result);
 }

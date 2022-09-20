@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_doublestrdup.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 01:30:32 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/08/17 19:24:27 by aalvarez         ###   ########.fr       */
+/*   Created: 2022/08/21 18:21:54 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/21 18:27:50 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,26 @@
 #include <stdlib.h>
 
 /**
- * @brief allocates size bytes and
- * return a pointer to the allocated memory.
+ * @brief attempts to duplicate the double pointer pointed by str to a new
+ * allocated double pointer.
  * 
- * @param count number of elements to be allocated.
- * @param size size of each element allocated
- * @return void* the resultant byte allocation.
+ * @param str the double pointer to be duplicated.
+ * @return char** the allocated new double pointer or NULL if the allocation
+ * failed or str was nonexisting.
  */
-void	*ft_calloc(size_t count, size_t size)
+char	**ft_doublestrdup(const char **str)
 {
-	void	*result;
+	char	**result;
+	int		i;
 
-	result = malloc(count * size);
+	if (!str)
+		return (NULL);
+	result = (char **)malloc(sizeof(char *) * (ft_doublestrlen(str) + 1));
 	if (!result)
 		return (NULL);
-	ft_bzero(result, (count * size));
+	i = -1;
+	while (str[++i])
+		result[i] = ft_strdup(str[i]);
+	result[i] = 0;
 	return (result);
 }

@@ -3,23 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/28 16:20:16 by becastro          #+#    #+#             */
-/*   Updated: 2022/04/27 14:54:10 by becastro         ###   ########.fr       */
+/*   Created: 2022/08/16 19:00:30 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 23:30:48 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+/**
+ * @brief takes a string and returns its size (without counting
+ * the final NULL byte).
+ * 
+ * @param str the string to be counted.
+ * @return size_t the size of the string.
+ */
+size_t	ft_strlen(const char *str)
 {
-	size_t	counter;
+	size_t	i;
 
-	counter = 0;
-	while (s[counter])
-	{
-		counter++;
-	}
-	return (counter);
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

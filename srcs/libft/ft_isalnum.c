@@ -3,22 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/28 16:05:33 by becastro          #+#    #+#             */
-/*   Updated: 2022/04/14 17:00:18 by becastro         ###   ########.fr       */
+/*   Created: 2022/08/16 18:53:47 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 19:52:51 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//returns 1 if alphanumeric 0 if not
-int	ft_isalnum(int argument)
+/**
+ * @brief checks if the character c is alphanumeric.
+ * 
+ * @param c character to be evaluated.
+ * @return int returns 1 if character is alphanumeric, 0
+ * otherwise.
+ */
+int	ft_isalnum(int c)
 {
-	if ((argument >= 'a' && argument <= 'z')
-		|| (argument >= 'A' && argument <= 'Z')
-		|| (argument >= '0' && argument <= '9'))
+	if (ft_isalpha(c) || ft_isdigit(c))
 		return (1);
-	else
-		return (0);
+	return (0);
 }

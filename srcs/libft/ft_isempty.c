@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_isempty.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 18:40:55 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/08/17 19:52:38 by aalvarez         ###   ########.fr       */
+/*   Created: 2022/08/21 21:02:27 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/24 00:29:18 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /**
- * @brief checks if the character c is alphabetic.
+ * @brief checks if the string pointed by str has at least onw character
+ * that differs from a space bar or its significants.
  * 
- * @param c character to be evaluated.
- * @return int returns 1 if character is alphabetic, 0
+ * @param str the string to be evaluated.
+ * @return int 1 if it finds a character differing from printable char, 0
  * otherwise.
  */
-int	ft_isalpha(int c)
+int	ft_isempty(const char *str)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
+	if (!str)
+		return (0);
+	while (*str)
+	{
+		if (ft_isprint(*str) && *str != ' ')
+			return (1);
+		str++;
+	}
 	return (0);
 }

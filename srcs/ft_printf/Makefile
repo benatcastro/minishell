@@ -8,7 +8,6 @@ SRC_FILES = ft_printf			\
 		ft_print_types 			\
 		ft_print_types2 		\
 		ft_first_arg 			\
-		ft_check_arg			\
 
 
 CC = gcc
@@ -18,7 +17,7 @@ RM = rm -f
 LIBRARIES_DIR = ../../libraries/
 NAME = $(LIBRARIES_DIR)ft_printf.a
 INCLUDES = ../../includes/
-OBJ_DIR = ../../objs/
+OBJ_DIR = ../../objs/42lib
 
 
 SRC = $(addsuffix .c, $(SRC_FILES))

@@ -3,37 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/30 11:07:56 by becastro          #+#    #+#             */
-/*   Updated: 2022/04/27 14:58:45 by becastro         ###   ########.fr       */
+/*   Created: 2022/08/16 23:54:06 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 20:09:28 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief finds the first occurence of the char c in the
+ * string pointed by s.
+ * 
+ * @param s the string to search.
+ * @param c the character to search.
+ * @return char* reference to the first match (or NULL if c
+ * was not fund on the string).
+ */
 char	*ft_strchr(const char *s, int c)
 {
-	size_t			counter;
-	unsigned char	d;
-
-	d = c;
-	counter = 0;
-	while (s[counter])
-	{
-		if (s[counter] == d)
-			return ((char *)&s[counter]);
-		counter++;
-	}
-	if (s[counter] == d)
-		return ((char *)&s[counter]);
+	while (*s && *s != (char)c)
+		s++;
+	if (*s == (char)c)
+		return ((char *)s);
 	return (NULL);
 }
-
-// #include <stdio.h>
-// int main(void)
-// {
-// 		char s[] = "tripouille";
-
-// 	printf("str: %s",strchr(s, 't' + 256));
-// }
