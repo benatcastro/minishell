@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/20 17:35:39 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/20 18:21:23 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@
 int		main(int argc, char **argv, char **env);
 void	builtins(char *buf, char **env);
 // void	ft_echo(char *str);
-char	*ft_quote_checker(char *buf);
+int		ft_quote_checker(char *buf);
 
 #endif

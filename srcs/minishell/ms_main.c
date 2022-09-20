@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/20 18:17:50 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/20 18:21:55 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ void	builtins(char *buf, char **env)
 		printf ("\033[33mJarvis 🤖: \033[0m%s: command not found\n", buf);
 }
 
-char	**ft_export(char **env)
-{
-	char	**rtn;
-
-	(void)	rtn;
-}
+// char	**ft_export(char **env)
+// {
+// 	char	**rtn;
+// 	(void)env;
+// 	(void)	rtn;
+// }
