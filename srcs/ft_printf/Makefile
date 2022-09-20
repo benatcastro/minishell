@@ -26,9 +26,6 @@ OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 all: $(OBJ)
 
-#$(NAME) : $(OBJ)
-#	@$(AR) $(NAME) $(OBJ)
-
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(CC) $(CC_FLAGS) -I $(INCLUDES) -c $< -o $@
 

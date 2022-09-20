@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 12:00:07 by becastro          #+#    #+#             */
-/*   Updated: 2022/04/27 14:54:27 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:37:19 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strrchr(const char *s, int c)
 	c = (unsigned char) c;
 	lenght = ft_strlen(s) + 1;
 	while (--lenght >= 0)
-		if (s[lenght] == d)
+		if (s[lenght] == c)
 			return ((char *)&s[lenght]);
 	return (0);
 }
