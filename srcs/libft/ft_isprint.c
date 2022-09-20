@@ -3,18 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/28 16:16:14 by becastro          #+#    #+#             */
-/*   Updated: 2022/04/14 17:00:20 by becastro         ###   ########.fr       */
+/*   Created: 2022/08/16 18:56:23 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 19:55:06 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isprint(int arg)
+/**
+ * @brief checks if the character c is printable.
+ * 
+ * @param c character to be evaluated.
+ * @return int returns 1 if character is printable, 0
+ * otherwise.
+ */
+int	ft_isprint(int c)
 {
-	if (arg >= 32 && arg <= 126)
-		return (arg);
+	if (c >= 32 && c <= 126)
+		return (1);
 	return (0);
 }

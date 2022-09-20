@@ -3,18 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/30 11:06:05 by becastro          #+#    #+#             */
-/*   Updated: 2022/04/14 17:01:56 by becastro         ###   ########.fr       */
+/*   Created: 2022/08/16 23:51:56 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 20:30:02 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief receives an uppercase alphabetic character and makes it lowercase.
+ * 
+ * @param c the character to evaluate.
+ * @return int the new character.
+ */
 int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
-		return (c + 32);
+		c += 32;
 	return (c);
 }

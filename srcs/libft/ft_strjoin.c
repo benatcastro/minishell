@@ -3,27 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 23:20:07 by bena              #+#    #+#             */
-/*   Updated: 2022/04/27 14:54:02 by becastro         ###   ########.fr       */
+/*   Created: 2022/08/17 03:19:28 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 20:23:00 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+/**
+ * @brief concatenates the string pointed by s1 and the string pointed
+ * by s2 and allocates a new string based on the result of the concatenation.
+ * 
+ * @param s1 the first string to concatenate.
+ * @param s2 the second string to concatenate.
+ * @return char* the allocated string resultant of the concatenation.
+ */
+char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*str;
-	size_t	s1_len;
-	size_t	s2_len;
 
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	str = malloc((s1_len + s2_len + 1) * sizeof(char));
-	if (!(str))
+	if (!s1 || !s2)
 		return (NULL);
-	ft_strlcpy(str, s1, s1_len + 1);
-	ft_strlcat(str, s2, s1_len + s2_len + 1);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s1, (ft_strlen(s1) + 1));
+	ft_strlcat(str, s2, (ft_strlen(s1) + ft_strlen(s2) + 1));
 	return (str);
 }

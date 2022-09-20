@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/22 10:49:40 by becastro          #+#    #+#             */
-/*   Updated: 2022/04/22 11:24:44 by becastro         ###   ########.fr       */
+/*   Created: 2022/08/17 22:43:37 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 23:11:23 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+/**
+ * @brief returns a pointer to the lists last node.
+ * 
+ * @param lst a pointer to the first node to be iterated.
+ * @return t_list* the last node of the list.
+ */
+t_list	*ft_lstlast(t_list *lst)
 {
-	t_list	*new;
-
-	new = (t_list *)malloc(sizeof(t_list));
-	if (!(new))
+	if (!lst)
 		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }

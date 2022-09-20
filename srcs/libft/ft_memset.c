@@ -3,26 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/28 16:32:47 by becastro          #+#    #+#             */
-/*   Updated: 2022/04/27 14:51:54 by becastro         ###   ########.fr       */
+/*   Created: 2022/08/16 19:03:13 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 23:29:40 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *str, int c, size_t n)
+/**
+ * @brief set len bytes of the b string with the
+ * c character (casted to uchar).
+ * 
+ * @param b string to be setted.
+ * @param c character to write on len bytes of the string.
+ * @param len number of bytes to set.
+ * @return void* string already setted.
+ */
+void	*ft_memset(void *b, int c, size_t len)
 {
-	unsigned int	counter;
-	char			*string;
+	size_t	i;
 
-	string = str;
-	counter = 0;
-	while (counter < n)
+	i = -1;
+	if (b)
 	{
-		string[counter] = c;
-		counter++;
+		while (++i < len)
+			((unsigned char *)b)[i] = (unsigned char)c;
 	}
-	return (str);
+	return (b);
 }

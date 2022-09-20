@@ -3,38 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 00:48:44 by bena              #+#    #+#             */
-/*   Updated: 2022/04/27 14:50:16 by becastro         ###   ########.fr       */
+/*   Created: 2022/08/17 01:07:26 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 19:22:12 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+/**
+ * @brief converts the string pointed by
+ * str to its integer representation.
+ * 
+ * @param str the string containing the integer to be represented.
+ * @return int the result of the representation of the string
+ * pointed by str.
+ */
+int	ft_atoi(const char *str)
 {
-	int		sign;
-	int		nbr;
-	size_t	i;
+	int	result;
+	int	i;
+	int	sign;
 
-	nbr = 0;
 	i = 0;
 	sign = 1;
-	while (nptr[i] == ' ' || nptr[i] == '\t' || nptr[i] == '\f'
-		|| nptr[i] == '\r' || nptr[i] == '\n' || nptr[i] == '\v')
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (nptr[i] == '-')
+		if (str[i] == '-')
 			sign = -1;
 		i++;
 	}
-	while (nptr[i] && ft_isdigit(nptr[i]))
+	result = 0;
+	while (str[i])
 	{
-		nbr *= 10;
-		nbr += (nptr[i] - '0');
-		i++;
+		if (!ft_isdigit(str[i]))
+			break ;
+		result = result * 10 + (str[i++] - 48);
 	}
-	return (nbr * sign);
+	return (result * sign);
 }

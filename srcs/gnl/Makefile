@@ -9,7 +9,7 @@ RM = rm -f
 LIBRARIES_DIR = ../../libraries/
 NAME = $(LIBRARIES_DIR)gnl.a
 INCLUDES = ../../includes/
-OBJ_DIR = ../../objs/
+OBJ_DIR = ../../objs/42lib
 
 
 SRC = $(addsuffix .c, $(SRC_FILES))

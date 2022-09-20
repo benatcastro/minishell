@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
+/*   ft_chr_in_set.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 07:40:53 by bena              #+#    #+#             */
-/*   Updated: 2022/04/25 07:48:19 by bena             ###   ########.fr       */
+/*   Created: 2022/08/31 15:00:13 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/31 15:00:24 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+int	ft_chr_in_set(char c, const char *set)
 {
-	if (!lst || !del)
-		return ;
-	del(lst -> content);
-	free(lst);
+	while (*set)
+	{
+		if (c == *set)
+			return (1);
+		set++;
+	}
+	return (0);
 }

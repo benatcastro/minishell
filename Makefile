@@ -13,7 +13,7 @@ VALGRIND 	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
 
 #---------DIRECTORIES-----------
 SRC_DIR = srcs/
-OBJ_DIR = objs/
+OBJ_DIR = objs/42lib
 INC_DIR = includes/
 LIB_DIR = libraries/
 
@@ -23,10 +23,10 @@ LIB_DIR = libraries/
 SRC_LIBFT = $(addprefix $(SRC_DIR)libft/, $(addsuffix .c, $(FILES_LIBFT)))
 OBJ_LIBFT = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES_LIBFT)))
 
-all: minilibx 42lib
+all: 42lib
 
-42lib: libft gnl
-	@$(AR) $(LIB_DIR)$(LIB_NAME) $(OBJ_DIR)*
+42lib: libft gnl printf
+	@$(AR) $(LIB_DIR)$(LIB_NAME) $(OBJ_DIR)*.o
 	@ranlib $(LIB_DIR)$(LIB_NAME)
 	@echo "42 Lib Compiled"
 
@@ -51,7 +51,6 @@ clean:
 	@make clean -C srcs/libft
 	@make clean -C srcs/ft_printf
 	@make clean -C srcs/gnl
-	@make clean -C minilibx
 	@clear
 	@echo "Clean done"
 

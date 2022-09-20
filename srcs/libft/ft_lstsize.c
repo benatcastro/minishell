@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 10:15:02 by becastro          #+#    #+#             */
-/*   Updated: 2022/04/25 11:18:06 by becastro         ###   ########.fr       */
+/*   Created: 2022/08/17 22:40:41 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 23:06:49 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+/**
+ * @brief iterates over a list and returns its total size.
+ * 
+ * @param lst the list to be iterated.
+ * @return int the total size of the list.
+ */
+int	ft_lstsize(t_list *lst)
 {
-	t_list	*aux;
+	int	i;
 
-	aux = lst;
-	while (aux)
+	if (!lst)
+		return (0);
+	i = 0;
+	while (lst)
 	{
-		f(aux -> content);
-		aux = aux -> next;
+		lst = lst->next;
+		i++;
 	}
+	return (i);
 }

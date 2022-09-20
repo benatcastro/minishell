@@ -3,31 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/04 22:52:16 by bena              #+#    #+#             */
-/*   Updated: 2022/04/27 14:54:23 by becastro         ###   ########.fr       */
+/*   Created: 2022/08/17 00:54:42 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/19 22:17:54 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *s1, const char *s2, size_t n)
+/**
+ * @brief tries to find the string pointed by needle inside the string pointed
+ * by haystack.
+ * 
+ * @param haystack the string to be searched.
+ * @param needle the string to search.
+ * @param len the maximun length to search.
+ * @return char* the pointer to the first character of needle inside the string
+ * poined by haystack.
+ */
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	index;
-	size_t	find_len;
+	size_t	i;
 
-	if (!*s2)
-		return ((char *)(s1));
-	find_len = ft_strlen(s2);
-	index = 0;
-	while (s1[index] && index < n)
+	if (!*needle)
+		return ((char *)haystack);
+	i = -1;
+	while (haystack[++i] && i < len)
 	{
-		if (find_len + index > n)
+		if (ft_strlen(needle) + i > len)
 			return (NULL);
-		if (s1[index] == s2[0] && ft_strncmp(&s1[index], s2, find_len) == 0)
-			return ((char *)&s1[index]);
-		index++;
+		if (haystack[i] == needle[0] && !ft_strncmp(&haystack[i],
+				needle, ft_strlen(needle)))
+			return ((char *)&haystack[i]);
 	}
 	return (NULL);
 }

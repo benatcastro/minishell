@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 18:40:55 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/08/17 19:52:38 by aalvarez         ###   ########.fr       */
+/*   Created: 2022/08/17 20:39:35 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/17 23:06:10 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 /**
- * @brief checks if the character c is alphabetic.
+ * @brief allocates a new node for a linked list
+ * and fills its content with the void pointer content.
  * 
- * @param c character to be evaluated.
- * @return int returns 1 if character is alphabetic, 0
- * otherwise.
+ * @param content content to be added to the node.
+ * @return t_list* a new allocated node.
  */
-int	ft_isalpha(int c)
+t_list	*ft_lstnew(void *content)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
-	return (0);
+	t_list	*node;
+
+	node = (t_list *)malloc(sizeof(t_list));
+	if (!node)
+		return (NULL);
+	node->content = content;
+	node->next = NULL;
+	return (node);
 }

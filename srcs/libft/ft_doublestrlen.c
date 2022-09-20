@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_doublestrlen.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 18:40:55 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/08/17 19:52:38 by aalvarez         ###   ########.fr       */
+/*   Created: 2022/08/21 18:25:01 by aalvarez          #+#    #+#             */
+/*   Updated: 2022/08/21 18:49:20 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /**
- * @brief checks if the character c is alphabetic.
+ * @brief counts the number of lines the double pointer pointed by str has.
  * 
- * @param c character to be evaluated.
- * @return int returns 1 if character is alphabetic, 0
- * otherwise.
+ * @param str the double pointer to count.
+ * @return int the number of lines str has.
  */
-int	ft_isalpha(int c)
+int	ft_doublestrlen(const char **str)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
-	return (0);
+	int	i;
+
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
