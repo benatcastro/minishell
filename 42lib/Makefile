@@ -26,7 +26,7 @@ OBJ_LIBFT = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES_LIBFT)))
 
 all: 42lib
 
-42lib: libft gnl
+42lib: libft
 	@$(AR) $(LIB_DIR)$(LIB_NAME) $(OBJ_DIR)*
 	@ranlib $(LIB_DIR)$(LIB_NAME)
 	@echo "42 Lib Compiled"
@@ -38,11 +38,6 @@ mk_dirs:
 libft: mk_dirs
 	@make -C libft
 	@echo "Libft Compiled"
-
-printf: mk_dirs libft
-	@make -C ft_printf
-	@clear
-	@echo "Printf Compiled"
 
 gnl: mk_dirs
 	@make -C gnl

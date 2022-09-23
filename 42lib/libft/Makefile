@@ -1,8 +1,7 @@
 CC = gcc
-CC_FLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
-LIBRARIES_DIR = ../../libraries/
-NAME = $(LIBRARIES_DIR)libft.a
+LIBRARIES_DIR = libraries/
 INCLUDES = ../../includes/
 OBJ_DIR = ../../objs/42lib/
 
@@ -70,7 +69,7 @@ all: $(OBJ)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CC_FLAGS) -I $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(INCLUDES) -c $< -o $@
 
 clean:
 	@$(RM) $(OBJ)
