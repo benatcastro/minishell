@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 13:02:42 by bena              #+#    #+#             */
-/*   Updated: 2022/09/24 17:00:56 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/24 17:11:20 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	ft_doublesize(const char *s, char *set)
  * @return char** the resultant allocation of the splitted
  * string pointed by s.
  */
-char	**get_split_in_set(char const *s, char *set)
+char	**ft_split_in_set(char const *s, char *set)
 {
 	char	**result;
 	size_t	i;

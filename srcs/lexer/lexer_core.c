@@ -6,15 +6,24 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:46:05 by bena              #+#    #+#             */
-/*   Updated: 2022/09/24 12:09:09 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/24 17:12:17 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lexer.h"
 
+void	print_double_str(char **str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		printf("(%s)\n", str[i]);
+}
+
 int	lexer_core(char	*cmd)
 {
-	printf("hello from lexer (%s)\n", cmd);
+	print_double_str(ft_split_in_set(cmd, WHITESPACE));
 	return (1);
 }
