@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 13:02:42 by bena              #+#    #+#             */
-/*   Updated: 2022/09/24 13:49:54 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/24 14:16:52 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static int	ft_doublesize(const char *s, char *set)
 			size++;
 		s++;
 	}
-	printf("splits:(%d)\n", size);
 	return (size);
 }
+
 
 /**
  * @brief takes the string pointed by s and creates a double
@@ -45,7 +45,7 @@ static int	ft_doublesize(const char *s, char *set)
  * @return char** the resultant allocation of the splitted
  * string pointed by s.
  */
-char	**ft_split_set(char const *s, char *c)
+static char	**get_split_set_char(char const *s, char *c)
 {
 	char	**result;
 	size_t	i;
@@ -74,11 +74,39 @@ char	**ft_split_set(char const *s, char *c)
 	return (result);
 }
 
+/**
+ * @brief
+ * Iterates the double str from "get_split_set_char" and trims all
+ * the remainings chars from set
+ * @param s
+ * @param set
+ * @return char**
+ */
+char	**ft_split_set(char *s, char *set)
+{
+	char	**split;
+	char	*tmp;
+	int		i;
 
-// int	main(int argc, char **argv)
-// {
-// 	(void)argc;
-// 	(void)argv;
-// 	for (size_t i = 0; i < 5; i++)
-// 		printf("(%s\n)", ft_split_set("	    ls	hola    	", "\20\t")[i]);
-// }
+	split = get_split_set_char(s, set);
+	i = -1;
+	while (split[++i])
+	{
+		tmp = ft_strtrim(split[i], set);
+		free(split[i]);
+		split[i] = tmp;
+		//free(tmp);
+	}
+	return (split);
+		//replace for ft_replace Str
+}
+
+
+
+int	main(int argc, char **argv)
+{
+	(void)argc;
+	(void)argv;
+	for (size_t i = 0; i < 5; i++)
+		printf("(%s\n)", ft_split_set("	    ls	hola    	", "\20\t")[i]);
+}
