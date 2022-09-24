@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/24 12:03:04 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/24 12:17:38 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv, char **env)
 	buf = NULL;
 	while (1)
 	{
-		buf = readline("\033[33mJarvis 🤖 > \033[0m");
+		buf = readline(PROMPT);
 		if (buf == NULL || buf[0] == '\0')
 			continue ;
 		if (!buf)
@@ -80,7 +80,7 @@ void	builtins(char *buf, char **env)
 		printf ("export");
 	}
 	else
-		printf ("\033[33mJarvis 🤖: \033[0m%s: command not found\n", buf);
+		printf ("%s%s: command not found\n", PROMPT, buf);
 }
 
 // char	**ft_export(char **env)
