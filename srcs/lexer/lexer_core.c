@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:46:05 by bena              #+#    #+#             */
-/*   Updated: 2022/09/24 18:21:57 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/24 18:51:42 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,10 @@ int	lexer_core(char	*cmd)
 	char	**str;
 
 	str = ft_split_in_set(cmd, WHITESPACE);
-	print_double_str(str);
+	//print_double_str(str);
+	//printf("===After lexing====\n");
 	replace_for_keywords(str);
-	print_double_str(str);
+	//print_double_str(str);
+	//Here goes call to parser (maybe)
 	return (1);
 }
