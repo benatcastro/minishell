@@ -6,7 +6,15 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:46:05 by bena              #+#    #+#             */
-/*   Updated: 2022/09/23 13:46:13 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/24 12:09:09 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
+#include "lexer.h"
+
+int	lexer_core(char	*cmd)
+{
+	printf("hello from lexer (%s)\n", cmd);
+	return (1);
+}

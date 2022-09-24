@@ -6,7 +6,7 @@
 #    By: bena <bena@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/24 11:50:39 by bena             ###   ########.fr        #
+#    Updated: 2022/09/24 12:06:07 by bena             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,12 @@ NAME = minishell
 ##########DIRECTORIES########
 SRC_DIR = srcs/
 OBJ_DIR = objs/
-MINISHELL_SRCS = $(SRC_DIR)$(NAME)/
+MINISHELL_SRCS = $(SRC_DIR)core/
 INC_DIR = includes/
 LIB_DIR = libraries/
 
 ############SRCS##############
-SRC =	ms_main.c \
+SRC =	ms_main.c $(SRC_DIR)lexer/lexer_core.c\
 
 ###########OBJS##############
 OBJS = $(SRC:.c=.o)
