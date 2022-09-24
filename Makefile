@@ -6,7 +6,7 @@
 #    By: bena <bena@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/24 11:45:43 by bena             ###   ########.fr        #
+#    Updated: 2022/09/24 11:50:39 by bena             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ $(NAME): $(OSRC)
 	make -C 42lib/ --silent
 	@echo "\033[33mCompiling libft...\033[0m"
 	@echo "\033[33mCompiling minishell project...\033[0m"
-	@$(CC) $(CFLAGS) $(MINISHELL_SRCS)$(SRC) $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) $^ -o $(NAME)
+	$(CC) $(CFLAGS) $(MINISHELL_SRCS)$(SRC) $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) $^ -o $(NAME)
 	@echo "\033[92mminishell has been successfully compiled!\033[0m"
 
 42lib:
