@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 11:27:46 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/24 17:12:03 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/24 17:53:35 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ int		ft_doublestrlen(const char **str);
 int		ft_doublefree(char **str);
 int		ft_strcmp(char *s1, char *s2);
 char	**ft_split_in_set(char const *s, char *set);
+char		*ft_str_replace(char *src, char const *replace);
 
 #endif

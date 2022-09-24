@@ -6,18 +6,26 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 12:07:41 by bena              #+#    #+#             */
-/*   Updated: 2022/09/24 17:01:20 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/24 18:17:18 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 # define WHITESPACE " \t\f\r\n\v" //should we use "\n as white space??"
+
 # define AMPERSAND "<AMPERSAND>"
+# define DOUBLEAMPERSAND "DOUBLEAMPERSAND"
+
 # define PIPE "<PIPE>"
+# define DOUBLEPIPE "<DOUBLEPIPE>"
+
 # define SEMICOLON "<SEMICOLON>"
 # define GREATER "<GREATER>"
-# define LESS "<LESS"
+# define DOUBLEGREATER "<DOUBLEGREATER>"
+
+# define LESS "<LESS>"
+# define DOUBLELESS "<DOUBLELESS>"
 
 int	lexer_core(char	*cmd);
 

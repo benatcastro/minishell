@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/24 12:15:49 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/24 17:56:08 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-# define PROMPT "\033[33mJarvis 🤖 > \033[0m"
+# define PROMPT "\033[33mBender 🤖 > \033[0m"
 
 int		main(int argc, char **argv, char **env);
 void	builtins(char *buf, char **env);
