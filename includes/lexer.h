@@ -6,12 +6,17 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 12:07:41 by bena              #+#    #+#             */
-/*   Updated: 2022/09/24 13:56:17 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/24 14:22:44 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
+# define AMPERSAND "<AMPERSAND>"
+# define PIPE "<PIPE>"
+# define SEMICOLON "<SEMICOLON>"
+# define GREATER "<GREATER>"
+# define LESS "<LESS"
 
 int	lexer_core(char	*cmd);
 
