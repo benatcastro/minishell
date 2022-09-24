@@ -6,12 +6,13 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 12:07:41 by bena              #+#    #+#             */
-/*   Updated: 2022/09/24 12:08:25 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/24 12:10:00 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
+int	lexer_core(char	*cmd);
 
 #endif
