@@ -59,6 +59,7 @@ SRC_FILES =	ft_isalpha			\
 			ft_doublestrlen		\
 			ft_strcmp			\
 			ft_append_char		\
+			ft_split_in_set	\
 
 SRC = $(addsuffix .c, $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
