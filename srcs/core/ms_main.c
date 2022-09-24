@@ -6,11 +6,12 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/24 12:17:38 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/24 12:37:15 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "lexer.h"
 
 int	main(int argc, char **argv, char **env)
 {
@@ -26,6 +27,7 @@ int	main(int argc, char **argv, char **env)
 			continue ;
 		if (!buf)
 			continue ;
+		lexer_core(buf);
 		add_history(buf);
 		builtins(buf, env);
 		free (buf);
