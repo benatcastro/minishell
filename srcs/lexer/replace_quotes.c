@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:56:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/26 21:45:03 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/26 21:50:29 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,21 @@ char	*replace_quoted_strings(char *str)
 	printf("TEST (%d)\n", i);
 	while (str[++i])
 		if (ft_isblank(str[i]))
-			str[i] = 1;
+			str[i] = REPLACE_CHAR;
 	return (str);
+}
+
+void	replace_for_spaces(char **str)
+{
+	int	y;
+	int	x;
+
+	y = -1;
+	while (str[++y])
+	{
+		x = -1;
+		while (str[y][++x])
+			if (str[y][x] == REPLACE_CHAR)
+				str[y][x] = ' ';
+	}
 }
