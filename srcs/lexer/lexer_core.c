@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:46:05 by bena              #+#    #+#             */
-/*   Updated: 2022/09/26 18:35:49 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:55:50 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,16 @@ void	print_double_str(char **str)
 
 	i = -1;
 	while (str[++i])
-		printf("(%s)\n ", str[i]);
+		printf("(%s)\n", str[i]);
 }
 
-static int	replace_for_keywords(char **str, char **cmd)
+static int	replace_for_keywords(char **str)
 {
 	int	i;
 
-	(void)cmd;
 	i = -1;
 	while (str[++i])
 	{
-		if (ft_strcmp(str[i], "&"))
-			str[i] = ft_str_replace(str[i], AMPERSAND);
 		if (ft_strcmp(str[i], "&"))
 			str[i] = ft_str_replace(str[i], AMPERSAND);
 		else if (ft_strcmp(str[i], "&&"))
@@ -54,17 +51,16 @@ static int	replace_for_keywords(char **str, char **cmd)
 	return (1);
 }
 
-int	lexer_core(char	*cmd)
+char	**lexer_core(char	*cmd)
 {
 	char	**str;
-	char	**cmd_splitted;
 
-	cmd_splitted = ft_split_in_set(cmd, "'");
 	str = ft_split_in_set(cmd, WHITESPACE);
-	print_double_str(cmd_splitted);
-	printf("===After lexing====\n");
-	replace_for_keywords(str, cmd_splitted);
 	print_double_str(str);
+	printf("===After lexing====\n");
+	replace_for_keywords(str);
+	print_double_str(str);
+
 	//Here goes call to parser (maybe)
-	return (1);
+	return (str);
 }
