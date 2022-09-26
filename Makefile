@@ -6,7 +6,7 @@
 #    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/26 17:10:30 by becastro         ###   ########.fr        #
+#    Updated: 2022/09/26 21:01:08 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ INC_DIR = includes/
 LIB_DIR = libraries/
 
 ############SRCS##############
-SRC =	ms_main.c $(SRC_DIR)lexer/lexer_core.c\
+SRC =	ms_main.c $(SRC_DIR)lexer/lexer_core.c	\
+		$(SRC_DIR)lexer/replace_quotes.c			\
 
 ###########OBJS##############
 OBJS = $(SRC:.c=.o)

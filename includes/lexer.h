@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 12:07:41 by bena              #+#    #+#             */
-/*   Updated: 2022/09/26 19:59:39 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/26 21:10:38 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@
 # define SEMICOLON "<SEMICOLON>"
 
 char	**lexer_core(char	*cmd);
+int		check_quotes(char *str);
 
 #endif
