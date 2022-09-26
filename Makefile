@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
+#    By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/20 18:34:46 by becastro         ###   ########.fr        #
+#    Updated: 2022/09/23 22:31:04 by umartin-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ RM = rm -rf
 RD_FLAGS	= -I/Users/$(USER)/.brew/opt/readline/include -lreadline -L/Users/$(USER)/.brew/opt/readline/lib/
 SANITIZE	= -fsanitize=address -g3
 VALGRIND	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
-CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address
+CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g3
 INC_FLAGS	= -I $(INC_DIR)
 LIB_FLAGS	= $(LIB_DIR)/*.a
 

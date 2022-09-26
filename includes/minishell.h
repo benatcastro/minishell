@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/20 18:21:23 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/23 22:28:08 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@
 
 int		main(int argc, char **argv, char **env);
 void	builtins(char *buf, char **env);
-// void	ft_echo(char *str);
 int		ft_quote_checker(char *buf);
+void	ft_export_no_arg(char **cln);
+char	*ft_parser(char *str);
+void	ft_list_add(t_list **args, char *str, int i);
 
 #endif

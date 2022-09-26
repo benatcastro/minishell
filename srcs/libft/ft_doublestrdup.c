@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_doublestrdup.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 18:21:54 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/08/21 18:27:50 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/09/21 15:43:44 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @return char** the allocated new double pointer or NULL if the allocation
  * failed or str was nonexisting.
  */
-char	**ft_doublestrdup(const char **str)
+char	**ft_doublestrdup(char **str)
 {
 	char	**result;
 	int		i;
