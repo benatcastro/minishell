@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 12:51:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/26 21:20:36 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/26 21:37:39 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@
 
 char	**lexer_core(char	*cmd);
 int		check_quotes(char *str);
+char	*replace_quoted_strings(char *str);
 
 #endif

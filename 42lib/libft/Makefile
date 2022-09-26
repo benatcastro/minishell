@@ -7,6 +7,7 @@ OBJ_DIR = ../../objs/42lib/
 
 
 SRC_FILES =	ft_isalpha			\
+			ft_isblank			\
 			ft_isdigit			\
 			ft_isalnum			\
 			ft_isascii			\

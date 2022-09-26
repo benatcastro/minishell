@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:46:05 by bena              #+#    #+#             */
-/*   Updated: 2022/09/26 21:15:35 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/26 21:45:22 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,14 @@ static int	replace_for_keywords(char **str)
 char	**lexer_core(char	*cmd)
 {
 	char	**str;
-
-	str = NULL;
-	check_quotes(cmd);
-	//str = ft_split_in_set(cmd, WHITESPACE);
+	int j = -1;
+	cmd = replace_quoted_strings(cmd);
+	while (cmd[++j])
+		printf("(%d)", cmd[j]);
+	str = ft_split_in_set(cmd, WHITESPACE);
 	print_double_str(str);
 	printf("===After lexing====\n");
-	//replace_for_keywords(str);
+	replace_for_keywords(str);
 	print_double_str(str);
 
 	//Here goes call to parser (maybe)
