@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bena <bena@student.42.fr>                  +#+  +:+       +#+         #
+#    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/24 12:38:27 by bena             ###   ########.fr        #
+#    Updated: 2022/09/26 17:10:30 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,8 +45,8 @@ all: $(NAME)
 	 -c $^ -o $@
 
 $(NAME): $(OSRC)
-	make -C 42lib/ --silent
-	@echo "\033[33mCompiling libft...\033[0m"
+	@echo "\033[33mCompiling 42lib...\033[0m"
+	@make -C 42lib/
 	@echo "\033[33mCompiling minishell project...\033[0m"
 	$(CC) $(CFLAGS) $(MINISHELL_SRCS)$(SRC) $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) $^ -o $(NAME)
 	@echo "\033[92mminishell has been successfully compiled!\033[0m"
