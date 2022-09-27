@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:56:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/27 14:49:17 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:55:17 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,38 @@
 #include "libft.h"
 #include <stdio.h>
 
-/**
- * @brief
- * checks if there are any quotes and if they are closed correctly
- * todo ====first iteration===
- * @param str
- * @return int
- */
-bool ft_is_quoted(char *s, u_int32_t index)
-{
-	int		i;
-	int		j;
-	bool	closed;
-
-	i = -1;
-	while (str[++i])
-	{
-		if (str[i] == 39)
-		{
-			// printf("start quote\n");
-			j = i;
-			closed = false;
-		}
-		if (str[i] == 39 && closed == false)
-		{
-			closed = true;
-			// printf("end quote\n");
-			return (j);
-		}
-	}
-	return (0);
-}
-
-char	*replace_quoted_strings(char *str)
+void	quote_logic(char *str)
 {
 	int	i;
 
-	i = check_quotes(str);
-	if (!i)
-		return (NULL);
-	printf("TEST (%d)\n", i);
+	i = -1;
 	while (str[++i])
-		if (ft_isblank(str[i]))
+		if (ft_is_quoted(str, i) && ft_isblank(str[i]))
 			str[i] = REPLACE_CHAR;
-	return (str);
+}
+
+bool	ft_is_quoted(const char *ref, unsigned int index)
+{
+	bool	opens;
+	bool	closes;
+	int		i;
+
+	opens = false;
+	closes = false;
+	i = index;
+	if (i > 0)
+		while (ref[--i] && i > 0)
+			if (ref[i] == SINGLE_QUOTE || ref[i] == DOUBLE_QUOTE)
+				opens = true;
+	if (ref[i] == SINGLE_QUOTE || ref[i] == DOUBLE_QUOTE)
+		opens = true;
+	while (ref[index++] && ref[index])
+		if (ref[index] == SINGLE_QUOTE || ref[index] == DOUBLE_QUOTE)
+			closes = true;
+	if (opens && closes)
+		return (true);
+	else
+		return (false);
 }
 
 void	replace_for_spaces(char **str)

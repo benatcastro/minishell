@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/27 14:47:29 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:29:06 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 int	main(int argc, char **argv, char **env)
 {
 	char	*buf;
-	char	**cmd;
 	char	**ls;
 
 	(void)argc;
