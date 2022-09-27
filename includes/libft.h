@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 11:27:46 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/27 16:06:50 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:10:52 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ int		ft_doublestrlen(char **str);
 int		ft_doublefree(char **str);
 int		ft_strcmp(char *s1, char *s2);
 char	**ft_split_in_set(char const *s, char *set);
-char		*ft_str_replace(char *src, char const *replace);
+char	*ft_str_replace(char *src, char const *replace);
 
 #endif

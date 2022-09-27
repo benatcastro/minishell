@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/27 16:08:48 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/09/27 17:23:13 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv, char **env)
 	i = 0;
 	while (1)
 	{
-		buf = readline("\033[33mJarvis 🤖 > \033[0m");
+		buf = readline(PROMPT);
 		if (buf == NULL || buf[0] == '\0')
 			continue ;
 		if (!buf)
