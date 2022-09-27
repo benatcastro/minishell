@@ -6,7 +6,11 @@
 #    By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2022/09/23 22:31:04 by umartin-         ###   ########.fr        #
+=======
+#    Updated: 2022/09/26 21:01:08 by becastro         ###   ########.fr        #
+>>>>>>> testing
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +20,13 @@ NAME = minishell
 ##########DIRECTORIES########
 SRC_DIR = srcs/
 OBJ_DIR = objs/
-MINISHELL_SRCS = $(SRC_DIR)$(NAME)/
+MINISHELL_SRCS = $(SRC_DIR)core/
 INC_DIR = includes/
 LIB_DIR = libraries/
 
 ############SRCS##############
-SRC =	ms_main.c \
+SRC =	ms_main.c $(SRC_DIR)lexer/lexer_core.c	\
+		$(SRC_DIR)lexer/replace_quotes.c			\
 
 ###########OBJS##############
 OBJS = $(SRC:.c=.o)
@@ -36,26 +41,37 @@ SANITIZE	= -fsanitize=address -g3
 VALGRIND	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
 CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g3
 INC_FLAGS	= -I $(INC_DIR)
-LIB_FLAGS	= $(LIB_DIR)/*.a
+LIB_FLAGS	= $(LIB_DIR)42lib.a
 
 all: $(NAME)
+
 
 %.o: %.c
 	 -c $^ -o $@
 
 $(NAME): $(OSRC)
-	@echo "\033[33mCompiling libft...\033[0m"
-	$(42Lib)
+	@echo "\033[33mCompiling 42lib...\033[0m"
+	@make -C 42lib/
 	@echo "\033[33mCompiling minishell project...\033[0m"
-	@$(CC) $(CFLAGS) $(MINISHELL_SRCS)$(SRC) $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) $^ -o $(NAME)
+	$(CC) $(CFLAGS) $(MINISHELL_SRCS)$(SRC) $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) $^ -o $(NAME)
 	@echo "\033[92mminishell has been successfully compiled!\033[0m"
 
+run: all
+	./$(NAME)
+
 clean:
+	@make clean -C 42lib/
 	@$(RM) $(OBJ_DIR)
 
 fclean: clean
+<<<<<<< HEAD
 	@$(RM) $(NAME)
 	@$(RM) $(LIB_DIR)
+=======
+	make fclean -C 42lib/
+	@$(RM) $(NAME)
+
+>>>>>>> testing
 re: fclean all
 
 PHONY: all clean fclean re
