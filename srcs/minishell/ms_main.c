@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/23 22:34:41 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/09/27 15:39:49 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int	main(int argc, char **argv, char **env)
 			continue ;
 		add_history(buf);
 		buf = ft_parser(buf);
-		// ft_list_add(&args, buf, i);
-		// printf ("%s\n", args->content);
 		builtins(buf, env);
 		free (buf);
 	}
@@ -48,62 +46,6 @@ int	ft_strlen_sh(const char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-void	ft_list_add(t_list **args, char *str, int i)
-{
-	int		c;
-	int		aux;
-	int		j;
-	char	*temp;
-
-	c = i;
-	j = 0;
-	while (str[i] != 32 || str[i] != '\0')
-		i++;
-	aux = i - c;
-	temp = malloc(sizeof(char *) * aux + 1);
-	while (c <= i)
-		temp[j++] = str[c++];
-	ft_lstadd_back(args, ft_lstnew(temp));
-	free(temp);
-	if (i != ft_strlen_sh(str))
-		ft_list_add(args, str, i);
-	return ;
-}
-
-char	*ft_parser(char *str)
-{
-	char	*rtn;
-	int		i;
-	int		c;
-
-	i = -1;
-	c = 0;
-	rtn = malloc(sizeof(char) * (ft_strlen(str) + 1));
-	if (str[0] == 32)
-	{
-		while (str[++i] == 32)
-			continue ;
-	}
-	while (str[i])
-	{
-		if (str[i] == 32)
-		{
-			while (str[i] == 32)
-				i++;
-			rtn[c++] = 32;
-		}
-		if (str[i] == 39)
-		{
-			while (str[i] != 39)
-				rtn[c++] = str[i];
-		}
-		else
-			rtn[c++] = str[i];
-		i++;
-	}
-	return (rtn);
 }
 
 int	ft_quote_checker(char *buf)
