@@ -1,0 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
+/*   Updated: 2022/09/24 17:56:08 by bena             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef MINISHELL_H
+# define MINISHELL_H
+
+# include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <dirent.h>
+# include <sys/types.h>
+# include <signal.h>
+# include <sys/wait.h>
+# include <sys/types.h>
+# include "libft.h"
+# include <readline/readline.h>
+# include <readline/history.h>
+
+# define PROMPT "\033[33mBender 🤖 > \033[0m"
+
+int		main(int argc, char **argv, char **env);
+void	builtins(char *buf, char **env);
+// void	ft_echo(char *str);
+int		ft_quote_checker(char *buf);
+
+#endif
