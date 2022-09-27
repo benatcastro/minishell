@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/27 15:39:49 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:01:30 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ int	main(int argc, char **argv, char **env)
 		if (!buf)
 			continue ;
 		add_history(buf);
+<<<<<<< HEAD
 		buf = ft_parser(buf);
+=======
+>>>>>>> testing
 		builtins(buf, env);
 		free (buf);
 	}
-	return (0);
 }
-
 int	ft_strlen_sh(const char *str)
 {
 	int	i;
@@ -48,6 +49,8 @@ int	ft_strlen_sh(const char *str)
 	return (i);
 }
 
+=======
+>>>>>>> testing
 int	ft_quote_checker(char *buf)
 {
 	int		c;
@@ -74,6 +77,10 @@ void	builtins(char *buf, char **env)
 	char	*pwd_dir;
 
 	i = -1;
+<<<<<<< HEAD
+=======
+	pwd_dir = malloc(sizeof (char *) * 1024);
+>>>>>>> testing
 	if (!ft_strncmp(buf, "env", 4))
 	{
 		while (env[++i])
@@ -90,14 +97,21 @@ void	builtins(char *buf, char **env)
 		printf ("exit\n");
 		exit (0);
 	}
+<<<<<<< HEAD
 	else if (!ft_strncmp(buf, "export", 7))
 	{
 		ft_export_no_arg(env);
+=======
+	else if (!ft_strncmp(buf, "export", 4))
+	{
+		printf ("export");
+>>>>>>> testing
 	}
 	else
 		printf ("\033[33mJarvis 🤖: \033[0m%s: command not found\n", buf);
 }
 
+<<<<<<< HEAD
 void	ft_export_no_arg(char **cln)
 {
 	int		i;
@@ -135,4 +149,11 @@ void	ft_export_no_arg(char **cln)
 	i = 0;
 	while (env[++i])
 		printf ("%s\n", env[i]);
+=======
+char	**ft_export(char **env)
+{
+	char	**rtn;
+
+	(void)	rtn;
+>>>>>>> testing
 }
