@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/24 17:56:08 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/27 12:43:31 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int		main(int argc, char **argv, char **env);
 void	builtins(char *buf, char **env);
 // void	ft_echo(char *str);
 int		ft_quote_checker(char *buf);
+void	print_double_str(char **str);
 
 #endif

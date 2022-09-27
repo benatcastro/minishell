@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:56:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/26 21:50:29 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/27 14:49:17 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @param str
  * @return int
  */
-int	check_quotes(char *str)
+bool ft_is_quoted(char *s, u_int32_t index)
 {
 	int		i;
 	int		j;

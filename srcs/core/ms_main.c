@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/26 17:15:45 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/27 14:47:29 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 int	main(int argc, char **argv, char **env)
 {
 	char	*buf;
+	char	**cmd;
+	char	**ls;
 
 	(void)argc;
 	(void)argv;
+	ls = malloc(sizeof(char *) * 3);
 	buf = NULL;
 	while (1)
 	{
@@ -31,21 +34,21 @@ int	main(int argc, char **argv, char **env)
 		add_history(buf);
 		builtins(buf, env);
 		free (buf);
+		}
+		return (0);
 	}
-	return (0);
-}
 
-int	ft_quote_checker(char *buf)
-{
-	int		c;
-	int		i;
-
-	i = -1;
-	c = 0;
-	while (buf[++i])
+	int	ft_quote_checker(char *buf)
 	{
-		if (buf[i] == 34)
-			c++;
+		int		c;
+		int		i;
+
+		i = -1;
+		c = 0;
+		while (buf[++i])
+		{
+			if (buf[i] == 34)
+				c++;
 	}
 	if ((c / 2 != 1) || (c / 2 == 0))
 	{
