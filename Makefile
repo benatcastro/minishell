@@ -6,7 +6,7 @@
 #    By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/27 16:06:07 by umartin-         ###   ########.fr        #
+#    Updated: 2022/09/27 16:06:37 by umartin-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,14 +60,9 @@ clean:
 	@$(RM) $(OBJ_DIR)
 
 fclean: clean
-<<<<<<< HEAD
-	@$(RM) $(NAME)
-	@$(RM) $(LIB_DIR)
-=======
 	make fclean -C 42lib/
 	@$(RM) $(NAME)
 
->>>>>>> testing
 re: fclean all
 
 PHONY: all clean fclean re
