@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/27 18:19:35 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:25:07 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ void	builtins(char *buf, char **env);
 int		ft_quote_checker(char *buf);
 void	print_double_str(char **str);
 void	ft_export_no_arg(char **cln);
+int		signals_core(void);
 
 #endif

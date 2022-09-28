@@ -6,11 +6,12 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:28:22 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/28 17:11:20 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:16:20 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "signals.h"
+#include <stdio.h>
 
 void	signal_reciever(int signal, siginfo_t *data, void *ucontext)
 {

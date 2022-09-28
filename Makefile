@@ -6,7 +6,7 @@
 #    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/28 15:36:47 by becastro         ###   ########.fr        #
+#    Updated: 2022/09/28 18:26:45 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,14 @@ all: $(NAME)
 $(NAME):
 	@mkdir -p objs/minishell/
 	@echo "\033[33mCompiling 42lib...\033[0m"
-	@make -C 42lib/
+#	@make -C 42lib/
 	@echo "\033[33mCompiling minishell objects...\033[0m"
 	@mkdir -p objs/minishell/
 	@make -C srcs/core
 	@make -C srcs/lexer
 	@make -C srcs/parser
+#todo when later
+#	@make -C srcs/signals
 	@echo "\033[33mCompiling minishell project...\033[0m"
 	$(CC) $(CFLAGS) $(OBJ_DIR)*.o $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) $^ -o $(NAME)
 	@echo "\033[92mminishell has been successfully compiled!\033[0m"
@@ -55,7 +57,7 @@ clean:
 	@$(RM) $(OBJ_DIR)
 
 fclean: clean
-	make fclean -C 42lib/
+#	make fclean -C 42lib/
 	@$(RM) $(NAME)
 
 re: fclean all
