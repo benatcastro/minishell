@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+         #
+#    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/27 18:32:52 by umartin-         ###   ########.fr        #
+#    Updated: 2022/09/28 15:28:07 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,11 +47,18 @@ all: $(NAME)
 	 -c $^ -o $@
 
 $(NAME): $(OSRC)
+	@mkdir -p objs/minishell/
 	@echo "\033[33mCompiling 42lib...\033[0m"
 	@make -C 42lib/
+	@echo "\033[33mCompiling minishell objects...\033[0m"
+	@mkdir -p objs/minishell/
+	@make -C srcs/core
+	@make -C srcs/lexer
+	@make -C srcs/parser
 	@echo "\033[33mCompiling minishell project...\033[0m"
 	$(CC) $(CFLAGS) $(MINISHELL_SRCS)$(SRC) $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) $^ -o $(NAME)
 	@echo "\033[92mminishell has been successfully compiled!\033[0m"
+
 
 run: all
 	./$(NAME)
