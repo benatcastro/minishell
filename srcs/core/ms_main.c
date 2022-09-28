@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/28 17:26:03 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/28 18:28:55 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv, char **env)
 	buf = NULL;
 	lex = NULL;
 	i = 0;
-	signals_core();
+	//signals_core(); //uncomment when signals are ready
 	while (1)
 	{
 		buf = readline(PROMPT);

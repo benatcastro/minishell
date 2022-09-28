@@ -6,7 +6,7 @@
 #    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/28 18:26:45 by becastro         ###   ########.fr        #
+#    Updated: 2022/09/28 18:28:39 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,8 +42,7 @@ $(NAME):
 	@make -C srcs/core
 	@make -C srcs/lexer
 	@make -C srcs/parser
-#todo when later
-#	@make -C srcs/signals
+	@make -C srcs/signals
 	@echo "\033[33mCompiling minishell project...\033[0m"
 	$(CC) $(CFLAGS) $(OBJ_DIR)*.o $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) $^ -o $(NAME)
 	@echo "\033[92mminishell has been successfully compiled!\033[0m"
