@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/28 14:54:01 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:28:50 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	**parser_core(char **str)
 	{
 		printf("ANTES\n%s\n", str[i]);
 		aux = parser_quotes(str[i]);
-		printf("DESPUES\n%s\n", aux);
+		printf("DESPUES\n[%s]\n", aux);
 	}
 	return (str);
 }
@@ -33,14 +33,18 @@ char	*parser_quotes(char *str)
 {
 	int		i;
 	int		c;
+	//int		a;
 	int		checker;
 	char	*rtn;
+	//char	*exp;
 
-	i = 0;
+	i = -1;
 	c = 0;
-	printf ("%i\n", parser_quote_memory(str));
-	rtn = ft_calloc(sizeof(char *), (ft_strlen(str) - parser_quote_memory(str)) + 1);
-	while (str[i])
+	rtn = ft_calloc(sizeof(char *),
+			(ft_strlen(str) - parser_quote_memory(str)) + 1);
+	if (!rtn)
+		return (NULL);
+	while (str[++i])
 	{
 		if (str[i] == 39 || str[i] == 34)
 		{
@@ -48,23 +52,52 @@ char	*parser_quotes(char *str)
 				checker = 1;
 			else
 				checker = 2;
-			i++;
 			if ((size_t)i + 1 == ft_strlen(str))
 				break ;
+			i++;
 			if (checker == 1)
 			{
-				while ((str[i] != 39) && ((size_t)i != ft_strlen(str)))
+				while ((size_t)i != ft_strlen(str))
+				{
+					if (str[i] == 39)
+						break ;
 					rtn[c++] = str[i++];
-			}
-			else
-			{
-				while ((str[i] != 34) && ((size_t)i != ft_strlen(str)))
-					rtn[c++] = str[i++];
+				}
+				continue ;
 			}
 		}
-		rtn[c++] = str[i++];
+		else
+			rtn[c++] = str[i];
 	}
+	rtn[c] = 0;
 	return (rtn);
+}
+
+int	parser_expand_memory(char *str)
+{
+	int	n;
+	int	i;
+
+	i = 0;
+	n = 0;
+	while (str[i])
+	{
+		if (str[i] == 34)
+		{
+			if ((size_t)i + 1 == ft_strlen(str))
+				break ;
+			i++;
+			while ((size_t)i != ft_strlen(str))
+			{
+				if (str[i] == 34)
+					break ;
+				i++;
+				n++;
+			}
+		}
+		i++;
+	}
+	return (n);
 }
 
 int	parser_quote_memory(char *str)
