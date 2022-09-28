@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:56:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/28 18:33:37 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/28 18:51:40 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@ void	quote_logic(char *str)
 
 	i = -1;
 	while (str[++i])
+	{
 		if (ft_is_quoted(str, i) && ft_isblank(str[i]))
 			str[i] = REPLACE_CHAR;
+		while (str[i] == SINGLE_QUOTE || str[i] == DOUBLE_QUOTE)
+			i++;
+	}
 }
 
 bool	ft_is_quoted(const char *ref, unsigned int index)
@@ -33,9 +37,8 @@ bool	ft_is_quoted(const char *ref, unsigned int index)
 	opens = false;
 	closes = false;
 	i = index;
-	if (i > 0)
-		while (ref[--i] && i > 0)
-			if (ref[i] == SINGLE_QUOTE || ref[i] == DOUBLE_QUOTE)
+	while (i > 0 && ref[--i])
+		if (ref[i] == SINGLE_QUOTE || ref[i] == DOUBLE_QUOTE)
 				opens = true;
 	if (ref[i] == SINGLE_QUOTE || ref[i] == DOUBLE_QUOTE)
 		opens = true;
