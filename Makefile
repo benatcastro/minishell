@@ -6,7 +6,7 @@
 #    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/28 15:28:07 by becastro         ###   ########.fr        #
+#    Updated: 2022/09/28 15:36:47 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,18 +15,9 @@
 NAME = minishell
 ##########DIRECTORIES########
 SRC_DIR = srcs/
-OBJ_DIR = objs/
-MINISHELL_SRCS = $(SRC_DIR)core/
+OBJ_DIR = objs/$(NAME)/
 INC_DIR = includes/
 LIB_DIR = libraries/
-
-############SRCS##############
-SRC =	ms_main.c $(SRC_DIR)lexer/lexer_core.c	\
-		$(SRC_DIR)lexer/replace_quotes.c		\
-		$(SRC_DIR)parser/parser_core.c			\
-
-###########OBJS##############
-OBJS = $(SRC:.c=.o)
 
 #############UTILS###########
 CC = gcc
@@ -42,11 +33,7 @@ LIB_FLAGS	= $(LIB_DIR)42lib.a
 
 all: $(NAME)
 
-
-%.o: %.c
-	 -c $^ -o $@
-
-$(NAME): $(OSRC)
+$(NAME):
 	@mkdir -p objs/minishell/
 	@echo "\033[33mCompiling 42lib...\033[0m"
 	@make -C 42lib/
@@ -56,7 +43,7 @@ $(NAME): $(OSRC)
 	@make -C srcs/lexer
 	@make -C srcs/parser
 	@echo "\033[33mCompiling minishell project...\033[0m"
-	$(CC) $(CFLAGS) $(MINISHELL_SRCS)$(SRC) $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) $^ -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ_DIR)*.o $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) $^ -o $(NAME)
 	@echo "\033[92mminishell has been successfully compiled!\033[0m"
 
 
