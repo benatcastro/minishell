@@ -6,7 +6,7 @@
 #    By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/27 16:06:37 by umartin-         ###   ########.fr        #
+#    Updated: 2022/09/27 18:32:52 by umartin-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ LIB_DIR = libraries/
 
 ############SRCS##############
 SRC =	ms_main.c $(SRC_DIR)lexer/lexer_core.c	\
-		$(SRC_DIR)lexer/replace_quotes.c			\
+		$(SRC_DIR)lexer/replace_quotes.c		\
+		$(SRC_DIR)parser/parser_core.c			\
 
 ###########OBJS##############
 OBJS = $(SRC:.c=.o)

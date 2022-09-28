@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_core.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:46:05 by bena              #+#    #+#             */
-/*   Updated: 2022/09/26 21:51:09 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/27 18:25:13 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,15 @@ static int	replace_for_keywords(char **str)
 char	**lexer_core(char	*cmd)
 {
 	char	**str;
+	char	*cmd_dup;
 
-	cmd = replace_quoted_strings(cmd);
-	str = ft_split_in_set(cmd, WHITESPACE);
-	print_double_str(str);
-	printf("===After lexing====\n");
+	cmd_dup = ft_strdup(cmd);
+	quote_logic(cmd_dup);
+	str = ft_split_in_set(cmd_dup, WHITESPACE);
+	// print_double_str(str);
+	// printf("===After lexing====\n");
 	replace_for_spaces(str);
 	replace_for_keywords(str);
-	print_double_str(str);
-
-	//Here goes call to parser (maybe)
+	// print_double_str(str);
 	return (str);
 }
