@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/28 18:28:55 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/29 13:32:43 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	builtins(char *buf, char **env)
 		ft_export_no_arg(env);
 	}
 	else
-		printf ("\033[33mBender 🤖: \033[0m%s: command not found\n", buf);
+		printf ("%s%s: command not found\n", PROMPT, buf);
 }
 
 void	ft_export_no_arg(char **cln)
