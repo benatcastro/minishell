@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/29 13:32:43 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:40:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,26 +52,6 @@ int	ft_strlen_sh(const char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-int	ft_quote_checker(char *buf)
-{
-	int		c;
-	int		i;
-
-	i = -1;
-	c = 0;
-	while (buf[++i])
-	{
-		if (buf[i] == 34)
-			c++;
-	}
-	if ((c / 2 != 1) || (c / 2 == 0))
-	{
-		printf ("Invalid Quotes");
-		return (0);
-	}
-	return (1);
 }
 
 void	builtins(char *buf, char **env)
