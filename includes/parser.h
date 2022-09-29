@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 17:10:48 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/29 13:43:51 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:17:42 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //CORE
 char	**parser_core(char **str);
-char	*parser_quotes(char *str);
+char	**parser_quotes(char *str);
 int		parser_arg_num(char *str);
 int		parser_quote_error_chk(char *str);
 

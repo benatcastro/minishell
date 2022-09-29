@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/29 14:17:20 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:17:21 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 char	**parser_core(char **str)
 {
 	int		i;
-	char	*aux;
+	char	**aux;
 
 	i = -1;
 	while (++i != ft_doublestrlen(str))
@@ -57,7 +57,7 @@ int	parser_quote_error_chk(char *str)
 	return (b);
 }
 
-char	*parser_quotes(char *str)
+char	**parser_quotes(char *str)
 {
 	int		i;
 	int		n;
@@ -75,7 +75,7 @@ char	*parser_quotes(char *str)
 		else
 			parser_no_q(str, temp, &i, &n);
 	}
-	return (str);
+	return (temp);
 }
 
 int	parser_arg_num(char *str)

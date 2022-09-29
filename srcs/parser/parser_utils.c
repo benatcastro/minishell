@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:58:47 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/29 13:36:34 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:18:30 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	parser_double_q(char *str, char **temp, int *i, int *n)
 	while (u <= *i)
 		aux[c++] = str[u++];
 	temp[*n] = aux;
-	printf("%s\n", temp[*n]);
 	(*n)++;
 }
 
@@ -50,7 +49,6 @@ void	parser_single_q(char *str, char **temp, int *i, int *n)
 	while (u <= *i)
 		aux[c++] = str[u++];
 	temp[*n] = aux;
-	printf("%s\n", temp[*n]);
 	(*n)++;
 }
 
@@ -78,7 +76,6 @@ void	parser_no_q(char *str, char **temp, int *i, int *n)
 		aux[c++] = str[u++];
 	temp[*n] = NULL;
 	temp[*n] = ft_str_replace(temp[*n], aux);
-	printf("%s\n", temp[*n]);
 	(*n)++;
 }
 
