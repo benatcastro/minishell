@@ -6,25 +6,31 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/29 16:17:21 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/09/29 20:32:35 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "parser.h"
 #include "lexer.h"
+#include "expander.h"
 
 char	**parser_core(char **str)
 {
 	int		i;
 	char	**aux;
+	char	*rtn;
 
 	i = -1;
+	aux = NULL;
 	while (++i != ft_doublestrlen(str))
 	{
 		if (parser_quote_error_chk(str[i]))
 			break ;
+		printf("NUM = %d\n", parser_arg_num(str[0]));
 		aux = parser_quotes(str[i]);
+		rtn = expander_core(aux);
+		printf("%s\n", rtn);
 	}
 	return (str);
 }
@@ -63,7 +69,8 @@ char	**parser_quotes(char *str)
 	int		n;
 	char	**temp;
 
-	temp = malloc(sizeof(char *) * (parser_arg_num(str) + 1));
+	temp = malloc(sizeof(char *) * (parser_arg_num(str)) + 1);
+	temp[(parser_arg_num(str))] = NULL;
 	i = -1;
 	n = 0;
 	while (++i <= ((int)ft_strlen(str) - 1))
@@ -89,6 +96,13 @@ int	parser_arg_num(char *str)
 	{
 		if (str[i] == 39 || str[i] == 34)
 			parser_arg_num_ut(str, &i, &n);
+		else
+		{
+			n++;
+			while (i++ != (int)ft_strlen(str))
+				if ((str[i + 1] == 39) || (str[i + 1] == 34))
+					break ;
+		}
 		i++;
 	}
 	return (n);

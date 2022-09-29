@@ -4,8 +4,8 @@ OBJ_DIR	= ../../objs/minishell/
 
 ############SRCS##############
 SRC_FILES =	parser_core		\
-parser_utils	\
-parser_errors	\
+			parser_utils	\
+			parser_errors	\
 
 ###############UTILS##########
 OBJF = .cache_exists

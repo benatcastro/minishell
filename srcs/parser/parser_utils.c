@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:58:47 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/29 16:18:30 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/09/29 19:34:13 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ void	parser_double_q(char *str, char **temp, int *i, int *n)
 	while ((str[*i]) != DOUBLE_QUOTE)
 		(*i)++;
 	aux = ft_calloc(sizeof(char *),
-			(ft_strlen(str) - (*i - u)) + 1);
+			((*i - u)) + 2);
 	while (u <= *i)
 		aux[c++] = str[u++];
-	temp[*n] = aux;
+	aux[c] = 0;
+	temp[*n] = ft_strdup(aux);
 	(*n)++;
 }
 
@@ -45,10 +46,11 @@ void	parser_single_q(char *str, char **temp, int *i, int *n)
 	while ((str[*i]) != SINGLE_QUOTE)
 		(*i)++;
 	aux = ft_calloc(sizeof(char *),
-			(ft_strlen(str) - (*i - u)) + 1);
+			((*i - u)) + 2);
 	while (u <= *i)
 		aux[c++] = str[u++];
-	temp[*n] = aux;
+	aux[c] = 0;
+	temp[*n] = ft_strdup(aux);
 	(*n)++;
 }
 
