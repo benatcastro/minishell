@@ -5,24 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-/*   Updated: 2022/09/29 16:28:25 by becastro         ###   ########.fr       */
-=======
-/*   Updated: 2022/09/28 17:28:50 by umartin-         ###   ########.fr       */
->>>>>>> simple quote parse
-=======
-/*   Updated: 2022/09/28 21:35:37 by umartin-         ###   ########.fr       */
->>>>>>> separated quotes
-=======
-/*   Updated: 2022/09/29 11:19:32 by umartin-         ###   ########.fr       */
->>>>>>> parser v1
-=======
-/*   Updated: 2022/09/29 14:17:20 by umartin-         ###   ########.fr       */
->>>>>>> parser quote norm
+/*   Created: 2022/09/29 16:38:48 by becastro          #+#    #+#             */
+/*   Updated: 2022/09/29 16:39:34 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +22,12 @@ char	**parser_core(char **str)
 	i = -1;
 	while (++i != ft_doublestrlen(str))
 	{
-<<<<<<< HEAD
-<<<<<<< HEAD
 		aux = parser_quotes(str[i]);
-<<<<<<< HEAD
-		expander_core(str);
-=======
 		printf("DESPUES\n[%s]\n", aux);
->>>>>>> simple quote parse
-=======
-		//printf("ANTES\n%s\n", str[i]);
 		aux = parser_quotes(str[i]);
-		//printf("DESPUES\n[%s]\n", aux);
->>>>>>> separated quotes
-=======
 		if (parser_quote_error_chk(str[i]))
 			break ;
 		aux = parser_quotes(str[i]);
->>>>>>> parser quote norm
 	}
 	return (str);
 }
