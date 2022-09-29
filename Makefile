@@ -6,7 +6,7 @@
 #    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/28 20:13:18 by becastro         ###   ########.fr        #
+#    Updated: 2022/09/29 12:58:36 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,28 @@ CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g3
 INC_FLAGS	= -I $(INC_DIR)
 LIB_FLAGS	= $(LIB_DIR)42lib.a
 
+#############NAMES###########
+RAW_OBJS =	ms_main			\
+			expander_core	\
+			lexer_core		\
+			replace_quotes	\
+			parser_core		\
+			signals_core	\
+			signal_handler	\
+
+OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(RAW_OBJS)))
+
+
+
 all: $(NAME)
 
-$(NAME):
+$(NAME):$(OBJS)
+
+	@echo "\033[33mCompiling minishell project...\033[0m"
+	$(CC) $(CFLAGS) $(OBJS) $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) -o $(NAME)
+	@echo "\033[92mminishell has been successfully compiled!\033[0m"
+
+$(OBJS):
 	@mkdir -p objs/minishell/
 	@echo "\033[33mCompiling 42lib...\033[0m"
 	@make -C 42lib/
@@ -43,10 +62,7 @@ $(NAME):
 	@make -C srcs/lexer
 	@make -C srcs/parser
 	@make -C srcs/signals
-	@echo "\033[33mCompiling minishell project...\033[0m"
-	$(CC) $(CFLAGS) $(OBJ_DIR)*.o $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) -o $(NAME)
-	@echo "\033[92mminishell has been successfully compiled!\033[0m"
-
+	@make -C srcs/expander
 
 run: all
 	./$(NAME)

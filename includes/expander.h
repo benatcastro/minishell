@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander_core.c                                    :+:      :+:    :+:   */
+/*   expander.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 12:31:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/29 12:52:38 by becastro         ###   ########.fr       */
+/*   Created: 2022/09/29 12:34:14 by becastro          #+#    #+#             */
+/*   Updated: 2022/09/29 12:51:59 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expander.h"
+#ifndef EXPANDER_H
+# define EXPANDER_H
 
-int	expander_core(char **cmds)
-{
-	return (0);
-}
+# define SINGLE_QUOTE 39
+# define DOUBLE_QUOTE 34
+
+int	expander_core(char **cmds);
+
+#endif
