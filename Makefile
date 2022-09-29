@@ -6,7 +6,11 @@
 #    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2022/09/29 16:19:54 by becastro         ###   ########.fr        #
+=======
+#    Updated: 2022/09/29 16:23:58 by becastro         ###   ########.fr        #
+>>>>>>> .phony fix
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,4 +81,4 @@ fclean: clean
 
 re: fclean all
 
-PHONY: all clean fclean re
+.PHONY: all clean fclean re
