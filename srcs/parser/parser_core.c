@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser_core.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/27 20:52:46 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:02:14 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 #include "../../includes/parser.h"
+#include "expander.h"
 
 char	**parser_core(char **str)
 {
@@ -21,9 +22,8 @@ char	**parser_core(char **str)
 	i = -1;
 	while (++i != ft_doublestrlen(str))
 	{
-		printf("ANTES\n%s\n", str[i]);
 		aux = parser_quotes(str[i]);
-		printf("DESPUES\n%s\n", aux);
+		expander_core(str);
 	}
 	return (str);
 }
@@ -39,7 +39,7 @@ char	*parser_quotes(char *str)
 	a = 0;
 	c = 0;
 	rtn = NULL;
-	
+
 	// rtn = malloc(sizeof(char *) * ft_strlen(str) - 2);
 	// printf("%s\n", str);
 	// while (str[a])

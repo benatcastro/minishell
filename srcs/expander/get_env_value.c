@@ -6,8 +6,13 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:58:53 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/29 12:59:08 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/29 13:35:15 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
+
+char	*get_env_value(char *ref, char **env)
+{
+	return (NULL);
+}
