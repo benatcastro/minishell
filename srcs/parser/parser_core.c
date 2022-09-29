@@ -8,6 +8,7 @@
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*   Updated: 2022/09/29 16:28:25 by becastro         ###   ########.fr       */
 =======
 /*   Updated: 2022/09/28 17:28:50 by umartin-         ###   ########.fr       */
@@ -15,6 +16,9 @@
 =======
 /*   Updated: 2022/09/28 21:35:37 by umartin-         ###   ########.fr       */
 >>>>>>> separated quotes
+=======
+/*   Updated: 2022/09/29 11:19:32 by umartin-         ###   ########.fr       */
+>>>>>>> parser v1
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +57,6 @@ int	parser_quote_error_chk(char *str)
 	int	checker;
 
 	i = 0;
-	n = 0;
 	while (str[i])
 	{
 		if (str[i] == 39 || str[i] == 34)
@@ -96,9 +99,7 @@ int	parser_quote_error_chk(char *str)
 	return (b);
 }
 
-char	*
-
-char	**parser_quotes(char *str)
+char	*parser_quotes(char *str)
 {
 	int		i;
 	int		u;
@@ -181,7 +182,7 @@ char	**parser_quotes(char *str)
 			n++;
 		}
 	}
-	return (temp);
+	return (str);
 }
 
 int	parser_arg_num(char *str)
