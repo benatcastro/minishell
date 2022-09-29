@@ -1,3 +1,3 @@
-#MINISHELL
+MINISHELL
 
 By umarting & becastro
