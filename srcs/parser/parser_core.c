@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/28 21:35:37 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/09/29 11:19:32 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	parser_quote_error_chk(char *str)
 	int	checker;
 
 	i = 0;
-	n = 0;
 	while (str[i])
 	{
 		if (str[i] == 39 || str[i] == 34)
@@ -79,9 +78,7 @@ int	parser_quote_error_chk(char *str)
 	return (b);
 }
 
-char	*
-
-char	**parser_quotes(char *str)
+char	*parser_quotes(char *str)
 {
 	int		i;
 	int		u;
@@ -164,7 +161,7 @@ char	**parser_quotes(char *str)
 			n++;
 		}
 	}
-	return (temp);
+	return (str);
 }
 
 int	parser_arg_num(char *str)
