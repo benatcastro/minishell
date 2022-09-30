@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:56:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/30 19:40:20 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/30 19:59:33 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	quote_logic(char *str)
 			str[i] = REPLACE_CHAR;
 			i++;
 		}
-		// while (str[i] == SINGLE_QUOTE || str[i] == DOUBLE_QUOTE)
-		// 	i++;
+		//while (str[i] == SINGLE_QUOTE || str[i] == DOUBLE_QUOTE && str[i])
+		//	i++;
 	}
 }
 

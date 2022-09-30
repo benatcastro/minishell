@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:46:05 by bena              #+#    #+#             */
-/*   Updated: 2022/09/29 15:37:22 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/30 19:57:08 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,11 @@ char	**lexer_core(char	*cmd)
 	cmd_dup = ft_strdup(cmd);
 	quote_logic(cmd_dup);
 	str = ft_split_in_set(cmd_dup, WHITESPACE);
-	// print_double_str(str);
-	// printf("===After lexing====\n");
+	print_double_str(str);
+	printf("===After lexing====\n");
 	replace_for_spaces(str);
 	replace_for_keywords(str);
-	// print_double_str(str);
+	print_double_str(str);
+	printf("========LEXING ENDS=======");
 	return (str);
 }
