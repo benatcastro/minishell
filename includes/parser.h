@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 17:10:48 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/29 17:26:52 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/09/30 12:30:15 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PARSER_H
 
 //CORE
-char	**parser_core(char **str);
+char	**parser_core(char **str, char **env);
 char	**parser_quotes(char *str);
 int		parser_arg_num(char *str);
 int		parser_quote_error_chk(char *str);

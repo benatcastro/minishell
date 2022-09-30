@@ -4,6 +4,7 @@ OBJ_DIR	= ../../objs/minishell/
 
 ############SRCS##############
 SRC_FILES =	expander_core	\
+			expander_utils	\
 
 ###############UTILS##########
 OBJF = .cache_exists

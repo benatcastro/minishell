@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/29 20:32:35 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/09/30 13:49:48 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "lexer.h"
 #include "expander.h"
 
-char	**parser_core(char **str)
+char	**parser_core(char **str, char **env)
 {
 	int		i;
 	char	**aux;
@@ -27,9 +27,8 @@ char	**parser_core(char **str)
 	{
 		if (parser_quote_error_chk(str[i]))
 			break ;
-		printf("NUM = %d\n", parser_arg_num(str[0]));
 		aux = parser_quotes(str[i]);
-		rtn = expander_core(aux);
+		rtn = expander_core(aux, env);
 		printf("%s\n", rtn);
 	}
 	return (str);

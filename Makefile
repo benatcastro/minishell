@@ -6,7 +6,7 @@
 #    By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/29 17:40:12 by umartin-         ###   ########.fr        #
+#    Updated: 2022/09/30 11:25:39 by umartin-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ RAW_OBJS =	ms_main			\
 			parser_errors	\
 			parser_utils	\
 			expander_core	\
-			get_env_value	\
+			expander_utils	\
 
 OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(RAW_OBJS)))
 
