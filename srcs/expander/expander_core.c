@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:31:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/29 14:04:07 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/30 13:52:08 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ static bool	ft_is_expand(char **cmds)
 
 int	expander_core(char **cmds)
 {
-	ft_is_expand(cmds);
+	ft_is_expanse(cmds);
 	return (0);
 }
