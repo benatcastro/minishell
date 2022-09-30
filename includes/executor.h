@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/09/30 13:20:01 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/30 13:25:04 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct s_command
 {
 	char				*cmd;
 	char				**args;
-	char				*arg_input;
+	char				*cmd_input;
 	int					out_fd;
 	int					exit_value;
 	struct s_command	*prev;
@@ -37,6 +37,6 @@ typedef struct s_command_table
 	struct s_command		**cmds;
 	struct s_command_table	*prev;
 	struct s_command_table	*next;
-}	t_commmand_table;
+}	t_command_table;
 
 #endif

@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executor_core.c                                    :+:      :+:    :+:   */
+/*   node_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/09/30 13:26:19 by bena             ###   ########.fr       */
+/*   Created: 2022/09/30 13:26:42 by bena              #+#    #+#             */
+/*   Updated: 2022/09/30 13:28:10 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 #include "minishell.h"
 
-//Los args de esta funcion deberian de ser el input lexeado y parseado
-//y la futura struct
-int	executor_core(char **cmd, char**env)
+t_command_table	**crete_command_table(char **cmds)
 {
-	t_command_table	**cmd_table;
-
-	cmd_table = create_command_table(**cmd);
+	return (NULL);
 }
