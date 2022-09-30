@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 12:51:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/27 16:56:19 by becastro         ###   ########.fr       */
+/*   Updated: 2022/09/30 13:01:38 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define DOUBLE_QUOTE 34
 
 # define AMPERSAND "<AMPERSAND>"
-# define DOUBLEAMPERSAND "DOUBLEAMPERSAND"
+# define DOUBLEAMPERSAND "<DOUBLEAMPERSAND>"
 
 # define PIPE "<PIPE>"
 # define DOUBLEPIPE "<DOUBLEPIPE>"
