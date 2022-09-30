@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bena <bena@student.42.fr>                  +#+  +:+       +#+         #
+#    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/30 13:42:41 by bena             ###   ########.fr        #
+#    Updated: 2022/09/30 19:42:36 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,9 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJ_DIR)*.o $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) -o $(NAME)
 	@echo "\033[92mminishell has been successfully compiled!\033[0m"
 
-$(OBJS):
+foo:
+
+$(OBJS): foo
 	mkdir -p objs/minishell/
 	echo "\033[33mCompiling 42lib...\033[0m"
 	make -C 42lib/
