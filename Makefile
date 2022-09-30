@@ -6,7 +6,7 @@
 #    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/30 19:42:36 by becastro         ###   ########.fr        #
+#    Updated: 2022/09/30 19:44:55 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ $(OBJS): foo
 	make -C srcs/lexer
 	make -C srcs/parser
 	make -C srcs/signals
-	make -C srcs/expander
+#	make -C srcs/expander
 	make -C srcs/executor
 
 run: all
