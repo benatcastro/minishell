@@ -6,14 +6,14 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:26:42 by bena              #+#    #+#             */
-/*   Updated: 2022/09/30 13:28:10 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/30 13:34:31 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 #include "minishell.h"
 
-t_command_table	**crete_command_table(char **cmds)
+t_command_table	**create_command_table(char **cmds)
 {
 	return (NULL);
 }

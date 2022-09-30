@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/09/30 13:25:04 by bena             ###   ########.fr       */
+/*   Updated: 2022/09/30 13:37:30 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,10 @@ typedef struct s_command_table
 	struct s_command_table	*prev;
 	struct s_command_table	*next;
 }	t_command_table;
+
+//////////////////FNCS////////////////////////////
+
+int				executor_core(char **cmd, char**env);
+t_command_table	**create_command_table(char **cmds);
 
 #endif
