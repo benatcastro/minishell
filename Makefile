@@ -6,7 +6,7 @@
 #    By: bena <bena@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/30 12:57:00 by bena             ###   ########.fr        #
+#    Updated: 2022/09/30 13:42:41 by bena             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,8 @@ RAW_OBJS =	ms_main			\
 			parser_utils	\
 			expander_core	\
 			get_env_value	\
+			executor_core	\
+			node_manager
 
 OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(RAW_OBJS)))
 
@@ -57,10 +59,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJ_DIR)*.o $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) -o $(NAME)
 	@echo "\033[92mminishell has been successfully compiled!\033[0m"
 
-
-foo:
-
-$(OBJS): foo
+$(OBJS):
 	mkdir -p objs/minishell/
 	echo "\033[33mCompiling 42lib...\033[0m"
 	make -C 42lib/
@@ -77,13 +76,11 @@ run: all
 	./$(NAME)
 
 clean:
-	@make clean -C 42lib/
-	@$(RM) $(OBJ_DIR)
+	@$(RM) objs/
 
 fclean: clean
 	make fclean -C 42lib/
-	@$(RM) $(NAME)
-
+	$(RM) $(NAME)
 re: fclean all
 
 .PHONY: all foo clean fclean re
