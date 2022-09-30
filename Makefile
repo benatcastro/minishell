@@ -6,7 +6,7 @@
 #    By: bena <bena@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/30 12:43:34 by bena             ###   ########.fr        #
+#    Updated: 2022/09/30 12:57:00 by bena             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,7 @@ $(OBJS): foo
 	make -C srcs/parser
 	make -C srcs/signals
 	make -C srcs/expander
+	make -C srcs/executor
 
 run: all
 	./$(NAME)
