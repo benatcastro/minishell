@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:56:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/01 15:47:12 by bena             ###   ########.fr       */
+/*   Updated: 2022/10/01 16:15:39 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@ void	quote_logic(char *str)
 	i = -1;
 	while (str[++i])
 	{
-		while (ft_is_quoted(str, i) && ft_isblank(str[i]) && str[i])
+		while (ft_is_quoted(str, i) && str[i])
 		{
-			str[i] = REPLACE_CHAR;
+			if (ft_isblank(str[i]))
+				str[i] = REPLACE_CHAR;
 			i++;
 		}
-		//while (str[i] == SINGLE_QUOTE || str[i] == DOUBLE_QUOTE && str[i])
-		//	i++;
+		//printf("(%c)\n", str[i]);
+		//printf("SUB WHILE ENDS\n");
+		while ((str[i] != SINGLE_QUOTE || str[i] != DOUBLE_QUOTE) && str[i])
+			i++;
 	}
 }
 
