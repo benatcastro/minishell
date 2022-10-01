@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
+#    By: bena <bena@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/30 19:44:55 by becastro         ###   ########.fr        #
+#    Updated: 2022/10/01 15:48:38 by bena             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,10 +33,8 @@ LIB_FLAGS	= $(LIB_DIR)42lib.a
 
 #############NAMES###########
 RAW_OBJS =	ms_main			\
-			expander_core	\
 			lexer_core		\
 			replace_quotes	\
-			parser_core		\
 			signals_core	\
 			signal_handler	\
 			parser_core		\
