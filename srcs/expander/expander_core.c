@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:31:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/01 01:05:35 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/01 13:16:28 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,36 +105,37 @@ char	*expander(char	*str, char **env)
 	aux = NULL;
 	aux2 = NULL;
 	rtn = expand_splitter(str);
-	printf("%d\n", ft_doublestrlen(rtn));
-	while (++i < (ft_doublestrlen(rtn) - 2))
+	while (rtn[++i])
 	{
-		printf("%s\n", rtn[i]);
-		a = 0;
-		if (rtn[i][0] == 36)
+		if (rtn[i])
 		{
-			aux = ft_calloc(sizeof(char *), ft_strlen(rtn[i]));
-			while (rtn[i][++a])
-				aux[a - 1] = rtn[i][a];
-			aux[a - 1] = 0;
-			aux = env_replacer(aux, env);
-			if (!aux)
-				continue ;
-			else if (!aux2)
-				aux2 = ft_strdup(aux);
-			else if ((aux) && (aux2))
-				aux2 = ft_strjoin(aux2, aux);
-			free(aux);
-		}
-		else
-		{
-			aux = ft_calloc(sizeof(char *), ft_strlen(rtn[i]));
-			while (rtn[i][a++])
-				aux[a - 1] = rtn[i][a];
-			if (!aux2)
-				aux2 = ft_strdup(aux);
-			else if ((aux2) && (aux))
-				aux2 = ft_strjoin(aux2, aux);
-			free(aux);
+			a = 0;
+			if (rtn[i][0] == 36)
+			{
+				aux = ft_calloc(sizeof(char *), ft_strlen(rtn[i]));
+				while (rtn[i][++a])
+					aux[a - 1] = rtn[i][a];
+				aux[a - 1] = 0;
+				aux = env_replacer(aux, env);
+				if (!aux)
+					continue ;
+				else if (!aux2)
+					aux2 = ft_strdup(aux);
+				else if ((aux) && (aux2))
+					aux2 = ft_strjoin(aux2, aux);
+				free(aux);
+			}
+			else
+			{
+				aux = ft_calloc(sizeof(char *), ft_strlen(rtn[i]));
+				while (rtn[i][a++])
+					aux[a - 1] = rtn[i][a];
+				if (!aux2)
+					aux2 = ft_strdup(aux);
+				else if ((aux2) && (aux))
+					aux2 = ft_strjoin(aux2, aux);
+				free(aux);
+			}
 		}
 	}
 	//printf("%s\n", aux2);
@@ -211,7 +212,5 @@ char	**expand_splitter(char *str)
 			expaner_no_dollar(str, temp, &i, &n);
 	}
 	i = -1;
-	// while (temp[++i])
-	// 	printf("%s\n", temp[i]);
 	return (temp);
 }
