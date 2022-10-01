@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/01 13:59:55 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/01 16:21:36 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv, char **env)
 			continue ;
 		add_history(buf);
 		lex = lex_core(buf);
-		// lex = parser_core(lex, env);
+		lex = parser_core(lex, env);
 		builtins(buf, env);
 		free (buf);
 	}
