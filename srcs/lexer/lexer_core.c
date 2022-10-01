@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_core.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:46:05 by bena              #+#    #+#             */
-/*   Updated: 2022/09/29 15:37:22 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/01 15:39:08 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ char	**lexer_core(char	*cmd)
 	quote_logic(cmd_dup);
 	str = ft_split_in_set(cmd_dup, WHITESPACE);
 	// print_double_str(str);
-	// printf("===After lexing====\n");
+	printf("===After lexing====\n");
 	replace_for_spaces(str);
 	replace_for_keywords(str);
-	// print_double_str(str);
+	print_double_str(str);
 	return (str);
 }

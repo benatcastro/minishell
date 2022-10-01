@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_quotes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:56:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/28 18:51:40 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/01 15:38:56 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	quote_logic(char *str)
 	{
 		if (ft_is_quoted(str, i) && ft_isblank(str[i]))
 			str[i] = REPLACE_CHAR;
-		while (str[i] == SINGLE_QUOTE || str[i] == DOUBLE_QUOTE)
-			i++;
+		//while (str[i] == SINGLE_QUOTE || str[i] == DOUBLE_QUOTE)
+			// i++;
 	}
 }
 
