@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/01 16:24:51 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/01 17:02:44 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ char	**parser_core(char **str, char **env)
 	while (++i != ft_doublestrlen(str))
 	{
 		aux = parser_quotes(str[i]);
-		a = -1;
-		while (aux[++a])
-			printf("%s\n", aux[a]);
-		printf("\n");
+		rtn = expander_core(aux, env);
+		// a = -1;
+		// while (aux[++a])
+		// 	printf("%s\n", aux[a]);
+		// printf("\n");
 	}
 	return (str);
 }
