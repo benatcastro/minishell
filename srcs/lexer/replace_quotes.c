@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:56:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/02 23:29:21 by bena             ###   ########.fr       */
+/*   Updated: 2022/10/03 00:20:55 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,47 @@ void	quote_logic(char *str)
 {
 	int	i;
 	int	j;
+	int	k;
 
 	j = -1;
 	i = -1;
+	k = -1;
 	while (str[++i])
 	{
 		while (ft_is_quoted(str, i) && str[i])
 		{
+			//printf("entering sub while with: (%c)\n", str[i]);
+			while (ft_is_quote(str[i]))
+				i++;
 			if (ft_isblank(str[i]))
 				str[i] = REPLACE_CHAR;
 			i++;
+			if (ft_is_quote(str[i]))
+				break ;
 		}
-		//printf("(%c)\n", str[i]);
-		//printf("SUB WHILE ENDS\n");
+		while (str[++k])
+		{
+			if (str[k] == REPLACE_CHAR)
+				printf("(R)");
+			else
+				printf("(%c)", str[k]);
+		}
+		k = -1;
+		printf("\n\n");
+		printf("exit sub while with: (%d) i: (%d\n", str[i], i);
 		while (ft_is_quote(str[i]) && str[i])
 			i++;
+		while (ft_isblank(str[i]) && str[i])
+			i++;
+		printf("next iteration starting in: (%d) i: (%d)\n\n", str[i], i);
 	}
 	while (str[++j])
-		printf("(%d)", str[j]);
+	{
+		if (str[j] == REPLACE_CHAR)
+			printf("(R)");
+		else
+			printf("(%c)", str[j]);
+	}
 	printf("\n");
 }
 
