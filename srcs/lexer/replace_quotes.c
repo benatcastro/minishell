@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:56:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/01 16:15:39 by bena             ###   ########.fr       */
+/*   Updated: 2022/10/02 23:29:21 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,19 @@
 #include "libft.h"
 #include <stdio.h>
 
+bool	ft_is_quote(unsigned char c)
+{
+	if (c == SINGLE_QUOTE || c == DOUBLE_QUOTE)
+		return (true);
+	return (false);
+}
+
 void	quote_logic(char *str)
 {
 	int	i;
+	int	j;
 
+	j = -1;
 	i = -1;
 	while (str[++i])
 	{
@@ -29,9 +38,12 @@ void	quote_logic(char *str)
 		}
 		//printf("(%c)\n", str[i]);
 		//printf("SUB WHILE ENDS\n");
-		while ((str[i] != SINGLE_QUOTE || str[i] != DOUBLE_QUOTE) && str[i])
+		while (ft_is_quote(str[i]) && str[i])
 			i++;
 	}
+	while (str[++j])
+		printf("(%d)", str[j]);
+	printf("\n");
 }
 
 bool	ft_is_quoted(const char *ref, unsigned int index)
@@ -44,12 +56,12 @@ bool	ft_is_quoted(const char *ref, unsigned int index)
 	closes = false;
 	i = index;
 	while (i > 0 && ref[--i])
-		if (ref[i] == SINGLE_QUOTE || ref[i] == DOUBLE_QUOTE)
+		if (ft_is_quote(ref[i]))
 				opens = true;
-	if (ref[i] == SINGLE_QUOTE || ref[i] == DOUBLE_QUOTE)
+	if (ft_is_quote(ref[i]))
 		opens = true;
-	while (ref[index++] && ref[index])
-		if (ref[index] == SINGLE_QUOTE || ref[index] == DOUBLE_QUOTE)
+	while (ref[index++])
+		if (ft_is_quote(ref[index]))
 			closes = true;
 	if (opens && closes)
 		return (true);
