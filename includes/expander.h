@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:34:14 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/05 17:11:55 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/05 20:14:28 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,9 @@ int		num_until_equal(char *str);
 char	*expand_trimmer(char	*str);
 char	**double_dollar(char **cmds);
 char	*double_joiner(char **temp);
+char	*env_val_maker(char *val, char **env, int *n, int *i);
+void	expand_arg_num_ut(char *str, int *e, int *c);
+void	expand_splitter_ut(char *str, int *e);
+char	*expand_splitter_ut2(char *str, char *aux, int *e, int *l);
 
 #endif
