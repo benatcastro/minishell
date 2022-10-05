@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/09/30 13:58:06 by bena             ###   ########.fr       */
+/*   Updated: 2022/10/05 10:28:55 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 typedef struct s_command
 {
+	unsigned int		key;
 	char				*cmd;
 	char				**args;
 	char				*cmd_input;
@@ -35,6 +36,7 @@ typedef struct s_command
  */
 typedef struct s_command_table
 {
+	unsigned int			key;
 	struct s_command		**cmds;
 	struct s_command_table	*prev;
 	struct s_command_table	*next;
@@ -43,6 +45,6 @@ typedef struct s_command_table
 //////////////////FNCS////////////////////////////
 
 int				executor_core(char **cmd, char**env);
-t_command_table	**create_command_table(char **cmds);
+t_command_table	**create_command_table(t_command_table **head, char **cmds);
 
 #endif

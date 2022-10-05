@@ -6,13 +6,14 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/05 09:45:33 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/05 09:48:51 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lexer.h"
 #include "parser.h"
+#include "executor.h"
 
 int	main(int argc, char **argv, char **env)
 {
@@ -38,6 +39,7 @@ int	main(int argc, char **argv, char **env)
 		add_history(buf);
 		lex = lexer_core(buf);
 		lex = parser_core(lex, env);
+		executor_core(lex, env);
 		builtins(buf, env);
 		free (buf);
 	}

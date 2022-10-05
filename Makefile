@@ -6,7 +6,7 @@
 #    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/10/05 09:44:03 by becastro         ###   ########.fr        #
+#    Updated: 2022/10/05 10:07:03 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,9 @@ RAW_OBJS =	ms_main			\
 			parser_utils	\
 			expander_core	\
 			expander_utils	\
+			executor_core	\
+			node_manager	\
+			fill_cmd_table	\
 
 OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(RAW_OBJS)))
 
