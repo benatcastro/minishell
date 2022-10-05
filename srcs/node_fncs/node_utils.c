@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:20:33 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/05 13:21:19 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:48:48 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	print_cmd(t_command **cmd_head)
 	aux = (*cmd_head);
 	while (aux)
 	{
+		printf("=========CMDS=========\n");
 		printf("\tCmd key: (%d)\n", aux->key);
 		printf("\tCmd: (%s)\n", aux->cmd);
 		printf("\tArgs:\n");
@@ -50,7 +51,6 @@ void	print_table(t_command_table **table_head)
 		printf("=====================\n");
 		printf("Table Key: (%d)\n", aux->key);
 		printf("Prev (%p) Current (%p) Next (%p)\n", aux->prev, aux, aux->next);
-		printf("=========CMDS=========\n");
 		print_cmd(aux->cmds);
 		aux = aux->next;
 	}
