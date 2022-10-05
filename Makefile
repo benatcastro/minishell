@@ -6,7 +6,7 @@
 #    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/10/05 09:38:34 by becastro         ###   ########.fr        #
+#    Updated: 2022/10/05 09:44:03 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,10 +33,8 @@ LIB_FLAGS	= $(LIB_DIR)42lib.a
 
 #############NAMES###########
 RAW_OBJS =	ms_main			\
-			expander_core	\
 			lexer_core		\
 			replace_quotes	\
-			parser_core		\
 			signals_core	\
 			signal_handler	\
 			parser_core		\
