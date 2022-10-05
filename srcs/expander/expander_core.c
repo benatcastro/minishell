@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:31:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/04 21:15:05 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:36:12 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,37 @@ char	*expand_first_trimmer(char	*str)
 
 char	*expander_main(char	*str, char **env)
 {
-	char	*rtn;
+	char	**rtn;
+	char	*r;
 	int		i;
 	int		c;
 
 	rtn = NULL;
 	i = -1;
 	if (str[0] == SINGLE_QUOTE)
-		rtn = expand_trimmer(str);
+		return (expand_trimmer(str));
 	else if (str[0] == DOUBLE_QUOTE)
 		rtn = expander(expand_trimmer(str), env);
 	else
 		rtn = expander(str, env);
+	r = double_joiner(rtn);
+	return (r);
+}
+
+char	*double_joiner(char **temp)
+{
+	int		i;
+	char	*aux;
+	char	*rtn;
+
+	i = 1;
+	rtn = ft_strdup(temp[0]);
+	while (temp[i])
+	{
+		aux = ft_strdup(temp[i]);
+		rtn = ft_strjoin(rtn, aux);
+		i++;
+	}
 	return (rtn);
 }
 
@@ -94,24 +113,23 @@ char	**expander(char	*str, char **env)
 {
 	int		i;
 	int		n;
+	int		a;
 	char	**temp;
 	char	*aux;
 
 	temp = malloc(sizeof(char *) * (expand_arg_num(str)) + 1);
 	temp = expand_splitter(str, temp);
 	i = -1;
-	while (temp[++i])
-		printf("%s\n", temp[i]);
-	printf("\n");
 	i = -1;
 	n = 0;
 	while (temp[++i])
-		if (temp[i][0] == 36)
+	{
+		if ((temp[i][0] == 36) && (ft_strlen(temp[i]) > 1))
 		{
 			aux = env_replacer(temp[i], env);
-			printf("%s\n", aux);
 			temp[i] = ft_strdup(aux);
 		}
+	}
 	return (temp);
 }
 
@@ -126,7 +144,7 @@ char	*env_replacer(char *str, char **env)
 	i = -1;
 	str = expand_first_trimmer(str);
 	p = ft_itoa((int)getpid());
-	if (str[1] == 36)
+	if (str[0] == 36)
 		return (p);
 	while (env[++i])
 	{
@@ -143,7 +161,7 @@ char	*env_replacer(char *str, char **env)
 			return (val);
 		}
 	}
-	val = 0;
+	val = "";
 	return (val);
 }
 
@@ -198,14 +216,12 @@ int	expand_arg_num(char *str)
 char	**expand_splitter(char *str, char **rtn)
 {
 	int		e;
-	int		c;
 	int		n;
 	int		l;
 	int		a;
 	char	*aux;
 
 	e = 0;
-	c = 0;
 	n = 0;
 	while (str[e])
 	{
@@ -213,16 +229,13 @@ char	**expand_splitter(char *str, char **rtn)
 		{
 			l = e;
 			if (str[e + 1] == 36)
-			{
-				c++;
-				e++;
-			}
+				e ++;
 			else
 			{
-				c++;
 				e++;
 				while ((str[e]) && ((str[e] != '$') && (str[e] != 32)))
 					e++;
+				e--;
 			}
 			aux = ft_calloc(sizeof(char *), (e - l) + 1);
 			a = 0;
@@ -236,7 +249,6 @@ char	**expand_splitter(char *str, char **rtn)
 		else
 		{
 			l = e;
-			c++;
 			while ((str[e]) && ((str[e] != '$')))
 				e++;
 			e--;

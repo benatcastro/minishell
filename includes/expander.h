@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:34:14 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/04 21:01:53 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/05 17:11:55 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ char	*env_replacer(char *str, char **env);
 int		num_until_equal(char *str);
 char	*expand_trimmer(char	*str);
 char	**double_dollar(char **cmds);
+char	*double_joiner(char **temp);
 
 #endif
