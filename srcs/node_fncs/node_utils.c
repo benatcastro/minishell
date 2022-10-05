@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nodes.h                                            :+:      :+:    :+:   */
+/*   node_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 13:30:45 by bena              #+#    #+#             */
-/*   Updated: 2022/10/05 11:23:53 by becastro         ###   ########.fr       */
+/*   Created: 2022/10/05 11:20:33 by becastro          #+#    #+#             */
+/*   Updated: 2022/10/05 11:27:13 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NODES_H
-# define NODES_H
-# include "executor.h"
+#include "nodes.h"
+#include "executor.h"
+#include "stdio.h"
 
-t_command		*ft_cmdlast(t_command *lst);
-t_command_table	*ft_tablelast(t_command_table *lst);
-//=================================================//
+void	print_table(t_command_table **table_head)
+{
+	t_command_table	*aux;
 
-void			ft_cmdadd_back(t_command **lst, t_command *new);
-void			ft_tableadd_back(t_command_table **lst, t_command_table *new);
-void			print_table(t_command_table **table_head);
-#endif
+	aux = (*table_head);
+	while (aux)
+	{
+		printf("=====================\n");
+		printf("Table Key: (%d)\n", aux->key);
+		printf("Prev (%p) Current (%p) Next (%p)\n", aux->prev, aux, aux->next);
+		aux = aux->next;
+	}
+}

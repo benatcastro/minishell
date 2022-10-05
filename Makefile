@@ -6,7 +6,7 @@
 #    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/10/05 10:07:03 by becastro         ###   ########.fr        #
+#    Updated: 2022/10/05 11:25:44 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,9 @@ RAW_OBJS =	ms_main			\
 			executor_core	\
 			node_manager	\
 			fill_cmd_table	\
+			ft_nodeaddback	\
+			ft_nodelast		\
+			node_utils		\
 
 OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(RAW_OBJS)))
 
@@ -70,6 +73,7 @@ $(OBJS):
 	make -C srcs/signals
 	make -C srcs/expander
 	make -C srcs/executor
+	make -C srcs/node_fncs
 
 run: all
 	./$(NAME)

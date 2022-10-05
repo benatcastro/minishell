@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_nodeadd_back.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:46:11 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/09/30 14:03:45 by bena             ###   ########.fr       */
+/*   Updated: 2022/10/05 11:31:35 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	ft_cmdadd_back(t_command **lst, t_command *new)
 	if (!*lst)
 		*lst = new;
 	else
+	{
+		new->prev = ft_cmdlast(*lst);
 		ft_cmdlast(*lst)->next = new;
+	}
 }
 
 void	ft_tableadd_back(t_command_table **lst, t_command_table *new)
@@ -31,5 +34,8 @@ void	ft_tableadd_back(t_command_table **lst, t_command_table *new)
 	if (!*lst)
 		*lst = new;
 	else
+	{
+		new->prev = ft_tablelast(*lst);
 		ft_tablelast(*lst)->next = new;
+	}
 }
