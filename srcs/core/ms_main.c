@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/29 16:38:01 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/01 16:21:36 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	main(int argc, char **argv, char **env)
 		if (!buf)
 			continue ;
 		add_history(buf);
-		lex = lexer_core(buf);
-		lex = parser_core(lex);
+		lex = lex_core(buf);
+		lex = parser_core(lex, env);
 		builtins(buf, env);
 		free (buf);
 	}
@@ -52,26 +52,6 @@ int	ft_strlen_sh(const char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-int	ft_quote_checker(char *buf)
-{
-	int		c;
-	int		i;
-
-	i = -1;
-	c = 0;
-	while (buf[++i])
-	{
-		if (buf[i] == 34)
-			c++;
-	}
-	if ((c / 2 != 1) || (c / 2 == 0))
-	{
-		printf ("Invalid Quotes");
-		return (0);
-	}
-	return (1);
 }
 
 void	builtins(char *buf, char **env)

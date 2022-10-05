@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bena <bena@student.42.fr>                  +#+  +:+       +#+         #
+#    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/30 13:42:41 by bena             ###   ########.fr        #
+#    Updated: 2022/10/05 09:38:34 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,9 +43,7 @@ RAW_OBJS =	ms_main			\
 			parser_errors	\
 			parser_utils	\
 			expander_core	\
-			get_env_value	\
-			executor_core	\
-			node_manager
+			expander_utils	\
 
 OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(RAW_OBJS)))
 

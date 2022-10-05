@@ -3,31 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   parser_core.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 16:38:48 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/29 16:39:34 by becastro         ###   ########.fr       */
+/*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
+/*   Updated: 2022/10/01 17:02:44 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "parser.h"
 #include "lexer.h"
+#include "expander.h"
 
-char	**parser_core(char **str)
+char	**parser_core(char **str, char **env)
 {
 	int		i;
-	char	*aux;
+	int		a;
+	char	**aux;
+	char	*rtn;
 
 	i = -1;
+	aux = NULL;
 	while (++i != ft_doublestrlen(str))
 	{
 		aux = parser_quotes(str[i]);
-		printf("DESPUES\n[%s]\n", aux);
-		aux = parser_quotes(str[i]);
-		if (parser_quote_error_chk(str[i]))
-			break ;
-		aux = parser_quotes(str[i]);
+		rtn = expander_core(aux, env);
+		// a = -1;
+		// while (aux[++a])
+		// 	printf("%s\n", aux[a]);
+		// printf("\n");
 	}
 	return (str);
 }
@@ -60,13 +64,14 @@ int	parser_quote_error_chk(char *str)
 	return (b);
 }
 
-char	*parser_quotes(char *str)
+char	**parser_quotes(char *str)
 {
 	int		i;
 	int		n;
 	char	**temp;
 
-	temp = malloc(sizeof(char *) * (parser_arg_num(str) + 1));
+	temp = malloc(sizeof(char *) * (parser_arg_num(str)) + 1);
+	temp[(parser_arg_num(str))] = NULL;
 	i = -1;
 	n = 0;
 	while (++i <= ((int)ft_strlen(str) - 1))
@@ -78,7 +83,7 @@ char	*parser_quotes(char *str)
 		else
 			parser_no_q(str, temp, &i, &n);
 	}
-	return (str);
+	return (temp);
 }
 
 int	parser_arg_num(char *str)
@@ -92,6 +97,13 @@ int	parser_arg_num(char *str)
 	{
 		if (str[i] == 39 || str[i] == 34)
 			parser_arg_num_ut(str, &i, &n);
+		else
+		{
+			n++;
+			while (i++ != (int)ft_strlen(str))
+				if ((str[i + 1] == 39) || (str[i + 1] == 34))
+					break ;
+		}
 		i++;
 	}
 	return (n);

@@ -1,18 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env_value.c                                    :+:      :+:    :+:   */
+/*   expander_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 12:58:53 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/29 13:35:15 by becastro         ###   ########.fr       */
+/*   Created: 2022/09/30 11:19:49 by umartin-          #+#    #+#             */
+/*   Updated: 2022/10/01 16:32:43 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
-
-char	*get_env_value(char *ref, char **env)
-{
-	return (NULL);
-}
+#include "minishell.h"
+#include "lexer.h"
