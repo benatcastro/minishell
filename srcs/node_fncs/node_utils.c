@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:20:33 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/05 12:48:18 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:21:19 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 #include "nodes.h"
 #include "executor.h"
 #include "stdio.h"
+
+void	print_double_str_tab(char **str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		printf("\t(%s)\n", str[i]);
+}
 
 void	print_cmd(t_command **cmd_head)
 {
@@ -25,8 +34,9 @@ void	print_cmd(t_command **cmd_head)
 		printf("\tCmd key: (%d)\n", aux->key);
 		printf("\tCmd: (%s)\n", aux->cmd);
 		printf("\tArgs:\n");
-		print_double_str(aux->args);
+		print_double_str_tab(aux->args);
 		printf("\tPrev (%p) Current (%p) Next (%p)\n", aux->prev, aux, aux->next);
+		aux = aux->next;
 	}
 }
 
