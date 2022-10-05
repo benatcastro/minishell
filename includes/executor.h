@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/10/05 10:28:55 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/05 12:30:14 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_command_table
 //////////////////FNCS////////////////////////////
 
 int				executor_core(char **cmd, char**env);
+void			fill_cmd(t_command *node, char **cmds);
 t_command_table	**create_command_table(t_command_table **head, char **cmds);
 
 #endif

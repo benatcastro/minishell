@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/10/05 09:57:48 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/05 12:52:10 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	executor_core(char **cmd, char**env)
 	printf("===EXECUTOR INPUT===\n");
 	print_double_str(cmd);
 	cmd_table = NULL;
-	cmd_table = create_command_table(&cmd_table, cmd);
+	create_command_table(&cmd_table, cmd);
 	printf("===EXECUTOR ENDS===\n");
 	return (1);
 }
