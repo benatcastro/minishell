@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_cmd_table.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:06:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/05 13:35:46 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:09:56 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ size_t	count_args(char **args)
 
 	i = -1;
 	argc = 0;
-	printf("=====THIS IS A TEST=====\n");
-	print_double_str(args);
 	while (args[++i])
 	{
-		if (args[i][0] == '-')
-			argc++;
-		else
+		if (ft_strcmp(args[i], PIPE)
+			|| ft_strcmp(args[i], DOUBLEPIPE)
+			|| ft_strcmp(args[i], DOUBLEAMPERSAND))
 			break ;
+		else
+			argc++;
 	}
 	return (argc);
 }
@@ -37,25 +37,18 @@ size_t	count_args(char **args)
 void	fill_cmd(t_command *node, char **cmds)
 {
 	size_t		argc;
-	static char	**s_cmds;
-	static bool	check;
 	int			i;
 
-	if (!check)
-	{
-		s_cmds = ft_doublestrdup(cmds);
-		check = true;
-	}
 	i = -1;
-	node->cmd = s_cmds[0];
-	s_cmds++;
-	argc = count_args(s_cmds);
+	node->cmd = cmds[0];
+	cmds++;
+	argc = count_args(cmds);
 	node->args = ft_calloc(argc + 1, sizeof(char *));
 	while (++i < argc)
 	{
-		node->args[i] = s_cmds[0];
-		s_cmds++;
+		node->args[i] = cmds[0];
+		cmds++;
 	}
 	node->args[i] = '\0';
-	node->cmd_input = s_cmds[0];
+	node->cmd_input = cmds[0];
 }

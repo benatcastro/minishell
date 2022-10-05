@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/10/05 12:30:14 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:09:48 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,19 @@
 # define EXECUTOR_H
 # include <unistd.h>
 
-# define DOUBLEPIPE "<DOUBLEPIPE>"
+# define AMPERSAND "<AMPERSAND>"
 # define DOUBLEAMPERSAND "<DOUBLEAMPERSAND>"
+
+# define PIPE "<PIPE>"
+# define DOUBLEPIPE "<DOUBLEPIPE>"
+
+# define GREATER "<GREATER>"
+# define DOUBLEGREATER "<DOUBLEGREATER>"
+
+# define LESS "<LESS>"
+# define DOUBLELESS "<DOUBLELESS>"
+
+# define SEMICOLON "<SEMICOLON>"
 
 typedef struct s_command
 {

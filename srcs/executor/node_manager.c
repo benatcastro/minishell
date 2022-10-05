@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:26:42 by bena              #+#    #+#             */
-/*   Updated: 2022/10/05 13:19:20 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:09:53 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,6 @@ t_command	*create_cmd_node(char **cmds)
 
 t_command	**create_cmd(t_command **cmd_head, char **cmds)
 {
-	if (!(*cmd_head))
-		(*cmd_head) = create_cmd_node(cmds);
-	else
-		ft_cmdadd_back(cmd_head, create_cmd_node(cmds));
+	ft_cmdadd_back(cmd_head, create_cmd_node(cmds));
 	return (cmd_head);
-
 }
