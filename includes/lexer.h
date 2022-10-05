@@ -6,33 +6,13 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 12:51:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/30 13:01:38 by bena             ###   ########.fr       */
+/*   Updated: 2022/10/05 21:17:58 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 # include <stdbool.h>
-
-# define WHITESPACE " \t\f\r\n\v" //should we use "\n as white space??"
-# define REPLACE_CHAR 26
-
-# define SINGLE_QUOTE 39
-# define DOUBLE_QUOTE 34
-
-# define AMPERSAND "<AMPERSAND>"
-# define DOUBLEAMPERSAND "<DOUBLEAMPERSAND>"
-
-# define PIPE "<PIPE>"
-# define DOUBLEPIPE "<DOUBLEPIPE>"
-
-# define GREATER "<GREATER>"
-# define DOUBLEGREATER "<DOUBLEGREATER>"
-
-# define LESS "<LESS>"
-# define DOUBLELESS "<DOUBLELESS>"
-
-# define SEMICOLON "<SEMICOLON>"
 
 char	**lexer_core(char	*cmd);
 int		check_quotes(char *str);
