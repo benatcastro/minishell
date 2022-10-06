@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:31:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/06 16:30:22 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/06 21:04:28 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ char	*double_joiner(char **temp)
 	char	*aux;
 	char	*rtn;
 
+	if (!temp[0])
+		return (0);
 	i = 1;
 	rtn = ft_strdup(temp[0]);
 	while (temp[i])

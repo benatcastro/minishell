@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/06 19:12:24 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/06 21:14:40 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv, char **env)
 		add_history(buf);
 		if (parser_quote_error_chk(buf))
 			exit (0);
-		lex = lexer_core(buf);
+		lex = lex_core(buf);
 		lex = parser_core(lex, env);
 		printf("===AFTER PARS AND EXPAND===\n");
 		i = -1;
