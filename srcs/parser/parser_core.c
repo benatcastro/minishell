@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/05 17:58:36 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/06 19:12:20 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,25 @@ char	**parser_core(char **str, char **env)
 	int		i;
 	int		a;
 	char	**aux;
+	char	**dub;
 	char	*rtn;
 
 	i = -1;
 	aux = NULL;
+	dub = malloc(sizeof(char *) * (ft_doublestrlen(str) + 1));
 	while (++i != ft_doublestrlen(str))
 	{
 		aux = parser_quotes(str[i]);
 		rtn = expander_core(aux, env);
-		printf("%s\n\n", rtn);
-		// a = -1;
-		// while (rtn[++a])
-		// 	printf("%s\n", rtn[a]);
-		// printf("\n");
+		dub[i] = ft_strdup(rtn);
+		free (rtn);
 	}
-	return (str);
+	dub[i] = 0;
+	// i = -1;
+	// while (dub[++i])
+	// 	printf("%s\n", dub[i]);
+	// printf("\n");
+	return (dub);
 }
 
 int	parser_quote_error_chk(char *str)

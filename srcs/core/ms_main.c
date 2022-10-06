@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/05 09:48:51 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/06 19:12:24 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,17 @@ int	main(int argc, char **argv, char **env)
 		if (!buf)
 			continue ;
 		add_history(buf);
+		if (parser_quote_error_chk(buf))
+			exit (0);
 		lex = lexer_core(buf);
 		lex = parser_core(lex, env);
-		executor_core(lex, env);
+		printf("===AFTER PARS AND EXPAND===\n");
+		i = -1;
+		while (lex[++i])
+			printf("%s\n", lex[i]);
+		printf("\n");
+		i = 0;
+		//executor_core(lex, env);
 		builtins(buf, env);
 		free (buf);
 	}
