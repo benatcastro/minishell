@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/06 21:16:39 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/06 21:34:45 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,38 @@ char	**parser_core(char **str, char **env)
 {
 	int		i;
 	int		a;
+	int		x;
 	char	**aux;
 	char	**dub;
 	char	*rtn;
 
 	i = -1;
+	a = 0;
 	aux = NULL;
 	dub = malloc(sizeof(char *) * (ft_doublestrlen(str) + 1));
 	while (++i != ft_doublestrlen(str))
 	{
 		aux = parser_quotes(str[i]);
-		a = -1;
-		while (aux[++a])
-		///HASTA AQUI LLEGA BIEN///////////////////;
+		x = -1;
+		while (aux[++x])
+			printf("%s\n", aux[x]);
+		printf("\n");
 		rtn = expander_core(aux, env);
-		dub[i] = ft_strdup(rtn);
+		printf("RTN = %s\n", rtn);
+		if (rtn != NULL)
+			dub[a] = ft_strdup(rtn);
+		else
+		{
+			if (a != 0)
+				a--;
+		}
 		free (rtn);
 	}
-	dub[i] = 0;
+	printf("%d\n", a);
+	dub[a] = 0;
+	i = -1;
+	while (dub[++i])
+		printf("%s\n", dub[i]);
 	return (dub);
 }
 
@@ -97,7 +111,6 @@ int	parser_arg_num(char *str)
 
 	i = 0;
 	n = 0;
-	//printf("%d\n", ft_strlen(str));
 	while (str[i])
 	{
 		if (str[i] == 39 || str[i] == 34)
