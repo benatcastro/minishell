@@ -6,7 +6,6 @@ OBJ_DIR	= ../../objs/minishell/
 SRC_FILES =	parser_core		\
 			parser_utils	\
 			parser_errors	\
-			lex				\
 
 ###############UTILS##########
 OBJF = .cache_exists
