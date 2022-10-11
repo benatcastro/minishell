@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_doubleprint.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 01:37:30 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/10/07 19:25:52 by umartin-         ###   ########.fr       */
+/*   Created: 2022/10/07 17:28:02 by umartin-          #+#    #+#             */
+/*   Updated: 2022/10/11 17:15:06 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
+#include <stdio.h>
 
-/**
- * @brief allocates a copy of the string pointed by s1 and returns it.
- * 
- * @param s1 the string to be copied.
- * @return char* the allocated copy.
- */
-char	*ft_strdup(const char *s1)
+void	ft_doubleprint(char **str)
 {
-	char	*result;
-	int		i;
+	int	i;
 
-	if (!s1)
-		return (NULL);
-	result = malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (!result)
-		return (NULL);
-	i = -1;
-	while (s1[++i])
-		result[i] = s1[i];
-	result[i] = 0;
-	return (result);
+	i = 0;
+	if (!str || !str[0])
+	{
+		printf("guayabass podridas\n");
+		return ;
+	}
+	while (str[i])
+	{
+		printf("str[%d] == %s\n", i, str[i]);
+		i++;
+	}
 }

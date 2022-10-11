@@ -58,6 +58,7 @@ SRC_FILES =	ft_isalpha			\
 			ft_doublestrdup		\
 			ft_doublefree		\
 			ft_doublestrlen		\
+			ft_doubleprint		\
 			ft_strcmp			\
 			ft_append_char		\
 			ft_split_in_set		\

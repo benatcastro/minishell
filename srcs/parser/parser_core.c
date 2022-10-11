@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/06 21:34:45 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:23:22 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,39 +19,51 @@ char	**parser_core(char **str, char **env)
 {
 	int		i;
 	int		a;
-	int		x;
 	char	**aux;
 	char	**dub;
 	char	*rtn;
 
 	i = -1;
-	a = 0;
 	aux = NULL;
 	dub = malloc(sizeof(char *) * (ft_doublestrlen(str) + 1));
 	while (++i != ft_doublestrlen(str))
 	{
 		aux = parser_quotes(str[i]);
-		x = -1;
-		while (aux[++x])
-			printf("%s\n", aux[x]);
-		printf("\n");
+		aux = parser_double_quote_free(aux);
+		ft_doubleprint(aux);
 		rtn = expander_core(aux, env);
-		printf("RTN = %s\n", rtn);
-		if (rtn != NULL)
-			dub[a] = ft_strdup(rtn);
-		else
-		{
-			if (a != 0)
-				a--;
-		}
+		dub[i] = ft_strdup(rtn);
 		free (rtn);
 	}
-	printf("%d\n", a);
-	dub[a] = 0;
-	i = -1;
-	while (dub[++i])
-		printf("%s\n", dub[i]);
+	dub[i] = 0;
 	return (dub);
+}
+
+char	**parser_double_quote_free(char **str)
+{
+	char	**rtn;
+	int		i;
+	int		c;
+	int		d;
+
+	i = -1;
+	c = 0;
+	d = -1;
+	while (str[++i])
+	{
+		if (str[i][0] == 34 && str[i][1] == 34)
+			c++;
+	}
+	i = -1;
+	rtn = malloc(sizeof(char *) * (ft_doublestrlen(str) - c + 1));
+	while (str[++i])
+	{
+		if (str[i][0] == 34 && str[i][1] == 34)
+			continue ;
+		else
+			rtn[++d] = ft_strdup(str[i]);
+	}
+	return (rtn[d + 1] = 0, free(str), rtn);
 }
 
 int	parser_quote_error_chk(char *str)
@@ -106,23 +118,30 @@ char	**parser_quotes(char *str)
 
 int	parser_arg_num(char *str)
 {
-	int	n;
-	int	i;
+	int		e;
+	int		c;
+	char	q;
 
-	i = 0;
-	n = 0;
-	while (str[i])
+	e = -1;
+	c = 0;
+	while (str[++e])
 	{
-		if (str[i] == 39 || str[i] == 34)
-			parser_arg_num_ut(str, &i, &n);
+		if ((str[e] == SINGLE_QUOTE) || (str[e] == DOUBLE_QUOTE))
+		{
+			c++;
+			q = str[e];
+			e++;
+			while (str[e] != q)
+				e++;
+		}
 		else
 		{
-			n++;
-			while (i++ != (int)ft_strlen(str))
-				if ((str[i + 1] == 39) || (str[i + 1] == 34))
-					break ;
+			c++;
+			while ((str[e])
+				&& (str[e] != SINGLE_QUOTE) && (str[e] != DOUBLE_QUOTE))
+				e++;
+			e--;
 		}
-		i++;
 	}
-	return (n);
+	return (c);
 }

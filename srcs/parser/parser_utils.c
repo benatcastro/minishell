@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:58:47 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/30 12:24:17 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:27:47 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,28 +80,4 @@ void	parser_no_q(char *str, char **temp, int *i, int *n)
 	temp[*n] = NULL;
 	temp[*n] = ft_str_replace(temp[*n], aux);
 	(*n)++;
-}
-
-void	parser_arg_num_ut(char *str, int *i, int *n)
-{
-	int	checker;
-
-	if (str[*i] == 39)
-		checker = 1;
-	else
-		checker = 2;
-	(*n)++;
-	if (*i + 1 == (int)ft_strlen(str))
-		return ;
-	(*i)++;
-	if (checker == 1)
-	{
-		while ((*i)++ != (int)ft_strlen(str))
-			if (str[*i] == 39)
-				break ;
-	}
-	else if (checker == 2)
-		while ((*i)++ != (int)ft_strlen(str))
-			if (str[*i] == 34)
-				break ;
 }

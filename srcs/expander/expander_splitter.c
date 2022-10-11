@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 20:16:53 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/06 18:14:36 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:45:17 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**expand_splitter(char *str, char **rtn)
 		}
 		n++;
 	}
-	return (rtn[n] = NULL, rtn);
+	return (rtn[n] = 0, rtn);
 }
 
 char	*expand_splitter_ut2(char *str, char *aux, int *e, int *l)

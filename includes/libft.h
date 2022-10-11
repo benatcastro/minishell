@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 11:27:46 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/05 10:26:28 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/07 17:31:23 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int		ft_chr_in_set(char c, const char *set);
 char	**ft_doublestrdup(char **str);
 int		ft_doublestrlen(char **str);
 int		ft_doublefree(char **str);
+void	ft_doubleprint(char **str);
 int		ft_strcmp(char *s1, char *s2);
 char	**ft_split_in_set(char const *s, char *set);
 char	*ft_str_replace(char *src, char const *replace);
