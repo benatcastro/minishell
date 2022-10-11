@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:58:04 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/11 19:45:52 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/11 20:07:54 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,3 @@ char	**lex_core(char *str)
 	replace_for_keywords(rtn);
 	return (rtn);
 }
-

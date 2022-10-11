@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 12:51:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/11 19:45:32 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/11 20:08:07 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 int		lex_memory_splitter(char *str);
 char	**lex_splitter(char *str, char **temp);
 void	print_double_str(char **str);
-
-
+char	**lex_core(char *str);
 
 #endif
