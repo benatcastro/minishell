@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 12:51:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/30 13:01:38 by bena             ###   ########.fr       */
+/*   Updated: 2022/10/11 19:45:32 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # define SINGLE_QUOTE 39
 # define DOUBLE_QUOTE 34
 
-# define AMPERSAND "<AMPERSAND>"
 # define DOUBLEAMPERSAND "<DOUBLEAMPERSAND>"
 
 # define PIPE "<PIPE>"
@@ -34,11 +33,10 @@
 
 # define SEMICOLON "<SEMICOLON>"
 
-char	**lexer_core(char	*cmd);
-int		check_quotes(char *str);
-char	*replace_quoted_strings(char *str);
-void	replace_for_spaces(char **str);
-bool	ft_is_quoted(const char *ref, unsigned int index);
-void	quote_logic(char *str);
+int		lex_memory_splitter(char *str);
+char	**lex_splitter(char *str, char **temp);
+void	print_double_str(char **str);
+
+
 
 #endif

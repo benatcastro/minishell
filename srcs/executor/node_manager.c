@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:26:42 by bena              #+#    #+#             */
-/*   Updated: 2022/10/05 16:48:13 by bena             ###   ########.fr       */
+/*   Updated: 2022/10/11 19:54:49 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "minishell.h"
 #include "libft.h"
 #include "nodes.h"
+#include "lexer.h"
 
 t_command_table	*create_command_table_node(char **cmds)
 {
@@ -38,8 +39,8 @@ t_command_table	**create_command_table(t_command_table **head, char **cmds)
 	if (!(*head))
 		(*head) = create_command_table_node(cmds);
 	while (cmds[++i])
-		if (ft_strcmp(cmds[i], DOUBLEAMPERSAND)
-			|| ft_strcmp(cmds[i], DOUBLEPIPE))
+		if ((ft_strcmp(cmds[i], DOUBLEAMPERSAND)
+				|| ft_strcmp(cmds[i], DOUBLEPIPE)) && cmds[i + 1] != NULL)
 			ft_tableadd_back(head, create_command_table_node(&cmds[i + 1]));
 	print_table(head);
 	return (head);

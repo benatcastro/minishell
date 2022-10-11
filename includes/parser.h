@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 17:10:48 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/11 17:07:42 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:37:28 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,5 @@ void	parser_no_q(char *str, char **temp, int *i, int *n);
 void	parser_quote_error_chk_utl_sq(char *str, int *b, int *i);
 void	parser_quote_error_chk_utl_dq(char *str, int *b, int *i);
 
-//LEXER
-char	**lex_core(char *str);
-char	*lex_first_spc_rm(char *str);
-int		lex_memory_splitter(char *str);
-char	**lex_splitter(char *str, char **temp);
 
 #endif

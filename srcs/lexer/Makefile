@@ -3,8 +3,8 @@ INCLUDES = -I ../../includes/
 OBJ_DIR	= ../../objs/minishell/
 
 ############SRCS##############
-SRC_FILES =	lexer_core		\
-			replace_quotes	\
+SRC_FILES =	lex_utils\
+			lex
 
 #####SUFFIX AND PREFIX########
 SRC = $(addsuffix .c, $(SRC_FILES))
