@@ -6,13 +6,14 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/29 16:38:01 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/05 09:48:51 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lexer.h"
 #include "parser.h"
+#include "executor.h"
 
 int	main(int argc, char **argv, char **env)
 {
@@ -37,7 +38,8 @@ int	main(int argc, char **argv, char **env)
 			continue ;
 		add_history(buf);
 		lex = lexer_core(buf);
-		lex = parser_core(lex);
+		lex = parser_core(lex, env);
+		executor_core(lex, env);
 		builtins(buf, env);
 		free (buf);
 	}
@@ -52,26 +54,6 @@ int	ft_strlen_sh(const char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-int	ft_quote_checker(char *buf)
-{
-	int		c;
-	int		i;
-
-	i = -1;
-	c = 0;
-	while (buf[++i])
-	{
-		if (buf[i] == 34)
-			c++;
-	}
-	if ((c / 2 != 1) || (c / 2 == 0))
-	{
-		printf ("Invalid Quotes");
-		return (0);
-	}
-	return (1);
 }
 
 void	builtins(char *buf, char **env)

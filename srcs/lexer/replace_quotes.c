@@ -6,13 +6,20 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:56:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/30 19:59:33 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:45:33 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "libft.h"
 #include <stdio.h>
+
+bool	ft_is_quote(unsigned char c)
+{
+	if (c == SINGLE_QUOTE || c == DOUBLE_QUOTE)
+		return (true);
+	return (false);
+}
 
 void	quote_logic(char *str)
 {
@@ -21,9 +28,19 @@ void	quote_logic(char *str)
 	i = -1;
 	while (str[++i])
 	{
-		while (ft_is_quoted(str, i) && ft_isblank(str[i]))
+		while (ft_is_quoted(str, i) && str[i])
 		{
-			str[i] = REPLACE_CHAR;
+			while (ft_is_quote(str[i]))
+				i++;
+			if (ft_isblank(str[i]))
+				str[i] = REPLACE_CHAR;
+			i++;
+			if (ft_is_quote(str[i]))
+				break ;
+		}
+		while (ft_is_quote(str[i]) && str[i])
+			i++;
+		while (ft_isblank(str[i]) && str[i])
 			i++;
 		}
 		//while (str[i] == SINGLE_QUOTE || str[i] == DOUBLE_QUOTE && str[i])
@@ -41,12 +58,12 @@ bool	ft_is_quoted(const char *ref, unsigned int index)
 	closes = false;
 	i = index;
 	while (i > 0 && ref[--i])
-		if (ref[i] == SINGLE_QUOTE || ref[i] == DOUBLE_QUOTE)
+		if (ft_is_quote(ref[i]))
 				opens = true;
-	if (ref[i] == SINGLE_QUOTE || ref[i] == DOUBLE_QUOTE)
+	if (ft_is_quote(ref[i]))
 		opens = true;
-	while (ref[index++] && ref[index])
-		if (ref[index] == SINGLE_QUOTE || ref[index] == DOUBLE_QUOTE)
+	while (ref[index++])
+		if (ft_is_quote(ref[index]))
 			closes = true;
 	if (opens && closes)
 		return (true);

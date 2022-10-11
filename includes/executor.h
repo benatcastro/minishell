@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.h                                            :+:      :+:    :+:   */
+/*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 12:51:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/30 13:01:38 by bena             ###   ########.fr       */
+/*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
+/*   Updated: 2022/10/05 16:09:48 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_H
-# define LEXER_H
-# include <stdbool.h>
-
-# define WHITESPACE " \t\f\r\n\v" //should we use "\n as white space??"
-# define REPLACE_CHAR 26
-
-# define SINGLE_QUOTE 39
-# define DOUBLE_QUOTE 34
+#ifndef EXECUTOR_H
+# define EXECUTOR_H
+# include <unistd.h>
 
 # define AMPERSAND "<AMPERSAND>"
 # define DOUBLEAMPERSAND "<DOUBLEAMPERSAND>"
@@ -34,11 +28,35 @@
 
 # define SEMICOLON "<SEMICOLON>"
 
-char	**lexer_core(char	*cmd);
-int		check_quotes(char *str);
-char	*replace_quoted_strings(char *str);
-void	replace_for_spaces(char **str);
-bool	ft_is_quoted(const char *ref, unsigned int index);
-void	quote_logic(char *str);
+typedef struct s_command
+{
+	unsigned int		key;
+	char				*cmd;
+	char				**args;
+	char				*cmd_input;
+	int					out_fd;
+	int					exit_value;
+	struct s_command	*prev;
+	struct s_command	*next;
+}	t_command;
+
+/**
+ * @brief
+ * cmds -> head to the list of commands
+ *
+ */
+typedef struct s_command_table
+{
+	unsigned int			key;
+	struct s_command		**cmds;
+	struct s_command_table	*prev;
+	struct s_command_table	*next;
+}	t_command_table;
+
+//////////////////FNCS////////////////////////////
+
+int				executor_core(char **cmd, char**env);
+void			fill_cmd(t_command *node, char **cmds);
+t_command_table	**create_command_table(t_command_table **head, char **cmds);
 
 #endif

@@ -3,10 +3,9 @@ INCLUDES = -I ../../includes/
 OBJ_DIR	= ../../objs/minishell/
 
 ############SRCS##############
-SRC_FILES =	expander_core		\
-			expander_utils		\
-			expander_env_rep	\
-			expander_splitter	\
+SRC_FILES =	ft_nodeadd_back	\
+			ft_nodelast		\
+			node_utils		\
 
 ###############UTILS##########
 OBJF = .cache_exists

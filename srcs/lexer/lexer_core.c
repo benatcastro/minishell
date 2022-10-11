@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:46:05 by bena              #+#    #+#             */
-/*   Updated: 2022/09/30 19:57:08 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:46:10 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,5 @@ char	**lexer_core(char	*cmd)
 	replace_for_spaces(str);
 	replace_for_keywords(str);
 	print_double_str(str);
-	printf("========LEXING ENDS=======");
 	return (str);
 }

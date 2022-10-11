@@ -1,16 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/09/30 19:57:22 by becastro         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-
 #############NAMES###########
 NAME = minishell
 ##########DIRECTORIES########
@@ -33,17 +20,21 @@ LIB_FLAGS	= $(LIB_DIR)42lib.a
 
 #############NAMES###########
 RAW_OBJS =	ms_main			\
-			expander_core	\
 			lexer_core		\
 			replace_quotes	\
-			parser_core		\
 			signals_core	\
 			signal_handler	\
 			parser_core		\
 			parser_errors	\
 			parser_utils	\
 			expander_core	\
-			get_env_value	\
+			expander_utils	\
+			executor_core	\
+			node_manager	\
+			fill_cmd_table	\
+			ft_nodeaddback	\
+			ft_nodelast		\
+			node_utils		\
 
 OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(RAW_OBJS)))
 
@@ -68,18 +59,18 @@ $(OBJS):
 	make -C srcs/parser
 	make -C srcs/signals
 	make -C srcs/expander
+	make -C srcs/executor
+	make -C srcs/node_fncs
 
 run: all
 	./$(NAME)
 
 clean:
-	@make clean -C 42lib/
-	@$(RM) $(OBJ_DIR)
+	@$(RM) objs/
 
 fclean: clean
-#	make fclean -C 42lib/
-	@$(RM) $(NAME)
-
+	make fclean -C 42lib/
+	$(RM) $(NAME)
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all foo clean fclean re

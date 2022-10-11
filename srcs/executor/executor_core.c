@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env_value.c                                    :+:      :+:    :+:   */
+/*   executor_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 12:58:53 by becastro          #+#    #+#             */
-/*   Updated: 2022/09/29 13:35:15 by becastro         ###   ########.fr       */
+/*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
+/*   Updated: 2022/10/05 12:52:10 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expander.h"
+#include "executor.h"
+#include "minishell.h"
 
-char	*get_env_value(char *ref, char **env)
+//Los args de esta funcion deberian de ser el input lexeado y parseado
+//y la futura struct
+int	executor_core(char **cmd, char**env)
 {
-	return (NULL);
+	t_command_table	*cmd_table;
+
+	printf("===EXECUTOR INPUT===\n");
+	print_double_str(cmd);
+	cmd_table = NULL;
+	create_command_table(&cmd_table, cmd);
+	printf("===EXECUTOR ENDS===\n");
+	return (1);
 }
