@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/11 17:23:22 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:11:54 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,7 @@ int	parser_arg_num(char *str)
 		if ((str[e] == SINGLE_QUOTE) || (str[e] == DOUBLE_QUOTE))
 		{
 			c++;
-			q = str[e];
-			e++;
+			q = str[e++];
 			while (str[e] != q)
 				e++;
 		}
