@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/29 14:02:07 by becastro         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:38:23 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@
 # include "libft.h"
 # include <readline/readline.h>
 # include <readline/history.h>
+#include "executor.h"
 
 # define PROMPT "\033[33mBASHado 🤖 > \033[0m"
 
 int		main(int argc, char **argv, char **env);
-void	builtins(char *buf, char **env);
+void	builtins(t_command_table *cmd, char **env);
 int		ft_quote_checker(char *buf);
 void	print_double_str(char **str);
 void	ft_export_no_arg(char **cln);

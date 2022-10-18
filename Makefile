@@ -6,7 +6,7 @@
 #    By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/10/11 18:27:16 by umartin-         ###   ########.fr        #
+#    Updated: 2022/10/18 20:09:53 by umartin-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ RAW_OBJS =	ms_main			\
 			ft_nodeaddback	\
 			ft_nodelast		\
 			node_utils		\
+			builtins_core	\
 
 OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(RAW_OBJS)))
 
@@ -74,6 +75,7 @@ $(OBJS):
 	make -C srcs/expander
 	make -C srcs/executor
 	make -C srcs/node_fncs
+	make -C srcs/builtins
 
 run: all
 	./$(NAME)

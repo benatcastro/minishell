@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/11 19:28:10 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/18 20:07:48 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,8 @@ int	main(int argc, char **argv, char **env)
 			exit (0);
 		lex = lex_core(buf);
 		lex = parser_core(lex, env);
-		printf("===AFTER PARS  EXPAND===\n");
-		ft_doubleprint(lex);
 		i = 0;
 		executor_core(lex, env);
-		builtins(buf, env);
 		free (buf);
 	}
 	return (0);
@@ -59,36 +56,6 @@ int	ft_strlen_sh(const char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-void	builtins(char *buf, char **env)
-{
-	int		i;
-	char	*pwd_dir;
-
-	i = -1;
-	if (!ft_strncmp(buf, "env", 4))
-	{
-		while (env[++i])
-			printf ("%s\n", env[i]);
-	}
-	else if (!ft_strncmp(buf, "pwd", 4))
-	{
-		pwd_dir = getcwd(NULL, 0);
-		printf("%s\n", pwd_dir);
-		free(pwd_dir);
-	}
-	else if (!ft_strncmp(buf, "exit", 5))
-	{
-		printf ("exit\n");
-		exit (0);
-	}
-	else if (!ft_strncmp(buf, "export", 7))
-	{
-		ft_export_no_arg(env);
-	}
-	else
-		printf ("%s%s: command not found\n", PROMPT, buf);
 }
 
 void	ft_export_no_arg(char **cln)

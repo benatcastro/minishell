@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/13 16:11:54 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:37:38 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char	**parser_core(char **str, char **env)
 	{
 		aux = parser_quotes(str[i]);
 		aux = parser_double_quote_free(aux);
-		ft_doubleprint(aux);
 		rtn = expander_core(aux, env);
 		dub[i] = ft_strdup(rtn);
 		free (rtn);

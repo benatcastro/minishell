@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:56:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/13 16:09:14 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:41:56 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	lex_splitter_ut(char **temp, char *str, int i[2], int *n)
 	int		l;
 
 	l = 0;
-	printf("%d\n", i[0]);
 	aux = ft_calloc(sizeof(char *), ((i[0]) - (i[1])) + 1);
 	while ((i[1]) < (i[0]))
 		aux[l++] = str[(i[1])++];
