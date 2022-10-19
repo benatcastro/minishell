@@ -6,6 +6,7 @@ OBJ_DIR	= ../../objs/minishell/
 SRC_FILES =	executor_core		\
 			node_manager		\
 			fill_cmd_table		\
+			special_split		\
 
 ###############UTILS##########
 OBJF = .cache_exists
