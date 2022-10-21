@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:34:14 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/07 18:48:07 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/21 15:54:31 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void	expand_arg_num_ut(char *str, int *e, int *c);
 void	expand_splitter_ut(char *str, int *e);
 char	*expand_splitter_ut2(char *str, char *aux, int *e, int *l);
 char	*ft_strdup_free(char *s1);
+char	*ft_strjoin_free(char *s1, char *s2);
 
 #endif

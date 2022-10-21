@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:29:59 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/11 16:25:58 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:45:52 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ char	*env_replacer(char *str, char **env)
 					(ft_strlen(env[i]) - ft_strlen(str)));
 			n = (ft_strlen(str));
 			val = env_val_maker(val, env, &n, &i);
+			free (str);
 			return (val);
 		}
 	}
-	val = "";
-	return (val);
+	return (val = "", free (str), val);
 }
 
 char	*env_val_maker(char *val, char **env, int *n, int *i)

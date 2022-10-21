@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 20:16:53 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/11 17:45:17 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:40:07 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ char	**expand_splitter(char *str, char **rtn)
 		if (str[e] == 36)
 		{
 			expand_splitter_ut(str, &e);
-			rtn[n] = ft_strdup_free(expand_splitter_ut2(str, aux, &e, &l));
+			rtn[n] = expand_splitter_ut2(str, aux, &e, &l);
 		}
 		else
 		{
 			while ((str[e]) && ((str[e] != '$')))
 				e++;
 			e--;
-			rtn[n] = ft_strdup(expand_splitter_ut2(str, aux, &e, &l));
+			rtn[n] = expand_splitter_ut2(str, aux, &e, &l);
 		}
 		n++;
 	}
@@ -45,14 +45,17 @@ char	**expand_splitter(char *str, char **rtn)
 
 char	*expand_splitter_ut2(char *str, char *aux, int *e, int *l)
 {
-	int	a;
+	int		a;
+	char	*temp;
 
 	aux = ft_calloc(sizeof(char *), ((*e) - (*l)) + 1);
 	a = 0;
 	while ((*l) <= (*e))
 		aux[a++] = str[(*l)++];
 	aux[(*l)] = 0;
-	return (aux);
+	temp = ft_strdup(aux);
+	free (aux);
+	return (temp);
 }
 
 void	expand_splitter_ut(char *str, int *e)

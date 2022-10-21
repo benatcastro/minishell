@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:06:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/18 18:06:34 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/20 19:12:21 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ void	fill_cmd(t_command *node, char **cmds)
 		node->args[i] = cmds[0];
 		cmds++;
 	}
-	node->args[i] = '\0';
+	node->args[i] = 0;
 	node->cmd_input = cmds[0];
 }

@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/18 20:07:48 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:59:13 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	main(int argc, char **argv, char **env)
 		lex = lex_core(buf);
 		lex = parser_core(lex, env);
 		i = 0;
-		executor_core(lex, env);
+		ft_doublefree (lex);
+		//executor_core(lex, env);
 		free (buf);
 	}
 	return (0);

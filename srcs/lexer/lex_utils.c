@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:56:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/13 16:41:56 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:08:41 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char	**lex_splitter(char *str, char **temp)
 	}
 	if (i[0] > i[1])
 		lex_splitter_ut(temp, str, i, &n);
+	free (str);
 	return (temp[n] = 0, temp);
 }
 

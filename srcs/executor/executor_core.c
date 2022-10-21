@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/10/19 19:39:35 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:40:24 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,9 @@ static char	*bin_executor(char **args, char **env)
 	char	*path;
 
 	path = bin_path_finder(args, env);
-	//printf("%s\n", temp);
 	if (path != NULL)
 		execve(path, args, env);
-	//printf("sexoooooo\n");
-	return path;
+	return (path);
 }
 
 static int	execute_cmds(t_command_table *cmd, char **env)

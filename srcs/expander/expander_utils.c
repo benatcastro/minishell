@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:19:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/11 17:51:26 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/21 15:54:18 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	**expander(char	*str, char **env)
 		{
 			aux = env_replacer(temp[i], env);
 			temp[i] = ft_strdup(aux);
+			free (aux);
 		}
 	}
 	return (temp);
@@ -73,4 +74,20 @@ void	expand_arg_num_ut(char *str, int *e, int *c)
 	while ((str[(*e)]) && ((str[(*e)] != '$') && (str[(*e)] != 32)))
 		(*e)++;
 	(*e)--;
+}
+
+char	*ft_strjoin_free(char *s1, char *s2)
+{
+	char	*str;
+
+	if (!s1 || !s2)
+		return (NULL);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s1, (ft_strlen(s1) + 1));
+	ft_strlcat(str, s2, (ft_strlen(s1) + ft_strlen(s2) + 1));
+	free(s1);
+	free(s2);
+	return (str);
 }

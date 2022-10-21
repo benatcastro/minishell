@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/19 16:41:51 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:43:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ static void	builtins_echo(t_command_table *cmd)
 {
 	int	i;
 
+	if (!cmd->cmds[0]->args[1])
+	{
+		printf("\n");
+		return ;
+	}
 	if (!ft_strncmp(cmd->cmds[0]->args[1], "-n", 3))
 	{
 		i = 1;

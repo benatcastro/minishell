@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:31:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/11 17:32:25 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/21 15:55:14 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ char	*expander_core(char **cmds, char **env)
 		else if (aux1)
 		{
 			aux2 = expander_main(cmds[i], env);
-			aux1 = ft_strjoin(aux1, aux2);
+			aux1 = ft_strjoin_free(aux1, aux2);
 		}
 		i++;
+		if (aux2)
+			free (aux2);
 	}
 	return (aux1);
 }
@@ -76,6 +78,7 @@ char	*expand_first_trimmer(char	*str)
 char	*expander_main(char	*str, char **env)
 {
 	char	**rtn;
+	char	*temp;
 	char	*r;
 	int		i;
 	int		c;
@@ -85,10 +88,17 @@ char	*expander_main(char	*str, char **env)
 	if (str[0] == SINGLE_QUOTE)
 		return (expand_trimmer(str));
 	else if (str[0] == DOUBLE_QUOTE)
-		rtn = expander(expand_trimmer(str), env);
+	{
+		temp = expand_trimmer(str);
+		rtn = expander(temp, env);
+		free (str);
+		free (temp);
+	}
 	else
 		rtn = expander(str, env);
+	free (str);
 	r = double_joiner(rtn);
+	ft_doublefree(rtn);
 	return (r);
 }
 
@@ -105,6 +115,8 @@ char	*double_joiner(char **temp)
 		aux = ft_strdup(temp[i]);
 		rtn = ft_strjoin(rtn, aux);
 		i++;
+		if ((aux))
+			free (aux);
 	}
 	return (rtn);
 }

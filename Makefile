@@ -6,7 +6,7 @@
 #    By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/10/19 19:47:35 by umartin-         ###   ########.fr        #
+#    Updated: 2022/10/21 11:29:20 by umartin-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ RM = rm -rf
 #############FLAGS###########
 RD_FLAGS	= -I/Users/$(USER)/.brew/opt/readline/include -lreadline -L/Users/$(USER)/.brew/opt/readline/lib/
 SANITIZE	= #-fsanitize=address -g3
-VALGRIND	= valgrind --leak-check=full #--show-leak-kinds=all --track-origins=yes
-CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g3
+VALGRIND	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
+CFLAGS		= -Wall -Werror #-ggdb3 -Wextra -fsanitize=address -ggdb3
 INC_FLAGS	= -I $(INC_DIR)
 LIB_FLAGS	= $(LIB_DIR)42lib.a
 
