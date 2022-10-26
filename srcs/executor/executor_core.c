@@ -87,28 +87,102 @@ static char	*bin_executor(char **args, char **env)
 	return (path);
 }
 
-static int	execute_cmds(t_command_table *cmd, char **env)
+static int	execute_cmds(t_command_table *cmd, char **args, char **env)
 {
-	if (builtin_checker(cmd->cmds[0]->args, env))
+	if (builtin_checker(args, env))
 		builtins(cmd, env);
 	else
-		bin_executor(cmd->cmds[0]->args, env);
+		bin_executor(args, env);
 	exit(1);
 }
 
-
-int	executor_core(char **cmd, char**env)
+t_args	*ft_lstnew_double(char **content)
 {
-	t_command_table	*cmd_table;
-	pid_t			f;
+	t_args	*node;
 
-	//print_double_str(cmd);
-	cmd_table = NULL;
-	create_command_table(&cmd_table, cmd);
+	node = (t_args *)malloc(sizeof(t_args));
+	if (!node)
+		return (NULL);
+	node->cont = ft_doublestrdup(content);
+	node->next = NULL;
+	return (node);
+}
+
+static void	list_args(t_args **head, char **cmds)
+{
+	char	**temp;
+	int		i;
+	int		m;
+	int		l;
+
+	i = -1;
+	m = 0;
+	while (cmds[++i])
+	{
+		if (ft_strcmp(cmds[i], PIPE))
+		{
+			l = 0;
+			temp = malloc(sizeof(char **) * (i - m));
+			while (m < i)
+				temp[l++] = ft_strdup(cmds[m++]);
+			temp[l] = 0;
+			ft_lstadd_back(head, ft_lstnew_double(temp));
+			ft_doublefree(temp);
+		}
+	}
+	l = 0;
+	temp = malloc(sizeof(char **) * (i - m) + 1);
+	while (m < i)
+		temp[l++] = ft_strdup(cmds[m++]);
+	temp[l] = 0;
+	ft_lstadd_back(head, ft_lstnew_double(temp));
+	ft_doublefree(temp);
+}
+
+void pipes
+
+int	executor_core(char **cmd, char **env)
+{
+	t_args	*cmds;
+	pid_t			f;
+	pid_t			f2;
+	int				fd[2];
+	int				i;
+
+	cmds = NULL;
+	list_args(&cmds, cmd);
+	ft_doubleprint(cmds->next->cont);
+	i = 0;
+	temp = cmd_table;
+	while (temp->cmds[0]->next != NULL)
+	{
+		temp = temp->cmds[0]->next;
+		i++;
+	}
+	temp = cmd_table;
+	printf ("I = %d\n", i);
+	if (pipe (fd) == -1)
+		exit (0);
 	f = fork();
 	if (f == 0)
-		execute_cmds(cmd_table, env);
-	else
-		wait(NULL);
+	{
+		dup2(fd[1], STDOUT_FILENO);
+		close(fd[0]);
+		close(fd[1]);
+		execute_cmds(cmd_table, temp->cmds[0]->args, env);
+	}
+	temp = temp->cmds[0]->next;
+	f = fork();
+	if (f == 0)
+	{
+		dup2(fd[0], STDIN_FILENO);
+		close(fd[0]);
+		close(fd[1]);
+		execute_cmds(cmd_table, temp->cmds[0]->args, env);
+	}
+	close(fd[0]);
+	close(fd[1]);
+	waitpid(f, NULL, 0);
+	waitpid(f2, NULL, 0);
 	return (1);
 }

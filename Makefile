@@ -25,9 +25,9 @@ RM = rm -rf
 42Lib = make -C srcs/
 #############FLAGS###########
 RD_FLAGS	= -I/Users/$(USER)/.brew/opt/readline/include -lreadline -L/Users/$(USER)/.brew/opt/readline/lib/
-SANITIZE	= #-fsanitize=address -g3
+SANITIZE	= -fsanitize=address -g3
 VALGRIND	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
-CFLAGS		= -Wall -Werror #-ggdb3 -Wextra -fsanitize=address -ggdb3
+CFLAGS		= -Wall -Werror -ggdb3 -Wextra -fsanitize=address -ggdb3
 INC_FLAGS	= -I $(INC_DIR)
 LIB_FLAGS	= $(LIB_DIR)42lib.a
 

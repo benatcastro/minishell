@@ -53,6 +53,12 @@ typedef struct s_command_table
 	struct s_command_table	*next;
 }	t_command_table;
 
+typedef struct s_args
+{
+	char			**cont;
+	struct s_args	*next;
+}	t_args;
+
 //////////////////FNCS////////////////////////////
 
 int				executor_core(char **cmd, char**env);

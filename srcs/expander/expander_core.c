@@ -91,12 +91,13 @@ char	*expander_main(char	*str, char **env)
 	{
 		temp = expand_trimmer(str);
 		rtn = expander(temp, env);
-		free (str);
-		free (temp);
+		if (str)
+			free (str);
+		if (temp)
+			free (temp);
 	}
 	else
 		rtn = expander(str, env);
-	free (str);
 	r = double_joiner(rtn);
 	ft_doublefree(rtn);
 	return (r);

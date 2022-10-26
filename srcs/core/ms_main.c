@@ -42,8 +42,8 @@ int	main(int argc, char **argv, char **env)
 		lex = lex_core(buf);
 		lex = parser_core(lex, env);
 		i = 0;
-		ft_doublefree (lex);
-		//executor_core(lex, env);
+		//ft_doublefree (lex);
+		executor_core(lex, env);
 		free (buf);
 	}
 	return (0);
