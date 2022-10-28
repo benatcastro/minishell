@@ -18,6 +18,7 @@
 int	main(int argc, char **argv, char **env)
 {
 	char	*buf;
+	char	**en;
 	char	**lex;
 	t_list	*args;
 	int		i;
@@ -27,6 +28,7 @@ int	main(int argc, char **argv, char **env)
 	args = NULL;
 	buf = NULL;
 	lex = NULL;
+	en = ft_doublestrdup(env);
 	i = 0;
 	//signals_core(); //uncomment when signals are ready
 	while (1)
@@ -40,10 +42,10 @@ int	main(int argc, char **argv, char **env)
 		if (parser_quote_error_chk(buf))
 			exit (0);
 		lex = lex_core(buf);
-		lex = parser_core(lex, env);
+		lex = parser_core(lex, en);
 		i = 0;
 		//ft_doublefree (lex);
-		executor_core(lex, env);
+		executor_core(lex, en);
 		free (buf);
 	}
 	return (0);

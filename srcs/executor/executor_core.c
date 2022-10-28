@@ -18,6 +18,67 @@
 //Los args de esta funcion deberian de ser el input lexeado y parseado
 //y la futura struct
 
+static char	*ft_strdup_g(char *s)
+{
+	char	*result;
+	int		i;
+	int		len;
+
+	i = -1;
+	len = 0;
+	while (s[len] != '\0')
+		len++;
+	result = malloc(sizeof(*s) * len + 1);
+	if (result == NULL)
+		return (NULL);
+	while (s[++i])
+		result[i] = s[i];
+	result[i] = '\0';
+	return (result);
+}
+
+static char	*get_next_line(int fd)
+{
+	char	buffer;
+	char	rtn[7000000];
+	int		n;
+	int		i;
+
+	// if (fd < 0 || BUFFER_SIZE <= 0)
+	// 	return (0);
+	i = 0;
+	n = read(fd, &buffer, 1);
+	while (n > 0)
+	{
+		rtn[i++] = buffer;
+		if (buffer == '\n')
+			break ;
+		n = read(fd, &buffer, 1);
+	}
+	rtn[i] = 0;
+	if (n <= 0 && i == 0)
+		return (0);
+	return (ft_strdup_g(rtn));
+}
+
+void	gnl_main(fd)
+{
+	char	*line;
+	int		i;
+	int		fd1;
+
+	fd1 = open("test.txt", O_RDONLY);
+	i = 1;
+	while (i < 7)
+	{
+		line = get_next_line(fd1);
+		printf("line [%02d]: %s", i, line);
+		free(line);
+		i++;
+	}
+	close(fd1);
+}
+
 int	builtin_checker(char **args, char **env)
 {
 	if (!ft_strncmp(args[0], "env", 4))
@@ -87,13 +148,12 @@ static char	*bin_executor(char **args, char **env)
 	return (path);
 }
 
-static int	execute_cmds(t_command_table *cmd, char **args, char **env)
+void	execute_cmds(t_args **cmd, char **args, char **env)
 {
 	if (builtin_checker(args, env))
 		builtins(cmd, env);
 	else
 		bin_executor(args, env);
-	exit(1);
 }
 
 t_args	*ft_lstnew_double(char **content)
@@ -106,6 +166,23 @@ t_args	*ft_lstnew_double(char **content)
 	node->cont = ft_doublestrdup(content);
 	node->next = NULL;
 	return (node);
+}
+
+t_args	*ft_lstlast_args(t_args *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
+}
+
+void	ft_lstadd_back_args(t_args **lst, t_args *new)
+{
+	if (!*lst)
+		*lst = new;
+	else
+		ft_lstlast_args(*lst)->next = new;
 }
 
 static void	list_args(t_args **head, char **cmds)
@@ -122,12 +199,12 @@ static void	list_args(t_args **head, char **cmds)
 		if (ft_strcmp(cmds[i], PIPE))
 		{
 			l = 0;
-			temp = malloc(sizeof(char **) * (i - m));
+			temp = malloc(sizeof(char *) * (i - m));
 			while (m < i)
 				temp[l++] = ft_strdup(cmds[m++]);
+			m++;
 			temp[l] = 0;
-			ft_lstadd_back(head, ft_lstnew_double(temp));
-			ft_doublefree(temp);
+			ft_lstadd_back_args(head, ft_lstnew_double(temp));
 		}
 	}
 	l = 0;
@@ -135,54 +212,164 @@ static void	list_args(t_args **head, char **cmds)
 	while (m < i)
 		temp[l++] = ft_strdup(cmds[m++]);
 	temp[l] = 0;
-	ft_lstadd_back(head, ft_lstnew_double(temp));
-	ft_doublefree(temp);
+	ft_lstadd_back_args(head, ft_lstnew_double(temp));
 }
 
-void pipes
+void exec_nopipe(t_args **cmd, char **env)
+{
+	t_args	*temp;
+	int		n;
+	pid_t	pid;
+	int		fd[2];
+	int		status;
+
+	temp = *cmd;
+	if (pipe (fd) == -1)
+		exit (0);
+	pid = fork();
+	if (pid == 0)
+		execute_cmds(cmd, temp->cont, env);
+	else
+		wait (0);
+}
+
+void exec_onepipe(t_args **cmd, char **env)
+{
+	t_args	*temp;
+	int		n;
+	pid_t	pid[2];
+	int		fd[2];
+	int		status;
+
+	temp = *cmd;
+	if (pipe (fd) == -1)
+		exit (0);
+	pid[0] = fork();
+	if (pid[0] == 0)
+	{
+		dup2(fd[1], STDOUT_FILENO);
+		n = 0;
+		while (n++ < 2)
+			close (fd[n]);
+		execute_cmds(cmd, temp->cont, env);
+	}
+	temp = temp->next;
+	pid[1] = fork();
+	if (pid[1] == 0)
+	{
+		dup2(fd[0], STDIN_FILENO);
+		n = 0;
+		while (n++ < 2)
+			close (fd[n]);
+		execute_cmds(cmd, temp->cont, env);
+	}
+	n = 0;
+	while (n++ < 2)
+		close (fd[n]);
+	n = 0;
+	while (n++ < 2)
+		waitpid(pid[n], &status, 0);
+}
+
+void pipe_core(t_args **cmd, char **env)
+{
+	t_args	*temp;
+	int		n;
+	pid_t	pid[3];
+	int		fd[2];
+	int		fd2[2];
+	int		i;
+	int 	status;
+
+	i = 1;
+	temp = *cmd;
+	while (temp->next != NULL)
+	{
+		temp = temp->next;
+		i++;
+	}
+	if (i == 1)
+		exec_nopipe(cmd, env);
+	else if (i == 2)
+		exec_onepipe(cmd, env);
+	else
+	{
+		temp = *cmd;
+		if (pipe (fd) == -1)
+			exit (0);
+		if (pipe (fd2) == -1)
+			exit (0);
+		pid[0] = fork();
+		if (pid[0] == 0)
+		{
+			dup2(fd[1], STDOUT_FILENO);
+			n = 0;
+			while (n < 2)
+			{
+				close (fd[n]);
+				close (fd2[n]);
+				n++;
+			}
+			execute_cmds(cmd, temp->cont, env);
+		}
+		temp = temp->next;
+		i--;
+		while (i > 1)
+		{
+			pid[1] = fork();
+			if (pid[1] == 0)
+			{
+				dup2(fd[0], STDIN_FILENO);
+				dup2(fd2[1], STDOUT_FILENO);
+				n = 0;
+				while (n < 2)
+				{
+					close (fd[n]);
+					close (fd2[n]);
+					n++;
+				}
+				execute_cmds(cmd, temp->cont, env);
+			}
+			temp = temp->next;
+			i--;
+		}
+		pid[2] = fork();
+		if (pid[2] == 0)
+		{
+			dup2(fd2[0], STDIN_FILENO);
+			n = 0;
+			while (n < 2)
+			{
+				close (fd[n]);
+				close (fd2[n]);
+				n++;
+			}
+			execute_cmds(cmd, temp->cont, env);
+		}
+		n = 0;
+		while (n < 2)
+		{
+			close (fd[n]);
+			close (fd2[n]);
+			n++;
+		}
+		n = 0;
+		while (n < 3)
+		{
+			waitpid(pid[n], &status, 0);
+			n++;
+		}
+	}
+}
 
 int	executor_core(char **cmd, char **env)
 {
 	t_args	*cmds;
-	pid_t			f;
-	pid_t			f2;
-	int				fd[2];
-	int				i;
 
 	cmds = NULL;
 	list_args(&cmds, cmd);
-	ft_doubleprint(cmds->next->cont);
-	i = 0;
-	temp = cmd_table;
-	while (temp->cmds[0]->next != NULL)
-	{
-		temp = temp->cmds[0]->next;
-		i++;
-	}
-	temp = cmd_table;
-	printf ("I = %d\n", i);
-	if (pipe (fd) == -1)
-		exit (0);
-	f = fork();
-	if (f == 0)
-	{
-		dup2(fd[1], STDOUT_FILENO);
-		close(fd[0]);
-		close(fd[1]);
-		execute_cmds(cmd_table, temp->cmds[0]->args, env);
-	}
-	temp = temp->cmds[0]->next;
-	f = fork();
-	if (f == 0)
-	{
-		dup2(fd[0], STDIN_FILENO);
-		close(fd[0]);
-		close(fd[1]);
-		execute_cmds(cmd_table, temp->cmds[0]->args, env);
-	}
-	close(fd[0]);
-	close(fd[1]);
-	waitpid(f, NULL, 0);
-	waitpid(f2, NULL, 0);
+	// ft_doubleprint(cmds->cont);
+	// ft_doubleprint(cmds->next->cont);
+	pipe_core(&cmds, env);
 	return (1);
 }

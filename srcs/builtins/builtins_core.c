@@ -15,56 +15,58 @@
 #include "parser.h"
 #include "executor.h"
 
-static void	builtins_echo(t_command_table *cmd)
+static void	builtins_echo(t_args *cmd)
 {
 	int	i;
 
-	if (!cmd->cmds[0]->args[1])
+	if (!cmd->cont[1])
 	{
 		printf("\n");
 		return ;
 	}
-	if (!ft_strncmp(cmd->cmds[0]->args[1], "-n", 3))
+	if (!ft_strncmp(cmd->cont[1], "-n", 3))
 	{
 		i = 1;
-		while (cmd->cmds[0]->args[++i])
-			printf("%s ", cmd->cmds[0]->args[i]);
+		while (cmd->cont[++i])
+			printf("%s ", cmd->cont[i]);
 	}
 	else
 	{
 		i = 0;
-		while (cmd->cmds[0]->args[++i])
-			printf("%s ", cmd->cmds[0]->args[i]);
+		while (cmd->cont[++i])
+			printf("%s ", cmd->cont[i]);
 		printf("\n");
 	}
 }
 
-void	builtins(t_command_table *cmd, char **env)
+void	builtins(t_args **cmd, char **env)
 {
+	t_args	*temp;
 	int		i;
 	char	*pwd_dir;
 
+	temp = *cmd;
 	i = -1;
-	if (!ft_strncmp(cmd->cmds[0]->args[0], "env", 4))
+	if (!ft_strncmp(temp->cont[0], "env", 4))
 	{
 		while (env[++i])
 			printf ("%s\n", env[i]);
 	}
-	else if (!ft_strncmp(cmd->cmds[0]->args[0], "pwd", 4))
+	else if (!ft_strncmp(temp->cont[0], "pwd", 4))
 	{
 		pwd_dir = getcwd(NULL, 0);
 		printf("%s\n", pwd_dir);
 		free(pwd_dir);
 	}
-	else if (!ft_strncmp(cmd->cmds[0]->args[0], "exit", 5))
+	else if (!ft_strncmp(temp->cont[0], "exit", 5))
 	{
 		printf ("exit\n");
 		exit (0);
 	}
-	else if (!ft_strncmp(cmd->cmds[0]->args[0], "export", 7))
+	else if (!ft_strncmp(temp->cont[0], "export", 7))
 		ft_export_no_arg(env);
-	else if (!ft_strncmp(cmd->cmds[0]->args[0], "echo", 5))
-		builtins_echo(cmd);
+	else if (!ft_strncmp(temp->cont[0], "echo", 5))
+		builtins_echo(temp);
 	else
-		printf ("%s%s: command not found\n", PROMPT, cmd->cmds[0]->args[0]);
+		printf ("%s%s: command not found\n", PROMPT, temp->cont[0]);
 }
