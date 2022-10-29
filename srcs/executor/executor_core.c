@@ -18,67 +18,6 @@
 //Los args de esta funcion deberian de ser el input lexeado y parseado
 //y la futura struct
 
-static char	*ft_strdup_g(char *s)
-{
-	char	*result;
-	int		i;
-	int		len;
-
-	i = -1;
-	len = 0;
-	while (s[len] != '\0')
-		len++;
-	result = malloc(sizeof(*s) * len + 1);
-	if (result == NULL)
-		return (NULL);
-	while (s[++i])
-		result[i] = s[i];
-	result[i] = '\0';
-	return (result);
-}
-
-static char	*get_next_line(int fd)
-{
-	char	buffer;
-	char	rtn[7000000];
-	int		n;
-	int		i;
-
-	// if (fd < 0 || BUFFER_SIZE <= 0)
-	// 	return (0);
-	i = 0;
-	n = read(fd, &buffer, 1);
-	while (n > 0)
-	{
-		rtn[i++] = buffer;
-		if (buffer == '\n')
-			break ;
-		n = read(fd, &buffer, 1);
-	}
-	rtn[i] = 0;
-	if (n <= 0 && i == 0)
-		return (0);
-	return (ft_strdup_g(rtn));
-}
-
-void	gnl_main(fd)
-{
-	char	*line;
-	int		i;
-	int		fd1;
-
-	fd1 = open("test.txt", O_RDONLY);
-	i = 1;
-	while (i < 7)
-	{
-		line = get_next_line(fd1);
-		printf("line [%02d]: %s", i, line);
-		free(line);
-		i++;
-	}
-	close(fd1);
-}
-
 int	builtin_checker(char **args, char **env)
 {
 	if (!ft_strncmp(args[0], "env", 4))
@@ -138,14 +77,13 @@ static char	*bin_path_finder(char **args, char **env)
 	return (temp = NULL, temp);
 }
 
-static char	*bin_executor(char **args, char **env)
+static void	bin_executor(char **args, char **env)
 {
 	char	*path;
 
 	path = bin_path_finder(args, env);
 	if (path != NULL)
 		execve(path, args, env);
-	return (path);
 }
 
 void	execute_cmds(t_args **cmd, char **args, char **env)
@@ -274,90 +212,88 @@ void exec_onepipe(t_args **cmd, char **env)
 void pipe_core(t_args **cmd, char **env)
 {
 	t_args	*temp;
-	int		n;
+	int		i[2];
 	pid_t	pid[3];
-	int		fd[2];
-	int		fd2[2];
-	int		i;
-	int 	status;
+	int		fd[2][2];
+	int		status;
 
-	i = 1;
+	i[0] = 1;
 	temp = *cmd;
 	while (temp->next != NULL)
 	{
 		temp = temp->next;
-		i++;
+		i[0]++;
 	}
-	if (i == 1)
+	if (i[0] == 1)
 		exec_nopipe(cmd, env);
-	else if (i == 2)
+	else if (i[0] == 2)
 		exec_onepipe(cmd, env);
 	else
 	{
 		temp = *cmd;
-		if (pipe (fd) == -1)
+		if (pipe (fd[0]) == -1)
 			exit (0);
-		if (pipe (fd2) == -1)
+		if (pipe (fd[1]) == -1)
 			exit (0);
 		pid[0] = fork();
 		if (pid[0] == 0)
 		{
-			dup2(fd[1], STDOUT_FILENO);
-			n = 0;
-			while (n < 2)
+			dup2(fd[0][1], STDOUT_FILENO);
+			i[1] = 0;
+			while (i[1] < 2)
 			{
-				close (fd[n]);
-				close (fd2[n]);
-				n++;
+				close (fd[0][i[1]]);
+				close (fd[1][i[1]]);
+				i[1]++;
 			}
 			execute_cmds(cmd, temp->cont, env);
 		}
 		temp = temp->next;
-		i--;
-		while (i > 1)
+		i[0]--;
+		while (i[0] > 1)
 		{
 			pid[1] = fork();
 			if (pid[1] == 0)
 			{
-				dup2(fd[0], STDIN_FILENO);
-				dup2(fd2[1], STDOUT_FILENO);
-				n = 0;
-				while (n < 2)
+				dup2(fd[0][0], STDIN_FILENO);
+				dup2(fd[1][1], STDOUT_FILENO);
+				i[1] = 0;
+				while (i[1] < 2)
 				{
-					close (fd[n]);
-					close (fd2[n]);
-					n++;
+					close (fd[0][i[1]]);
+					close (fd[1][i[1]]);
+					i[1]++;
 				}
 				execute_cmds(cmd, temp->cont, env);
 			}
 			temp = temp->next;
-			i--;
+			i[0]--;
 		}
 		pid[2] = fork();
 		if (pid[2] == 0)
 		{
-			dup2(fd2[0], STDIN_FILENO);
-			n = 0;
-			while (n < 2)
+			dup2(fd[1][0], STDIN_FILENO);
+			i[1] = 0;
+			while (i[1] < 2)
 			{
-				close (fd[n]);
-				close (fd2[n]);
-				n++;
+				close (fd[0][i[1]]);
+				close (fd[1][i[1]]);
+				i[1]++;
 			}
 			execute_cmds(cmd, temp->cont, env);
 		}
-		n = 0;
-		while (n < 2)
+		i[1] = 0;
+		while (i[1] < 2)
 		{
-			close (fd[n]);
-			close (fd2[n]);
-			n++;
+			close (fd[0][i[1]]);
+			close (fd[1][i[1]]);
+			i[1]++;
 		}
-		n = 0;
-		while (n < 3)
+		i[1] = 0;
+		while (i[1] < 3)
 		{
-			waitpid(pid[n], &status, 0);
-			n++;
+			waitpid(pid[i[1]], &status, 0);
+			i[1]++;
 		}
 	}
 }

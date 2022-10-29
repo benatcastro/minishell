@@ -44,10 +44,19 @@ int	main(int argc, char **argv, char **env)
 		lex = lex_core(buf);
 		lex = parser_core(lex, en);
 		i = 0;
+		if (global_error_chkr(lex))
+			continue ;
 		//ft_doublefree (lex);
 		executor_core(lex, en);
 		free (buf);
 	}
+	return (0);
+}
+
+int	global_error_chkr(char	**lex)
+{
+	if (ft_strcmp(lex[0], "<PIPE>"))
+		return (1);
 	return (0);
 }
 

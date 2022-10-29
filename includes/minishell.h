@@ -37,5 +37,6 @@ void	ft_export_no_arg(char **cln);
 int		signals_core(void);
 void	print_double_str(char **str);
 char	**ft_split_exec(char const *s, char c);
+int		global_error_chkr(char	**lex);
 
 #endif

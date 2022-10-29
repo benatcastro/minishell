@@ -68,5 +68,9 @@ void	builtins(t_args **cmd, char **env)
 	else if (!ft_strncmp(temp->cont[0], "echo", 5))
 		builtins_echo(temp);
 	else
+	{
 		printf ("%s%s: command not found\n", PROMPT, temp->cont[0]);
+		exit (-1);
+	}
+	exit (0);
 }
