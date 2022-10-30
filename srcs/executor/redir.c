@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 19:38:01 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/29 21:12:25 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/30 19:47:28 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "minishell.h"
 #include <unistd.h>
 
-t_red	*ft_lstnew_double(char **content)
+t_red	*ft_lstnew_double_red(char **content)
 {
 	t_red	*node;
 
@@ -59,14 +59,13 @@ void	redirection_in(char	**args)
 			temp[0] = ft_strdup(args[i]);
 			temp[1] = ft_strdup(args[i + 1]);
 			temp[2] = 0;
-			ft_lstadd_back_red(&in, ft_lstnew_double(temp));
+			ft_lstadd_back_red(&in, ft_lstnew_double_red(temp));
 		}
 	}
 }
 
 void	redirection_out(char	**args)
 {
-	t_red	*in;
 	t_red	*out;
 	char	**temp;
 	int		i;
@@ -81,16 +80,7 @@ void	redirection_out(char	**args)
 			temp[0] = ft_strdup(args[i]);
 			temp[1] = ft_strdup(args[i + 1]);
 			temp[2] = 0;
-			ft_lstadd_back_red(&out, ft_lstnew_double(temp));
-		}
-		if ((ft_strcmp(args[i], LESS))
-			|| (ft_strcmp(args[i], DOUBLELESS)))
-		{
-			temp = malloc(sizeof(char *) * 3);
-			temp[0] = ft_strdup(args[i]);
-			temp[1] = ft_strdup(args[i + 1]);
-			temp[2] = 0;
-			ft_lstadd_back_red(&in, ft_lstnew_double(temp));
+			ft_lstadd_back_red(&out, ft_lstnew_double_red(temp));
 		}
 	}
 }
