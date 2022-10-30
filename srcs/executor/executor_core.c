@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/10/21 10:40:24 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/29 21:10:27 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,71 +86,12 @@ static void	bin_executor(char **args, char **env)
 		execve(path, args, env);
 }
 
-void	execute_cmds(t_args **cmd, char **args, char **env)
+void	execute_cmds(char **args, char **env)
 {
 	if (builtin_checker(args, env))
-		builtins(cmd, env);
+		builtins(args, env);
 	else
 		bin_executor(args, env);
-}
-
-t_args	*ft_lstnew_double(char **content)
-{
-	t_args	*node;
-
-	node = (t_args *)malloc(sizeof(t_args));
-	if (!node)
-		return (NULL);
-	node->cont = ft_doublestrdup(content);
-	node->next = NULL;
-	return (node);
-}
-
-t_args	*ft_lstlast_args(t_args *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
-}
-
-void	ft_lstadd_back_args(t_args **lst, t_args *new)
-{
-	if (!*lst)
-		*lst = new;
-	else
-		ft_lstlast_args(*lst)->next = new;
-}
-
-static void	list_args(t_args **head, char **cmds)
-{
-	char	**temp;
-	int		i;
-	int		m;
-	int		l;
-
-	i = -1;
-	m = 0;
-	while (cmds[++i])
-	{
-		if (ft_strcmp(cmds[i], PIPE))
-		{
-			l = 0;
-			temp = malloc(sizeof(char *) * (i - m));
-			while (m < i)
-				temp[l++] = ft_strdup(cmds[m++]);
-			m++;
-			temp[l] = 0;
-			ft_lstadd_back_args(head, ft_lstnew_double(temp));
-		}
-	}
-	l = 0;
-	temp = malloc(sizeof(char **) * (i - m) + 1);
-	while (m < i)
-		temp[l++] = ft_strdup(cmds[m++]);
-	temp[l] = 0;
-	ft_lstadd_back_args(head, ft_lstnew_double(temp));
 }
 
 void exec_nopipe(t_args **cmd, char **env)
@@ -166,9 +107,22 @@ void exec_nopipe(t_args **cmd, char **env)
 		exit (0);
 	pid = fork();
 	if (pid == 0)
-		execute_cmds(cmd, temp->cont, env);
+		execute_cmds(temp->cont, env);
 	else
 		wait (0);
+}
+
+void fd_closer(int fd[2][2])
+{
+	int i;
+
+	i = 0;
+	while (i < 2)
+	{
+		close (fd[0][i]);
+		close (fd[1][i]);
+		i++;
+	}
 }
 
 void exec_onepipe(t_args **cmd, char **env)
@@ -189,7 +143,7 @@ void exec_onepipe(t_args **cmd, char **env)
 		n = 0;
 		while (n++ < 2)
 			close (fd[n]);
-		execute_cmds(cmd, temp->cont, env);
+		execute_cmds(temp->cont, env);
 	}
 	temp = temp->next;
 	pid[1] = fork();
@@ -199,7 +153,7 @@ void exec_onepipe(t_args **cmd, char **env)
 		n = 0;
 		while (n++ < 2)
 			close (fd[n]);
-		execute_cmds(cmd, temp->cont, env);
+		execute_cmds(temp->cont, env);
 	}
 	n = 0;
 	while (n++ < 2)
@@ -213,6 +167,7 @@ void pipe_core(t_args **cmd, char **env)
 {
 	t_args	*temp;
 	int		i[2];
+	int		n;
 	pid_t	pid[3];
 	int		fd[2][2];
 	int		status;
@@ -239,14 +194,8 @@ void pipe_core(t_args **cmd, char **env)
 		if (pid[0] == 0)
 		{
 			dup2(fd[0][1], STDOUT_FILENO);
-			i[1] = 0;
-			while (i[1] < 2)
-			{
-				close (fd[0][i[1]]);
-				close (fd[1][i[1]]);
-				i[1]++;
-			}
-			execute_cmds(cmd, temp->cont, env);
+			fd_closer(fd);
+			execute_cmds(temp->cont, env);
 		}
 		temp = temp->next;
 		i[0]--;
@@ -257,14 +206,8 @@ void pipe_core(t_args **cmd, char **env)
 			{
 				dup2(fd[0][0], STDIN_FILENO);
 				dup2(fd[1][1], STDOUT_FILENO);
-				i[1] = 0;
-				while (i[1] < 2)
-				{
-					close (fd[0][i[1]]);
-					close (fd[1][i[1]]);
-					i[1]++;
-				}
-				execute_cmds(cmd, temp->cont, env);
+				fd_closer(fd);
+				execute_cmds(temp->cont, env);
 			}
 			temp = temp->next;
 			i[0]--;
@@ -273,28 +216,13 @@ void pipe_core(t_args **cmd, char **env)
 		if (pid[2] == 0)
 		{
 			dup2(fd[1][0], STDIN_FILENO);
-			i[1] = 0;
-			while (i[1] < 2)
-			{
-				close (fd[0][i[1]]);
-				close (fd[1][i[1]]);
-				i[1]++;
-			}
-			execute_cmds(cmd, temp->cont, env);
+			fd_closer (fd);
+			execute_cmds(temp->cont, env);
 		}
+		fd_closer(fd);
 		i[1] = 0;
-		while (i[1] < 2)
-		{
-			close (fd[0][i[1]]);
-			close (fd[1][i[1]]);
-			i[1]++;
-		}
-		i[1] = 0;
-		while (i[1] < 3)
-		{
+		while (i[1]++ < 3)
 			waitpid(pid[i[1]], &status, 0);
-			i[1]++;
-		}
 	}
 }
 

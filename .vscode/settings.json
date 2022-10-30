@@ -5,5 +5,8 @@
 		"lexer.h": "c",
 		"expander.h": "c",
 		"executor.h": "c"
-	}
+	},
+	"files.autoSave": "afterDelay",
+	"editor.tabCompletion": "off",
+	"editor.renderWhitespace": "all"
 }

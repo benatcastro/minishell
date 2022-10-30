@@ -55,6 +55,9 @@ int	main(int argc, char **argv, char **env)
 
 int	global_error_chkr(char	**lex)
 {
+	int i;
+
+	i = 0;
 	if (ft_strcmp(lex[0], "<PIPE>"))
 		return (1);
 	return (0);

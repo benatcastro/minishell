@@ -30,7 +30,7 @@
 # define PROMPT "\033[33mBASHado 🤖 > \033[0m"
 
 int		main(int argc, char **argv, char **env);
-void	builtins(t_args **cmd, char **env);
+void	builtins(char **cont, char **env);
 int		ft_quote_checker(char *buf);
 void	print_double_str(char **str);
 void	ft_export_no_arg(char **cln);

@@ -7,6 +7,8 @@ SRC_FILES =	executor_core		\
 			node_manager		\
 			fill_cmd_table		\
 			special_split		\
+			linked_manager		\
+			redir				\
 
 ###############UTILS##########
 OBJF = .cache_exists
