@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/10/29 20:14:20 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:52:55 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,15 @@ typedef struct s_command_table
 	struct s_command_table	*next;
 }	t_command_table;
 
+typedef struct s_redirections
+{
+	struct s_red			*in;
+	struct s_red			*out;
+	struct s_red			*ag;
+	struct s_redirections	*prev;
+	struct s_redirections	*next;
+}	t_redirections;
+
 typedef struct s_args
 {
 	char			**cont;
@@ -61,6 +70,7 @@ typedef struct s_args
 typedef struct s_red
 {
 	char			**cont;
+	struct s_red	*prev;
 	struct s_red	*next;
 }	t_red;
 
@@ -70,5 +80,6 @@ int				executor_core(char **cmd, char**env);
 void			fill_cmd(t_command *node, char **cmds);
 t_command_table	**create_command_table(t_command_table **head, char **cmds);
 void			list_args(t_args **head, char **cmds);
+void			redir_link(t_redirections *head, char **args);
 
 #endif

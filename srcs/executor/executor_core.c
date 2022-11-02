@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/10/30 19:47:03 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/02 19:24:39 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,12 +165,12 @@ void exec_onepipe(t_args **cmd, char **env)
 
 void pipe_core(t_args **cmd, char **env)
 {
-	t_args	*temp;
-	int		i[2];
-	int		n;
-	pid_t	pid[3];
-	int		fd[2][2];
-	int		status;
+	t_args			*temp;
+	t_redirections	*t;
+	int				i[2];
+	pid_t			pid[3];
+	int				fd[2][2];
+	int				status;
 
 	i[0] = 1;
 	temp = *cmd;
@@ -186,6 +186,8 @@ void pipe_core(t_args **cmd, char **env)
 	else
 	{
 		temp = *cmd;
+		redir_link(t, temp->cont);
+		ft_doubleprint(t->ag->cont);
 		if (pipe (fd[0]) == -1)
 			exit (0);
 		if (pipe (fd[1]) == -1)
@@ -195,7 +197,7 @@ void pipe_core(t_args **cmd, char **env)
 		{
 			dup2(fd[0][1], STDOUT_FILENO);
 			fd_closer(fd);
-			execute_cmds(temp->cont, env);
+			execute_cmds(t->ag->cont, env);
 		}
 		temp = temp->next;
 		i[0]--;

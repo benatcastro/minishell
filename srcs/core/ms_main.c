@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/21 14:59:13 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/10/31 20:59:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,27 @@ int	global_error_chkr(char	**lex)
 {
 	int i;
 
-	i = 0;
 	if (ft_strcmp(lex[0], "<PIPE>"))
 		return (1);
+	i = -1;
+	while (lex[++i])
+	{
+		if ((ft_strcmp(lex[i], GREATER)) || (ft_strcmp(lex[i], DOUBLEGREATER))
+			|| (ft_strcmp(lex[i], LESS)) || (ft_strcmp(lex[i], DOUBLELESS)))
+			if ((ft_strcmp(lex[i + 1], GREATER))
+				|| (ft_strcmp(lex[i + 1], DOUBLEGREATER))
+				|| (ft_strcmp(lex[i + 1], LESS))
+				|| (ft_strcmp(lex[i + 1], DOUBLELESS)))
+				return (-1);
+	}
+	i = -1;
+	while (lex[++i])
+	{
+		if ((ft_strcmp(lex[i], GREATER)) || (ft_strcmp(lex[i], DOUBLEGREATER))
+			|| (ft_strcmp(lex[i], LESS)) || (ft_strcmp(lex[i], DOUBLELESS)))
+			if (lex[i + 1] == NULL)
+				return (-1);
+	}
 	return (0);
 }
 
