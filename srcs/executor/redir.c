@@ -6,13 +6,14 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 19:38:01 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/02 22:01:14 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:19:21 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 #include "minishell.h"
 #include <unistd.h>
+#include "nodes.h"
 
 t_red	*ft_lstnew_double_red(char **content)
 {
@@ -63,11 +64,34 @@ void	redirection_in(t_red *in, char	**args)
 	}
 }
 
+void	test(t_command **head)
+{
+	t_command	*aux;
+	int			i;
+
+	printf("TEST\n");
+	aux = (*head);
+	while (aux)
+	{
+		printf("test2\n");
+		i = 0;
+		while (aux->test[i])
+		{
+			printf("OUT STR: (%s)\n", aux->test[i]);
+			i++;
+		}
+		printf("NEXT NODE\n");
+		aux = aux->next;
+	}
+}
+
 void	redirection_out(t_red *out, char	**args)
 {
-	char	**temp;
-	int		i;
+	char		**temp;
+	int			i;
+	t_command	*out_table;
 
+	out_table = NULL;
 	i = -1;
 	while (args[++i])
 	{
@@ -78,9 +102,11 @@ void	redirection_out(t_red *out, char	**args)
 			temp[0] = ft_strdup(args[i]);
 			temp[1] = ft_strdup(args[i + 1]);
 			temp[2] = 0;
-			ft_lstadd_back_red(&out, ft_lstnew_double_red(temp));
+			printf("hola\n");
+			ft_cmdadd_back(&out_table, create_cmd_node(temp));
 		}
 	}
+	test(&out_table);
 }
 
 void	redirection_ag(t_red *ag, char	**args)
@@ -100,18 +126,10 @@ void	redirection_ag(t_red *ag, char	**args)
 			|| (ft_strcmp(args[i], DOUBLELESS)))
 			i++;
 		else
-		{
-			while ((args[i]) && ((ft_strcmp(args[i], GREATER) == 0)
-					|| (ft_strcmp(args[i], DOUBLEGREATER) == 0)
-					|| (ft_strcmp(args[i], LESS) == 0)
-					|| (ft_strcmp(args[i], DOUBLELESS) == 0)))
-			{
-					a++;
-					i++;
-			}
-		}
+			a++;
 	}
-	temp = (char **)malloc(sizeof(char *) * (a + 1));
+	temp = ft_calloc(a + 1, sizeof(char **));
+	temp[a + 1] = '\0';
 	printf("A = %d\n", a);
 	i = -1;
 	e = 0;
@@ -123,18 +141,11 @@ void	redirection_ag(t_red *ag, char	**args)
 			|| (ft_strcmp(args[i], DOUBLELESS)))
 			i++;
 		else
-		{
-			while ((args[i]) && ((ft_strcmp(args[i], GREATER) == 0)
-					|| (ft_strcmp(args[i], DOUBLEGREATER) == 0)
-					|| (ft_strcmp(args[i], LESS) == 0)
-					|| (ft_strcmp(args[i], DOUBLELESS) == 0)))
-					temp[e++] = ft_strdup(args[i++]);
-		}
+			temp[e++] = ft_strdup(args[i]);
 	}
-	printf("I = %d\n", i);
-	printf("E = %d\n", e);
-	temp[e + 1] = NULL;
-	ft_doubleprint (temp);
+	// printf("I = %d\n", i);
+	// printf("E = %d\n", e);
+	// temp[e + 2] = NULL;
 	ft_lstadd_back_red(&ag, ft_lstnew_double_red(temp));
 }
 

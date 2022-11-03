@@ -6,7 +6,7 @@
 #    By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/10/21 11:29:20 by umartin-         ###   ########.fr        #
+#    Updated: 2022/11/03 16:47:18 by umartin-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ CFLAGS		= -Wall -Werror -ggdb3 -Wextra -fsanitize=address -ggdb3
 INC_FLAGS	= -I $(INC_DIR)
 LIB_FLAGS	= $(LIB_DIR)42lib.a
 
+SILENT:
 #############NAMES###########
 RAW_OBJS =	ms_main			\
 			lexer_core		\

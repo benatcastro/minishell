@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/02 17:52:55 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:34:21 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,22 @@
 
 # define SEMICOLON "<SEMICOLON>"
 
+typedef struct s_red
+{
+	unsigned int	key;
+	char			**cont;
+	struct s_red	*prev;
+	struct s_red	*next;
+}	t_red;
+
 typedef struct s_command
 {
-	unsigned int		key;
-	char				**args;
-	char				*cmd_input;
-	int					out_fd;
-	int					exit_value;
-	struct s_command	*prev;
-	struct s_command	*next;
+	unsigned int			key;
+	char					**out;
+	char					**in;
+	char					**args;
+	struct s_command		*prev;
+	struct s_command		*next;
 }	t_command;
 
 /**
@@ -67,12 +74,6 @@ typedef struct s_args
 	struct s_args	*next;
 }	t_args;
 
-typedef struct s_red
-{
-	char			**cont;
-	struct s_red	*prev;
-	struct s_red	*next;
-}	t_red;
 
 //////////////////FNCS////////////////////////////
 

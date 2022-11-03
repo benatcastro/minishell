@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:26:42 by bena              #+#    #+#             */
-/*   Updated: 2022/10/18 18:01:04 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:12:48 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ t_command	*create_cmd_node(char **cmds)
 	ft_memset(node, 0, sizeof(t_command));
 	node->key = key;
 	key++;
-	fill_cmd(node, cmds);
+	node->test = cmds;
+	//fill_cmd(node, cmds);
 	return (node);
 }
 

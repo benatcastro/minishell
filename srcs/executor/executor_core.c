@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/02 19:24:39 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:16:15 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ static void	bin_executor(char **args, char **env)
 
 void	execute_cmds(char **args, char **env)
 {
+	ft_doubleprint(args);
 	if (builtin_checker(args, env))
 		builtins(args, env);
 	else
@@ -97,17 +98,23 @@ void	execute_cmds(char **args, char **env)
 void exec_nopipe(t_args **cmd, char **env)
 {
 	t_args	*temp;
+	t_redirections	*t;
 	int		n;
 	pid_t	pid;
 	int		fd[2];
 	int		status;
 
+	t->ag = ft_calloc(1, sizeof(t_red));
+	t->out = ft_calloc(1, sizeof(t_red));
+	t->in = ft_calloc(1, sizeof(t_red));
 	temp = *cmd;
+	redir_link(t->ag, temp->cont);
+	ft_doubleprint (t->in->cont);
 	if (pipe (fd) == -1)
 		exit (0);
 	pid = fork();
 	if (pid == 0)
-		execute_cmds(temp->cont, env);
+		execute_cmds(t->ag->cont, env);
 	else
 		wait (0);
 }
