@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/04 20:33:13 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/04 21:22:26 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,10 +165,9 @@ void exec_onepipe(t_command **cmd_head, char **env)
 		waitpid(pid[n], &status, 0);
 }
 
-void pipe_core(t_command **cmd_table, char **env, char **f_cmd)
+void pipe_core(t_command **cmd_table, char **env)
 {
 	t_command			*temp;
-	t_redirections	*t;
 	int				i[2];
 	pid_t			pid[3];
 	int				fd[2][2];
@@ -246,9 +245,9 @@ int	executor_core(char **cmd, char **env)
 	aux = table_head;
 	while (aux)
 	{
-		pipe_core(aux->cmds, env, aux->f_cmd);
+		pipe_core(aux->cmds, env);
 		//print table for debug
-		// print_table(&table_head);
+		//print_table(&table_head);
 		aux = aux->next;
 	}
 	return (1);
