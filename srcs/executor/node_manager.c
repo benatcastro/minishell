@@ -26,6 +26,7 @@ t_command_table	*create_command_table_node(char **cmds)
 	node->cmds = ft_calloc(1, sizeof(t_command));
 	ft_memset(node->cmds, 0, sizeof(t_command));
 	node->key = key;
+	//node->f_cmd = ft_doublestrdup(cmds);
 	key++;
 	create_cmd(node->cmds, cmds);
 	return (node);

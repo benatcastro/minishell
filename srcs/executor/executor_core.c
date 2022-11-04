@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/04 06:15:21 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/04 06:19:40 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ void exec_onepipe(t_command **cmd_head, char **env)
 		waitpid(pid[n], &status, 0);
 }
 
-void pipe_core(t_command **cmd_table, char **env)
+void pipe_core(t_command **cmd_table, char **env, char **f_cmd)
 {
 	t_command			*temp;
 	t_redirections	*t;
@@ -240,7 +240,7 @@ int	executor_core(char **cmd, char **env)
 
 	// ft_doubleprint(cmds->cont);
 	// ft_doubleprint(cmds->next->cont);
-	pipe_core(table_head->cmds, env);
+	pipe_core(table_head->cmds, env, table_head->f_cmd);
 	print_table(&table_head);
 	return (1);
 }

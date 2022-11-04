@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/04 04:05:26 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/04 06:18:06 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_command_table
 {
 	unsigned int			key;
 	unsigned int			exit_status; //se utilizara para el bonus
+	char					**f_cmd;
 	struct s_command		**cmds;
 	struct s_command_table	*prev;
 	struct s_command_table	*next;
