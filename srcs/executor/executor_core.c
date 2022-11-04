@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/04 04:33:51 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/04 04:52:42 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@
 
 int	builtin_checker(char **args, char **env)
 {
-	if (!ft_strcmp(args[0], ENV))
+	if (!ft_strncmp(args[0], ENV, 4))
 		return (1);
-	else if (!ft_strcmp(args[0], PWD))
+	else if (!ft_strncmp(args[0], PWD, 4))
 		return (1);
-	else if (!ft_strcmp(args[0], EXIT))
+	else if (!ft_strncmp(args[0], EXIT, 5))
 		return (1);
-	else if (!ft_strcmp(args[0], EXPORT))
+	else if (!ft_strncmp(args[0], EXPORT, 7))
 		return (1);
-	else if (!ft_strcmp(args[0], ECHO))
+	else if (!ft_strncmp(args[0], ECHO, 5))
 		return (1);
 	else
 		return (0);
@@ -58,7 +58,7 @@ static char	*bin_path_finder(char **args, char **env)
 	i = -1;
 	while (env[++i])
 	{
-		if ((!ft_strcmp("PATH", env[i])))
+		if ((!ft_strncmp("PATH", env[i], 4)))
 		{
 			temp = ft_calloc(sizeof(char *),
 					(ft_strlen(env[i]) - 5));
@@ -95,7 +95,6 @@ void	execute_cmds(char **args, char **env)
 	else
 		bin_executor(args, env);
 }
-
 void exec_nopipe(t_command **cmd_table, char **env)
 {
 	int		n;
@@ -239,11 +238,10 @@ int	executor_core(char **cmd, char **env)
 	ft_doubleprint(cmd);
 	create_command_table(&table_head, cmd);
 
-	//list_args(&cmds, cmd);
+	list_args(&cmds, cmd);
 	// ft_doubleprint(cmds->cont);
 	// ft_doubleprint(cmds->next->cont);
-	execute_cmds((*table_head->cmds)->args, env);
-	//pipe_core(table_head->cmds, env);
+	pipe_core(table_head->cmds, env);
 	print_table(&table_head);
 	return (1);
 }
