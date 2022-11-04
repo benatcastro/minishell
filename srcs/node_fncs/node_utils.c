@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:20:33 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/18 19:06:20 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/04 00:59:02 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,12 @@ void	print_cmd(t_command **cmd_head)
 	{
 		printf("=========CMDS=========\n");
 		printf("\tCmd key: (%d)\n", aux->key);
-		//printf("\tCmd: (%s)\n", aux->cmd);
 		printf("\tArgs:\n");
 		print_double_str_tab(aux->args);
+		printf("\tIN:\n");
+		print_double_str_tab(aux->in);
+		printf("\tOUT:\n");
+		print_double_str_tab(aux->out);
 		printf("\tPrev (%p) Current (%p) Next (%p)\n", aux->prev, aux, aux->next);
 		aux = aux->next;
 	}
@@ -48,10 +51,10 @@ void	print_table(t_command_table **table_head)
 	aux = (*table_head);
 	while (aux)
 	{
-		// printf("=====================\n");
-		// printf("Table Key: (%d)\n", aux->key);
-		// printf("Prev (%p) Current (%p) Next (%p)\n", aux->prev, aux, aux->next);
-		// print_cmd(aux->cmds);
+		printf("=====================\n");
+		printf("Table Key: (%d)\n", aux->key);
+		printf("Prev (%p) Current (%p) Next (%p)\n", aux->prev, aux, aux->next);
+		print_cmd(aux->cmds);
 		aux = aux->next;
 	}
 }

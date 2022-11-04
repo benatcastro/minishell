@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:26:42 by bena              #+#    #+#             */
-/*   Updated: 2022/11/03 18:12:48 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/04 01:42:03 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,30 @@ t_command	*create_cmd_node(char **cmds)
 	ft_memset(node, 0, sizeof(t_command));
 	node->key = key;
 	key++;
-	node->test = cmds;
+	node->args = cmds;
 	//fill_cmd(node, cmds);
 	return (node);
 }
 
-t_command	**create_cmd(t_command **cmd_head, char **cmds)
+t_command	*create_cmd(t_command *cmd_head, char **cmds)
 {
 	int	i;
 
 	i = -1;
-	if (!(*cmd_head))
-		ft_cmdadd_back(cmd_head, create_cmd_node(cmds));
+	if (!cmd_head)
+		ft_cmdadd_back(&cmd_head, create_cmd_node(cmds));
 	while (cmds[++i])
 		if (ft_strcmp(cmds[i], PIPE))
-			ft_cmdadd_back(cmd_head, create_cmd_node(&cmds[i + 1]));
+			ft_cmdadd_back(&cmd_head, create_cmd_node(&cmds[i + 1]));
 	return (cmd_head);
+}
+
+t_redir	*create_redir_node(char **content)
+{
+	t_redir	*node;
+
+	node = ft_calloc(1, sizeof(t_redir));
+	ft_memset(node, 0, sizeof(t_redir));
+	node->content = content;
+	return (node);
 }

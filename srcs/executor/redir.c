@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 19:38:01 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/03 18:19:21 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/04 01:38:00 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,34 +64,11 @@ void	redirection_in(t_red *in, char	**args)
 	}
 }
 
-void	test(t_command **head)
-{
-	t_command	*aux;
-	int			i;
-
-	printf("TEST\n");
-	aux = (*head);
-	while (aux)
-	{
-		printf("test2\n");
-		i = 0;
-		while (aux->test[i])
-		{
-			printf("OUT STR: (%s)\n", aux->test[i]);
-			i++;
-		}
-		printf("NEXT NODE\n");
-		aux = aux->next;
-	}
-}
-
-void	redirection_out(t_red *out, char	**args)
+void	redirection_out(t_redir **out_table, char	**args)
 {
 	char		**temp;
 	int			i;
-	t_command	*out_table;
 
-	out_table = NULL;
 	i = -1;
 	while (args[++i])
 	{
@@ -103,7 +80,7 @@ void	redirection_out(t_red *out, char	**args)
 			temp[1] = ft_strdup(args[i + 1]);
 			temp[2] = 0;
 			printf("hola\n");
-			ft_cmdadd_back(&out_table, create_cmd_node(temp));
+			ft_rediradd_back(&out_table, create_cmd_node(temp));
 		}
 	}
 	test(&out_table);

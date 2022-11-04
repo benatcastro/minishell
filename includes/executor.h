@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/03 18:34:21 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/04 01:39:35 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,26 @@
 
 # define SEMICOLON "<SEMICOLON>"
 
-typedef struct s_red
-{
-	unsigned int	key;
-	char			**cont;
-	struct s_red	*prev;
-	struct s_red	*next;
-}	t_red;
+/******BUILTINS DEFINES******/
 
+# define ENV "env"
+# define PWD "pwd"
+# define EXIT "exit"
+# define EXPORT "export"
+# define ECHO "echo"
+
+typedef struct s_redir
+{
+	char				**content;
+	struct s_redir		*next;
+	struct s_redir		*before;
+}	t_redir;
 typedef struct s_command
 {
 	unsigned int			key;
-	char					**out;
-	char					**in;
 	char					**args;
+	struct s_redir			**out;
+	struct s_redir			in;
 	struct s_command		*prev;
 	struct s_command		*next;
 }	t_command;
@@ -54,7 +60,7 @@ typedef struct s_command
 typedef struct s_command_table
 {
 	unsigned int			key;
-	struct s_command		**cmds;
+	struct s_command		*cmds;
 	struct s_command_table	*prev;
 	struct s_command_table	*next;
 }	t_command_table;
@@ -68,11 +74,6 @@ typedef struct s_redirections
 	struct s_redirections	*next;
 }	t_redirections;
 
-typedef struct s_args
-{
-	char			**cont;
-	struct s_args	*next;
-}	t_args;
 
 
 //////////////////FNCS////////////////////////////
@@ -81,6 +82,6 @@ int				executor_core(char **cmd, char**env);
 void			fill_cmd(t_command *node, char **cmds);
 t_command_table	**create_command_table(t_command_table **head, char **cmds);
 void			list_args(t_args **head, char **cmds);
-void			redir_link(t_redirections *head, char **args);
+void			redir_link(t_command_table **table_head, char **args);
 
 #endif

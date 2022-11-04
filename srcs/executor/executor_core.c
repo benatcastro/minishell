@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   executor_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/03 18:16:15 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/04 01:17:44 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 #include "minishell.h"
 #include <unistd.h>
+#include "nodes.h"
 
 
 //Los args de esta funcion deberian de ser el input lexeado y parseado
@@ -20,15 +21,15 @@
 
 int	builtin_checker(char **args, char **env)
 {
-	if (!ft_strncmp(args[0], "env", 4))
+	if (!ft_strcmp(args[0], ENV))
 		return (1);
-	else if (!ft_strncmp(args[0], "pwd", 4))
+	else if (!ft_strcmp(args[0], PWD))
 		return (1);
-	else if (!ft_strncmp(args[0], "exit", 5))
+	else if (!ft_strcmp(args[0], EXIT))
 		return (1);
-	else if (!ft_strncmp(args[0], "export", 7))
+	else if (!ft_strcmp(args[0], EXPORT))
 		return (1);
-	else if (!ft_strncmp(args[0], "echo", 5))
+	else if (!ft_strcmp(args[0], ECHO))
 		return (1);
 	else
 		return (0);
@@ -57,7 +58,7 @@ static char	*bin_path_finder(char **args, char **env)
 	i = -1;
 	while (env[++i])
 	{
-		if ((!ft_strncmp("PATH", env[i], 4)))
+		if ((!ft_strcmp("PATH", env[i])))
 		{
 			temp = ft_calloc(sizeof(char *),
 					(ft_strlen(env[i]) - 5));
@@ -95,26 +96,20 @@ void	execute_cmds(char **args, char **env)
 		bin_executor(args, env);
 }
 
-void exec_nopipe(t_args **cmd, char **env)
+void exec_nopipe(t_command_table **table_head, char **env)
 {
-	t_args	*temp;
-	t_redirections	*t;
 	int		n;
 	pid_t	pid;
 	int		fd[2];
 	int		status;
 
-	t->ag = ft_calloc(1, sizeof(t_red));
-	t->out = ft_calloc(1, sizeof(t_red));
-	t->in = ft_calloc(1, sizeof(t_red));
-	temp = *cmd;
-	redir_link(t->ag, temp->cont);
-	ft_doubleprint (t->in->cont);
+	redir_link(table_head, (*table_head)->cmds->args);
+	//ft_doubleprint (t->in->cont);
 	if (pipe (fd) == -1)
 		exit (0);
 	pid = fork();
 	if (pid == 0)
-		execute_cmds(t->ag->cont, env);
+		execute_cmds((*table_head)->cmds->args, env);
 	else
 		wait (0);
 }
@@ -132,15 +127,15 @@ void fd_closer(int fd[2][2])
 	}
 }
 
-void exec_onepipe(t_args **cmd, char **env)
+void exec_onepipe(t_command_table **table_head, char **env)
 {
-	t_args	*temp;
+	t_command	*temp;
 	int		n;
 	pid_t	pid[2];
 	int		fd[2];
 	int		status;
 
-	temp = *cmd;
+	temp = (*table_head)->cmds;
 	if (pipe (fd) == -1)
 		exit (0);
 	pid[0] = fork();
@@ -150,7 +145,7 @@ void exec_onepipe(t_args **cmd, char **env)
 		n = 0;
 		while (n++ < 2)
 			close (fd[n]);
-		execute_cmds(temp->cont, env);
+		execute_cmds(temp->args, env);
 	}
 	temp = temp->next;
 	pid[1] = fork();
@@ -160,7 +155,7 @@ void exec_onepipe(t_args **cmd, char **env)
 		n = 0;
 		while (n++ < 2)
 			close (fd[n]);
-		execute_cmds(temp->cont, env);
+		execute_cmds(temp->args, env);
 	}
 	n = 0;
 	while (n++ < 2)
@@ -170,9 +165,9 @@ void exec_onepipe(t_args **cmd, char **env)
 		waitpid(pid[n], &status, 0);
 }
 
-void pipe_core(t_args **cmd, char **env)
+void pipe_core(t_command_table **table_head, char **env)
 {
-	t_args			*temp;
+	t_command			*temp;
 	t_redirections	*t;
 	int				i[2];
 	pid_t			pid[3];
@@ -180,21 +175,21 @@ void pipe_core(t_args **cmd, char **env)
 	int				status;
 
 	i[0] = 1;
-	temp = *cmd;
+	temp = (*table_head)->cmds;
 	while (temp->next != NULL)
 	{
 		temp = temp->next;
 		i[0]++;
 	}
 	if (i[0] == 1)
-		exec_nopipe(cmd, env);
+		exec_nopipe(table_head, env);
 	else if (i[0] == 2)
-		exec_onepipe(cmd, env);
+		exec_onepipe(table_head, env);
 	else
 	{
-		temp = *cmd;
-		redir_link(t, temp->cont);
-		ft_doubleprint(t->ag->cont);
+		temp = (*table_head)->cmds;
+		redir_link(table_head, temp->args);
+		//ft_doubleprint(t->ag->cont);
 		if (pipe (fd[0]) == -1)
 			exit (0);
 		if (pipe (fd[1]) == -1)
@@ -204,7 +199,7 @@ void pipe_core(t_args **cmd, char **env)
 		{
 			dup2(fd[0][1], STDOUT_FILENO);
 			fd_closer(fd);
-			execute_cmds(t->ag->cont, env);
+			execute_cmds((*table_head)->cmds->args, env);
 		}
 		temp = temp->next;
 		i[0]--;
@@ -216,7 +211,7 @@ void pipe_core(t_args **cmd, char **env)
 				dup2(fd[0][0], STDIN_FILENO);
 				dup2(fd[1][1], STDOUT_FILENO);
 				fd_closer(fd);
-				execute_cmds(temp->cont, env);
+				execute_cmds((*table_head)->cmds->args, env);
 			}
 			temp = temp->next;
 			i[0]--;
@@ -226,7 +221,7 @@ void pipe_core(t_args **cmd, char **env)
 		{
 			dup2(fd[1][0], STDIN_FILENO);
 			fd_closer (fd);
-			execute_cmds(temp->cont, env);
+			execute_cmds((*table_head)->cmds->args, env);
 		}
 		fd_closer(fd);
 		i[1] = 0;
@@ -237,12 +232,15 @@ void pipe_core(t_args **cmd, char **env)
 
 int	executor_core(char **cmd, char **env)
 {
-	t_args	*cmds;
+	t_command_table	*table_head;
 
-	cmds = NULL;
-	list_args(&cmds, cmd);
+	table_head = NULL;
+	create_command_table(&table_head, cmd);
+	print_table(&table_head);
+	//list_args(&cmds, cmd);
 	// ft_doubleprint(cmds->cont);
 	// ft_doubleprint(cmds->next->cont);
-	pipe_core(&cmds, env);
+	//pipe_core(&cmds, env);
+
 	return (1);
 }

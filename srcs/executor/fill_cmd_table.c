@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_cmd_table.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:06:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/20 19:12:21 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/04 01:20:49 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,4 @@ void	fill_cmd(t_command *node, char **cmds)
 		cmds++;
 	}
 	node->args[i] = 0;
-	node->cmd_input = cmds[0];
 }
