@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 19:38:01 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/04 19:44:49 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/04 20:06:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	redirection_out(t_command **cmd_node, char	**args)
 			temp[0] = ft_strdup(args[i]);
 			temp[1] = ft_strdup(args[i + 1]);
 			temp[2] = 0;
-			printf("hola\n");
+			printf("===REDIR OUT===\n");
+			print_double_str(temp);
 			ft_rediradd_back(&(*cmd_node)->out, create_redir_node(temp));
 		}
 	}
@@ -90,10 +91,10 @@ void	redirection_ag(t_command **cmd_head, char	**args)
 		else
 			temp[e++] = ft_strdup(args[i]);
 	}
-	printf("temp\n");
-	print_double_str(temp);
-	printf("cmd args\n");
-	print_double_str((*cmd_head)->args);
+	// printf("temp\n");
+	// print_double_str(temp);
+	// printf("cmd args\n");
+	// print_double_str((*cmd_head)->args);
 	(*cmd_head)->args = temp;
 	// printf("I = %d\n", i);
 	// printf("E = %d\n", e);
@@ -102,6 +103,8 @@ void	redirection_ag(t_command **cmd_head, char	**args)
 
 void	redir_link(t_command **cmd_head, char **args)
 {
+	printf("===REDIR ARGS===\n");
+	print_double_str(args);
 	redirection_in(cmd_head, args);
 	redirection_out(cmd_head, args);
 	redirection_ag(cmd_head, args);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:20:33 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/04 04:18:48 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/04 20:08:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ void	print_cmd(t_command **cmd_head)
 		printf("\tArgs:\n");
 		print_double_str_tab(aux->args);
 		printf("\tIN:\n");
-		// print_double_str_tab((*aux->in)->content);
+		//if (aux->in->content)
+			//print_double_str_tab((aux->in)->content);
 		printf("\tOUT:\n");
-		//print_double_str_tab((*aux->out)->content);
-		//printf("\tPrev (%p) Current (%p) Next (%p)\n", aux->prev, aux, aux->next);
+		//print_double_str_tab((aux->out)->content);
+		printf("\t---------------------------------------------------\n");
+		printf("\tPrev (%p) Current (%p) Next (%p)\n", aux->prev, aux, aux->next);
 		aux = aux->next;
 	}
 }

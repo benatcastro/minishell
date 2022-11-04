@@ -52,11 +52,9 @@ t_command	*create_cmd_node(char **cmds)
 	static unsigned int	key;
 
 	node = ft_calloc(1, sizeof(t_command));
-	node->in = ft_calloc(1, sizeof(t_redir));
-	node->out = ft_calloc(1, sizeof(t_redir));
+	node->in = NULL;
+	node->out = NULL;
 	ft_memset(node, 0, sizeof(t_command));
-	ft_memset(node->in, 0, sizeof(t_redir));
-	ft_memset(node->out, 0, sizeof(t_redir));
 	fill_cmd(node, cmds);
 	node->key = key;
 	key++;
