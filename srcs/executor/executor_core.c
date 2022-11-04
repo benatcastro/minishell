@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/04 19:52:33 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/04 20:33:13 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	bin_executor(char **args, char **env)
 
 void	execute_cmds(char **args, char **env)
 {
-	ft_doubleprint(args);
+	//ft_doubleprint(args);
 	if (builtin_checker(args, env))
 		builtins(args, env);
 	else
@@ -102,9 +102,9 @@ void exec_nopipe(t_command **cmd_table, char **env)
 	int		fd[2];
 	int		status;
 
-	printf("NO PIPE REDIR\n");
+	//printf("NO PIPE REDIR\n");
 	redir_link(cmd_table, (*cmd_table)->args);
-	ft_doubleprint ((*cmd_table)->args);
+	//ft_doubleprint ((*cmd_table)->args);
 	if (pipe (fd) == -1)
 		exit (0);
 	pid = fork();
@@ -239,14 +239,17 @@ void pipe_core(t_command **cmd_table, char **env, char **f_cmd)
 int	executor_core(char **cmd, char **env)
 {
 	t_command_table	*table_head;
+	t_command_table	*aux;
 
 	table_head = NULL;
-	ft_doubleprint(cmd);
 	create_command_table(&table_head, cmd);
-
-	// ft_doubleprint(cmds->cont);
-	// ft_doubleprint(cmds->next->cont);
-	pipe_core(table_head->cmds, env, table_head->f_cmd);
-	print_table(&table_head);
+	aux = table_head;
+	while (aux)
+	{
+		pipe_core(aux->cmds, env, aux->f_cmd);
+		//print table for debug
+		// print_table(&table_head);
+		aux = aux->next;
+	}
 	return (1);
 }

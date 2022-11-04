@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:20:33 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/04 20:08:29 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/04 20:25:05 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "nodes.h"
 #include "executor.h"
 #include "stdio.h"
+
 
 void	print_double_str_tab(char **str)
 {
@@ -24,6 +25,20 @@ void	print_double_str_tab(char **str)
 	i = -1;
 	while (str[++i])
 		printf("\t(%s)\n", str[i]);
+}
+
+void	print_redir(t_redir	**redir_head)
+{
+	t_redir	*aux;
+
+	if ((!*redir_head))
+		return ;
+	aux = (*redir_head);
+	while (aux)
+	{
+		print_double_str_tab(aux->content);
+		aux = aux->next;
+	}
 }
 
 void	print_cmd(t_command **cmd_head)
@@ -38,10 +53,9 @@ void	print_cmd(t_command **cmd_head)
 		printf("\tArgs:\n");
 		print_double_str_tab(aux->args);
 		printf("\tIN:\n");
-		//if (aux->in->content)
-			//print_double_str_tab((aux->in)->content);
+		print_redir(&aux->in);
 		printf("\tOUT:\n");
-		//print_double_str_tab((aux->out)->content);
+		print_redir(&aux->out);
 		printf("\t---------------------------------------------------\n");
 		printf("\tPrev (%p) Current (%p) Next (%p)\n", aux->prev, aux, aux->next);
 		aux = aux->next;
