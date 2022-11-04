@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/04 06:18:06 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/04 19:30:20 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ typedef struct s_command
 {
 	unsigned int			key;
 	char					**args;
-	struct s_redir			**out;
-	struct s_redir			**in;
+	struct s_redir			*out;
+	struct s_redir			*in;
 	struct s_command		*prev;
 	struct s_command		*next;
 }	t_command;

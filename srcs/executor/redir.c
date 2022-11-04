@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 19:38:01 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/04 06:15:58 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/04 19:44:49 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ void	redirection_out(t_command **cmd_node, char	**args)
 			temp[1] = ft_strdup(args[i + 1]);
 			temp[2] = 0;
 			printf("hola\n");
-			ft_rediradd_back((*cmd_node)->out, create_redir_node(temp));
+			ft_rediradd_back(&(*cmd_node)->out, create_redir_node(temp));
 		}
 	}
 }
 
-/*void	redirection_ag(t_red *ag, char	**args)
+void	redirection_ag(t_command **cmd_head, char	**args)
 {
 	char	**temp;
 	int		i;
@@ -90,15 +90,20 @@ void	redirection_out(t_command **cmd_node, char	**args)
 		else
 			temp[e++] = ft_strdup(args[i]);
 	}
+	printf("temp\n");
+	print_double_str(temp);
+	printf("cmd args\n");
+	print_double_str((*cmd_head)->args);
+	(*cmd_head)->args = temp;
 	// printf("I = %d\n", i);
 	// printf("E = %d\n", e);
 	// temp[e + 2] = NULL;
-	ft_lstadd_back_red(&ag, ft_lstnew_double_red(temp));
-}*/
+}
 
 void	redir_link(t_command **cmd_head, char **args)
 {
 	redirection_in(cmd_head, args);
 	redirection_out(cmd_head, args);
-	//redirection_ag(head->ag, args);
+	redirection_ag(cmd_head, args);
+	//exit(0);
 }
