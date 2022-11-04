@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/04 04:52:42 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/04 06:15:21 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void exec_nopipe(t_command **cmd_table, char **env)
 	int		fd[2];
 	int		status;
 
-	//redir_link(cmd_table, (*cmd_table)->args);
+	redir_link(cmd_table, (*cmd_table)->args);
 	printf("test\n");
 	ft_doubleprint ((*cmd_table)->args);
 	if (pipe (fd) == -1)
@@ -238,7 +238,6 @@ int	executor_core(char **cmd, char **env)
 	ft_doubleprint(cmd);
 	create_command_table(&table_head, cmd);
 
-	list_args(&cmds, cmd);
 	// ft_doubleprint(cmds->cont);
 	// ft_doubleprint(cmds->next->cont);
 	pipe_core(table_head->cmds, env);

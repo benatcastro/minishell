@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 19:38:01 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/04 04:03:04 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/04 06:15:58 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	redirection_in(t_command **cmd_node, char	**args)
 			temp[0] = ft_strdup(args[i]);
 			temp[1] = ft_strdup(args[i + 1]);
 			temp[2] = 0;
-			ft_rediradd_back(cmd_node, create_redir_node(temp));
+			ft_rediradd_back(&(*cmd_node)->in, create_redir_node(temp));
 		}
 	}
 }
@@ -51,7 +51,7 @@ void	redirection_out(t_command **cmd_node, char	**args)
 			temp[1] = ft_strdup(args[i + 1]);
 			temp[2] = 0;
 			printf("hola\n");
-			ft_rediradd_back(cmd_node, create_redir_node(temp));
+			ft_rediradd_back((*cmd_node)->out, create_redir_node(temp));
 		}
 	}
 }
