@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 19:38:01 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/04 02:43:49 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/04 04:03:04 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ void	redirection_out(t_command **cmd_node, char	**args)
 	ft_lstadd_back_red(&ag, ft_lstnew_double_red(temp));
 }*/
 
-void	redir_link(t_command_table **table_head, char **args)
+void	redir_link(t_command **cmd_head, char **args)
 {
-	redirection_in(&(*table_head)->cmds, args);
-	redirection_out(&(*table_head)->cmds, args);
+	redirection_in(cmd_head, args);
+	redirection_out(cmd_head, args);
 	//redirection_ag(head->ag, args);
 }

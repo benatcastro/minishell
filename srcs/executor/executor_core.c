@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/04 02:53:38 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/04 04:33:51 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,20 +96,21 @@ void	execute_cmds(char **args, char **env)
 		bin_executor(args, env);
 }
 
-void exec_nopipe(t_command_table **table_head, char **env)
+void exec_nopipe(t_command **cmd_table, char **env)
 {
 	int		n;
 	pid_t	pid;
 	int		fd[2];
 	int		status;
 
-	redir_link(table_head, (*table_head)->cmds->args);
-	//ft_doubleprint (t->in->cont);
+	//redir_link(cmd_table, (*cmd_table)->args);
+	printf("test\n");
+	ft_doubleprint ((*cmd_table)->args);
 	if (pipe (fd) == -1)
 		exit (0);
 	pid = fork();
 	if (pid == 0)
-		execute_cmds((*table_head)->cmds->args, env);
+		execute_cmds((*cmd_table)->args, env);
 	else
 		wait (0);
 }
@@ -127,7 +128,7 @@ void fd_closer(int fd[2][2])
 	}
 }
 
-void exec_onepipe(t_command_table **table_head, char **env)
+void exec_onepipe(t_command **cmd_head, char **env)
 {
 	t_command	*temp;
 	int		n;
@@ -135,7 +136,7 @@ void exec_onepipe(t_command_table **table_head, char **env)
 	int		fd[2];
 	int		status;
 
-	temp = (*table_head)->cmds;
+	temp = (*cmd_head);
 	if (pipe (fd) == -1)
 		exit (0);
 	pid[0] = fork();
@@ -165,7 +166,7 @@ void exec_onepipe(t_command_table **table_head, char **env)
 		waitpid(pid[n], &status, 0);
 }
 
-void pipe_core(t_command_table **table_head, char **env)
+void pipe_core(t_command **cmd_table, char **env)
 {
 	t_command			*temp;
 	t_redirections	*t;
@@ -175,20 +176,20 @@ void pipe_core(t_command_table **table_head, char **env)
 	int				status;
 
 	i[0] = 1;
-	temp = (*table_head)->cmds;
+	temp = (*cmd_table);
 	while (temp->next != NULL)
 	{
 		temp = temp->next;
 		i[0]++;
 	}
 	if (i[0] == 1)
-		exec_nopipe(table_head, env);
+		exec_nopipe(cmd_table, env);
 	else if (i[0] == 2)
-		exec_onepipe(table_head, env);
+		exec_onepipe(cmd_table, env);
 	else
 	{
-		temp = (*table_head)->cmds;
-		redir_link(table_head, temp->args);
+		temp = (*cmd_table);
+		redir_link(cmd_table, temp->args);
 		//ft_doubleprint(t->ag->cont);
 		if (pipe (fd[0]) == -1)
 			exit (0);
@@ -199,7 +200,7 @@ void pipe_core(t_command_table **table_head, char **env)
 		{
 			dup2(fd[0][1], STDOUT_FILENO);
 			fd_closer(fd);
-			execute_cmds((*table_head)->cmds->args, env);
+			execute_cmds((*cmd_table)->args, env);
 		}
 		temp = temp->next;
 		i[0]--;
@@ -211,7 +212,7 @@ void pipe_core(t_command_table **table_head, char **env)
 				dup2(fd[0][0], STDIN_FILENO);
 				dup2(fd[1][1], STDOUT_FILENO);
 				fd_closer(fd);
-				execute_cmds((*table_head)->cmds->args, env);
+				execute_cmds((*cmd_table)->args, env);
 			}
 			temp = temp->next;
 			i[0]--;
@@ -221,7 +222,7 @@ void pipe_core(t_command_table **table_head, char **env)
 		{
 			dup2(fd[1][0], STDIN_FILENO);
 			fd_closer (fd);
-			execute_cmds((*table_head)->cmds->args, env);
+			execute_cmds((*cmd_table)->args, env);
 		}
 		fd_closer(fd);
 		i[1] = 0;
@@ -238,11 +239,11 @@ int	executor_core(char **cmd, char **env)
 	ft_doubleprint(cmd);
 	create_command_table(&table_head, cmd);
 
-	print_table(&table_head);
 	//list_args(&cmds, cmd);
 	// ft_doubleprint(cmds->cont);
 	// ft_doubleprint(cmds->next->cont);
-	//pipe_core(&cmds, env);
-
+	execute_cmds((*table_head->cmds)->args, env);
+	//pipe_core(table_head->cmds, env);
+	print_table(&table_head);
 	return (1);
 }

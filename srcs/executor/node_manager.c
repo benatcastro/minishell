@@ -56,6 +56,7 @@ t_command	*create_cmd_node(char **cmds)
 	ft_memset(node, 0, sizeof(t_command));
 	ft_memset(node->in, 0, sizeof(t_redir));
 	ft_memset(node->out, 0, sizeof(t_redir));
+	fill_cmd(node, cmds);
 	node->key = key;
 	key++;
 	return (node);

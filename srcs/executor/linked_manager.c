@@ -44,7 +44,7 @@ void	ft_lstadd_back_args(t_args **lst, t_args *new)
 		ft_lstlast_args(*lst)->next = new;
 }
 
-void	list_args(t_args **head, char **cmds)
+void	list_args( **head, char **cmds)
 {
 	char	**temp;
 	int		i;

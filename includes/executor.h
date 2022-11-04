@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/04 03:44:55 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/04 04:05:26 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ int				executor_core(char **cmd, char**env);
 void			fill_cmd(t_command *node, char **cmds);
 t_command_table	**create_command_table(t_command_table **head, char **cmds);
 //void			list_args(t_args **head, char **cmds);
-void			redir_link(t_command_table **table_head, char **args);
+void			redir_link(t_command **cmd_head, char **args);
 
 #endif
