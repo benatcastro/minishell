@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/04 01:17:44 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/04 02:53:38 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,9 @@ int	executor_core(char **cmd, char **env)
 	t_command_table	*table_head;
 
 	table_head = NULL;
+	ft_doubleprint(cmd);
 	create_command_table(&table_head, cmd);
+
 	print_table(&table_head);
 	//list_args(&cmds, cmd);
 	// ft_doubleprint(cmds->cont);

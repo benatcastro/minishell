@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 19:38:01 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/04 01:38:00 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/04 02:43:49 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,7 @@
 #include <unistd.h>
 #include "nodes.h"
 
-t_red	*ft_lstnew_double_red(char **content)
-{
-	t_red	*node;
-
-	node = (t_red *)malloc(sizeof(t_red));
-	if (!node)
-		return (NULL);
-	node->cont = ft_doublestrdup(content);
-	node->next = NULL;
-	return (node);
-}
-
-t_red	*ft_lstlast_red(t_red *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
-}
-
-void	ft_lstadd_back_red(t_red **lst, t_red *new)
-{
-	if (!*lst)
-		*lst = new;
-	else
-		ft_lstlast_red(*lst)->next = new;
-}
-
-void	redirection_in(t_red *in, char	**args)
+void	redirection_in(t_command **cmd_node, char	**args)
 {
 	char	**temp;
 	int		i;
@@ -59,12 +30,12 @@ void	redirection_in(t_red *in, char	**args)
 			temp[0] = ft_strdup(args[i]);
 			temp[1] = ft_strdup(args[i + 1]);
 			temp[2] = 0;
-			ft_lstadd_back_red(&in, ft_lstnew_double_red(temp));
+			ft_rediradd_back(cmd_node, create_redir_node(temp));
 		}
 	}
 }
 
-void	redirection_out(t_redir **out_table, char	**args)
+void	redirection_out(t_command **cmd_node, char	**args)
 {
 	char		**temp;
 	int			i;
@@ -80,13 +51,12 @@ void	redirection_out(t_redir **out_table, char	**args)
 			temp[1] = ft_strdup(args[i + 1]);
 			temp[2] = 0;
 			printf("hola\n");
-			ft_rediradd_back(&out_table, create_cmd_node(temp));
+			ft_rediradd_back(cmd_node, create_redir_node(temp));
 		}
 	}
-	test(&out_table);
 }
 
-void	redirection_ag(t_red *ag, char	**args)
+/*void	redirection_ag(t_red *ag, char	**args)
 {
 	char	**temp;
 	int		i;
@@ -124,11 +94,11 @@ void	redirection_ag(t_red *ag, char	**args)
 	// printf("E = %d\n", e);
 	// temp[e + 2] = NULL;
 	ft_lstadd_back_red(&ag, ft_lstnew_double_red(temp));
-}
+}*/
 
-void redir_link(t_redirections *head, char **args)
+void	redir_link(t_command_table **table_head, char **args)
 {
-	redirection_in(head->in, args);
-	redirection_out(head->out, args);
-	redirection_ag(head->ag, args);
+	redirection_in(&(*table_head)->cmds, args);
+	redirection_out(&(*table_head)->cmds, args);
+	//redirection_ag(head->ag, args);
 }

@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:46:11 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/11/04 01:33:47 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/04 03:32:15 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ void	ft_tableadd_back(t_command_table **lst, t_command_table *new)
 	}
 }
 
-void	ft_rediradd_back(t_command **lst, t_command *new)
+void	ft_rediradd_back(t_redir **lst, t_redir *new)
 {
 	if (!*lst)
 		*lst = new;
 	else
 	{
-		new->prev = ft_cmdlast(*lst);
+		new->prev = ft_redirlast(*lst);
 		ft_redirlast(*lst)->next = new;
 	}
 }

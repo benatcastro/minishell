@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/04 01:39:35 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/04 03:44:55 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ typedef struct s_redir
 {
 	char				**content;
 	struct s_redir		*next;
-	struct s_redir		*before;
+	struct s_redir		*prev;
 }	t_redir;
 typedef struct s_command
 {
 	unsigned int			key;
 	char					**args;
 	struct s_redir			**out;
-	struct s_redir			in;
+	struct s_redir			**in;
 	struct s_command		*prev;
 	struct s_command		*next;
 }	t_command;
@@ -60,7 +60,8 @@ typedef struct s_command
 typedef struct s_command_table
 {
 	unsigned int			key;
-	struct s_command		*cmds;
+	unsigned int			exit_status; //se utilizara para el bonus
+	struct s_command		**cmds;
 	struct s_command_table	*prev;
 	struct s_command_table	*next;
 }	t_command_table;
@@ -81,7 +82,7 @@ typedef struct s_redirections
 int				executor_core(char **cmd, char**env);
 void			fill_cmd(t_command *node, char **cmds);
 t_command_table	**create_command_table(t_command_table **head, char **cmds);
-void			list_args(t_args **head, char **cmds);
+//void			list_args(t_args **head, char **cmds);
 void			redir_link(t_command_table **table_head, char **args);
 
 #endif
