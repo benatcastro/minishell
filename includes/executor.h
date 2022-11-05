@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/04 20:34:00 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/04 20:45:14 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,6 @@ typedef struct s_command_table
 	struct s_command_table	*prev;
 	struct s_command_table	*next;
 }	t_command_table;
-
-typedef struct s_redirections
-{
-	struct s_red			*in;
-	struct s_red			*out;
-	struct s_red			*ag;
-	struct s_redirections	*prev;
-	struct s_redirections	*next;
-}	t_redirections;
-
-
 
 //////////////////FNCS////////////////////////////
 
