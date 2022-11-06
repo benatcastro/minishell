@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/05 01:39:21 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/06 00:59:05 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ void exec_onepipe(t_command **cmd_table, char **env)
 	pid[0] = fork();
 	if (pid[0] == 0)
 	{
-		redir_link(temp, temp->args);
+		redir_link(&temp, temp->args);
 		dup2(fd[1], STDOUT_FILENO);
 		n = 0;
 		while (n++ < 2)
@@ -167,7 +167,7 @@ void exec_onepipe(t_command **cmd_table, char **env)
 	pid[1] = fork();
 	if (pid[1] == 0)
 	{
-		redir_link(temp, temp->args);
+		redir_link(&temp, temp->args);
 		dup2(fd[0], STDIN_FILENO);
 		n = 0;
 		while (n++ < 2)
@@ -265,7 +265,7 @@ int	executor_core(char **cmd, char **env)
 	{
 		pipe_core(aux->cmds, env);
 		//print table for debug
-		// print_table(&table_head);
+		//print_table(&table_head);
 		aux = aux->next;
 	}
 	return (1);
