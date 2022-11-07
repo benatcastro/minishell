@@ -6,14 +6,14 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 23:20:48 by bena              #+#    #+#             */
-/*   Updated: 2022/11/07 23:29:35 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/08 00:11:48 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dirent.h"
 #include "minishell.h"
 
-size_t	get_dir_size(char *path)
+void	alloc_dir_size(char *path, char **files)
 {
 	DIR				*dir_ptr;
 	struct dirent	*s_dir;
@@ -24,27 +24,26 @@ size_t	get_dir_size(char *path)
 	while (s_dir)
 	{
 		s_dir = readdir(dir_ptr);
-		if (s_dir->d_name[0] != '.')
-			size++;
+		size++;
 	}
-	return (closedir(dir_ptr), size);
+	files = ft_calloc(size, sizeof(char *));
+	closedir(dir_ptr);
 }
 
-char	**get_dir_files(char *path)
+void	write_dir_files(char *path, char **files)
 {
 	DIR				*dir_ptr;
 	struct dirent	*s_dir;
-	char			**files;
 	int				index;
 
-	files = ft_calloc(1, (get_dir_size(path) + 1) * sizeof(char *));
-	index = -1;
+	index = 0;
 	dir_ptr = opendir(path);
 	while (s_dir)
 	{
 		s_dir = readdir(dir_ptr);
-		if (s_dir->d_name[0] != '.')
-			files[++index] = ft_strdup(s_dir->d_name);
+		printf("write_test (%s)\n", s_dir->d_name);
+		files[index] = ft_strdup(s_dir->d_name);
+		index++;
 	}
 	files[index] = NULL;
 	closedir(dir_ptr);
