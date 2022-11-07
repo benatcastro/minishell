@@ -6,7 +6,7 @@
 #    By: bena <bena@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/11/07 21:35:15 by bena             ###   ########.fr        #
+#    Updated: 2022/11/07 21:57:05 by bena             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ $(OBJS):
 	make -C srcs/executor
 	make -C srcs/node_fncs
 	make -C srcs/builtins
+	make -C srcs/wildcards
 
 run: all
 	./$(NAME)
