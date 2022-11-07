@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/06 00:59:05 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:13:23 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "minishell.h"
 #include <unistd.h>
 #include "nodes.h"
-
 
 //Los args de esta funcion deberian de ser el input lexeado y parseado
 //y la futura struct
@@ -109,46 +108,90 @@ void fd_closer(int fd[2][2])
 	}
 }
 
+void doubleless_func(char	*temp, int	fd)
+{
+	char	*buf;
+
+	while (1)
+	{
+		buf = readline("> ");
+		if (buf == NULL || buf[0] == '\0')
+			continue ;
+		if (!buf)
+			continue ;
+		if (ft_strcmp(buf, temp))
+			break ;
+		write(fd, buf, ft_strlen(buf));
+		write(fd, "\n", 1);
+	}
+}
+
 void exec_nopipe(t_command **cmd_table, char **env)
 {
 	t_command	*temp;
+	t_redir		*t;
 	int		n;
 	pid_t	pid;
-	int		fd[2];
+	int		fd[2][2];
 	int		status;
 
 	temp = (*cmd_table);
 	redir_link(&temp, temp->args);
-	if (pipe (fd) == -1)
+	if (pipe (fd[0]) == -1)
 		exit (0);
 	pid = fork();
 	if (pid == 0)
 	{
-		if (temp->in != NULL)
+		t = temp->in;
+		if (t != NULL)
 		{
-			while ((temp->in->next->next != NULL)
-				&& (temp->in->next != NULL))
+			while (t->next != NULL)
 			{
+				if ((ft_strcmp(t->content[0], LESS))
+					|| (ft_strcmp(t->content[0], DOUBLELESS)))
+				{
+					if (access(t->content[1], F_OK) == -1)
+						exit (0);
+				}
+				t = t->next;
 			}
-			if (ft_strcmp(temp->in->content[0], LESS))
+			if (ft_strcmp(t->content[0], LESS))
 			{
-				if (access(temp->in->content[0], F_OK) == 1)
+				if (access(t->content[1], F_OK) == -1)
 					exit (0);
+				else
+				{
+					fd[0][0] = open(t->content[1], O_RDONLY);
+					dup2(fd[0][0], STDIN_FILENO);
+					execute_cmds(temp->args, env);
+					fd_closer(fd);
+				}
 			}
-			execute_cmds(temp->args, env);
+			else if (ft_strcmp(t->content[0], DOUBLELESS))
+			{
+				fd[0][0] = open(".temp", O_CREAT | O_RDWR | O_TRUNC | O_APPEND, 0644);
+				doubleless_func(t->content[1], fd[0][0]);
+				fd[0][0] = open(".temp", O_RDONLY);
+				dup2(fd[0][0], STDIN_FILENO);
+				execute_cmds(temp->args, env);
+				fd_closer(fd);
+			}
 		}
+		else
+			execute_cmds(temp->args, env);
 	}
 	else
 		wait (0);
+	fd_closer(fd);
 }
 
 void exec_onepipe(t_command **cmd_table, char **env)
 {
 	t_command	*temp;
-	int		n;
-	pid_t	pid[2];
-	int		fd[2];
-	int		status;
+	int			n;
+	pid_t		pid[2];
+	int			fd[2];
+	int			status;
 
 	temp = (*cmd_table);
 	if (pipe (fd) == -1)
