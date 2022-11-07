@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/04 21:22:26 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:35:38 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,8 +247,8 @@ int	executor_core(char **cmd, char **env)
 	{
 		pipe_core(aux->cmds, env);
 		//print table for debug
-		//print_table(&table_head);
 		aux = aux->next;
 	}
+	// print_table(&table_head);
 	return (1);
 }
