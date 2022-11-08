@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/07 21:41:53 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/08 16:17:02 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ static void	bin_executor(char **args, char **env)
 
 void	execute_cmds(char **args, char **env)
 {
-	//ft_doubleprint(args);
-	wildcard_core(args, env);
+	if (arg_is_wildcard(args))
+		args = wildcard_core(args, env);
 	if (builtin_checker(args, env))
 		builtins(args, env);
 	else

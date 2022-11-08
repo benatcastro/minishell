@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:28:46 by bena              #+#    #+#             */
-/*   Updated: 2022/11/08 00:10:42 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/08 15:45:53by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "minishell.h"
 #include <dirent.h>
 
-static char	*arg_is_wildcard(char **args)
+char	*arg_is_wildcard(char **args)
 {
 	int	i;
 
@@ -25,19 +25,19 @@ static char	*arg_is_wildcard(char **args)
 	return (NULL);
 }
 
-void	wildcard_core(char **args, char **env)
+char**	wildcard_core(char **args, char **env)
 {
 	char	*wildcard_arg;
 	char	*pwd;
-	char	**files;
+	char	**dfiles;
 
-	files = ft_calloc(15, sizeof(char *));
-	if (!arg_is_wildcard(args))
-		return ;
 	wildcard_arg = arg_is_wildcard(args);
+	if (!wildcard_arg)
+		return ;
 	pwd = getcwd(NULL, 0);
-	// alloc_dir_size(pwd, files);
-	write_dir_files(pwd, files);
-	printf("(test: %s)\n", files[1]);
+	dfiles = ft_calloc(get_dir_size(pwd) + 1, sizeof(char *));
+	create_dfiles(pwd, dfiles);
+	args = dfiles;
 	free(pwd);
+	return (dfiles);
 }
