@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/07 21:13:23 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/08 20:09:38 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,10 +130,11 @@ void exec_nopipe(t_command **cmd_table, char **env)
 {
 	t_command	*temp;
 	t_redir		*t;
-	int		n;
-	pid_t	pid;
-	int		fd[2][2];
-	int		status;
+	t_redir		*t_out;
+	int			n;
+	pid_t		pid;
+	int			fd[2][2];
+	int			status;
 
 	temp = (*cmd_table);
 	redir_link(&temp, temp->args);
@@ -143,6 +144,7 @@ void exec_nopipe(t_command **cmd_table, char **env)
 	if (pid == 0)
 	{
 		t = temp->in;
+		t_out = temp->out;
 		if (t != NULL)
 		{
 			while (t->next != NULL)
@@ -160,28 +162,45 @@ void exec_nopipe(t_command **cmd_table, char **env)
 				if (access(t->content[1], F_OK) == -1)
 					exit (0);
 				else
-				{
 					fd[0][0] = open(t->content[1], O_RDONLY);
-					dup2(fd[0][0], STDIN_FILENO);
-					execute_cmds(temp->args, env);
-					fd_closer(fd);
-				}
 			}
 			else if (ft_strcmp(t->content[0], DOUBLELESS))
 			{
-				fd[0][0] = open(".temp", O_CREAT | O_RDWR | O_TRUNC | O_APPEND, 0644);
+				fd[0][0] = open(".temp", O_CREAT | O_RDWR
+						| O_TRUNC | O_APPEND, 0644);
 				doubleless_func(t->content[1], fd[0][0]);
 				fd[0][0] = open(".temp", O_RDONLY);
-				dup2(fd[0][0], STDIN_FILENO);
-				execute_cmds(temp->args, env);
-				fd_closer(fd);
 			}
 		}
-		else
+		if (t_out == NULL)
+		{
+			dup2(fd[0][0], STDIN_FILENO);
 			execute_cmds(temp->args, env);
+			fd_closer(fd);
+		}
+		else if (t_out != NULL)
+		{
+			while (t_out->next != NULL)
+			{
+				if (access(t_out->content[1], F_OK) == -1)
+					fd[1][1] = open(t_out->content[1], O_CREAT | O_RDWR, 0644);
+				t_out = t_out->next;
+			}
+			if (ft_strcmp(t_out->content[0], GREATER))
+				fd[1][1] = open(t_out->content[1], O_CREAT | O_WRONLY
+						| O_TRUNC, 0644);
+			else if (ft_strcmp(t_out->content[0], DOUBLEGREATER))
+				fd[1][1] = open(t_out->content[1], O_CREAT | O_WRONLY
+						| O_APPEND, 0644);
+			dup2(fd[0][0], STDIN_FILENO);
+			dup2(fd[1][1], STDOUT_FILENO);
+			execute_cmds(temp->args, env);
+			fd_closer(fd);
+		}
 	}
 	else
 		wait (0);
+	unlink(".temp");
 	fd_closer(fd);
 }
 
