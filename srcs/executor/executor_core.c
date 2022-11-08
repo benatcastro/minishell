@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/08 20:09:38 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/08 22:10:50 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ static void	bin_executor(char **args, char **env)
 	path = bin_path_finder(args, env);
 	if (path != NULL)
 		execve(path, args, env);
+	ft_putstr_fd("follatetas\n", 2);
+	exit (1);
 }
 
 void	execute_cmds(char **args, char **env)
@@ -97,13 +99,15 @@ void	execute_cmds(char **args, char **env)
 
 void fd_closer(int fd[2][2])
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 2)
 	{
-		close (fd[0][i]);
-		close (fd[1][i]);
+		if (close (fd[0][i]))
+			return ;
+		if (close (fd[1][i]))
+			return ;
 		i++;
 	}
 }
@@ -129,8 +133,6 @@ void doubleless_func(char	*temp, int	fd)
 void exec_nopipe(t_command **cmd_table, char **env)
 {
 	t_command	*temp;
-	t_redir		*t;
-	t_redir		*t_out;
 	int			n;
 	pid_t		pid;
 	int			fd[2][2];
@@ -142,64 +144,9 @@ void exec_nopipe(t_command **cmd_table, char **env)
 		exit (0);
 	pid = fork();
 	if (pid == 0)
-	{
-		t = temp->in;
-		t_out = temp->out;
-		if (t != NULL)
-		{
-			while (t->next != NULL)
-			{
-				if ((ft_strcmp(t->content[0], LESS))
-					|| (ft_strcmp(t->content[0], DOUBLELESS)))
-				{
-					if (access(t->content[1], F_OK) == -1)
-						exit (0);
-				}
-				t = t->next;
-			}
-			if (ft_strcmp(t->content[0], LESS))
-			{
-				if (access(t->content[1], F_OK) == -1)
-					exit (0);
-				else
-					fd[0][0] = open(t->content[1], O_RDONLY);
-			}
-			else if (ft_strcmp(t->content[0], DOUBLELESS))
-			{
-				fd[0][0] = open(".temp", O_CREAT | O_RDWR
-						| O_TRUNC | O_APPEND, 0644);
-				doubleless_func(t->content[1], fd[0][0]);
-				fd[0][0] = open(".temp", O_RDONLY);
-			}
-		}
-		if (t_out == NULL)
-		{
-			dup2(fd[0][0], STDIN_FILENO);
-			execute_cmds(temp->args, env);
-			fd_closer(fd);
-		}
-		else if (t_out != NULL)
-		{
-			while (t_out->next != NULL)
-			{
-				if (access(t_out->content[1], F_OK) == -1)
-					fd[1][1] = open(t_out->content[1], O_CREAT | O_RDWR, 0644);
-				t_out = t_out->next;
-			}
-			if (ft_strcmp(t_out->content[0], GREATER))
-				fd[1][1] = open(t_out->content[1], O_CREAT | O_WRONLY
-						| O_TRUNC, 0644);
-			else if (ft_strcmp(t_out->content[0], DOUBLEGREATER))
-				fd[1][1] = open(t_out->content[1], O_CREAT | O_WRONLY
-						| O_APPEND, 0644);
-			dup2(fd[0][0], STDIN_FILENO);
-			dup2(fd[1][1], STDOUT_FILENO);
-			execute_cmds(temp->args, env);
-			fd_closer(fd);
-		}
-	}
+		redirection_core(temp, fd, env);
 	else
-		wait (0);
+		waitpid (pid, NULL, 0);
 	unlink(".temp");
 	fd_closer(fd);
 }
