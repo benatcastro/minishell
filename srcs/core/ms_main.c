@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/09 01:05:18 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 04:19:06 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "lexer.h"
 #include "parser.h"
 #include "executor.h"
-#include
 
 int	main(int argc, char **argv, char **env)
 {
@@ -51,7 +50,7 @@ int	main(int argc, char **argv, char **env)
 		executor_core(lex, en);
 		free (buf);
 	}
-	clear_history();
+	printf("FREE TEST\n");
 	return (0);
 }
 

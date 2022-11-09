@@ -6,12 +6,13 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 01:08:01 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/09 01:48:18 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 04:06:49 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "nodes.h"
 #include <stdlib.h>
+#include "libft.h"
 
 static void	free_redir_nodes(t_redir **head)
 {
@@ -19,11 +20,11 @@ static void	free_redir_nodes(t_redir **head)
 
 	if (!head)
 		return ;
-	aux = (*head);
-	while (aux)
+	while (head)
 	{
-		aux = aux->next;
-		free(aux->prev);
+		aux = (*head);
+		(*head) = (*head)->next;
+		free(aux);
 	}
 }
 
@@ -31,30 +32,36 @@ static void	free_command_nodes(t_command **head)
 {
 	t_command	*aux;
 
-	if (!head)
+	if (!(*head))
 		return ;
 	free_redir_nodes((*head)->in);
 	free_redir_nodes((*head)->out);
-	aux = (*head);
-	while (aux)
+	while (*head)
 	{
-		aux = aux->next;
-		free (aux->prev);
+		aux = (*head);
+		//ft_doublefree(aux->args);
+		(*head) = (*head)->next;
+		free(*head);
 	}
+	free((*head));
 }
 
-static void	free_command_table_nodes(t_command_table **head)
+void	free_command_table_nodes(t_command_table **head)
 {
 	t_command_table	*aux;
 
+	if (!(*head))
+		return ;
 	aux = (*head);
 	if (head)
 	{
-		while (aux);
+		while (*head)
 		{
-			free_command_nodes(aux->cmds);
-			aux = aux->next;
-			free(aux->prev);
+			aux = (*head);
+			//free_command_nodes(aux->cmds);
+			(*head) = (*head)->next;
+			free(aux);
 		}
+		//free(aux);
 	}
 }

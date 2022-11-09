@@ -6,6 +6,7 @@ OBJ_DIR	= ../../objs/minishell/
 SRC_FILES =	ft_nodeadd_back	\
 			ft_nodelast		\
 			node_utils		\
+			free_nodes		\
 
 ###############UTILS##########
 OBJF = .cache_exists

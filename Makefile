@@ -6,7 +6,7 @@
 #    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/11/09 01:52:07 by becastro         ###   ########.fr        #
+#    Updated: 2022/11/09 03:40:32 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,11 +62,12 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(SANITIZE) $(OBJ_DIR)*.o $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) -o $(NAME)
 	@echo "\033[92mminishell has been successfully compiled!\033[0m"
 
-$(NAME_VALGRIND): $(OBJS)
+$(VALGRIND): $(OBJS)
 
 	@echo "\033[33mCompiling minishell project...\033[0m"
 	$(CC) $(CFLAGS) $(OBJ_DIR)*.o $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) -o $(NAME)
 	@echo "\033[92mminishell has been successfully compiled!\033[0m"
+
 
 $(OBJS):
 	mkdir -p objs/minishell/
@@ -86,8 +87,9 @@ $(OBJS):
 run: all
 	./$(NAME)
 
-valgrind: $(NAME_VALGRIND)
+valgrind: $(VALGRIND)
 	$(VALGRIND) ./$(NAME)
+	
 clean:
 	@$(RM) objs/
 
