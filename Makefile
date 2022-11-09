@@ -15,7 +15,11 @@ RD_FLAGS	= -I/Users/$(USER)/.brew/opt/readline/include -lreadline -L/Users/$(USE
 SANITIZE	= -fsanitize=address -g3
 VALGRIND	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
 CFLAGS		= -Wall -Werror -Wextra #-g3 -fsanitize=address
-INC_FLAGS	= -I $(INC_DIR)
+INC_FLAGS	= -I $(INC_DIR)	\
+			-I ../../includes/	\
+			-I /Users/$(USER)/.brew/opt/readline/include \
+			-I /usr/include/readline \
+			
 LIB_FLAGS	= $(LIB_DIR)42lib.a
 
 #############NAMES###########

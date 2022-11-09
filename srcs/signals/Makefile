@@ -1,6 +1,8 @@
 ##########DIRECTORIES########
-USER = $(shell echo $$USER)
-INCLUDES = -I ../../includes/
+INCLUDES =	-I ../../includes/	\
+			-I /Users/$(USER)/.brew/opt/readline/include \
+			-I /usr/include/readline \
+			
 OBJ_DIR	= ../../objs/minishell/
 RD_FLAGS	= -I /sgoinfre/goinfre/Perso/$(USER)/homebrew/Cellar/readline/8.1.2/include/readline/
 

@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/09 15:19:56 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 21:14:51 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "lexer.h"
 #include "parser.h"
 #include "executor.h"
+
+int	g_pid;
 
 int	main(int argc, char **argv, char **env)
 {
@@ -30,9 +32,11 @@ int	main(int argc, char **argv, char **env)
 	lex = NULL;
 	en = ft_doublestrdup(env);
 	i = 0;
-	signals_core(); //uncomment when signals are ready
+	g_pid = get_pid();
+	signals_core();
 	while (1)
 	{
+		rl_catch_signals = 0;
 		buf = readline(PROMPT);
 		if (buf == NULL || buf[0] == '\0')
 			continue ;
