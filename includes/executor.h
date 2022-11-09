@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/09 15:21:08 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 20:34:06 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ void			redir_link(t_command **cmd_head, char **args);
 void			execute_cmds(char **args, char **env);
 void			fd_closer(int fd[2][2]);
 void			doubleless_func(char	*temp, int	fd);
-void			redirection_core(t_command *temp, int fd[2][2], char **env);
+void			redirection_core(t_command *temp, char **env);
 
 #endif

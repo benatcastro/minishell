@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/09 15:19:56 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 20:46:01 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ int	global_error_chkr(char	**lex)
 	{
 		if ((ft_strcmp(lex[i], GREATER)) || (ft_strcmp(lex[i], DOUBLEGREATER))
 			|| (ft_strcmp(lex[i], LESS)) || (ft_strcmp(lex[i], DOUBLELESS)))
-			if ((ft_strcmp(lex[i + 1], GREATER))
-				|| (ft_strcmp(lex[i + 1], DOUBLEGREATER))
-				|| (ft_strcmp(lex[i + 1], LESS))
-				|| (ft_strcmp(lex[i + 1], DOUBLELESS)))
+			if ((lex[i + 1] && ft_strcmp(lex[i + 1], GREATER))
+				|| (lex[i + 1] && ft_strcmp(lex[i + 1], DOUBLEGREATER))
+				|| (lex[i + 1] && ft_strcmp(lex[i + 1], LESS))
+				|| (lex[i + 1] && ft_strcmp(lex[i + 1], DOUBLELESS)))
 				return (-1);
 	}
 	i = -1;

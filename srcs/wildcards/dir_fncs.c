@@ -34,7 +34,7 @@ void	create_dfiles(char *path, char **dfiles)
 			index++;
 		}
 	}
-	dfiles[index] = '\0';
+	dfiles[index] = 0;
 	closedir(dir_ptr);
 }
 

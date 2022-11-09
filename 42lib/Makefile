@@ -26,7 +26,7 @@ OBJ_LIBFT = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES_LIBFT)))
 
 all: 42lib
 
-42lib: libft
+42lib: libft 
 	@$(AR) $(LIB_DIR)$(LIB_NAME) $(OBJ_DIR)*.o
 	@ranlib $(LIB_DIR)$(LIB_NAME)
 

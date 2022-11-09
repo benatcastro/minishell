@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/09 15:26:47 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 20:34:59 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,43 +116,21 @@ void fd_closer(int fd[2][2])
 	}
 }
 
-void doubleless_func(char	*temp, int	fd)
-{
-	char	*buf;
-
-	while (1)
-	{
-		buf = readline("> ");
-		if (buf == NULL || buf[0] == '\0')
-			continue ;
-		if (!buf)
-			continue ;
-		if (ft_strcmp(buf, temp))
-			break ;
-		write(fd, buf, ft_strlen(buf));
-		write(fd, "\n", 1);
-	}
-}
-
 void exec_nopipe(t_command **cmd_table, char **env)
 {
 	t_command	*temp;
 	int			n;
 	pid_t		pid;
-	int			fd[2][2];
 	int			status;
 
 	temp = (*cmd_table);
 	redir_link(&temp, temp->args);
-	if (pipe (fd[0]) == -1)
-		exit (0);
 	pid = fork();
 	if (pid == 0)
-		redirection_core(temp, fd, env);
+		redirection_core(temp, env);
 	else
 		waitpid (pid, NULL, 0);
 	unlink(".temp");
-	fd_closer(fd);
 }
 
 void exec_onepipe(t_command **cmd_table, char **env)
@@ -161,7 +139,6 @@ void exec_onepipe(t_command **cmd_table, char **env)
 	int			n;
 	pid_t		pid[2];
 	int			fd[2];
-	int			status;
 
 	temp = (*cmd_table);
 	if (pipe (fd) == -1)
@@ -169,39 +146,40 @@ void exec_onepipe(t_command **cmd_table, char **env)
 	pid[0] = fork();
 	if (pid[0] == 0)
 	{
-		redir_link(&temp, temp->args);
 		dup2(fd[1], STDOUT_FILENO);
+		redir_link(&temp, temp->args);
 		n = 0;
 		while (n++ < 2)
 			close (fd[n]);
-		execute_cmds(temp->args, env);
+		redirection_core(temp, env);
 	}
 	temp = temp->next;
 	pid[1] = fork();
 	if (pid[1] == 0)
 	{
-		redir_link(&temp, temp->args);
 		dup2(fd[0], STDIN_FILENO);
+		redir_link(&temp, temp->args);
 		n = 0;
 		while (n++ < 2)
 			close (fd[n]);
-		execute_cmds(temp->args, env);
+		redirection_core(temp, env);
 	}
 	n = 0;
 	while (n++ < 2)
 		close (fd[n]);
 	n = 0;
 	while (n++ < 2)
-		waitpid(pid[n], &status, 0);
+		waitpid(pid[n], NULL, 0);
+	unlink(".temp");
 }
 
 void pipe_core(t_command **cmd_table, char **env)
 {
-	t_command			*temp;
+	t_command		*temp;
 	int				i[2];
 	pid_t			pid[3];
 	int				fd[2][2];
-	int				status;
+	int				fdr[2][2];
 
 	i[0] = 1;
 	temp = (*cmd_table);
@@ -211,21 +189,13 @@ void pipe_core(t_command **cmd_table, char **env)
 		i[0]++;
 	}
 	if (i[0] == 1)
-	{
 		exec_nopipe(cmd_table, env);
-		return ;
-	}
 	else if (i[0] == 2)
-	{
 		exec_onepipe(cmd_table, env);
-		return ;
-	}
 	else
 	{
 		temp = (*cmd_table);
-		if (pipe (fd[0]) == -1)
-			exit (0);
-		if (pipe (fd[1]) == -1)
+		if (pipe (fd[0]) == -1 || pipe (fd[1]) == -1)
 			exit (0);
 		pid[0] = fork();
 		if (pid[0] == 0)
@@ -233,7 +203,7 @@ void pipe_core(t_command **cmd_table, char **env)
 			redir_link(&temp, temp->args);
 			dup2(fd[0][1], STDOUT_FILENO);
 			fd_closer(fd);
-			execute_cmds(temp->args, env);
+			redirection_core(temp, env);
 		}
 		temp = temp->next;
 		i[0]--;
@@ -246,7 +216,7 @@ void pipe_core(t_command **cmd_table, char **env)
 				dup2(fd[0][0], STDIN_FILENO);
 				dup2(fd[1][1], STDOUT_FILENO);
 				fd_closer(fd);
-				execute_cmds(temp->args, env);
+				redirection_core(temp, env);
 			}
 			i[0]--;
 			temp = temp->next;
@@ -257,12 +227,13 @@ void pipe_core(t_command **cmd_table, char **env)
 			redir_link(&temp, temp->args);
 			dup2(fd[1][0], STDIN_FILENO);
 			fd_closer (fd);
-			execute_cmds(temp->args, env);
+			redirection_core(temp, env);
 		}
 		fd_closer(fd);
 		i[1] = 0;
 		while (i[1]++ < 3)
-			waitpid(pid[i[1]], &status, 0);
+			waitpid(pid[i[1]], NULL, 0);
+		unlink(".temp");
 	}
 }
 
