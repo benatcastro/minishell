@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/09 14:45:08 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 16:36:05 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ int		signals_core(void);
 void	print_double_str(char **str);
 char	**ft_split_exec(char const *s, char c);
 int		global_error_chkr(char	**lex);
+char	*env_finder(char *str, char **env);
 
 #endif

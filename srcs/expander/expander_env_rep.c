@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_env_rep.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:29:59 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/21 13:45:52 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/09 16:32:25 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "minishell.h"
 #include "lexer.h"
 
-char	*env_replacer(char *str, char **env)
+char	*env_finder(char *str, char **env)
 {
 	int		i;
 	int		n;
