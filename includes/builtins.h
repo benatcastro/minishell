@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:16:38 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/09 07:33:57 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 09:14:54 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define EXPORT "export"
 # define ECHO "echo"
 
+char	*find_in_env(char *s, char **env);
 int		exit_builtin(void);
 void	cd_builtin(char **args, char **env);
+void	pwd_builtin(char **env);
 #endif

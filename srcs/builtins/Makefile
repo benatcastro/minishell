@@ -6,7 +6,8 @@ OBJ_DIR	= ../../objs/minishell/
 ############SRCS##############
 SRC_FILES =	builtins_core		\
 			exit				\
-			cd
+			cd					\
+			pwd					\
 
 ###############UTILS##########
 OBJF = .cache_exists
