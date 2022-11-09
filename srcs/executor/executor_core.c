@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/07 21:35:38 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/09 01:48:46 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,6 +249,7 @@ int	executor_core(char **cmd, char **env)
 		//print table for debug
 		aux = aux->next;
 	}
+	free_command_table_nodes(&table_head);
 	// print_table(&table_head);
 	return (1);
 }

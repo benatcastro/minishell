@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/31 20:59:29 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/09 01:05:18 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "lexer.h"
 #include "parser.h"
 #include "executor.h"
+#include
 
 int	main(int argc, char **argv, char **env)
 {
@@ -50,6 +51,7 @@ int	main(int argc, char **argv, char **env)
 		executor_core(lex, en);
 		free (buf);
 	}
+	clear_history();
 	return (0);
 }
 

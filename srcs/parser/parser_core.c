@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_core.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/21 14:19:26 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/09 00:37:37 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**parser_core(char **str, char **env)
 		aux = parser_quotes(str[i]);
 		aux = parser_double_quote_free(aux);
 		rtn = expander_core(aux, env);
-		ft_doublefree (aux);
+		// ft_doublefree (aux);
 		dub[i] = ft_strdup(rtn);
 		free (rtn);
 	}
