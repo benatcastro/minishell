@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 01:08:01 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/09 04:06:49 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 04:50:40 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@ static void	free_command_nodes(t_command **head)
 	while (*head)
 	{
 		aux = (*head);
-		//ft_doublefree(aux->args);
+		ft_doublefree((*head)->args);
+		free(aux->out);
+		free(aux->in);
 		(*head) = (*head)->next;
-		free(*head);
+		free(aux);
 	}
 	free((*head));
 }
@@ -58,10 +60,10 @@ void	free_command_table_nodes(t_command_table **head)
 		while (*head)
 		{
 			aux = (*head);
-			//free_command_nodes(aux->cmds);
+			free_command_nodes(aux->cmds);
+			free(aux->cmds);
 			(*head) = (*head)->next;
 			free(aux);
 		}
-		//free(aux);
 	}
 }
