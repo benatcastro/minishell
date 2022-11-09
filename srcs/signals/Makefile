@@ -1,6 +1,8 @@
 ##########DIRECTORIES########
+USER = $(shell echo $$USER)
 INCLUDES = -I ../../includes/
 OBJ_DIR	= ../../objs/minishell/
+RD_FLAGS	= -I /sgoinfre/goinfre/Perso/$(USER)/homebrew/Cellar/readline/8.1.2/include/readline/
 
 ############SRCS##############
 SRC_FILES =	signal_handler		\
@@ -18,7 +20,7 @@ OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 all: $(OBJ)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(RD_FLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJF):
 	mkdir -p $(OBJ_DIR)
