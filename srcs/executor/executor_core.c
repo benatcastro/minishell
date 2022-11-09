@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/08 22:10:50 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:16:48 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ static void	bin_executor(char **args, char **env)
 	path = bin_path_finder(args, env);
 	if (path != NULL)
 		execve(path, args, env);
-	ft_putstr_fd("follatetas\n", 2);
 	exit (1);
 }
 
