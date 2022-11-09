@@ -6,7 +6,11 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/11/09 00:37:37 by becastro         ###   ########.fr       */
+=======
+/*   Updated: 2022/11/08 21:22:39 by umartin-         ###   ########.fr       */
+>>>>>>> umartin-
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +35,10 @@ char	**parser_core(char **str, char **env)
 		aux = parser_quotes(str[i]);
 		aux = parser_double_quote_free(aux);
 		rtn = expander_core(aux, env);
+<<<<<<< HEAD
 		// ft_doublefree (aux);
+=======
+>>>>>>> umartin-
 		dub[i] = ft_strdup(rtn);
 		free (rtn);
 	}

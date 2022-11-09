@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/09 14:51:58 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:19:48 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <unistd.h>
 #include "nodes.h"
 #include "builtins.h"
-
 
 //Los args de esta funcion deberian de ser el input lexeado y parseado
 //y la futura struct
@@ -88,6 +87,7 @@ static void	bin_executor(char **args, char **env)
 	path = bin_path_finder(args, env);
 	if (path != NULL)
 		execve(path, args, env);
+	exit (1);
 }
 
 void	execute_cmds(char **args, char **env)
@@ -98,52 +98,76 @@ void	execute_cmds(char **args, char **env)
 	else
 		bin_executor(args, env);
 }
-void exec_nopipe(t_command **cmd_table, char **env)
-{
-	int		n;
-	pid_t	pid;
-	int		fd[2];
-	int		status;
-
-	//printf("NO PIPE REDIR\n");
-	redir_link(cmd_table, (*cmd_table)->args);
-	//ft_doubleprint ((*cmd_table)->args);
-	if (pipe (fd) == -1)
-		exit (0);
-	pid = fork();
-	if (pid == 0)
-		execute_cmds((*cmd_table)->args, env);
-	else
-		wait (0);
-}
 
 void fd_closer(int fd[2][2])
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 2)
 	{
-		close (fd[0][i]);
-		close (fd[1][i]);
+		if (close (fd[0][i]))
+			return ;
+		if (close (fd[1][i]))
+			return ;
 		i++;
 	}
 }
 
-void exec_onepipe(t_command **cmd_head, char **env)
+void doubleless_func(char	*temp, int	fd)
+{
+	char	*buf;
+
+	while (1)
+	{
+		buf = readline("> ");
+		if (buf == NULL || buf[0] == '\0')
+			continue ;
+		if (!buf)
+			continue ;
+		if (ft_strcmp(buf, temp))
+			break ;
+		write(fd, buf, ft_strlen(buf));
+		write(fd, "\n", 1);
+	}
+}
+
+void exec_nopipe(t_command **cmd_table, char **env)
 {
 	t_command	*temp;
-	int		n;
-	pid_t	pid[2];
-	int		fd[2];
-	int		status;
+	int			n;
+	pid_t		pid;
+	int			fd[2][2];
+	int			status;
 
-	temp = (*cmd_head);
+	temp = (*cmd_table);
+	redir_link(&temp, temp->args);
+	if (pipe (fd[0]) == -1)
+		exit (0);
+	pid = fork();
+	if (pid == 0)
+		redirection_core(temp, fd, env);
+	else
+		waitpid (pid, NULL, 0);
+	unlink(".temp");
+	fd_closer(fd);
+}
+
+void exec_onepipe(t_command **cmd_table, char **env)
+{
+	t_command	*temp;
+	int			n;
+	pid_t		pid[2];
+	int			fd[2];
+	int			status;
+
+	temp = (*cmd_table);
 	if (pipe (fd) == -1)
 		exit (0);
 	pid[0] = fork();
 	if (pid[0] == 0)
 	{
+		redir_link(&temp, temp->args);
 		dup2(fd[1], STDOUT_FILENO);
 		n = 0;
 		while (n++ < 2)
@@ -154,6 +178,7 @@ void exec_onepipe(t_command **cmd_head, char **env)
 	pid[1] = fork();
 	if (pid[1] == 0)
 	{
+		redir_link(&temp, temp->args);
 		dup2(fd[0], STDIN_FILENO);
 		n = 0;
 		while (n++ < 2)
@@ -196,8 +221,6 @@ void pipe_core(t_command **cmd_table, char **env)
 	else
 	{
 		temp = (*cmd_table);
-		redir_link(cmd_table, temp->args);
-		//ft_doubleprint(t->ag->cont);
 		if (pipe (fd[0]) == -1)
 			exit (0);
 		if (pipe (fd[1]) == -1)
@@ -205,9 +228,10 @@ void pipe_core(t_command **cmd_table, char **env)
 		pid[0] = fork();
 		if (pid[0] == 0)
 		{
+			redir_link(&temp, temp->args);
 			dup2(fd[0][1], STDOUT_FILENO);
 			fd_closer(fd);
-			execute_cmds((*cmd_table)->args, env);
+			execute_cmds(temp->args, env);
 		}
 		temp = temp->next;
 		i[0]--;
@@ -216,20 +240,22 @@ void pipe_core(t_command **cmd_table, char **env)
 			pid[1] = fork();
 			if (pid[1] == 0)
 			{
+				redir_link(&temp, temp->args);
 				dup2(fd[0][0], STDIN_FILENO);
 				dup2(fd[1][1], STDOUT_FILENO);
 				fd_closer(fd);
-				execute_cmds((*cmd_table)->args, env);
+				execute_cmds(temp->args, env);
 			}
-			temp = temp->next;
 			i[0]--;
+			temp = temp->next;
 		}
 		pid[2] = fork();
 		if (pid[2] == 0)
 		{
+			redir_link(&temp, temp->args);
 			dup2(fd[1][0], STDIN_FILENO);
 			fd_closer (fd);
-			execute_cmds((*cmd_table)->args, env);
+			execute_cmds(temp->args, env);
 		}
 		fd_closer(fd);
 		i[1] = 0;

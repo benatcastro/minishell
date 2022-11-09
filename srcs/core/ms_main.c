@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/09 04:19:06 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:19:56 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv, char **env)
 	lex = NULL;
 	en = ft_doublestrdup(env);
 	i = 0;
-	//signals_core(); //uncomment when signals are ready
+	signals_core(); //uncomment when signals are ready
 	while (1)
 	{
 		buf = readline(PROMPT);
@@ -79,6 +79,8 @@ int	global_error_chkr(char	**lex)
 			if (lex[i + 1] == NULL)
 				return (-1);
 	}
+	if (ft_strcmp (lex[ft_doublestrlen(lex) - 1], PIPE))
+		return (1);
 	return (0);
 }
 

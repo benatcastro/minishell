@@ -6,7 +6,11 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/11/09 07:33:51 by becastro         ###   ########.fr       */
+=======
+/*   Updated: 2022/11/08 21:15:55 by umartin-         ###   ########.fr       */
+>>>>>>> umartin-
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +69,9 @@ void			fill_cmd(t_command *node, char **cmds);
 t_command_table	**create_command_table(t_command_table **head, char **cmds);
 //void			list_args(t_args **head, char **cmds);
 void			redir_link(t_command **cmd_head, char **args);
+void			execute_cmds(char **args, char **env);
+void			fd_closer(int fd[2][2]);
+void			doubleless_func(char	*temp, int	fd);
+void			redirection_core(t_command *temp, int fd[2][2], char **env);
 
 #endif

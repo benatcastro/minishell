@@ -6,7 +6,11 @@
 #    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2022/11/09 06:45:00 by becastro         ###   ########.fr        #
+=======
+#    Updated: 2022/11/05 01:35:00 by umartin-         ###   ########.fr        #
+>>>>>>> umartin-
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +28,17 @@ CC = gcc
 RM = rm -rf
 42Lib = make -C srcs/
 #############FLAGS###########
+<<<<<<< HEAD
 RD_FLAGS	= -lreadline -L .brew/opt/readline/lib -I .brew/opt/readline/include
 SANITIZE	= -fsanitize=address -ggdb3
 VALGRIND	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=./readline_supression.supp
 CFLAGS		= -Wall -Werror -Wextra #-fsanitize=address -ggdb3
+=======
+RD_FLAGS	= -I/Users/$(USER)/.brew/opt/readline/include -lreadline -L/Users/$(USER)/.brew/opt/readline/lib/
+SANITIZE	= -fsanitize=address -g3
+VALGRIND	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
+CFLAGS		= -Wall -Werror -ggdb3 -Wextra -fsanitize=address -I/Users/$(USER)/.brew/opt/readline/include -L/Users/$(USER)/.brew/opt/readline/lib/ -lreadline
+>>>>>>> umartin-
 INC_FLAGS	= -I $(INC_DIR)
 LIB_FLAGS	= $(LIB_DIR)42lib.a
 

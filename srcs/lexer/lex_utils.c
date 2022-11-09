@@ -3,25 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lex_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:56:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/21 13:08:41 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:14:54 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "libft.h"
 #include <stdio.h>
-
-void	print_double_str(char **str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-		printf("(%s)\n", str[i]);
-}
 
 int	lex_memory_splitter(char *str)
 {

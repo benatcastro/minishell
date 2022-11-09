@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 19:38:01 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/04 20:28:59 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/04 21:50:57 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	redirection_ag(t_command **cmd_head, char	**args)
 	}
 	// printf("temp\n");
 	// print_double_str(temp);
-	// printf("cmd args\n");
 	// print_double_str((*cmd_head)->args);
 	(*cmd_head)->args = temp;
 	// printf("I = %d\n", i);

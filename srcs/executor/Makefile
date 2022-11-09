@@ -8,6 +8,7 @@ SRC_FILES =	executor_core		\
 			fill_cmd_table		\
 			special_split		\
 			redir				\
+			redirections		\
 #			linked_manager		\
 
 ###############UTILS##########
