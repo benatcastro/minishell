@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/09 05:41:29 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 07:34:20 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "minishell.h"
 #include <unistd.h>
 #include "nodes.h"
+#include "builtins.h"
 
 
 //Los args de esta funcion deberian de ser el input lexeado y parseado
