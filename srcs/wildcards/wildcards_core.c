@@ -33,11 +33,12 @@ char**	wildcard_core(char **args, char **env)
 
 	wildcard_arg = arg_is_wildcard(args);
 	if (!wildcard_arg)
-		return ;
+		return (NULL);
 	pwd = getcwd(NULL, 0);
 	dfiles = ft_calloc(get_dir_size(pwd) + 1, sizeof(char *));
 	create_dfiles(pwd, dfiles);
 	args = dfiles;
 	free(pwd);
+	ft_doubleprint(dfiles);
 	return (dfiles);
 }

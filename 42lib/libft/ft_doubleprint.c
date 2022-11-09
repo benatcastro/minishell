@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_doubleprint.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 17:28:02 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/03 16:30:12 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:29:52 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	ft_doubleprint(char **str)
 	int	i;
 
 	i = 0;
-	// if (!str || !str[0])
-	// {
-	// 	printf("guayabass podridas\n");
-	// 	return ;
-	// }
+	if (!str || !str[0])
+	{
+		printf("Error\n");
+		return ;
+	}
 	while (str[i])
 	{
 		printf("str[%d] == %s\n", i, str[i]);
