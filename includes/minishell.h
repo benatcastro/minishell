@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/02 17:40:54 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/09 06:21:04 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 # include <sys/wait.h>
 # include <sys/types.h>
 # include "libft.h"
-# include <readline/readline.h>
-# include <readline/history.h>
 # include "executor.h"
 
 # define PROMPT "\033[33mBASHado 🤖 > \033[0m"

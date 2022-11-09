@@ -6,7 +6,7 @@
 #    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/11/09 06:04:13 by becastro         ###   ########.fr        #
+#    Updated: 2022/11/09 06:45:00 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CC = gcc
 RM = rm -rf
 42Lib = make -C srcs/
 #############FLAGS###########
-RD_FLAGS	= -I/Users/$(USER)/.brew/opt/readline/include -lreadline -L/Users/$(USER)/.brew/opt/readline/lib/
+RD_FLAGS	= -lreadline -L .brew/opt/readline/lib -I .brew/opt/readline/include
 SANITIZE	= -fsanitize=address -ggdb3
 VALGRIND	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=./readline_supression.supp
 CFLAGS		= -Wall -Werror -Wextra #-fsanitize=address -ggdb3
@@ -62,7 +62,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(SANITIZE) $(OBJ_DIR)*.o $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) -o $(NAME)
 	@echo "\033[92mminishell has been successfully compiled!\033[0m"
 
-$(VALGRIND): $(OBJS)
+$(NAME_VALGRIND): $(OBJS)
 
 	@echo "\033[33mCompiling minishell project...\033[0m"
 	$(CC) $(CFLAGS) $(OBJ_DIR)*.o $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) -o $(NAME)
@@ -87,7 +87,7 @@ $(OBJS):
 run: all
 	./$(NAME)
 
-valgrind: $(VALGRIND)
+valgrind: $(NAME_VALGRIND)
 	$(VALGRIND) ./$(NAME)
 clean:
 	@$(RM) objs/
