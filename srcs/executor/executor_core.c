@@ -6,11 +6,12 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/09 15:19:48 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:26:47 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
+#include "wildcards.h"
 #include "minishell.h"
 #include <unistd.h>
 #include "nodes.h"
@@ -92,7 +93,8 @@ static void	bin_executor(char **args, char **env)
 
 void	execute_cmds(char **args, char **env)
 {
-	//ft_doubleprint(args);
+	if (arg_is_wildcard(args))
+		args = wildcard_core(args, env);
 	if (builtin_checker(args, env))
 		builtins(args, env);
 	else
@@ -272,6 +274,7 @@ int	executor_core(char **cmd, char **env)
 	table_head = NULL;
 	create_command_table(&table_head, cmd);
 	aux = table_head;
+
 	while (aux)
 	{
 		pipe_core(aux->cmds, env);

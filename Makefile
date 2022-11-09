@@ -14,7 +14,7 @@ RM = rm -rf
 RD_FLAGS	= -I/Users/$(USER)/.brew/opt/readline/include -lreadline -L/Users/$(USER)/.brew/opt/readline/lib/
 SANITIZE	= -fsanitize=address -g3
 VALGRIND	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
-CFLAGS		= -Wall -Werror -ggdb3 -Wextra -fsanitize=address -I/Users/$(USER)/.brew/opt/readline/include -L/Users/$(USER)/.brew/opt/readline/lib/ -lreadline
+CFLAGS		= -Wall -Werror -Wextra #-g3 -fsanitize=address
 INC_FLAGS	= -I $(INC_DIR)
 LIB_FLAGS	= $(LIB_DIR)42lib.a
 
@@ -70,6 +70,7 @@ $(OBJS):
 	make -C srcs/executor
 	make -C srcs/node_fncs
 	make -C srcs/builtins
+	make -C srcs/wildcards
 
 run: all
 	./$(NAME)
