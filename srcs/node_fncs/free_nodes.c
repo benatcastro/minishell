@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 01:08:01 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/09 04:50:40 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 14:50:28 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static void	free_command_nodes(t_command **head)
 
 	if (!(*head))
 		return ;
-	free_redir_nodes((*head)->in);
-	free_redir_nodes((*head)->out);
+	free_redir_nodes(&(*head)->in);
+	free_redir_nodes(&(*head)->out);
 	while (*head)
 	{
 		aux = (*head);

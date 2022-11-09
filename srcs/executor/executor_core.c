@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/09 07:34:20 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 14:51:58 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,7 +252,7 @@ int	executor_core(char **cmd, char **env)
 		//print table for debug
 		aux = aux->next;
 	}
-	free_command_table_nodes(&table_head);
+	//free_command_table_nodes(&table_head);
 	// print_table(&table_head);
 	return (1);
 }

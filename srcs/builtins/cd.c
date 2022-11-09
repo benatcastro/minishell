@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/09 08:49:37 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:06:01 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,15 @@
 
 int	valid_path(char *path)
 {
-	DIR	*dir_ptr;
-	int	access_val;
+	int	exists;
+	int	permission;
 
-	dir_ptr = opendir(path);
-	access_val = access(path, R_OK);
-	if (access_val == -1)
-		return (access_val);
-	if (dir_ptr == NULL)
+	permission = access(path, R_OK);
+	exists = access(path, F_OK);
+	if (exists == -1)
 		return (0);
-	printf("%p\n", dir_ptr);
-	closedir(dir_ptr);
+	if (permission == -1)
+		return (-1);
 	return (1);
 }
 
@@ -53,16 +51,4 @@ void	cd_builtin(char **args, char **env)
 	if (ft_doublestrlen(args) == 1 || check_dir(args[1]))
 		return ;
 	i = -1;
-	while (env[++i])
-	{
-		if (ft_strncmp(env[i], PWD, 4))
-		{
-			current_pwd = ft_strdup(env[i]);
-			ft_str_replace(env[i], args[1]);
-		}
-	}
-	j = -1;
-	while (env[++j])
-		if (ft_strncmp(env[j], "OLDPWD", 7))
-			ft_str_replace(env[j], current_pwd);
 }
