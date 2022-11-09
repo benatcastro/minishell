@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/09 05:12:27 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 05:41:29 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 int	builtin_checker(char **args, char **env)
 {
 	if (!ft_strncmp(args[0], ENV, 4))
+		return (1);
+	else if (!ft_strncmp(args[0], CD, 3))
 		return (1);
 	else if (!ft_strncmp(args[0], PWD, 4))
 		return (1);

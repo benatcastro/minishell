@@ -6,7 +6,7 @@
 #    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/11/09 03:40:32 by becastro         ###   ########.fr        #
+#    Updated: 2022/11/09 06:04:13 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,6 @@ run: all
 
 valgrind: $(VALGRIND)
 	$(VALGRIND) ./$(NAME)
-	
 clean:
 	@$(RM) objs/
 

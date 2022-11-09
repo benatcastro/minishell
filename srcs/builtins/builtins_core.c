@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/21 10:43:29 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/09 05:43:15 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "lexer.h"
 #include "parser.h"
 #include "executor.h"
+#include "builtins.h"
 
 static void	builtins_echo(char **cont)
 {
@@ -45,7 +46,9 @@ void	builtins(char **cont, char **env)
 	char	*pwd_dir;
 
 	i = -1;
-	if (!ft_strncmp(cont[0], "env", 4))
+	if (!ft_strncmp(cont[0], "cd", 3))
+		cd_builtin(cont, env);
+	else if (!ft_strncmp(cont[0], "env", 4))
 	{
 		while (env[++i])
 			printf ("%s\n", env[i]);
@@ -68,7 +71,7 @@ void	builtins(char **cont, char **env)
 	else
 	{
 		printf ("%s%s: command not found\n", PROMPT, cont[0]);
-		exit (-1);
+		//exit (-1);
 	}
 	exit (0);
 }

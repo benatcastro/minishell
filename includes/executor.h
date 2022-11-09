@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/04 21:16:36 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 05:41:06 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define SEMICOLON "<SEMICOLON>"
 
 /******BUILTINS DEFINES******/
-
+# define CD "cd"
 # define ENV "env"
 # define PWD "pwd"
 # define EXIT "exit"
