@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/09 06:21:04 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/09 14:45:08 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <signal.h>
 # include <sys/wait.h>
 # include <sys/types.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 # include "libft.h"
 # include "executor.h"
 
