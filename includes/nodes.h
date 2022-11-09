@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nodes.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:30:45 by bena              #+#    #+#             */
-/*   Updated: 2022/11/04 03:10:23 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/09 01:47:59 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,7 @@ t_command_table	**create_command_table(t_command_table **head, char **cmds);
 t_command		*create_cmd_node(char **cmds);
 t_command		**create_cmd(t_command **cmd_head, char **cmds);
 t_redir			*create_redir_node(char **content);
+
+//======================FREE FNCS=================//
+void			free_command_table_nodes(t_command_table **head);
 #endif

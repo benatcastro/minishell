@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bena <bena@student.42.fr>                  +#+  +:+       +#+         #
+#    By: becastro <becastro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:25:12 by umartin-          #+#    #+#              #
-#    Updated: 2022/11/07 21:35:15 by bena             ###   ########.fr        #
+#    Updated: 2022/11/09 01:52:07 by becastro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,9 @@ RM = rm -rf
 42Lib = make -C srcs/
 #############FLAGS###########
 RD_FLAGS	= -I/Users/$(USER)/.brew/opt/readline/include -lreadline -L/Users/$(USER)/.brew/opt/readline/lib/
-SANITIZE	= -fsanitize=address -g3
-VALGRIND	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
-CFLAGS		= -Wall -Werror -ggdb3 -Wextra #-fsanitize=address -ggdb3
+SANITIZE	= -fsanitize=address -ggdb3
+VALGRIND	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=./readline_supression.supp
+CFLAGS		= -Wall -Werror -Wextra #-fsanitize=address -ggdb3
 INC_FLAGS	= -I $(INC_DIR)
 LIB_FLAGS	= $(LIB_DIR)42lib.a
 
@@ -59,6 +59,12 @@ all: $(NAME)
 $(NAME): $(OBJS)
 
 	@echo "\033[33mCompiling minishell project...\033[0m"
+	$(CC) $(CFLAGS) $(SANITIZE) $(OBJ_DIR)*.o $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) -o $(NAME)
+	@echo "\033[92mminishell has been successfully compiled!\033[0m"
+
+$(NAME_VALGRIND): $(OBJS)
+
+	@echo "\033[33mCompiling minishell project...\033[0m"
 	$(CC) $(CFLAGS) $(OBJ_DIR)*.o $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) -o $(NAME)
 	@echo "\033[92mminishell has been successfully compiled!\033[0m"
 
@@ -80,6 +86,8 @@ $(OBJS):
 run: all
 	./$(NAME)
 
+valgrind: $(NAME_VALGRIND)
+	$(VALGRIND) ./$(NAME)
 clean:
 	@$(RM) objs/
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_doublefree.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 18:22:56 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/08/21 18:49:24 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/11/09 00:30:14 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /**
  * @brief attempts to free a double pointer pointed by str.
- * 
+ *
  * @param str the double pointer to free.
  * @return int 1 if the function couldn't free the string or 0 if it sucesfully
  * freed it.
