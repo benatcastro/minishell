@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:32:32 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/09 21:56:05 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/10 14:02:01 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,58 @@
 #include <unistd.h>
 #include "nodes.h"
 
+char	*ft_strdup_n_rem(const char *s1)
+{
+	char	*result;
+	int		i;
+	int		len;
+
+	int fdr = open("error", O_WRONLY);
+	if (!s1)
+		return (NULL);
+	result = malloc(sizeof(char) * (ft_strlen(s1) - 1));
+	if (!result)
+		return (NULL);
+	i = -1;
+	len = ft_strlen(s1) - 1;
+	write (fdr, ft_itoa(len), 1);
+	while (++i < len)
+		result[i] = s1[i];
+	write (fdr, ft_itoa(i), 1);
+	result[i] = 0;
+	write (2, "result = ", 9);
+	write (2, result, ft_strlen(result));
+	return (result);
+}
+
+char	*double_writer(char *buf)
+{
+	write (2, "> ", 2);
+	buf = get_next_line(1);
+	buf = ft_strdup_n_rem(buf);
+	write (2, buf, ft_strlen(buf));
+	write (2, ft_itoa(ft_strlen(buf)), 1);
+	if (buf[0] == NULL);
+	{
+		write(2, "A\n", 2);
+		double_writer(buf);
+	}
+	return (buf);
+}
+
 void	doubleless_func(char *temp, int fd)
 {
 	char	*buf;
 
 	if (!temp)
 		exit (0);
-	write (2, "> ", 2);
-	buf = get_next_line(1);
-	write (2, buf, ft_strlen(buf));
-	if (!buf);
-	{
-		write(2, "A\n", 2);
-		doubleless_func(temp, fd);
-	}
-	write(2, ft_strlen(buf), 2);
-	write(2, ft_strlen(temp), 2);
+	buf = double_writer(buf);
 	if ((ft_strlen(buf) == ft_strlen(temp)) && (ft_strncmp(buf, temp, ft_strlen(buf))))
 	{
 		write (2, "ENTRA\n", 6);
 		return ;
 	}
 	write(fd, buf, ft_strlen(buf));
-	//write(fd, "\n", 1);
 	doubleless_func(temp, fd);
 }
 
