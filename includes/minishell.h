@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/09 16:36:05 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/11 17:27:55 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@
 # include "executor.h"
 
 # define PROMPT "\033[33mBASHado 🤖 > \033[0m"
+
+typedef struct s_data
+{
+	int	ms_pid;
+	int	sub_pid;
+	int	exit_val;
+}	t_data;
 
 int		main(int argc, char **argv, char **env);
 void	builtins(char **cont, char **env);

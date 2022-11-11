@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/09 21:14:51 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/11 17:55:58 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,23 @@
 #include "parser.h"
 #include "executor.h"
 
-int	g_pid;
+t_data	*g_data;
 
 int	main(int argc, char **argv, char **env)
 {
 	char	*buf;
 	char	**en;
 	char	**lex;
-	t_list	*args;
 	int		i;
 
 	(void)argc;
 	(void)argv;
-	args = NULL;
 	buf = NULL;
 	lex = NULL;
 	en = ft_doublestrdup(env);
+	g_data = ft_calloc(1, sizeof(t_data));
 	i = 0;
-	g_pid = get_pid();
+	g_data->ms_pid = get_pid();
 	signals_core();
 	while (1)
 	{
@@ -58,7 +57,7 @@ int	main(int argc, char **argv, char **env)
 	return (0);
 }
 
-int	global_error_chkr(char	**lex)
+int	global_error_chkr(char **lex)
 {
 	int i;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/09 15:26:47 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/11 18:06:53 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void	bin_executor(char **args, char **env)
 
 	path = bin_path_finder(args, env);
 	if (path != NULL)
-		execve(path, args, env);
+		printf("execve val: %d\n", execve(path, args, env));
 	exit (1);
 }
 
@@ -138,7 +138,7 @@ void exec_nopipe(t_command **cmd_table, char **env)
 {
 	t_command	*temp;
 	int			n;
-	pid_t		pid;
+	extern t_data	*g_data;
 	int			fd[2][2];
 	int			status;
 
@@ -146,11 +146,11 @@ void exec_nopipe(t_command **cmd_table, char **env)
 	redir_link(&temp, temp->args);
 	if (pipe (fd[0]) == -1)
 		exit (0);
-	pid = fork();
-	if (pid == 0)
+	g_data->sub_pid = fork();
+	if (g_data->sub_pid == 0)
 		redirection_core(temp, fd, env);
 	else
-		waitpid (pid, NULL, 0);
+		waitpid (g_data->sub_pid, NULL, 0);
 	unlink(".temp");
 	fd_closer(fd);
 }
