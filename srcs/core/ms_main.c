@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/09 20:46:01 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/11 12:35:18 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ int	main(int argc, char **argv, char **env)
 			continue ;
 		add_history(buf);
 		if (parser_quote_error_chk(buf))
-			exit (0);
+		{
+			printf ("\033[33mBASHado 😡: \033[0m Error: unclosed quotes\n");
+			continue ;
+		}
 		lex = lex_core(buf);
 		lex = parser_core(lex, en);
 		i = 0;
@@ -56,13 +59,14 @@ int	main(int argc, char **argv, char **env)
 
 int	global_error_chkr(char	**lex)
 {
-	int i;
+	int	i;
 
+	if (!lex || lex[0] == NULL)
+		return (-1);
 	if (ft_strcmp(lex[0], "<PIPE>"))
 		return (1);
 	i = -1;
 	while (lex[++i])
-	{
 		if ((ft_strcmp(lex[i], GREATER)) || (ft_strcmp(lex[i], DOUBLEGREATER))
 			|| (ft_strcmp(lex[i], LESS)) || (ft_strcmp(lex[i], DOUBLELESS)))
 			if ((lex[i + 1] && ft_strcmp(lex[i + 1], GREATER))
@@ -70,15 +74,12 @@ int	global_error_chkr(char	**lex)
 				|| (lex[i + 1] && ft_strcmp(lex[i + 1], LESS))
 				|| (lex[i + 1] && ft_strcmp(lex[i + 1], DOUBLELESS)))
 				return (-1);
-	}
 	i = -1;
 	while (lex[++i])
-	{
 		if ((ft_strcmp(lex[i], GREATER)) || (ft_strcmp(lex[i], DOUBLEGREATER))
 			|| (ft_strcmp(lex[i], LESS)) || (ft_strcmp(lex[i], DOUBLELESS)))
 			if (lex[i + 1] == NULL)
 				return (-1);
-	}
 	if (ft_strcmp (lex[ft_doublestrlen(lex) - 1], PIPE))
 		return (1);
 	return (0);
