@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_in_set.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 13:02:42 by bena              #+#    #+#             */
-/*   Updated: 2022/09/26 18:20:48 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/10 21:30:57 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static int	ft_doublesize(const char *s, char *set)
 	}
 	return (size);
 }
-
 
 /**
  * @brief takes the string pointed by s and creates a double
@@ -73,4 +72,3 @@ char	**ft_split_in_set(char const *s, char *set)
 	result[j] = NULL;
 	return (result);
 }
-
