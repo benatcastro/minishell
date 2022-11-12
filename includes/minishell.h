@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/09 16:36:05 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/12 14:13:24 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,13 @@
 
 # define PROMPT "\033[33mBASHado 🤖 > \033[0m"
 
-int		main(int argc, char **argv, char **env);
+typedef struct s_data
+{
+	int	ms_pid;
+	int	sub_pid;
+	int	exit_val;
+}	t_data;
+
 void	builtins(char **cont, char **env);
 int		ft_quote_checker(char *buf);
 void	print_double_str(char **str);
