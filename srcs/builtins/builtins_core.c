@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/12 03:35:25 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/12 15:39:01 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,17 @@ static void	builtins_echo(char **cont)
 	}
 }
 
-char	**ft_doublestradd(char **str, char *arg)
+void	ft_doublestradd(char **str, char *arg)
 {
-	char	**result;
+	char	**aux;
 	int		i;
 
-	if (!str)
-		return (NULL);
-	result = (char **)malloc(sizeof(char *) * (ft_doublestrlen(str) + 2));
-	if (!result)
-		return (NULL);
-	i = -1;
-	while (str[++i])
-		result[i] = ft_strdup(str[i]);
-	result[i] = ft_strdup(arg);
-	result[i * 1] = 0;
-	ft_doublefree(str);
-	free (arg);
-	return (result);
+	i = ft_doublestrlen(str);
+	str[i] = arg;
+	str[i + 1] = 0;
 }
 
-int		export_arg_chkr(char *arg)
+int	export_arg_chkr(char *arg)
 {
 	int	i;
 	int	cont;
@@ -77,7 +67,25 @@ int		export_arg_chkr(char *arg)
 		write (2, "\n", 1);
 		return (-1);
 	}
-	return (0);
+	return (1);
+}
+
+void	ft_doubleprint_err(char **str)
+{
+	int	i;
+
+	i = 0;
+	if (!str || !str[0])
+	{
+		write(2, "Error\n", 6);
+		return ;
+	}
+	while (str[i])
+	{
+		write (2, str[i], ft_strlen(str[i]));
+		write (2, "\n", 1);
+		i++;
+	}
 }
 
 void	ft_export_arg(char **env, char **args)
@@ -88,10 +96,12 @@ void	ft_export_arg(char **env, char **args)
 	while (args[++i])
 		if (!export_arg_chkr(args[i]))
 			exit (0);
+	//ft_doubleprint_err(env);
 	i = 0;
 	while (args[++i])
-		env = ft_doublestradd(env, args[i]);
-	exit (0);
+		ft_doublestradd(env, args[i]);
+	ft_doubleprint_err(env);
+	return ;
 }
 
 void	builtins(char **cont, char **env)
@@ -119,10 +129,12 @@ void	builtins(char **cont, char **env)
 		exit (0);
 	}
 	else if (!ft_strncmp(cont[0], "export", 7))
+	{
 		if (!cont[1])
 			ft_export_no_arg(env);
 		else
 			ft_export_arg(env, cont);
+	}
 	else if (!ft_strncmp(cont[0], "echo", 5))
 		builtins_echo(cont);
 	exit (0);

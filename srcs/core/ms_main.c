@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/12 01:53:25 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/12 16:34:44 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	main(int argc, char **argv, char **env)
 		i = 0;
 		if (global_error_chkr(lex))
 			continue ;
-		//ft_doublefree (lex);
 		executor_core(lex, en);
 		free (buf);
 	}
