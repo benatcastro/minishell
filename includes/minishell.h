@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/12 16:33:35 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/12 17:18:54 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,13 @@
 
 # define PROMPT "\033[33mBASHado 🤖 > \033[0m"
 
-int		main(int argc, char **argv, char **env);
+typedef struct s_data
+{
+	int	ms_pid;
+	int	sub_pid;
+	int	exit_val;
+}	t_data;
+
 void	builtins(char **cont, char **env);
 int		ft_quote_checker(char *buf);
 void	print_double_str(char **str);
@@ -40,5 +46,6 @@ int		signals_core(void);
 void	print_double_str(char **str);
 char	**ft_split_exec(char const *s, char c);
 int		global_error_chkr(char	**lex);
+char	*env_finder(char *str, char **env);
 
 #endif
