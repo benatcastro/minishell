@@ -4,6 +4,9 @@ OBJ_DIR	= ../../objs/minishell/
 
 ############SRCS##############
 SRC_FILES =	executor_core		\
+			executor_main		\
+			executor_utils		\
+			executor_utils2		\
 			node_manager		\
 			fill_cmd_table		\
 			special_split		\

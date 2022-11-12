@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:19:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/09 16:32:25 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/12 17:19:00 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	**expander(char	*str, char **env)
 		{
 			aux = env_finder(temp[i], env);
 			temp[i] = ft_strdup(aux);
-			free (aux);
+			//free (aux);
 		}
 	}
 	return (temp);

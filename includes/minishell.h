@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
 /*   Updated: 2022/11/12 18:50:32 by becastro         ###   ########.fr       */
+=======
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
+/*   Updated: 2022/11/12 17:18:54 by umartin-         ###   ########.fr       */
+>>>>>>> umartin-
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
+//int fdr = open("error", O_CREAT | O_WRONLY | O_TRUNC);
 
 # include <stdio.h>
 # include <stdlib.h>

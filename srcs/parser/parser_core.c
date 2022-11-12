@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_core.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/09 15:22:45 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/12 02:40:35 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int	parser_quote_error_chk(char *str)
 		}
 		i++;
 	}
+	if (b == 1)
+		printf ("BASHado: Error: unclosed quotes\n");
 	return (b);
 }
 

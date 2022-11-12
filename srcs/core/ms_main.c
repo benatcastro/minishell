@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/12 18:50:25 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/12 19:05:17 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,12 @@ int	main(int argc, char **argv, char **env)
 			continue ;
 		add_history(buf);
 		if (parser_quote_error_chk(buf))
-			exit (0);
+			continue ;
 		lex = lex_core(buf);
 		lex = parser_core(lex, en);
 		i = 0;
 		if (global_error_chkr(lex))
 			continue ;
-		//ft_doublefree (lex);
 		executor_core(lex, en);
 		free (buf);
 	}
@@ -58,29 +57,27 @@ int	main(int argc, char **argv, char **env)
 
 int	global_error_chkr(char	**lex)
 {
-	int i;
+	int	i;
 
+	if (!lex || lex[0] == NULL)
+		return (-1);
 	if (ft_strcmp(lex[0], "<PIPE>"))
 		return (1);
 	i = -1;
 	while (lex[++i])
-	{
 		if ((ft_strcmp(lex[i], GREATER)) || (ft_strcmp(lex[i], DOUBLEGREATER))
 			|| (ft_strcmp(lex[i], LESS)) || (ft_strcmp(lex[i], DOUBLELESS)))
-			if ((ft_strcmp(lex[i + 1], GREATER))
-				|| (ft_strcmp(lex[i + 1], DOUBLEGREATER))
-				|| (ft_strcmp(lex[i + 1], LESS))
-				|| (ft_strcmp(lex[i + 1], DOUBLELESS)))
+			if ((lex[i + 1] && ft_strcmp(lex[i + 1], GREATER))
+				|| (lex[i + 1] && ft_strcmp(lex[i + 1], DOUBLEGREATER))
+				|| (lex[i + 1] && ft_strcmp(lex[i + 1], LESS))
+				|| (lex[i + 1] && ft_strcmp(lex[i + 1], DOUBLELESS)))
 				return (-1);
-	}
 	i = -1;
 	while (lex[++i])
-	{
 		if ((ft_strcmp(lex[i], GREATER)) || (ft_strcmp(lex[i], DOUBLEGREATER))
 			|| (ft_strcmp(lex[i], LESS)) || (ft_strcmp(lex[i], DOUBLELESS)))
 			if (lex[i + 1] == NULL)
 				return (-1);
-	}
 	if (ft_strcmp (lex[ft_doublestrlen(lex) - 1], PIPE))
 		return (1);
 	return (0);

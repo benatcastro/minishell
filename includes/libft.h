@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 11:27:46 by becastro          #+#    #+#             */
-/*   Updated: 2022/10/07 17:31:23 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/09 21:16:17 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
+
+# define BUFFER_SIZE 1
 
 typedef struct s_list
 {
@@ -82,5 +84,15 @@ void	ft_doubleprint(char **str);
 int		ft_strcmp(char *s1, char *s2);
 char	**ft_split_in_set(char const *s, char *set);
 char	*ft_str_replace(char *src, char const *replace);
+
+//Get Next Line
+char	*get_next_line(int fd);
+char	*ft_read_static(int fd, char *final);
+char	*ft_final_rtn(char *final);
+char	*ft_clean_final(char *final);
+char	*ft_strjoin_gnl(char *final, char *rd);
+char	*ft_strchr_gnl(char *str, int c);
+
+size_t	ft_strlen_gnl(char *str);
 
 #endif
