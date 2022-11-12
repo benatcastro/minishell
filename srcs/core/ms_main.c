@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 00:11:12 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 00:12:33 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv, char **env)
 	en = ft_doublestrdup(env);
 	i = 0;
 	g_data.ms_pid = get_pid();
-	signals_core(); //uncomment when signals are ready
+	signals_core();
 	rl_catch_signals = 0;
 	while (1)
 	{
