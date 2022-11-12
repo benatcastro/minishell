@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/12 14:44:44 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/12 18:50:25 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "executor.h"
 #include "signals.h"
 
-t_data	g_data;
 
 int	main(int argc, char **argv, char **env)
 {
@@ -36,7 +35,6 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		rl_catch_signals = 0;
-		rl_catch_sigwinch = 0;
 		buf = readline(PROMPT);
 		if (buf == NULL || buf[0] == '\0')
 			continue ;

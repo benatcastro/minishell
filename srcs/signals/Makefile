@@ -1,5 +1,8 @@
 ##########DIRECTORIES########
-INCLUDES = -I ../../includes/
+INCLUDES =	-I ../../includes/	\
+			-I /Users/$(USER)/.brew/opt/readline/include \
+			-I /usr/include/readline \
+			
 OBJ_DIR	= ../../objs/minishell/
 
 ############SRCS##############

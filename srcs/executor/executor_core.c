@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/09 15:26:47 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/12 18:59:20 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,11 +146,11 @@ void exec_nopipe(t_command **cmd_table, char **env)
 	redir_link(&temp, temp->args);
 	if (pipe (fd[0]) == -1)
 		exit (0);
-	pid = fork();
-	if (pid == 0)
+	g_data.sub_pid = fork();
+	if (g_data.sub_pid == 0)
 		redirection_core(temp, fd, env);
 	else
-		waitpid (pid, NULL, 0);
+		waitpid (g_data.sub_pid, NULL, 0);
 	unlink(".temp");
 	fd_closer(fd);
 }
