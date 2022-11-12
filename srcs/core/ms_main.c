@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/12 19:05:17 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 00:13:33 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,13 @@ int	main(int argc, char **argv, char **env)
 	en = ft_doublestrdup(env);
 	i = 0;
 	g_data.ms_pid = get_pid();
-	signals_core(); //uncomment when signals are ready
+	signals_core();
+	rl_catch_signals = 0;
 	while (1)
 	{
-		rl_catch_signals = 0;
 		buf = readline(PROMPT);
-		if (buf == NULL || buf[0] == '\0')
-			continue ;
 		if (!buf)
-			continue ;
+			return (printf("call to exit builtin"), 0);
 		add_history(buf);
 		if (parser_quote_error_chk(buf))
 			continue ;
