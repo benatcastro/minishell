@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/11 17:27:55 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/12 13:59:50 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int		ft_quote_checker(char *buf);
 void	print_double_str(char **str);
 void	ft_export_no_arg(char **cln);
 int		signals_core(void);
+void	sigquit_replacer(void);
 void	print_double_str(char **str);
 char	**ft_split_exec(char const *s, char c);
 int		global_error_chkr(char	**lex);

@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/11 18:06:53 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/12 13:07:20 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void	bin_executor(char **args, char **env)
 
 	path = bin_path_finder(args, env);
 	if (path != NULL)
-		printf("execve val: %d\n", execve(path, args, env));
+		execve(path, args, env);
 	exit (1);
 }
 

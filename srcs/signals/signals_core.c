@@ -6,12 +6,13 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:24:20 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/11 17:40:53 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/12 14:05:03 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "signals.h"
 #include "minishell.h"
+#include <termios.h>
 
 int	get_pid(void)
 {
@@ -26,14 +27,21 @@ int	get_pid(void)
 	return (s - 1);
 }
 
+void	sigquit_replacer(void)
+{
+	struct termios	pre_term;
+	struct termios	term;
+
+	tcgetattr(0, &pre_term);
+	term = pre_term;
+	term.c_cc[VEOF] = 3;
+	term.c_cc[VINTR] = 4;
+	tcsetattr(0, TCSANOW, &term);
+	tcsetattr(0, TCSANOW, &pre_term);
+}
+
 int	signals_core(void)
 {
-	struct sigaction	sig_data;
-
-	sig_data.sa_sigaction = signal_reciever;
-	sigemptyset (&sig_data.sa_mask);
-	// sig_data.sa_mask = SA_SIGINFO;
-	sigaction(SIGINT, &sig_data, NULL);
-	sigaction(SIGQUIT, &sig_data, NULL);
+	signal(SIGINT, signal_reciever);
 	return (0);
 }
