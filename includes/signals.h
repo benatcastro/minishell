@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:24:53 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/12 14:13:49 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/12 14:43:45 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-void	signal_reciever(int signal);
+int		signals_core(void);
+int		get_pid(void);
+void	signal_reciever(int singal, siginfo_t *data, void *ucontext);
 
 #endif

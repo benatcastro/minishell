@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/12 14:11:33 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/12 14:44:44 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "lexer.h"
 #include "parser.h"
 #include "executor.h"
+#include "signals.h"
 
 t_data	g_data;
 
@@ -22,19 +23,20 @@ int	main(int argc, char **argv, char **env)
 	char	*buf;
 	char	**en;
 	char	**lex;
-	t_list	*args;
 	int		i;
 
 	(void)argc;
 	(void)argv;
-	args = NULL;
 	buf = NULL;
 	lex = NULL;
 	en = ft_doublestrdup(env);
 	i = 0;
+	g_data.ms_pid = get_pid();
 	signals_core(); //uncomment when signals are ready
 	while (1)
 	{
+		rl_catch_signals = 0;
+		rl_catch_sigwinch = 0;
 		buf = readline(PROMPT);
 		if (buf == NULL || buf[0] == '\0')
 			continue ;
