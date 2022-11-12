@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/11 12:35:18 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/12 01:53:25 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ int	main(int argc, char **argv, char **env)
 			continue ;
 		add_history(buf);
 		if (parser_quote_error_chk(buf))
-		{
-			printf ("\033[33mBASHado 😡: \033[0m Error: unclosed quotes\n");
 			continue ;
-		}
 		lex = lex_core(buf);
 		lex = parser_core(lex, en);
 		i = 0;

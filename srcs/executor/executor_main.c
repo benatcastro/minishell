@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/10 20:20:16 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/12 02:40:02 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,12 @@ static void	bin_executor(char **args, char **env)
 	path = bin_path_finder(args, env);
 	if (path != NULL)
 		execve(path, args, env);
+	else
+	{
+		write (2, "BASHado: ", 9);
+		write (2, args[0], ft_strlen(args[0]));
+		write (2, ": command not found\n", 20);
+	}
 	exit (1);
 }
 
