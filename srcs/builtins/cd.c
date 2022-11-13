@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/09 15:06:01 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 00:42:45 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "minishell.h"
 #include <dirent.h>
 
-int	valid_path(char *path)
+static int	valid_path(char *path)
 {
 	int	exists;
 	int	permission;
@@ -42,13 +42,27 @@ static int	check_dir(char *path)
 	return (1);
 }
 
+static void	change_path(char *path, char **env)
+{
+	char	*oldpwd;
+	char	*pwd;
+	int		i;
+
+	i = -1;
+	fprintf(stderr, "change path fnc start\n");
+	while (env[++i])
+	{
+		if (!ft_strncmp(env[i], "OLDPWD", ft_strlen("OLDPWD")))
+			fprintf(stderr, "test %s\n", env[i]);
+	}
+}
+
 void	cd_builtin(char **args, char **env)
 {
 	int		i;
 	int		j;
-	char	*current_pwd;
 
-	if (ft_doublestrlen(args) == 1 || check_dir(args[1]))
-		return ;
-	i = -1;
+	//if (ft_doublestrlen(args) == 1 || check_dir(args[1] != 1))
+		//return ;
+	change_path(args[1], env);
 }
