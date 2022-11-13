@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/13 00:14:53 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 01:57:36 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,49 +35,6 @@ void	fd_closer(int fd[2][2])
 	}
 }
 
-void	exec_nopipe(t_command **cmd_table, char **env)
-{
-	t_command	*temp;
-	int			n;
-	pid_t		pid;
-	int			status;
-
-	temp = (*cmd_table);
-	redir_link(&temp, temp->args);
-	pid = fork();
-	if (pid == 0)
-		redirection_core(temp, env);
-	else
-		waitpid (g_data.sub_pid, NULL, 0);
-	unlink(".temp");
-}
-
-int	exec_onepipe(t_command **cmd_table, char **env)
-{
-	t_command	*temp;
-	pid_t		pid[2];
-	int			fd[2];
-
-	temp = (*cmd_table);
-	if (pipe (fd) == -1)
-		exit (0);
-	pid[0] = fork();
-	if (pid[0] == 0)
-		return (dup2(fd[1], STDOUT_FILENO), redir_link(&temp, temp->args),
-			close (fd[0]), close (fd[1]), redirection_core(temp, env), 0);
-	temp = temp->next;
-	pid[1] = fork();
-	if (pid[1] == 0)
-		return (dup2(fd[0], STDIN_FILENO), redir_link(&temp, temp->args),
-			close (fd[1]), close(fd[0]), redirection_core(temp, env), 0);
-	close (fd[0]);
-	close (fd[1]);
-	waitpid(pid[0], NULL, 0);
-	waitpid(pid[1], NULL, 0);
-	unlink(".temp");
-	return (0);
-}
-
 void	pipe_core(t_command **cmd_table, char **env)
 {
 	t_command		*temp;
@@ -91,12 +48,7 @@ void	pipe_core(t_command **cmd_table, char **env)
 		temp = temp->next;
 		i[0]++;
 	}
-	if (i[0] == 1)
-		exec_nopipe(cmd_table, env);
-	else if (i[0] == 2)
-		exec_onepipe(cmd_table, env);
-	else
-		exec_morepipes(cmd_table, env, pid, i);
+	exec_morepipes(cmd_table, env, pid, i);
 }
 
 int	executor_core(char **cmd, char **env)
