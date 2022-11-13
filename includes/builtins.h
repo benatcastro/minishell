@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:16:38 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/13 11:31:05 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 17:24:01 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ char	*find_in_env(char *s);
 int		exit_builtin(void);
 void	cd_builtin(char **args);
 void	builtins_echo(char **cont);
-void	ft_export_no_arg(char **cln);
-void	ft_export_arg(char **env, char **args);
+void	ft_export_arg(char **args);
 #endif

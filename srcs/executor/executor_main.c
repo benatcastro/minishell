@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 15:52:37 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 16:59:30 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	bin_executor(char **args, char **env)
 	else
 	{
 		rl_on_new_line();
-		printf("%s%s: command not found\n", PROMPT, args[0]);
+		printf("BASHado: %s: command not found\n", args[0]);
 	}
 	exit (1);
 }
@@ -101,7 +101,7 @@ void	execute_cmds(char **args, char **env)
 	if (arg_is_wildcard(args))
 		args = wildcard_core(args);
 	if (builtin_checker(args))
-		builtins(args, env);
+		builtins(args);
 	else
 		bin_executor(args, env);
 }

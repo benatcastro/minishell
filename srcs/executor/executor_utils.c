@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 16:35:52 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 18:53:48 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,26 @@ int	last_pipe(int *pid, t_command *temp, int fd[2][2], char **env)
 	return (0);
 }
 
+void	special_builtins(t_command *temp)
+{
+	if (temp->next != NULL)
+		return ;
+	if (ft_strcmp(temp->args[0], "cd"))
+		cd_builtin(temp->args);
+	else if (ft_strcmp(temp->args[0], "export"))
+	{
+		if (!temp->args[1])
+			ft_export_no_arg();
+		else
+		{
+			ft_doubleprint(temp->args);
+			ft_export_arg(temp->args);
+		}
+	}
+	else if (ft_strcmp(temp->args[0], "unset"))
+		unset_builtin(temp->args);
+}
+
 void	exec_morepipes(t_command **cmd_table,
 		char **env, pid_t pid[3], int i[2])
 {
@@ -91,6 +111,7 @@ void	exec_morepipes(t_command **cmd_table,
 	if (temp->next == NULL)
 		f[1] = 0;
 	first_pipe(pid, temp, fd, env, f);
+	special_builtins(temp);
 	if (temp->next == NULL)
 		return ;
 	temp = temp->next;
@@ -98,8 +119,10 @@ void	exec_morepipes(t_command **cmd_table,
 	{
 		middle_pipes(pid, temp, env, fd);
 		temp = temp->next;
+		special_builtins(temp);
 	}
 	last_pipe(pid, temp, fd, env);
+	special_builtins(temp);
 	i[1] = 0;
 	while (i[1]++ < 3)
 		waitpid(pid[i[1]], NULL, 0);

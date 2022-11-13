@@ -12,7 +12,8 @@
 		"dirent.h": "c",
 		"types.h": "c",
 		"wildcards.h": "c",
-		"builtins.h": "c"
+		"builtins.h": "c",
+		"sstream": "c"
 	},
 	"files.autoSave": "afterDelay",
 	"editor.tabCompletion": "off",

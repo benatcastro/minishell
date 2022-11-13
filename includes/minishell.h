@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 13:00:56 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 17:05:14 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include "libft.h"
 # include "executor.h"
 
-# define PROMPT "BASHado  > "
+# define PROMPT "BASHado > "
 
 typedef struct s_data
 {
@@ -41,10 +41,10 @@ typedef struct s_data
 
 t_data	g_data;
 
-void	builtins(char **cont, char **env);
+void	builtins(char **cont);
 int		ft_quote_checker(char *buf);
 void	print_double_str(char **str);
-void	ft_export_no_arg(char **cln);
+void	ft_export_no_arg(void);
 int		signals_core(void);
 void	print_double_str(char **str);
 char	**ft_split_exec(char const *s, char c);
