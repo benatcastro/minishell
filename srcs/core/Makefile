@@ -5,9 +5,9 @@ INCLUDES =	-I ../../includes/	\
 
 OBJ_DIR	= ../../objs/minishell/
 
+CFLAGS		= -Wall -Werror -Wextra -g3 -fsanitize=address
 ############SRCS##############
 SRC_FILES =	ms_main		\
-
 ###############UTILS##########
 OBJF = .cache_exists
 
