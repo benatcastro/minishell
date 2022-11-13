@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 19:37:14 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 19:54:45 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ static void	bin_executor(char **args)
 		g_data.env = 0;
 		return ((void)printf("%s %s: No such file or directory\n",
 				PROMPT, args[0]));
-
 	}
 	else
 	{

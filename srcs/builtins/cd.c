@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/13 19:34:57 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 19:56:25 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,12 @@ void	cd_builtin(char **args)
 	path = args[1];
 	if (ft_strcmp(path, "-") && find_in_env("OLDPWD"))
 		path = find_in_env("OLDPWD") + 7;
+	if (path[0] == '~')
+		path = ft_strjoin((find_in_env("HOME")) + 5, ++path);
 	if (path == NULL || !check_dir(path))
 		return ;
 	if (ft_strcmp(path, "-") && find_in_env("OLDPWD"))
 		path = find_in_env("OLDPWD") + 7;
 	chdir(path);
 	update_env(cwd);
-	//print_double_str(temp);
-	// ft_export_arg(temp);
-	//ft_doublefree(temp);
 }
