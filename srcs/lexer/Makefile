@@ -1,7 +1,7 @@
 ##########DIRECTORIES########
 INCLUDES = -I ../../includes/
 OBJ_DIR	= ../../objs/minishell/
-
+CFLAGS		= -Wall -Werror -Wextra
 ############SRCS##############
 SRC_FILES =	lex_utils\
 			lex
