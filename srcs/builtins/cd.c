@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/13 18:15:11 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 19:34:57 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void	cd_builtin(char **args)
 
 	getcwd(cwd, sizeof(cwd));
 	path = args[1];
+	if (ft_strcmp(path, "-") && find_in_env("OLDPWD"))
+		path = find_in_env("OLDPWD") + 7;
 	if (path == NULL || !check_dir(path))
 		return ;
 	if (ft_strcmp(path, "-") && find_in_env("OLDPWD"))
