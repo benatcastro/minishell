@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 09:10:04 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 09:20:02 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,8 @@ void	builtins(char **cont, char **env)
 	if (!ft_strncmp(cont[0], "cd", 3))
 		cd_builtin(cont);
 	else if (!ft_strncmp(cont[0], "env", 4))
-	{
 		while (g_data.env[++i])
 			printf ("%s\n", g_data.env[i]);
-	}
 	else if (!ft_strncmp(cont[0], "pwd", 4))
 		printf("%s\n", find_in_env("PWD"));
 	else if (!ft_strncmp(cont[0], "exit", 5))

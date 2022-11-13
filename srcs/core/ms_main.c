@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 06:33:19 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 09:12:22 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	g_data.env = ft_doublestrdup(env);
 	g_data.ms_pid = get_pid();
-	g_data.env[get_env_index("OLDPWD")] = "OLDPWD=TEST";
 	rl_catch_signals = 0;
 	signals_core();
 	readline_loop();

@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 06:45:32 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/13 08:58:34 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 09:20:12 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void	rebuild_env(char *var)
 	int		i;
 	int		j;
 	char	**new_env;
-
-
+	extern t_data g_data;
 	//print_double_str(g_data.env);
 	//printf("len: %d\n", ft_doublestrlen(g_data.env));
 	// printf(" %s || %s || |%d|\n", var, g_data.env[i], len);
@@ -40,10 +39,10 @@ void	rebuild_env(char *var)
 		else
 			printf("Not coping :%s\n", g_data.env[i]);
 	}
-	new_env[j] = NULL;
-	//ft_doublefree(g_data.env);
-	//print_double_str(new_env);
+	new_env[j + 1] = NULL;
+	ft_doublefree(g_data.env);
 	g_data.env = new_env;
+	print_double_str(g_data.env);
 }
 
 void	unset_builtin(char **args)
