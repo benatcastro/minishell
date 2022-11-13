@@ -40,7 +40,7 @@ char	*parse_wildcards(char **dfiles, char *arg)
 		j = -1;
 		while (parsing[++j])
 		{
-			if (dfiles[i][0] != '*' || dfiles[i][ft_strlen(dfiles[i])] != '0')
+			if (dfiles[i][0] != '*' || dfiles[i][ft_strlen(dfiles[i])] != '*')
 				return (arg);
 			if (ft_strchr(dfiles[i], parsing[j][0])
 				&& ft_strnstr(dfiles[i], parsing[j], ft_strlen(parsing[j])))
@@ -63,7 +63,7 @@ char	**wildcard_core(char **args)
 	pwd = getcwd(NULL, 0);
 	dfiles = ft_calloc(get_dir_size(pwd) + 1, sizeof(char *));
 	create_dfiles(pwd, dfiles);
-	parse_wildcards(dfiles, wildcard_arg);
+	wildcard_arg = parse_wildcards(dfiles, wildcard_arg);
 	args = dfiles;
 	free(pwd);
 	//ft_doubleprint(dfiles);

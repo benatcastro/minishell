@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:58:04 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/21 09:19:36 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 19:55:35 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,119 @@ static int	replace_for_keywords(char **str)
 	return (1);
 }
 
+char	**temp_maker(char *rtn)
+{
+	char	*t1;
+	char	*t2;
+	char	**temp;
+	int		c;
+
+	temp = malloc(sizeof(char *) * 3);
+	if (rtn[0] == '|')
+	{
+		c = 0;
+		t1 = malloc(sizeof(char) * 2);
+		t1[0] = '|';
+		t1[1] = 0;
+		t2 = malloc(sizeof(char) * ft_strlen(rtn));
+		while (rtn[++c])
+			t2[c - 1] = rtn[c];
+		rtn[c - 1] = 0;
+	}
+	if (rtn[0] == '<' && rtn[1] != '<')
+	{
+		c = 0;
+		t1 = malloc(sizeof(char) * 2);
+		t1[0] = '<';
+		t1[1] = 0;
+		t2 = malloc(sizeof(char) * ft_strlen(rtn));
+		while (rtn[++c])
+			t2[c - 1] = rtn[c];
+		rtn[c - 1] = 0;
+	}
+	if (rtn[0] == '<' && rtn[1] == '<')
+	{
+		c = 1;
+		t1 = malloc(sizeof(char) * 3);
+		t1[0] = '<';
+		t1[1] = '<';
+		t1[2] = 0;
+		t2 = malloc(sizeof(char) * ft_strlen(rtn) - 1);
+		while (rtn[++c])
+			t2[c - 2] = rtn[c];
+		t2[c - 2] = 0;
+	}
+	if (rtn[0] == '>' && rtn[1] != '>')
+	{
+		c = 0;
+		t1 = malloc(sizeof(char) * 2);
+		t1[0] = '>';
+		t1[1] = 0;
+		t2 = malloc(sizeof(char) * ft_strlen(rtn));
+		while (rtn[++c])
+			t2[c - 1] = rtn[c];
+		rtn[c - 1] = 0;
+	}
+	if (rtn[0] == '>' && rtn[1] == '>')
+	{
+		c = 1;
+		t1 = malloc(sizeof(char) * 3);
+		t1[0] = '>';
+		t1[1] = '>';
+		t1[2] = 0;
+		t2 = malloc(sizeof(char) * ft_strlen(rtn) - 1);
+		while (rtn[++c])
+			t2[c - 2] = rtn[c];
+		rtn[c - 2] = 0;
+	}
+	temp[0] = ft_strdup(t1);
+	temp[1] = ft_strdup(t2);
+	temp[2] = NULL;
+	return (free(t1), free(t2), temp);
+}
+
+char	**pipe_redir_replacer(char **rtn)
+{
+	int		i;
+	int		c;
+	char	**fin;
+	char	**temp;
+
+	i = -1;
+	c = 0;
+	while (rtn[++i])
+	{
+		if ((rtn[i][0] == '|' && rtn[i][1])
+			|| (rtn[i][0] == '>' && rtn[i][1] == '>' && rtn[i][2])
+			|| (rtn[i][0] == '>' && rtn[i][1] != '>' && rtn[i][1])
+			|| (rtn[i][0] == '<' && rtn[i][1] == '<' && rtn[i][2])
+			|| (rtn[i][0] == '<' && rtn[i][1] != '<' && rtn[i][1]))
+			c += 2;
+		else
+			c++;
+	}
+	fin = malloc(sizeof(char *) * c + 1);
+	i = -1;
+	c = 0;
+	while (rtn[++i])
+	{
+		if ((rtn[i][0] == '|' && rtn[i][1])
+			|| (rtn[i][0] == '>' && rtn[i][1] == '>' && rtn[i][2])
+			|| (rtn[i][0] == '>' && rtn[i][1] != '>' && rtn[i][1])
+			|| (rtn[i][0] == '<' && rtn[i][1] == '<' && rtn[i][2])
+			|| (rtn[i][0] == '<' && rtn[i][1] != '<' && rtn[i][1]))
+		{
+			temp = temp_maker(rtn[i]);
+			fin[c++] = ft_strdup(temp[0]);
+			fin[c++] = ft_strdup(temp[1]);
+		}
+		else
+			fin[c++] = ft_strdup(rtn[i]);
+	}
+	fin[c] = NULL;
+	return (fin);
+}
+
 char	**lex_core(char *str)
 {
 	int		i;
@@ -78,6 +191,7 @@ char	**lex_core(char *str)
 		exit (0);
 	rtn = malloc(sizeof(char *) * (lex_memory_splitter(str)) + 1);
 	rtn = lex_splitter(str, rtn);
+	rtn = pipe_redir_replacer(rtn);
 	replace_for_keywords(rtn);
 	return (rtn);
 }
