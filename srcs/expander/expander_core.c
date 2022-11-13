@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:31:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/11 12:40:50 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 05:26:43 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*expand_trimmer(char	*str)
 	i = 0;
 	c = 0;
 	rtn = ft_calloc(sizeof(char *), (ft_strlen(str) - 1));
-	while (++i < (ft_strlen(str) - 1))
+	while (++i < ((int)ft_strlen(str) - 1))
 	{
 		rtn[c] = str[i];
 		c++;
@@ -64,7 +64,7 @@ char	*expand_first_trimmer(char	*str)
 	i = 0;
 	c = 0;
 	rtn = ft_calloc(sizeof(char *), (ft_strlen(str) - 2));
-	while (++i < (ft_strlen(str)))
+	while (++i < ((int)ft_strlen(str)))
 	{
 		rtn[c] = str[i];
 		c++;
@@ -79,7 +79,6 @@ char	*expander_main(char	*str, char **env)
 	char	*temp;
 	char	*r;
 	int		i;
-	int		c;
 
 	rtn = NULL;
 	i = -1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_splitter.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 20:16:53 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/21 13:40:07 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 05:29:15 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char	**expand_splitter(char *str, char **rtn)
 	int		l;
 	char	*aux;
 
+	aux = NULL;
 	e = -1;
 	n = 0;
 	while (str[++e])

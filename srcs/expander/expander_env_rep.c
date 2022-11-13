@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:29:59 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/09 16:32:25 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 05:27:12 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	*env_finder(char *str, char **env)
 {
 	int		i;
 	int		n;
-	int		r;
 	char	*val;
 	char	*p;
 
@@ -30,7 +29,7 @@ char	*env_finder(char *str, char **env)
 	while (env[++i])
 	{
 		if ((!ft_strncmp(str, env[i], (num_until_equal(env[i]))))
-			&& (ft_strlen(str) == num_until_equal(env[i])))
+			&& ((int)ft_strlen(str) == num_until_equal(env[i])))
 		{
 			val = ft_calloc(sizeof(char *),
 					(ft_strlen(env[i]) - ft_strlen(str)));
