@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 16:58:09 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 17:05:14 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include "libft.h"
 # include "executor.h"
 
-# define PROMPT "\x1B[1mBASHado > \x1B[0m"
+# define PROMPT "BASHado > "
 
 typedef struct s_data
 {

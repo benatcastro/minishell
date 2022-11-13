@@ -6,20 +6,28 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 05:45:07 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/13 16:49:48 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 17:31:41 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "builtins.h"
 
-void	ft_doublestradd(char **str, char *arg)
+void	ft_doublestradd(char *arg)
 {
 	int		i;
+	int		c;
+	char	**temp;
 
-	i = ft_doublestrlen(str);
-	str[i] = arg;
-	str[i + 1] = 0;
+	c = -1;
+	temp = ft_doublestrdup(g_data.env);
+	i = ft_doublestrlen(g_data.env);
+	ft_doublefree(g_data.env);
+	g_data.env = ft_calloc(i + 1, sizeof(char *));
+	while (temp[++c])
+		g_data.env[c] = temp[c];
+	g_data.env[i] = arg;
+	g_data.env[i + 1] = 0;
 }
 
 int	export_arg_chkr(char *arg)
@@ -99,7 +107,7 @@ void	ft_export_no_arg(void)
 		printf ("%s\n", env[i]);
 }
 
-void	ft_export_arg(char **env, char **args)
+void	ft_export_arg(char **args)
 {
 	int	i;
 
@@ -109,6 +117,6 @@ void	ft_export_arg(char **env, char **args)
 			return ;
 	i = 0;
 	while (args[++i])
-		ft_doublestradd(env, args[i]);
+		ft_doublestradd(args[i]);
 	return ;
 }
