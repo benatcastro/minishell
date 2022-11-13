@@ -27,11 +27,9 @@ char	*arg_is_wildcard(char **args)
 
 char	*parse_wildcards(char **dfiles, char *arg)
 {
-	char	**parsing;
-	int		i;
-	int		j;
-
-
+	(void)dfiles;
+	(void)arg;
+	return (NULL);
 }
 
 char	**wildcard_core(char **args)

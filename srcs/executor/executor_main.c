@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_main.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 16:59:30 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 19:21:45 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,33 +37,35 @@ int	builtin_checker(char **args)
 		return (0);
 }
 
-char	*env_path_maker(char *val, char **env, int *i)
+char	*env_path_maker(char *val, int *i)
 {
 	int	r;
 	int	n;
 
 	n = 4;
 	r = 0;
-	while (env[*i][++n])
-		val[r++] = env[*i][n];
+	while (g_data.env[*i][++n])
+		val[r++] = g_data.env[*i][n];
 	val[r] = 0;
 	return (val);
 }
 
-char	*bin_path_finder(char **args, char **env)
+char	*bin_path_finder(char **args)
 {
 	char	*temp;
 	char	**p;
 	int		i;
 
+	if (!find_in_env("PATH"))
+		return (NULL);
 	i = -1;
-	while (env[++i])
+	while (g_data.env[++i])
 	{
-		if ((!ft_strncmp("PATH", env[i], 4)))
+		if ((!ft_strncmp("PATH", g_data.env[i], 4)))
 		{
 			temp = ft_calloc(sizeof(char *),
-					(ft_strlen(env[i]) - 5));
-			temp = env_path_maker(temp, env, &i);
+					(ft_strlen(g_data.env[i]) - 5));
+			temp = env_path_maker(temp, &i);
 			break ;
 		}
 	}
@@ -79,22 +81,26 @@ char	*bin_path_finder(char **args, char **env)
 	return (temp = NULL, temp);
 }
 
-static void	bin_executor(char **args, char **env)
+static void	bin_executor(char **args)
 {
 	char	*path;
 
-	path = bin_path_finder(args, env);
-	if (path != NULL)
-		execve(path, args, env);
+	path = bin_path_finder(args);
+	if (!path)
+	{
+		execve(path, args, g_data.env);
+		g_data.env = 0;
+		return ((void)printf("%s %s: No such file or directory\n", PROMPT, args[0]));
+	}
 	else
 	{
 		rl_on_new_line();
-		printf("BASHado: %s: command not found\n", args[0]);
+		printf("%s %s: command not found\n",PROMPT, args[0]);
 	}
 	exit (1);
 }
 
-void	execute_cmds(char **args, char **env)
+void	execute_cmds(char **args)
 {
 	if (!args || args[0] == NULL)
 		return ;
@@ -103,6 +109,6 @@ void	execute_cmds(char **args, char **env)
 	if (builtin_checker(args))
 		builtins(args);
 	else
-		bin_executor(args, env);
+		bin_executor(args);
 }
 
