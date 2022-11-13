@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/09 15:06:01 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 05:39:23 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,9 @@ static int	check_dir(char *path)
 	return (1);
 }
 
-void	cd_builtin(char **args, char **env)
+void	cd_builtin(char **args)
 {
-	int		i;
-	int		j;
-	char	*current_pwd;
 
 	if (ft_doublestrlen(args) == 1 || check_dir(args[1]))
 		return ;
-	i = -1;
 }

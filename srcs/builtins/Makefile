@@ -2,7 +2,7 @@
 INCLUDES = -I ../../includes/
 RD_FLAGS2 	= -I /sgoinfre/goinfre/Perso/becastro/homebrew/Cellar/readline/8.1.2/include/readline/
 OBJ_DIR	= ../../objs/minishell/
-
+CFLAGS = -Wall -Wextra -Werror
 ############SRCS##############
 SRC_FILES =	builtins_core		\
 			exit				\

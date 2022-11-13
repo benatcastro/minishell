@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 05:22:07 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 05:37:58 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static void	bin_executor(char **args, char **env)
 void	execute_cmds(char **args, char **env)
 {
 	if (arg_is_wildcard(args))
-		args = wildcard_core(args, env);
+		args = wildcard_core(args);
 	if (builtin_checker(args))
 		builtins(args, env);
 	else

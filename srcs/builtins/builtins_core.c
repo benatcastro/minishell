@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/12 15:39:01 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 05:39:44 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static void	builtins_echo(char **cont)
 
 void	ft_doublestradd(char **str, char *arg)
 {
-	char	**aux;
 	int		i;
 
 	i = ft_doublestrlen(str);
@@ -111,7 +110,7 @@ void	builtins(char **cont, char **env)
 
 	i = -1;
 	if (!ft_strncmp(cont[0], "cd", 3))
-		cd_builtin(cont, env);
+		cd_builtin(cont);
 	else if (!ft_strncmp(cont[0], "env", 4))
 	{
 		while (env[++i])

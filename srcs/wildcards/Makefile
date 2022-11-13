@@ -1,7 +1,7 @@
 ##########DIRECTORIES########
 INCLUDES = -I ../../includes/
 OBJ_DIR	= ../../objs/minishell/
-
+CFLAGS = -Wall -Wextra -Werror
 ############SRCS##############
 SRC_FILES =	wildcards_core		\
 			dir_fncs			\

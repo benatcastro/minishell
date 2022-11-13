@@ -22,6 +22,7 @@ void	create_dfiles(char *path, char **dfiles)
 	char			*temp;
 
 	index = 0;
+	s_dir = NULL;
 	dir_ptr = opendir(path);
 	while (true)
 	{
@@ -44,6 +45,7 @@ int	get_dir_size(char *path)
 	struct dirent	*s_dir;
 	int				sz;
 
+	s_dir = NULL;
 	dir_ptr = opendir(path);
 	sz = 0;
 	while (s_dir != NULL)

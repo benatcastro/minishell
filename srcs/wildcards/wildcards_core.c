@@ -25,7 +25,7 @@ char	*arg_is_wildcard(char **args)
 	return (NULL);
 }
 
-char**	wildcard_core(char **args, char **env)
+char**	wildcard_core(char **args)
 {
 	char	*wildcard_arg;
 	char	*pwd;
