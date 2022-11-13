@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/11 01:12:15 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 01:41:35 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,31 @@
 #include "nodes.h"
 #include "builtins.h"
 
-int	first_pipe(int *pid, t_command *temp, int fd[2][2], char **env)
+int	first_pipe(int *pid, t_command *temp, int fd[2][2], char **env, int f[2])
 {
-	pid[0] = fork();
-	if (pid[0] == 0)
+	if (f[1] == 1)
 	{
-		redir_link(&temp, temp->args);
-		dup2(fd[0][1], STDOUT_FILENO);
-		fd_closer(fd);
-		redirection_core(temp, env);
+		pid[0] = fork();
+		if (pid[0] == 0)
+		{
+			g_data.sub_pid = 1;
+			redir_link(&temp, temp->args);
+			dup2(fd[f[0]][1], STDOUT_FILENO);
+			fd_closer(fd);
+			redirection_core(temp, env);
+		}
 	}
+	else
+	{
+		pid[0] = fork();
+		if (pid[0] == 0)
+		{
+			g_data.sub_pid = 1;
+			redir_link(&temp, temp->args);
+			redirection_core(temp, env);
+		}
+	}
+	waitpid(pid[0], NULL, 0);
 	return (0);
 }
 
@@ -35,6 +50,7 @@ int	middle_pipes(int *pid, t_command *temp, char **env, int fd[2][2])
 	pid[1] = fork();
 	if (pid[1] == 0)
 	{
+		g_data.sub_pid = 1;
 		redir_link(&temp, temp->args);
 		dup2(fd[0][0], STDIN_FILENO);
 		dup2(fd[1][1], STDOUT_FILENO);
@@ -49,6 +65,7 @@ int	last_pipe(int *pid, t_command *temp, int fd[2][2], char **env)
 	pid[2] = fork();
 	if (pid[2] == 0)
 	{
+		g_data.sub_pid = 1;
 		redir_link(&temp, temp->args);
 		dup2(fd[1][0], STDIN_FILENO);
 		fd_closer (fd);
@@ -58,20 +75,28 @@ int	last_pipe(int *pid, t_command *temp, int fd[2][2], char **env)
 	return (0);
 }
 
-int	exec_morepipes(t_command **cmd_table,
+void	exec_morepipes(t_command **cmd_table,
 		char **env, pid_t pid[3], int i[2])
 {
 	t_command		*temp;
 	int				fd[2][2];
+	int				f[2];
 
+	f[0] = 0;
+	f[1] = 1;
 	temp = (*cmd_table);
 	fd_closer(fd);
 	if (pipe (fd[0]) == -1 || pipe (fd[1]) == -1)
 		exit (0);
-	first_pipe(pid, temp, fd, env);
+	if (temp->next != NULL && temp->next->next == NULL)
+		f[0] = 1;
+	if (temp->next == NULL)
+		f[1] = 0;
+	first_pipe(pid, temp, fd, env, f);
+	if (temp->next == NULL)
+		return ;
 	temp = temp->next;
-	i[0]--;
-	while (i[0]-- > 1)
+	while (temp->next != NULL)
 	{
 		middle_pipes(pid, temp, env, fd);
 		temp = temp->next;
@@ -81,5 +106,4 @@ int	exec_morepipes(t_command **cmd_table,
 	while (i[1]++ < 3)
 		waitpid(pid[i[1]], NULL, 0);
 	unlink(".temp");
-	return (0);
 }

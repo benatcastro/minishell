@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/12 17:18:54 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 01:29:27 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,13 @@
 
 typedef struct s_data
 {
-	int	ms_pid;
-	int	sub_pid;
-	int	exit_val;
+	int		ms_pid;
+	int		sub_pid;
+	int		exit_val;
+	char	**env;
 }	t_data;
+
+t_data	g_data;
 
 void	builtins(char **cont, char **env);
 int		ft_quote_checker(char *buf);

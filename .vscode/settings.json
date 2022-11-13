@@ -10,7 +10,8 @@
 		"stdio.h": "c",
 		"unistd.h": "c",
 		"dirent.h": "c",
-		"types.h": "c"
+		"types.h": "c",
+		"wildcards.h": "c"
 	},
 	"files.autoSave": "afterDelay",
 	"editor.tabCompletion": "off",

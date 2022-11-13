@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/11 01:10:02 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 00:32:16 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char			*env_path_maker(char *val, char **env, int *i);
 char			*bin_path_finder(char **args, char **env);
 static void		bin_executor(char **args, char **env);
 void			execute_cmds(char **args, char **env);
-int				exec_morepipes(t_command **cmd_table,
+void			exec_morepipes(t_command **cmd_table,
 					char **env, pid_t pid[3], int i[2]);
 int				first_pipe_op(t_command *temp,
 					int fd[2], char **env, int *pid);
