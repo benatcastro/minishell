@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 06:04:15 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 08:24:02 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	builtin_checker(char **args)
 	else if (!ft_strncmp(args[0], EXPORT, 7))
 		return (1);
 	else if (!ft_strncmp(args[0], ECHO, 5))
+		return (1);
+	else if (!ft_strncmp(args[0], UNSET, 6))
 		return (1);
 	else
 		return (0);

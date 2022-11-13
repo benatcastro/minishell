@@ -8,7 +8,7 @@ OBJ_DIR	= ../../objs/minishell/
 CFLAGS		= -Wall -Werror -Wextra
 ############SRCS##############
 SRC_FILES =	ms_main		\
-
+			utils
 ###############UTILS##########
 OBJF = .cache_exists
 

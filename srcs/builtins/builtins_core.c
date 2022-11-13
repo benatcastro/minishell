@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 06:30:28 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 09:10:04 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,25 @@
 #include "parser.h"
 #include "executor.h"
 #include "builtins.h"
+
+int	env_comparer(char *s, char *env_s)
+{
+	int	i;
+	int	len;
+	int	len_s;
+
+	len = ft_strlen(s);
+	len_s = 0;
+	while (env_s[len_s] && env_s[len_s] != '=')
+		len_s++;
+	i = -1;
+	if (len != len_s)
+		return (0);
+	while (env_s[++i])
+		if ((env_s[i] == s[i] && env_s[i + 1]))
+			return (1);
+	return (0);
+}
 
 int	get_env_index(char *s)
 {
@@ -67,5 +86,7 @@ void	builtins(char **cont, char **env)
 	}
 	else if (!ft_strncmp(cont[0], "echo", 5))
 		builtins_echo(cont);
+	else if (!ft_strncmp(cont[0], "unset", 6))
+		unset_builtin(cont);
 	exit (0);
 }

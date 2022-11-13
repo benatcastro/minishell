@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:16:38 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/13 06:31:38 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 08:46:51 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@
 # define EXIT "exit"
 # define EXPORT "export"
 # define ECHO "echo"
+# define UNSET "unset"
 
+int		env_comparer(char *s, char *env_s);
+void	unset_builtin(char **args);
 int		get_env_index(char *s);
 char	*find_in_env(char *s);
 int		exit_builtin(void);

@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal_handler.c                                   :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/28 16:28:22 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/13 08:32:26 by becastro         ###   ########.fr       */
+/*   Created: 2022/11/13 08:27:16 by becastro          #+#    #+#             */
+/*   Updated: 2022/11/13 08:30:00 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "signals.h"
-#include <stdio.h>
 #include "minishell.h"
 
-void	signal_reciever(int signal, siginfo_t *data, void *ucontext)
+void	print_double_str(char **str)
 {
-	(void)data;
-	(void)ucontext;
-	if (signal == SIGINT && !g_data.sub_pid)
-	{
-		printf("\n");
-		rl_on_new_line();
-		rl_redisplay();
-	}
-	else if (signal == SIGINT && g_data.sub_pid)
-	{
-		printf("\n");
-		rl_on_new_line();
-	}
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		printf("str[%d] == %s\n", i, str[i]);
 }

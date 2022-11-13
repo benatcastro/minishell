@@ -9,6 +9,7 @@ SRC_FILES =	builtins_core		\
 			cd					\
 			export				\
 			echo				\
+			unset				\
 
 ###############UTILS##########
 OBJF = .cache_exists
