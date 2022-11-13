@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_main.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/12 02:40:02 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 05:22:07 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "nodes.h"
 #include "builtins.h"
 
-int	builtin_checker(char **args, char **env)
+int	builtin_checker(char **args)
 {
 	if (!ft_strncmp(args[0], ENV, 4))
 		return (1);
@@ -97,7 +97,7 @@ void	execute_cmds(char **args, char **env)
 {
 	if (arg_is_wildcard(args))
 		args = wildcard_core(args, env);
-	if (builtin_checker(args, env))
+	if (builtin_checker(args))
 		builtins(args, env);
 	else
 		bin_executor(args, env);

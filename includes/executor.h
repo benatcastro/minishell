@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/13 05:20:44 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 05:22:01 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void			redirection_core(t_command *temp, char **env);
 
 ///////////////////////UTILS//////////////////////////
 
-int				builtin_checker(char **args, char **env);
+int				builtin_checker(char **args);
 char			*env_path_maker(char *val, char **env, int *i);
 char			*bin_path_finder(char **args, char **env);
 //static void		bin_executor(char **args, char **env);

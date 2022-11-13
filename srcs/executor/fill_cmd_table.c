@@ -44,7 +44,7 @@ void	fill_cmd(t_command *node, char **cmds)
 	//cmds++;
 	argc = count_args(cmds);
 	node->args = ft_calloc(argc + 1, sizeof(char *));
-	while (++i < argc)
+	while (++i < (int)argc)
 	{
 		node->args[i] = cmds[0];
 		cmds++;
