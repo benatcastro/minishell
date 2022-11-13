@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/12 15:39:01 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 01:19:44 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 #include "parser.h"
 #include "executor.h"
 #include "builtins.h"
+
+char	*find_in_env(char *s, char **env)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (env[++i])
+		if (!ft_strncmp(s, env[i], ft_strlen(s)))
+			return (env[i]);
+}
 
 static void	builtins_echo(char **cont)
 {
