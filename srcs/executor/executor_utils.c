@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 13:16:02 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 15:55:10 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	last_pipe(int *pid, t_command *temp, int fd[2][2], char **env)
 	pid[2] = fork();
 	if (pid[2] == 0)
 	{
-		g_data.sub_pid = 1;
 		redir_link(&temp, temp->args);
 		dup2(fd[1][0], STDIN_FILENO);
 		fd_closer (fd);
@@ -79,9 +78,9 @@ void	exec_morepipes(t_command **cmd_table,
 	int				fd[2][2];
 	int				f[2];
 
-	g_data.sub_pid = 1;
 	f[0] = 0;
 	f[1] = 1;
+	g_data.sub_pid = 1;
 	temp = (*cmd_table);
 	fd_closer(fd);
 	if (pipe (fd[0]) == -1 || pipe (fd[1]) == -1)

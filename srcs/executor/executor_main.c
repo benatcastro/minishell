@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_main.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 13:19:59 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 15:52:37 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,9 @@ static void	bin_executor(char **args, char **env)
 }
 
 void	execute_cmds(char **args, char **env)
-{	if(!args || args[0] == NULL)
-	return ;
+{
+	if (!args || args[0] == NULL)
+		return ;
 	if (arg_is_wildcard(args))
 		args = wildcard_core(args);
 	if (builtin_checker(args))
@@ -104,3 +105,4 @@ void	execute_cmds(char **args, char **env)
 	else
 		bin_executor(args, env);
 }
+
