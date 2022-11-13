@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:28:22 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/13 18:18:37 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 18:53:53 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	signal_reciever(int signal, siginfo_t *data, void *ucontext)
 	else if (signal == SIGINT && g_data.sub_pid)
 	{
 		g_data.sub_pid = 0;
+		printf("\r");
 		printf("\n");
 		rl_on_new_line();
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 16:40:17 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 19:54:23 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*find_in_env(char *s)
 	len = ft_strlen(s);
 	i = -1;
 	while (g_data.env[++i])
-		if (!ft_strncmp(s, g_data.env[i], len))
+		if (env_comparer(s, g_data.env[i]))
 			return (g_data.env[i]);
 	return (NULL);
 }

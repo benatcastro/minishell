@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/13 05:22:01 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 20:01:21 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,17 @@ void			fill_cmd(t_command *node, char **cmds);
 t_command_table	**create_command_table(t_command_table **head, char **cmds);
 char			*ft_strdup_n_rem(const char *s1);
 void			redir_link(t_command **cmd_head, char **args);
-void			execute_cmds(char **args, char **env);
 void			fd_closer(int fd[2][2]);
 void			doubleless_func(char *temp, int fd);
-void			redirection_core(t_command *temp, char **env);
+void			redirection_core(t_command *temp);
 
 ///////////////////////UTILS//////////////////////////
 
 int				builtin_checker(char **args);
-char			*env_path_maker(char *val, char **env, int *i);
-char			*bin_path_finder(char **args, char **env);
+char			*env_path_maker(char *val, int *i);
+char			*bin_path_finder(char **args);
 //static void		bin_executor(char **args, char **env);
-void			execute_cmds(char **args, char **env);
+void			execute_cmds(char **args);
 void			exec_morepipes(t_command **cmd_table,
 					char **env, pid_t pid[3], int i[2]);
 int				first_pipe_op(t_command *temp,

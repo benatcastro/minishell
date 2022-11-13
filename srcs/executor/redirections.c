@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:32:32 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 15:47:50 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 20:01:10 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ void	in_redirection(t_redir *t, int fd[2])
 	}
 }
 
-void	out_redirection(t_command *temp,
-						t_redir *t_out, int fd[2], char	**env)
+void	out_redirection(t_command *temp, t_redir *t_out, int fd[2])
 {
 	while (t_out->next != NULL)
 	{
@@ -80,14 +79,14 @@ void	out_redirection(t_command *temp,
 				| O_APPEND, 0644);
 	dup2(fd[0], STDIN_FILENO);
 	dup2(fd[1], STDOUT_FILENO);
-	execute_cmds(temp->args, env);
+	execute_cmds(temp->args);
 	if (close (fd[0]))
 		return ;
 	if (close (fd[1]))
 		return ;
 }
 
-void	redirection_core(t_command *temp, char **env)
+void	redirection_core(t_command *temp)
 {
 	t_redir		*t;
 	t_redir		*t_out;
@@ -101,12 +100,12 @@ void	redirection_core(t_command *temp, char **env)
 	{
 		dup2(fd[0], STDIN_FILENO);
 		close (fd[0]);
-		execute_cmds(temp->args, env);
+		execute_cmds(temp->args);
 	}
 	if (t_out == NULL && t == NULL)
-		execute_cmds(temp->args, env);
+		execute_cmds(temp->args);
 	else if (t_out != NULL)
-		out_redirection(temp, t_out, fd, env);
+		out_redirection(temp, t_out, fd);
 	close (fd[0]);
 	close (fd[1]);
 }
