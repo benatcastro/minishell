@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 01:31:30 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 05:18:18 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "executor.h"
 #include "signals.h"
 
-t_data	g_data;
 
 int	main(int argc, char **argv, char **env)
 {
@@ -32,16 +31,13 @@ int	main(int argc, char **argv, char **env)
 	en = ft_doublestrdup(env);
 	i = 0;
 	g_data.ms_pid = get_pid();
+	rl_catch_signals = 0;
 	signals_core(); //uncomment when signals are ready
 	while (1)
 	{
-		// rl_catch_signals = 0;
-		// rl_catch_sigwinch = 0;
 		buf = readline(PROMPT);
-		if (buf == NULL || buf[0] == '\0')
-			continue ;
 		if (!buf)
-			continue ;
+			return(printf("exit"), 0);
 		add_history(buf);
 		if (parser_quote_error_chk(buf))
 			continue ;
