@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:28:22 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/13 16:24:53 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 16:33:04 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	signal_reciever(int signal, siginfo_t *data, void *ucontext)
 	}
 	else if (signal == SIGINT && g_data.sub_pid)
 	{
-		printf("test2");
 		g_data.sub_pid = 0;
+		printf("\r");
 		printf("\n");
 		rl_on_new_line();
 	}
