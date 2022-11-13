@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 05:45:07 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/13 05:50:31 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 16:49:48 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_doubleprint_err(char **str)
 	}
 }
 
-void	ft_export_no_arg(char **cln)
+void	ft_export_no_arg(void)
 {
 	int		i;
 	int		f;
@@ -69,7 +69,7 @@ void	ft_export_no_arg(char **cln)
 	char	*aux;
 	char	**env;
 
-	env = ft_doublestrdup(cln);
+	env = ft_doublestrdup(g_data.env);
 	e = 0;
 	f = 0;
 	while (e != ft_doublestrlen(env) - 1)
@@ -105,12 +105,10 @@ void	ft_export_arg(char **env, char **args)
 
 	i = 0;
 	while (args[++i])
-		if (!export_arg_chkr(args[i]))
-			exit (0);
-	//ft_doubleprint_err(env);
+		if (export_arg_chkr(args[i]) == -1)
+			return ;
 	i = 0;
 	while (args[++i])
 		ft_doublestradd(env, args[i]);
-	ft_doubleprint_err(env);
 	return ;
 }
