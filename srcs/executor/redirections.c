@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:32:32 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 05:23:33 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 13:24:57 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	doubleless_func(char *temp, int fd)
 	if (!temp)
 		exit (0);
 	buf = readline("> ");
-	if (ft_strcmp(buf, temp))
+	if (!buf || ft_strcmp(buf, temp) )
 		return ;
 	write(fd, buf, ft_strlen(buf));
 	write(fd, "\n", 1);

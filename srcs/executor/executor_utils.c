@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 11:17:04 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 13:16:02 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	first_pipe(int *pid, t_command *temp, int fd[2][2], char **env, int f[2])
 
 int	middle_pipes(int *pid, t_command *temp, char **env, int fd[2][2])
 {
-	g_data.sub_pid = 1;
 	pid[1] = fork();
 	if (pid[1] == 0)
 	{
@@ -60,7 +59,6 @@ int	middle_pipes(int *pid, t_command *temp, char **env, int fd[2][2])
 
 int	last_pipe(int *pid, t_command *temp, int fd[2][2], char **env)
 {
-	g_data.sub_pid = 1;
 	pid[2] = fork();
 	if (pid[2] == 0)
 	{
