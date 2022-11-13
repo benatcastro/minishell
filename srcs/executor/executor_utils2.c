@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 21:32:42 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/11 01:15:48 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 04:42:49 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,21 @@ int	second_pipe_op(t_command *temp, int fd[2], char **env, int *pid)
 	return (0);
 }
 
-char	*ft_strdup_n_rem(const char *s1)
-{
-	char	*result;
-	int		i;
-	int		len;
+// char	*ft_strdup_n_rem(const char *s1)
+// {
+// 	char	*result;
+// 	int		i;
+// 	int		len;
 
-	if (!s1)
-		return (NULL);
-	result = malloc(sizeof(char) * (ft_strlen(s1) - 1));
-	if (!result)
-		return (NULL);
-	i = -1;
-	len = ft_strlen(s1) - 1;
-	while (++i < len)
-		result[i] = s1[i];
-	result[i] = 0;
-	return (result);
-}
+// 	if (!s1)
+// 		return (NULL);
+// 	result = malloc(sizeof(char) * (ft_strlen(s1) - 1));
+// 	if (!result)
+// 		return (NULL);
+// 	i = -1;
+// 	len = ft_strlen(s1) - 1;
+// 	while (++i < len)
+// 		result[i] = s1[i];
+// 	result[i] = 0;
+// 	return (result);
+// }

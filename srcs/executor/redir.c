@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 19:38:01 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/10 21:43:00 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 04:32:41 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	redirection_out(t_command **cmd_node, char	**args)
 	}
 }
 
-void	redirection_ag(t_command **cmd_head, char	**args)
+void	redirection_ag(t_command **cmd_head, char **args)
 {
 	char	**temp;
 	int		i;

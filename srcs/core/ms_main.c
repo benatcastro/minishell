@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 04:25:17 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 04:28:23 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	buf = NULL;
 	lex = NULL;
-	en = ft_doublestrdup(env);
+	g_data = ft_calloc(1, sizeof(t_data));
+	g_data->env = ft_doublestrdup(env);
 	i = 0;
-	g_data.ms_pid = get_pid();
+	g_data->ms_pid = get_pid();
 	signals_core();
 	rl_catch_signals = 0;
 	while (1)
@@ -41,11 +42,11 @@ int	main(int argc, char **argv, char **env)
 		if (parser_quote_error_chk(buf))
 			continue ;
 		lex = lex_core(buf);
-		lex = parser_core(lex, en);
+		lex = parser_core(lex, g_data->env);
 		i = 0;
 		if (global_error_chkr(lex))
 			continue ;
-		executor_core(lex, en);
+		executor_core(lex, g_data->env);
 		free (buf);
 	}
 	printf("FREE TEST\n");

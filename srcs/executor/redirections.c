@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:32:32 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/11 00:58:27 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 04:44:17 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,23 @@
 #include <unistd.h>
 #include "nodes.h"
 
-char	*double_writer(char *buf)
-{
-	write (1, "> ", 2);
-	buf = get_next_line(1);
-	buf = ft_strdup_n_rem(buf);
-	if ((!buf) || (buf == NULL))
-		double_writer(buf);
-	return (buf);
-}
+// char	*double_writer(char *buf)
+// {
+// 	write (1, "> ", 2);
+// 	buf = get_next_line(1);
+// 	buf = ft_strdup_n_rem(buf);
+// 	if ((!buf) || (buf == NULL))
+// 		double_writer(buf);
+// 	return (buf);
+// }
 
 void	doubleless_func(char *temp, int fd)
 {
 	char	*buf;
 
+	buf = readline("> ");
 	if (!temp)
 		exit (0);
-	buf = double_writer(buf);
 	if (ft_strcmp(buf, temp))
 		return ;
 	write(fd, buf, ft_strlen(buf));
