@@ -1,5 +1,8 @@
 ##########DIRECTORIES########
-INCLUDES = -I ../../includes/
+INCLUDES =	-I ../../includes/	\
+			-I /Users/$(USER)/.brew/opt/readline/include \
+			-I /usr/include/readline \
+			
 RD_FLAGS2 	= -I /sgoinfre/goinfre/Perso/becastro/homebrew/Cellar/readline/8.1.2/include/readline/
 OBJ_DIR	= ../../objs/minishell/
 CFLAGS = -Wall -Wextra -Werror
