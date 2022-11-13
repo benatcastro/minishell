@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 06:02:18 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 06:04:15 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,7 @@ static void	bin_executor(char **args, char **env)
 	else
 	{
 		rl_on_new_line();
-		rl_redisplay();
-		printf(": command not found\n");
-		// write (2, "BASHado: ", 9);
-		// write (2, args[0], ft_strlen(args[0]));
-		// write (2, ": command not found\n", 20);
+		printf("%s%s: command not found\n", PROMPT, args[0]);
 	}
 	exit (1);
 }
