@@ -6,15 +6,16 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:15:31 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/09 05:38:39 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 05:43:12 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
-#include <stdio.h>
+#include "minishell.h"
 
 int	exit_builtin(void)
 {
 	printf ("exit\n");
+	exit(0);
 	return (0);
 }

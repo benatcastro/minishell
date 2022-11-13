@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 05:18:18 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 05:46:04 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "parser.h"
 #include "executor.h"
 #include "signals.h"
+#include "builtins.h"
 
 
 int	main(int argc, char **argv, char **env)
@@ -37,7 +38,7 @@ int	main(int argc, char **argv, char **env)
 	{
 		buf = readline(PROMPT);
 		if (!buf)
-			return(printf("exit"), 0);
+			exit_builtin();
 		add_history(buf);
 		if (parser_quote_error_chk(buf))
 			continue ;
@@ -89,43 +90,4 @@ int	ft_strlen_sh(const char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-void	ft_export_no_arg(char **cln)
-{
-	int		i;
-	int		f;
-	int		c;
-	int		e;
-	char	*aux;
-	char	**env;
-
-	env = ft_doublestrdup(cln);
-	e = 0;
-	f = 0;
-	while (e != ft_doublestrlen(env) - 1)
-	{
-		i = e;
-		c = i;
-		while (i != ft_doublestrlen(env) - 1)
-		{
-			i++;
-			if (env[i][f] < env[c][f])
-				c = i;
-			else if (env[i][f] == env[c][f])
-			{
-				i--;
-				f++;
-				continue ;
-			}
-			f = 0;
-		}
-		aux = env[e];
-		env[e] = env[c];
-		env[c] = aux;
-		e++;
-	}
-	i = 0;
-	while (env[++i])
-		printf ("%s\n", env[i]);
 }

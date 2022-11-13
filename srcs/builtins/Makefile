@@ -6,7 +6,9 @@ CFLAGS = -Wall -Wextra -Werror
 ############SRCS##############
 SRC_FILES =	builtins_core		\
 			exit				\
-			cd
+			cd					\
+			export				\
+			echo				\
 
 ###############UTILS##########
 OBJF = .cache_exists
