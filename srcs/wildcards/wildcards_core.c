@@ -25,7 +25,7 @@ char	*arg_is_wildcard(char **args)
 	return (NULL);
 }
 
-void	parse_wildcards(char **dfiles, char *arg)
+char	*parse_wildcards(char **dfiles, char *arg)
 {
 	char	**parsing;
 	int		i;
@@ -33,26 +33,22 @@ void	parse_wildcards(char **dfiles, char *arg)
 
 	parsing = ft_split(arg, '*');
 	if (!parsing[0])
-		return ;
-	printf("WD arg: %s\n", arg);
-	fprintf(stderr, "parsing\n");
-	print_double_str(parsing);
+		return (arg);
 	i = -1;
-	chdir("srcs/");
 	while (dfiles[++i])
 	{
 		j = -1;
 		while (parsing[++j])
 		{
-			while (ft_strchr(dfiles[i], parsing[j][0])
-				|| ft_strnstr(dfiles[i], parsing[j], ft_strlen(parsing[j])))
-			{
-				dfiles[i] = ft_strchr(dfiles[i], parsing[j][0]);
+			if (dfiles[i][0] != '*' || dfiles[i][ft_strlen(dfiles[i])] != '0')
+				return (arg);
+			if (ft_strchr(dfiles[i], parsing[j][0])
+				&& ft_strnstr(dfiles[i], parsing[j], ft_strlen(parsing[j])))
 				if (dfiles[i])
-					fprintf(stderr, "Parse: %s\n", dfiles[i]);
-			}
+					printf("wd test: %s\n", dfiles[i]);
 		}
 	}
+	return (arg);
 }
 
 char	**wildcard_core(char **args)
