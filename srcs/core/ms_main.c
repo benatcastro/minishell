@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 05:54:08 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 06:33:19 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,13 @@
 #include "signals.h"
 #include "builtins.h"
 
-
-int	main(int argc, char **argv, char **env)
+void	readline_loop()
 {
 	char	*buf;
 	char	**lex;
-	int		i;
 
-	(void)argc;
-	(void)argv;
 	buf = NULL;
 	lex = NULL;
-	g_data.env = ft_doublestrdup(env);
-	i = 0;
-	g_data.ms_pid = get_pid();
-	rl_catch_signals = 0;
-	signals_core(); //uncomment when signals are ready
 	while (1)
 	{
 		buf = readline(PROMPT);
@@ -43,13 +34,25 @@ int	main(int argc, char **argv, char **env)
 			continue ;
 		lex = lex_core(buf);
 		lex = parser_core(lex, g_data.env);
-		i = 0;
 		if (global_error_chkr(lex))
 			continue ;
 		executor_core(lex, g_data.env);
 		free (buf);
 	}
-	printf("FREE TEST\n");
+}
+
+int	main(int argc, char **argv, char **env)
+{
+	if (argc != 1)
+		return (0);
+	(void)argv;
+	g_data.env = ft_doublestrdup(env);
+	g_data.ms_pid = get_pid();
+	g_data.env[get_env_index("OLDPWD")] = "OLDPWD=TEST";
+	rl_catch_signals = 0;
+	signals_core();
+	readline_loop();
+	printf("readline loop finished\n");
 	return (0);
 }
 
@@ -81,12 +84,12 @@ int	global_error_chkr(char	**lex)
 	return (0);
 }
 
-int	ft_strlen_sh(const char *str)
-{
-	int	i;
+// int	ft_strlen_sh(const char *str)
+// {
+// 	int	i;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
+// 	i = 0;
+// 	while (str[i])
+// 		i++;
+// 	return (i);
+// }

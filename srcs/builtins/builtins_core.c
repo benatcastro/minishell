@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 05:59:08 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 06:30:28 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
 #include "parser.h"
 #include "executor.h"
 #include "builtins.h"
+
+int	get_env_index(char *s)
+{
+	int	i;
+	int	len;
+
+	len = ft_strlen(s);
+	i = -1;
+	while (g_data.env[++i])
+		if (!ft_strncmp(s, g_data.env[i], len))
+			return (i);
+	return (i);
+}
 
 char	*find_in_env(char *s)
 {

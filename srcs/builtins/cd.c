@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/13 05:39:23 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 06:22:38 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,12 @@ static int	check_dir(char *path)
 
 void	cd_builtin(char **args)
 {
+	char	*path;
 
-	if (ft_doublestrlen(args) == 1 || check_dir(args[1]))
+	path = args[1];
+	if (ft_strcmp(path, "-"))
+		path = (find_in_env("OLDPWD") + 7);
+	printf("cd path: %s\n", path);
+	if (ft_doublestrlen(args) == 1 || check_dir(path))
 		return ;
 }
