@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 05:50:26 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 05:59:08 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,35 @@
 #include "executor.h"
 #include "builtins.h"
 
+char	*find_in_env(char *s)
+{
+	int	i;
+	int	len;
+
+	len = ft_strlen(s);
+	i = -1;
+	while (g_data.env[++i])
+		if (!ft_strncmp(s, g_data.env[i], len))
+			return (g_data.env[i]);
+	return (NULL);
+}
 
 void	builtins(char **cont, char **env)
 {
-	int		i;
-	char	*pwd_dir;
+	int	i;
 
 	i = -1;
 	if (!ft_strncmp(cont[0], "cd", 3))
 		cd_builtin(cont);
 	else if (!ft_strncmp(cont[0], "env", 4))
 	{
-		while (env[++i])
-			printf ("%s\n", env[i]);
+		while (g_data.env[++i])
+			printf ("%s\n", g_data.env[i]);
 	}
 	else if (!ft_strncmp(cont[0], "pwd", 4))
-	{
-		pwd_dir = getcwd(NULL, 0);
-		printf("%s\n", pwd_dir);
-		free(pwd_dir);
-	}
+		printf("%s\n", find_in_env("PWD"));
 	else if (!ft_strncmp(cont[0], "exit", 5))
-	{
-		printf ("exit\n");
-		exit (0);
-	}
+		exit_builtin();
 	else if (!ft_strncmp(cont[0], "export", 7))
 	{
 		if (!cont[1])
