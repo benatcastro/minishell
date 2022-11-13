@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 01:41:35 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/13 11:17:04 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	first_pipe(int *pid, t_command *temp, int fd[2][2], char **env, int f[2])
 		pid[0] = fork();
 		if (pid[0] == 0)
 		{
-			g_data.sub_pid = 1;
 			redir_link(&temp, temp->args);
 			dup2(fd[f[0]][1], STDOUT_FILENO);
 			fd_closer(fd);
@@ -36,7 +35,6 @@ int	first_pipe(int *pid, t_command *temp, int fd[2][2], char **env, int f[2])
 		pid[0] = fork();
 		if (pid[0] == 0)
 		{
-			g_data.sub_pid = 1;
 			redir_link(&temp, temp->args);
 			redirection_core(temp, env);
 		}
@@ -47,10 +45,10 @@ int	first_pipe(int *pid, t_command *temp, int fd[2][2], char **env, int f[2])
 
 int	middle_pipes(int *pid, t_command *temp, char **env, int fd[2][2])
 {
+	g_data.sub_pid = 1;
 	pid[1] = fork();
 	if (pid[1] == 0)
 	{
-		g_data.sub_pid = 1;
 		redir_link(&temp, temp->args);
 		dup2(fd[0][0], STDIN_FILENO);
 		dup2(fd[1][1], STDOUT_FILENO);
@@ -62,6 +60,7 @@ int	middle_pipes(int *pid, t_command *temp, char **env, int fd[2][2])
 
 int	last_pipe(int *pid, t_command *temp, int fd[2][2], char **env)
 {
+	g_data.sub_pid = 1;
 	pid[2] = fork();
 	if (pid[2] == 0)
 	{
@@ -82,6 +81,7 @@ void	exec_morepipes(t_command **cmd_table,
 	int				fd[2][2];
 	int				f[2];
 
+	g_data.sub_pid = 1;
 	f[0] = 0;
 	f[1] = 1;
 	temp = (*cmd_table);

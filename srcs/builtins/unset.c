@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 06:45:32 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/13 09:20:12 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 11:11:34 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	rebuild_env(char *var)
 	int		i;
 	int		j;
 	char	**new_env;
-	extern t_data g_data;
 	//print_double_str(g_data.env);
 	//printf("len: %d\n", ft_doublestrlen(g_data.env));
 	// printf(" %s || %s || |%d|\n", var, g_data.env[i], len);
