@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 11:24:59 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/13 11:36:13 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	env_comparer(char *s, char *env_s)
 	if (len != len_s)
 		return (0);
 	while (env_s[++i])
-		if ((env_s[i] == s[i] && env_s[i + 1]))
+		if (env_s[i] == s[i] && i == len - 1)
 			return (1);
 	return (0);
 }
