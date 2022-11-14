@@ -6,11 +6,12 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 05:45:07 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/14 16:23:01 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/14 21:57:37 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "expander.h"
 #include "builtins.h"
 
 void	ft_doublestradd(char *arg)
@@ -37,14 +38,9 @@ int	export_arg_chkr(char *arg)
 
 	i = 0;
 	cont = 0;
-	while (arg[++i])
-		if (arg[i] == '=')
-			cont++;
-	if (cont == 0)
+	if ((arg[0] < 97) || (arg[0] > 122))
 	{
-		write (2, "Invalid export argument: ", 25);
-		write (2, arg, ft_strlen(arg));
-		write (2, "\n", 1);
+		printf ("Invalid export argument: %s\n", arg);
 		return (-1);
 	}
 	return (1);
@@ -110,16 +106,55 @@ void	ft_export_no_arg(void)
 	}
 }
 
+void	export_temp(char **temp, char *str)
+{
+	char	*t1;
+	char	*t2;
+	int		i;
+	int		c;
+
+	t1 = ft_calloc(num_until_equal(str) + 1, sizeof(char *));
+	t2 = ft_calloc((ft_strlen(str) - num_until_equal(str)), sizeof(char *));
+	i = -1;
+	while (++i <= num_until_equal(str))
+		t1[i] = str[i];
+	t1[i] = 0;
+	c = 0;
+	i = (num_until_equal(str) + 1);
+	while (i++ <= (int)ft_strlen(str))
+		t2[c++] = str[i];
+	t2[c] = 0;
+	temp[0] = t1;
+	temp[1] = t2;
+	temp[2] = NULL;
+}
+
 void	ft_export_arg(char **args)
 {
-	int	i;
+	int		i;
+	char	**temp;
+	char	**uns;
 
 	i = 0;
+	uns = NULL;
 	while (args[++i])
+	{
 		if (export_arg_chkr(args[i]) == -1)
 			return ;
+	}
 	i = 0;
 	while (args[++i])
+	{
+		temp = ft_calloc(2, sizeof(char *));
+		export_temp(temp, args[i]);
+		if (!ft_strncmp(args[i], find_in_env(temp[0]), (size_t)ft_strlen(temp[0])))
+		{
+			uns[0] = ft_strdup("export");
+			uns[1] = ft_strdup(temp[1]);
+			uns[2] = NULL;
+			unset_builtin(uns);
+		}
 		ft_doublestradd(args[i]);
+	}
 	return ;
 }

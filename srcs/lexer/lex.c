@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:58:04 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 19:55:35 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:54:30 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static char	*lex_first_spc_rm(char *str)
 			e--;
 	while (str[i] == 32)
 		i++;
+	if (i == (int)ft_strlen(str))
+		return (NULL);
 	rtn = ft_calloc(sizeof(char),
 			(ft_strlen(str) - i - (ft_strlen(str) - e - 1) + 1));
 	while (i <= e)

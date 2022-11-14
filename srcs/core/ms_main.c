@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/14 15:28:25 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:47:24 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,28 @@
 #include "signals.h"
 #include "builtins.h"
 
-void	readline_loop()
+void	readline_loop(void)
 {
 	char	*buf;
 	char	**lex;
+	char	*tmp;
 
 	buf = NULL;
 	lex = NULL;
+	tmp = NULL;
 	while (1)
 	{
+		free(tmp);
 		buf = readline(PROMPT);
 		if (!buf)
-			exit_builtin();
+			break ;
+		tmp = ft_strtrim(buf, " ");
+		if (buf[0] == '\0' || !tmp[0])
+			continue ;
 		add_history(buf);
 		if (parser_quote_error_chk(buf))
 			continue ;
-		lex = lex_core(buf);
-		lex = parser_core(lex);
+		lex = parser_core(lex_core(buf));
 		if (global_error_chkr(lex))
 			continue ;
 		executor_core(lex);
@@ -46,13 +51,13 @@ int	main(int argc, char **argv, char **env)
 	if (argc != 1)
 		return (0);
 	(void)argv;
-	g_data.env = ft_doublestrdup(env);
 	g_data.ms_pid = get_pid();
+	g_data.env = ft_doublestrdup(env);
 	rebuild_env("OLDPWD");
 	rl_catch_signals = 0;
 	signals_core();
 	readline_loop();
-	printf("readline loop finished\n");
+	printf("exit\n");
 	return (0);
 }
 

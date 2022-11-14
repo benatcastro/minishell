@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/14 16:47:57 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:41:35 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,19 +87,11 @@ static void	bin_executor(char **args)
 
 	path = bin_path_finder(args);
 	if (path)
-	{
 		execve(path, args, g_data.env);
-	}
 	else if (!path)
 	{
-		g_data.env = 0;
-		return ((void)printf("%s %s: No such file or directory\n",
-				PROMPT, args[0]));
-	}
-	else
-	{
-		rl_on_new_line();
-		printf ("%s %s: command not found\n",PROMPT, args[0]);
+		//rl_on_new_line();
+		printf ("%s %s: command not found\n", PROMPT, args[0]);
 	}
 	exit (1);
 }
