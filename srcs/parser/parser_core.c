@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_core.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 05:32:23 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:22:04 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "lexer.h"
 #include "expander.h"
 
-char	**parser_core(char **str, char **env)
+char	**parser_core(char **str)
 {
 	int		i;
 	char	**aux;
@@ -29,7 +29,7 @@ char	**parser_core(char **str, char **env)
 	{
 		aux = parser_quotes(str[i]);
 		aux = parser_double_quote_free(aux);
-		rtn = expander_core(aux, env);
+		rtn = expander_core(aux);
 		dub[i] = ft_strdup(rtn);
 		free (rtn);
 	}

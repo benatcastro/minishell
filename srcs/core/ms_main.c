@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 11:37:03 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:28:25 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	readline_loop()
 		if (parser_quote_error_chk(buf))
 			continue ;
 		lex = lex_core(buf);
-		lex = parser_core(lex, g_data.env);
+		lex = parser_core(lex);
 		if (global_error_chkr(lex))
 			continue ;
-		executor_core(lex, g_data.env);
+		executor_core(lex);
 		free (buf);
 	}
 }

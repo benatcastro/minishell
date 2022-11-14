@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:19:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 05:26:55 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:29:12 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "minishell.h"
 #include "lexer.h"
 
-char	**expander(char	*str, char **env)
+char	**expander(char	*str)
 {
 	int		i;
 	int		n;
@@ -30,7 +30,7 @@ char	**expander(char	*str, char **env)
 	{
 		if ((temp[i][0] == 36) && (ft_strlen(temp[i]) > 1))
 		{
-			aux = env_finder(temp[i], env);
+			aux = env_finder(temp[i]);
 			temp[i] = ft_strdup(aux);
 			//free (aux);
 		}

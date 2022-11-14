@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 05:45:07 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/13 17:31:41 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:23:01 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,10 @@ void	ft_export_no_arg(void)
 	}
 	i = 0;
 	while (env[++i])
+	{
+		printf ("declare -x ");
 		printf ("%s\n", env[i]);
+	}
 }
 
 void	ft_export_arg(char **args)

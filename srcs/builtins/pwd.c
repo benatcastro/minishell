@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 08:44:12 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/09 09:39:19 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:43:21 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "stdio.h"
 
-void	pwd_builtin(char **env)
+void	pwd_builtin(char **g_data.env)
 {
-	//printf("%s\n", find_in_env("PWD", env));
+	//printf("%s\n", find_in_env("PWD"));
 }

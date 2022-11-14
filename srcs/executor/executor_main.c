@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_main.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 19:54:45 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:47:57 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int	builtin_checker(char **args)
 {
-	if (!ft_strncmp(args[0], ENV, 4))
+	if (!ft_strncmp(args[0], "env", 4))
 		return (1);
 	else if (!ft_strncmp(args[0], CD, 3))
 		return (1);
@@ -99,7 +99,7 @@ static void	bin_executor(char **args)
 	else
 	{
 		rl_on_new_line();
-		printf("%s %s: command not found\n",PROMPT, args[0]);
+		printf ("%s %s: command not found\n",PROMPT, args[0]);
 	}
 	exit (1);
 }

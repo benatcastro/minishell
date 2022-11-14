@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 21:32:42 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/11 01:15:48 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:22:04 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "nodes.h"
 #include "builtins.h"
 
-int	first_pipe_op(t_command *temp, int fd[2], char **env, int *pid)
+int	first_pipe_op(t_command *temp, int fd[2], int *pid)
 {
 	pid[0] = fork();
 	if (pid[0] == 0)
@@ -25,12 +25,12 @@ int	first_pipe_op(t_command *temp, int fd[2], char **env, int *pid)
 		redir_link(&temp, temp->args);
 		dup2(fd[1], STDOUT_FILENO);
 		close (fd[1]);
-		redirection_core(temp, env);
+		redirection_core(temp);
 	}
 	return (0);
 }
 
-int	second_pipe_op(t_command *temp, int fd[2], char **env, int *pid)
+int	second_pipe_op(t_command *temp, int fd[2], int *pid)
 {
 	pid[1] = fork();
 	if (pid[1] == 0)
@@ -38,7 +38,7 @@ int	second_pipe_op(t_command *temp, int fd[2], char **env, int *pid)
 		redir_link(&temp, temp->args);
 		dup2(fd[0], STDIN_FILENO);
 		close (fd[0]);
-		redirection_core(temp, env);
+		redirection_core(temp);
 	}
 	close (fd[0]);
 	return (0);

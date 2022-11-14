@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/13 20:01:21 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:25:49 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_command_table
 
 //////////////////FNCS////////////////////////////
 
-int				executor_core(char **cmd, char**env);
+int				executor_core(char **cmd);
 void			fill_cmd(t_command *node, char **cmds);
 t_command_table	**create_command_table(t_command_table **head, char **cmds);
 char			*ft_strdup_n_rem(const char *s1);
@@ -74,14 +74,14 @@ void			redirection_core(t_command *temp);
 int				builtin_checker(char **args);
 char			*env_path_maker(char *val, int *i);
 char			*bin_path_finder(char **args);
-//static void		bin_executor(char **args, char **env);
+//static void		bin_executor(char **args);
 void			execute_cmds(char **args);
 void			exec_morepipes(t_command **cmd_table,
-					char **env, pid_t pid[3], int i[2]);
+					pid_t pid[3], int i[2]);
 int				first_pipe_op(t_command *temp,
-					int fd[2], char **env, int *pid);
+					int fd[2], int *pid);
 int				second_pipe_op(t_command *temp,
-					int fd[2], char **env, int *pid);
+					int fd[2], int *pid);
 
 #endif
 
@@ -90,6 +90,6 @@ int				second_pipe_op(t_command *temp,
 	// pid[2] = fork();
 	// if (pid[2] == 0)
 	// 	return (redir_link(&temp, temp->args), dup2(fd[1][0], STDIN_FILENO),
-	// 			fd_closer (fd), redirection_core(temp, env), 0);
+	// 			fd_closer (fd), redirection_core(temp), 0);
 	// fd_closer(fd);
 	// return (0);

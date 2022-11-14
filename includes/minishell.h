@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 17:05:14 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:26:15 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ int		signals_core(void);
 void	print_double_str(char **str);
 char	**ft_split_exec(char const *s, char c);
 int		global_error_chkr(char	**lex);
-char	*env_finder(char *str, char **env);
+char	*env_finder(char *str);
 
 #endif

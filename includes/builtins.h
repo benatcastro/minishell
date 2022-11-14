@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:16:38 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/13 17:24:01 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:28:00 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 /******BUILTINS DEFINES******/
 # define CD "cd"
-# define ENV "env"
 # define PWD "pwd"
 # define EXIT "exit"
 # define EXPORT "export"

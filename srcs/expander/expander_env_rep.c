@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_env_rep.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:29:59 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 05:27:12 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:36:14 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "minishell.h"
 #include "lexer.h"
 
-char	*env_finder(char *str, char **env)
+char	*env_finder(char *str)
 {
 	int		i;
 	int		n;
@@ -26,15 +26,15 @@ char	*env_finder(char *str, char **env)
 	p = ft_itoa((int)getpid());
 	if (str[0] == 36)
 		return (p);
-	while (env[++i])
+	while (g_data.env[++i])
 	{
-		if ((!ft_strncmp(str, env[i], (num_until_equal(env[i]))))
-			&& ((int)ft_strlen(str) == num_until_equal(env[i])))
+		if ((!ft_strncmp(str, g_data.env[i], (num_until_equal(g_data.env[i]))))
+			&& ((int)ft_strlen(str) == num_until_equal(g_data.env[i])))
 		{
 			val = ft_calloc(sizeof(char *),
-					(ft_strlen(env[i]) - ft_strlen(str)));
+					(ft_strlen(g_data.env[i]) - ft_strlen(str)));
 			n = (ft_strlen(str));
-			val = env_val_maker(val, env, &n, &i);
+			val = env_val_maker(val, &n, &i);
 			free (str);
 			return (val);
 		}
@@ -42,13 +42,13 @@ char	*env_finder(char *str, char **env)
 	return (val = "", free (str), val);
 }
 
-char	*env_val_maker(char *val, char **env, int *n, int *i)
+char	*env_val_maker(char *val, int *n, int *i)
 {
 	int	r;
 
 	r = 0;
-	while (env[*i][++(*n)])
-		val[r++] = env[*i][*n];
+	while (g_data.env[*i][++(*n)])
+		val[r++] = g_data.env[*i][*n];
 	val[r] = 0;
 	return (val);
 }

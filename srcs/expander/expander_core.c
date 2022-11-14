@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:31:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/13 05:26:43 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:22:04 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "minishell.h"
 #include "lexer.h"
 
-char	*expander_core(char **cmds, char **env)
+char	*expander_core(char **cmds)
 {
 	int		i;
 	char	*aux1;
@@ -26,10 +26,10 @@ char	*expander_core(char **cmds, char **env)
 	while (i <= (ft_doublestrlen(cmds) - 1))
 	{
 		if (!aux1)
-			aux1 = expander_main(cmds[i], env);
+			aux1 = expander_main(cmds[i]);
 		else if (aux1)
 		{
-			aux2 = expander_main(cmds[i], env);
+			aux2 = expander_main(cmds[i]);
 			aux1 = ft_strjoin_free(aux1, aux2);
 		}
 		i++;
@@ -73,7 +73,7 @@ char	*expand_first_trimmer(char	*str)
 	return (rtn);
 }
 
-char	*expander_main(char	*str, char **env)
+char	*expander_main(char	*str)
 {
 	char	**rtn;
 	char	*temp;
@@ -87,14 +87,14 @@ char	*expander_main(char	*str, char **env)
 	else if (str[0] == DOUBLE_QUOTE)
 	{
 		temp = expand_trimmer(str);
-		rtn = expander(temp, env);
+		rtn = expander(temp);
 		if (str)
 			free (str);
 		if (temp)
 			free (temp);
 	}
 	else
-		rtn = expander(str, env);
+		rtn = expander(str);
 	r = double_joiner(rtn);
 	ft_doublefree(rtn);
 	return (r);

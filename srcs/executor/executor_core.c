@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/13 12:55:03 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:22:04 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	fd_closer(int fd[2][2])
 	}
 }
 
-void	pipe_core(t_command **cmd_table, char **env)
+void	pipe_core(t_command **cmd_table)
 {
 	t_command		*temp;
 	int				i[2];
@@ -48,10 +48,10 @@ void	pipe_core(t_command **cmd_table, char **env)
 		temp = temp->next;
 		i[0]++;
 	}
-	exec_morepipes(cmd_table, env, pid, i);
+	exec_morepipes(cmd_table, pid, i);
 }
 
-int	executor_core(char **cmd, char **env)
+int	executor_core(char **cmd)
 {
 	t_command_table	*table_head;
 	t_command_table	*aux;
@@ -61,7 +61,7 @@ int	executor_core(char **cmd, char **env)
 	aux = table_head;
 	while (aux)
 	{
-		pipe_core(aux->cmds, env);
+		pipe_core(aux->cmds);
 		aux = aux->next;
 	}
 	//free_command_table_nodes(&table_head);

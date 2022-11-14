@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 19:54:23 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:07:02 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	env_comparer(char *s, char *env_s)
 	return (0);
 }
 
-int	get_env_index(char *s)
+int	env_index(char *s)
 {
 	int	i;
 	int	len;
