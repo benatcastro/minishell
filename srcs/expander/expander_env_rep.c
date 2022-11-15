@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:29:59 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/14 18:23:46 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/15 20:02:00 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char	*env_finder(char *str)
 	p = ft_itoa(g_data.ms_pid);
 	if (str[0] == 36)
 		return (p);
+	else if (str[0] == 63)
+		return (ft_itoa(g_data.exit_val));
 	while (g_data.env[++i])
 	{
 		if ((!ft_strncmp(str, g_data.env[i], (num_until_equal(g_data.env[i]))))

@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/14 16:50:46 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/15 17:24:32 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	update_env(char *old_cwd)
 	char	new_cwd[256];
 
 	temp = ft_calloc(3, sizeof(char *));
-
 	if (!find_in_env("OLDPWD"))
 	{
 		temp[0] = ft_strdup("export");

@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 06:45:32 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/14 15:49:02 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:26:00 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,16 @@ void	rebuild_env(char *var)
 	int		i;
 	int		j;
 	char	**new_env;
-	//print_double_str(g_data.env);
-	//printf("len: %d\n", ft_doublestrlen(g_data.env));
-	// printf(" %s || %s || |%d|\n", var, g_data.env[i], len);
+
 	i = -1;
 	j = -1;
 	new_env = ft_calloc(ft_doublestrlen(g_data.env) - 1, sizeof(char *));
 	while (g_data.env[++i])
 		if (!env_comparer(var, g_data.env[i]))
 			new_env[++j] = ft_strdup(g_data.env[i]);
-		// else
-			// printf("Not coping :%s\n", g_data.env[i]);
 	new_env[j + 1] = NULL;
 	ft_doublefree(g_data.env);
 	g_data.env = new_env;
-	//print_double_str(g_data.env);
 }
 
 void	unset_builtin(char **args)

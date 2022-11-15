@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:19:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/14 15:29:12 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/15 19:48:45 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	expand_arg_num(char *str)
 
 	e = 0;
 	c = 0;
+	if (str[0] == SINGLE_QUOTE)
+		return (1);
 	while (str[e])
 	{
 		if (str[e] == 36)

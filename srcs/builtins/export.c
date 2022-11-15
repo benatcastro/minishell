@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 05:45:07 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/14 21:57:37 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/15 19:06:15 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,40 @@ void	ft_doublestradd(char *arg)
 	g_data.env[i + 1] = 0;
 }
 
+int	export_directory_chk(char *arg)
+{
+	int	i;
+	int	cont;
+
+	i = -1;
+	cont = 0;
+	while (arg[++i])
+		if (arg[i] == '/')
+			cont++;
+	if (cont == 0)
+		return (0);
+	else
+		return (1);
+}
+
 int	export_arg_chkr(char *arg)
 {
 	int	i;
 	int	cont;
 
-	i = 0;
+	i = -1;
 	cont = 0;
-	if ((arg[0] < 97) || (arg[0] > 122))
+	while (arg[++i])
+		if (arg[i] == '=')
+			cont++;
+	if ((((arg[0] < 97) || (arg[0] > 122))
+			&& ((arg[0] < 65) || (arg[0] > 90)))
+		&& (export_directory_chk(arg) == 1))
 	{
 		printf ("Invalid export argument: %s\n", arg);
 		return (-1);
 	}
-	return (1);
+	return (cont);
 }
 
 void	ft_doubleprint_err(char **str)
@@ -116,11 +137,11 @@ void	export_temp(char **temp, char *str)
 	t1 = ft_calloc(num_until_equal(str) + 1, sizeof(char *));
 	t2 = ft_calloc((ft_strlen(str) - num_until_equal(str)), sizeof(char *));
 	i = -1;
-	while (++i <= num_until_equal(str))
+	while (++i < num_until_equal(str))
 		t1[i] = str[i];
 	t1[i] = 0;
 	c = 0;
-	i = (num_until_equal(str) + 1);
+	i = (num_until_equal(str));
 	while (i++ <= (int)ft_strlen(str))
 		t2[c++] = str[i];
 	t2[c] = 0;
@@ -141,20 +162,18 @@ void	ft_export_arg(char **args)
 	{
 		if (export_arg_chkr(args[i]) == -1)
 			return ;
-	}
-	i = 0;
-	while (args[++i])
-	{
-		temp = ft_calloc(2, sizeof(char *));
-		export_temp(temp, args[i]);
-		if (!ft_strncmp(args[i], find_in_env(temp[0]), (size_t)ft_strlen(temp[0])))
+		else if (export_arg_chkr(args[i]) == 0)
 		{
-			uns[0] = ft_strdup("export");
-			uns[1] = ft_strdup(temp[1]);
-			uns[2] = NULL;
-			unset_builtin(uns);
+			if (find_in_env(args[i]) == NULL)
+				ft_doublestradd(args[i]);
 		}
-		ft_doublestradd(args[i]);
-	}
-	return ;
+		else if (export_arg_chkr(args[i]) > 0)
+		{
+			temp = ft_calloc(2, sizeof(char *));
+			export_temp(temp, args[i]);
+			if (find_in_env(temp[0]) != NULL)
+				rebuild_env(temp[0]);
+			ft_doublestradd(args[i]);
+		}
+	}	
 }

@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:58:04 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/14 16:54:30 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/15 17:26:25 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	**temp_maker(char *rtn)
 		t2 = malloc(sizeof(char) * ft_strlen(rtn));
 		while (rtn[++c])
 			t2[c - 1] = rtn[c];
-		rtn[c - 1] = 0;
+		t2[c - 1] = 0;
 	}
 	if (rtn[0] == '<' && rtn[1] != '<')
 	{
@@ -97,7 +97,7 @@ char	**temp_maker(char *rtn)
 		t2 = malloc(sizeof(char) * ft_strlen(rtn));
 		while (rtn[++c])
 			t2[c - 1] = rtn[c];
-		rtn[c - 1] = 0;
+		t2[c - 1] = 0;
 	}
 	if (rtn[0] == '<' && rtn[1] == '<')
 	{
@@ -120,7 +120,7 @@ char	**temp_maker(char *rtn)
 		t2 = malloc(sizeof(char) * ft_strlen(rtn));
 		while (rtn[++c])
 			t2[c - 1] = rtn[c];
-		rtn[c - 1] = 0;
+		t2[c - 1] = 0;
 	}
 	if (rtn[0] == '>' && rtn[1] == '>')
 	{
@@ -132,7 +132,7 @@ char	**temp_maker(char *rtn)
 		t2 = malloc(sizeof(char) * ft_strlen(rtn) - 1);
 		while (rtn[++c])
 			t2[c - 2] = rtn[c];
-		rtn[c - 2] = 0;
+		t2[c - 2] = 0;
 	}
 	temp[0] = ft_strdup(t1);
 	temp[1] = ft_strdup(t2);
