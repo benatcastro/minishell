@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:32:32 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/14 16:00:58 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/15 21:04:28 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,12 @@ void	in_redirection(t_redir *t, int fd[2])
 	if (ft_strcmp(t->content[0], LESS))
 	{
 		if (access(t->content[1], F_OK) == -1)
+		{
+			write (2, "BASHado: ", 9);
+			write (2, t->content[1], ft_strlen(t->content[1]));
+			write (2, ": No such file or directory\n", 28);
 			exit (0);
+		}
 		else
 			fd[0] = open(t->content[1], O_RDONLY);
 	}
@@ -87,6 +92,37 @@ void	out_redirection(t_command *temp, t_redir *t_out, int fd[2])
 		return ;
 }
 
+void	redir_permission_chckr(t_command *temp)
+{
+	t_redir		*t;
+	t_redir		*t_out;
+
+	t = temp->in;
+	t_out = temp->out;
+	while (t != NULL)
+	{
+		if (!access(t->content[1], R_OK))
+		{
+			write (2, "BASHado: ", 9);
+			write (2, t->content[1], ft_strlen(t->content[1]));
+			write (2, ": Permission denied\n", 20);
+			exit (1);
+		}
+		t = t->next;
+	}
+	while (t_out != NULL)
+	{
+		if (!access(t_out->content[1], R_OK))
+		{
+			write (2, "BASHado: ", 9);
+			write (2, t_out->content[1], ft_strlen(t_out->content[1]));
+			write (2, ": Permission denied\n", 20);
+			exit (1);
+		}
+		t_out = t_out->next;
+	}
+}
+
 void	redirection_core(t_command *temp)
 {
 	t_redir		*t;
@@ -95,6 +131,7 @@ void	redirection_core(t_command *temp)
 
 	t = temp->in;
 	t_out = temp->out;
+	redir_permission_chckr(temp);
 	if (t != NULL)
 		in_redirection(t, fd);
 	if (t_out == NULL && t != NULL)
