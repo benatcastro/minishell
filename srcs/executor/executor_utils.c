@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/14 19:04:53 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:28:14 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 int	first_pipe(int *pid, t_command *temp, int fd[2][2], int f[2])
 {
+	g_data.sub_pid = 1;
 	if (f[1] == 1)
 	{
 		pid[0] = fork();
@@ -46,6 +47,7 @@ int	first_pipe(int *pid, t_command *temp, int fd[2][2], int f[2])
 
 int	middle_pipes(int *pid, t_command *temp, int fd[2][2])
 {
+	g_data.sub_pid = 1;
 	pid[1] = fork();
 	if (pid[1] == 0)
 	{
@@ -60,6 +62,7 @@ int	middle_pipes(int *pid, t_command *temp, int fd[2][2])
 
 int	last_pipe(int *pid, t_command *temp, int fd[2][2])
 {
+	g_data.sub_pid = 1;
 	pid[2] = fork();
 	if (pid[2] == 0)
 	{
@@ -107,6 +110,7 @@ void	exec_morepipes(t_command **cmd_table, pid_t pid[3], int i[2])
 	if (temp->next == NULL)
 		f[1] = 0;
 	first_pipe(pid, temp, fd, f);
+	g_data.sub_pid = 0;
 	special_builtins(temp);
 	if (temp->next == NULL)
 		return ;
@@ -120,8 +124,8 @@ void	exec_morepipes(t_command **cmd_table, pid_t pid[3], int i[2])
 	last_pipe(pid, temp, fd);
 	special_builtins(temp);
 	i[1] = 0;
+	g_data.sub_pid = 0;
 	while (i[1]++ < 3)
 		waitpid(pid[i[1]], NULL, 0);
-	g_data.sub_pid = 0;
 	unlink(".temp");
 }

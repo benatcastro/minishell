@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_main.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/14 18:41:35 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:24:02 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,19 @@ char	*bin_path_finder(char **args)
 static void	bin_executor(char **args)
 {
 	char	*path;
+	int		exec_return;
 
+	exec_return = 0;
 	path = bin_path_finder(args);
-	if (path)
-		execve(path, args, g_data.env);
-	else if (!path)
+	if (!path)
 	{
-		//rl_on_new_line();
-		printf ("%s %s: command not found\n", PROMPT, args[0]);
+		printf("%s%s: No such file or directory\n", PROMPT, args[0]);
+		return ;
 	}
+	if (path)
+		exec_return = execve(path, args, g_data.env);
+	if (exec_return == 0)
+		printf("%s%s: command not found\n", PROMPT, args[0]);
 	exit (1);
 }
 
@@ -107,4 +111,3 @@ void	execute_cmds(char **args)
 	else
 		bin_executor(args);
 }
-
