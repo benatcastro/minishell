@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/14 16:07:02 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/15 19:04:48 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,30 @@ int	env_index(char *s)
 char	*find_in_env(char *s)
 {
 	int	i;
-	int	len;
 
-	len = ft_strlen(s);
+	if (!s)
+		return (NULL);
 	i = -1;
 	while (g_data.env[++i])
 		if (env_comparer(s, g_data.env[i]))
 			return (g_data.env[i]);
 	return (NULL);
+}
+
+int	env_printable(char *arg)
+{
+	int	i;
+	int	cont;
+
+	i = -1;
+	cont = 0;
+	while (arg[++i])
+		if (arg[i] == '=')
+			cont++;
+	if (cont == 0)
+		return (-1);
+	else
+		return (1);
 }
 
 void	builtins(char **cont)
@@ -70,8 +86,11 @@ void	builtins(char **cont)
 	if (!ft_strncmp(cont[0], "cd", 3))
 		exit(0);
 	else if (!ft_strncmp(cont[0], "env", 4))
+	{
 		while (g_data.env[++i])
-			printf ("%s\n", g_data.env[i]);
+			if (env_printable(g_data.env[i]) == 1)
+				printf ("%s\n", g_data.env[i]);
+	}
 	else if (!ft_strncmp(cont[0], "pwd", 4))
 		printf("%s\n", getcwd(cwd, sizeof(cwd)));
 	else if (!ft_strncmp(cont[0], "exit", 5))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_splitter.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 20:16:53 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/13 05:29:15 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/15 19:56:14 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	**expand_splitter(char *str, char **rtn)
 	aux = NULL;
 	e = -1;
 	n = 0;
+	if (str[0] == SINGLE_QUOTE)
+		return (rtn[0] = ft_strdup(str), rtn[1] = 0, rtn);
 	while (str[++e])
 	{
 		l = e;
