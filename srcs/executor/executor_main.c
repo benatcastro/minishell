@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_main.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/14 18:41:35 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/15 20:05:37 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,25 +50,17 @@ char	*env_path_maker(char *val, int *i)
 	return (val);
 }
 
-char	*bin_path_finder(char **args)
+char	*bin_path_finder(char **args, int *exit)
 {
 	char	*temp;
 	char	**p;
 	int		i;
 
+	*exit = 0;
 	if (!find_in_env("PATH"))
-		return (NULL);
+		return (*exit = 1, NULL);
 	i = -1;
-	while (g_data.env[++i])
-	{
-		if ((!ft_strncmp("PATH", g_data.env[i], 4)))
-		{
-			temp = ft_calloc(sizeof(char *),
-					(ft_strlen(g_data.env[i]) - 5));
-			temp = env_path_maker(temp, &i);
-			break ;
-		}
-	}
+	temp = find_in_env("PATH") + 5;
 	p = ft_split_exec(temp, 58);
 	i = -1;
 	temp = NULL;
@@ -84,16 +76,24 @@ char	*bin_path_finder(char **args)
 static void	bin_executor(char **args)
 {
 	char	*path;
+	int		exec_return;
+	int		exit_val;
 
-	path = bin_path_finder(args);
+	exec_return = 0;
+	path = bin_path_finder(args, &exit_val);
 	if (path)
-		execve(path, args, g_data.env);
-	else if (!path)
+		exec_return = execve(path, args, g_data.env);
+	if (exec_return == 0 && exit_val != 1)
 	{
-		//rl_on_new_line();
-		printf ("%s %s: command not found\n", PROMPT, args[0]);
+		printf("%s%s: command not found\n", PROMPT, args[0]);
+		exit (127);
 	}
-	exit (1);
+	else if (exec_return == 0 && exit_val == 1)
+	{
+		printf("%s%s: No such file or directory\n", PROMPT, args[0]);
+		exit (127);
+	}
+	exit (exec_return);
 }
 
 void	execute_cmds(char **args)
@@ -107,4 +107,3 @@ void	execute_cmds(char **args)
 	else
 		bin_executor(args);
 }
-

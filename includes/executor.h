@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/14 15:25:49 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/15 20:04:36 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void			redirection_core(t_command *temp);
 
 int				builtin_checker(char **args);
 char			*env_path_maker(char *val, int *i);
-char			*bin_path_finder(char **args);
+char			*bin_path_finder(char **args, int *exit);
 //static void		bin_executor(char **args);
 void			execute_cmds(char **args);
 void			exec_morepipes(t_command **cmd_table,
