@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 05:45:07 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/15 19:06:15 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/15 20:15:44 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	export_arg_chkr(char *arg)
 			&& ((arg[0] < 65) || (arg[0] > 90)))
 		&& (export_directory_chk(arg) == 1))
 	{
+		g_data.exit_val = 1;
 		printf ("Invalid export argument: %s\n", arg);
 		return (-1);
 	}
@@ -175,5 +176,5 @@ void	ft_export_arg(char **args)
 				rebuild_env(temp[0]);
 			ft_doublestradd(args[i]);
 		}
-	}	
+	}
 }
