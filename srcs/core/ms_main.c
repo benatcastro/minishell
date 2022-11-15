@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/14 18:47:24 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/15 19:10:11 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "executor.h"
 #include "signals.h"
 #include "builtins.h"
+#include <errno.h>
 
 void	readline_loop(void)
 {
@@ -53,6 +54,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	g_data.ms_pid = get_pid();
 	g_data.env = ft_doublestrdup(env);
+	g_data.exit_val = 0;
 	rebuild_env("OLDPWD");
 	rl_catch_signals = 0;
 	signals_core();

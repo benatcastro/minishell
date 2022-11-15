@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/15 16:58:09 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/15 19:08:57 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	first_pipe(int *pid, t_command *temp, int fd[2][2], int f[2])
 			redirection_core(temp);
 		}
 	}
-	waitpid(pid[0], NULL, 0);
+	waitpid(pid[0], &g_data.exit_val, 0);
+	get_exit_status();
 	g_data.sub_pid = 0;
 	return (0);
 }
@@ -127,7 +128,8 @@ void	exec_morepipes(t_command **cmd_table, pid_t pid[3], int i[2])
 	special_builtins(temp);
 	i[1] = 0;
 	while (i[1]++ < 3)
-		waitpid(pid[i[1]], NULL, 0);
+		waitpid(pid[i[1]], &g_data.exit_val, 0);
+	get_exit_status();
 	g_data.sub_pid = 0;
 	unlink(".temp");
 }

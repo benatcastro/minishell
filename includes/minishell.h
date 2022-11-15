@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/14 15:26:15 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:59:12 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ void	print_double_str(char **str);
 char	**ft_split_exec(char const *s, char c);
 int		global_error_chkr(char	**lex);
 char	*env_finder(char *str);
+void	get_exit_status(void);
 
 #endif
