@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/15 16:24:02 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:55:40 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	bin_executor(char **args)
 	if (!path)
 	{
 		printf("%s%s: No such file or directory\n", PROMPT, args[0]);
-		return ;
+		exit (0);
 	}
 	if (path)
 		exec_return = execve(path, args, g_data.env);

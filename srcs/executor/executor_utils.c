@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/15 16:28:14 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:58:09 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,9 @@ int	last_pipe(int *pid, t_command *temp, int fd[2][2])
 
 void	special_builtins(t_command *temp)
 {
+	if (!temp->args[0])
+		return ;
+	g_data.sub_pid = 1;
 	if (temp->next != NULL)
 		return ;
 	if (ft_strcmp(temp->args[0], "cd"))
@@ -90,6 +93,7 @@ void	special_builtins(t_command *temp)
 	}
 	else if (ft_strcmp(temp->args[0], "unset"))
 		unset_builtin(temp->args);
+	g_data.sub_pid = 0;
 }
 
 void	exec_morepipes(t_command **cmd_table, pid_t pid[3], int i[2])
@@ -100,7 +104,6 @@ void	exec_morepipes(t_command **cmd_table, pid_t pid[3], int i[2])
 
 	f[0] = 0;
 	f[1] = 1;
-	g_data.sub_pid = 1;
 	temp = (*cmd_table);
 	fd_closer(fd);
 	if (pipe (fd[0]) == -1 || pipe (fd[1]) == -1)
@@ -110,7 +113,6 @@ void	exec_morepipes(t_command **cmd_table, pid_t pid[3], int i[2])
 	if (temp->next == NULL)
 		f[1] = 0;
 	first_pipe(pid, temp, fd, f);
-	g_data.sub_pid = 0;
 	special_builtins(temp);
 	if (temp->next == NULL)
 		return ;
@@ -124,8 +126,8 @@ void	exec_morepipes(t_command **cmd_table, pid_t pid[3], int i[2])
 	last_pipe(pid, temp, fd);
 	special_builtins(temp);
 	i[1] = 0;
-	g_data.sub_pid = 0;
 	while (i[1]++ < 3)
 		waitpid(pid[i[1]], NULL, 0);
+	g_data.sub_pid = 0;
 	unlink(".temp");
 }
