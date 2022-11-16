@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/16 18:31:10 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:42:41 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,7 @@ void	builtins(char **cont)
 	if (!ft_strncmp(cont[0], "cd", 3))
 		exit(0);
 	else if (!ft_strncmp(cont[0], "env", 4))
-	{
-		//ft_doubleprint(g_data.env);
-		while (g_data.env[i])
-		{
-			if (env_printable(g_data.env[i]) == 1)
-				printf ("%s\n", g_data.env[i]);
-			i++;
-		}
-	}
+	print_env(g_data.env);
 	else if (!ft_strncmp(cont[0], "pwd", 4))
 		printf("%s\n", getcwd(cwd, sizeof(cwd)));
 	else if (!ft_strncmp(cont[0], "exit", 5))
