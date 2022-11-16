@@ -5,7 +5,7 @@ INCLUDES = 	-I ../../includes/	\
 
 OBJ_DIR	= ../../objs/minishell/
 
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g3
 ############SRCS##############
 SRC_FILES =	ms_main		\
 			utils

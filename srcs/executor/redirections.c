@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:32:32 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/15 21:10:04 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/15 22:02:05 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "minishell.h"
 #include <unistd.h>
 #include "nodes.h"
+#include "signals.h"
 
 char	*double_writer(char *buf)
 {
@@ -31,10 +32,17 @@ void	doubleless_func(char *temp, int fd)
 
 	if (!temp)
 		exit (0);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	buf = NULL;
 	buf = double_writer(buf);
-	if (!buf || ft_strcmp(buf, temp))
+	if (!buf || ft_strcmp(buf, temp)){
+		signal(SIGINT, (void *)signal_reciever);
+		signal(SIGQUIT, (void *)signal_reciever);
 		return ;
+	}
+	signal(SIGINT, (void *)signal_reciever);
+	signal(SIGQUIT, (void *)signal_reciever);
 	write(fd, buf, ft_strlen(buf));
 	write(fd, "\n", 1);
 	doubleless_func(temp, fd);
@@ -101,7 +109,7 @@ void	redir_permission_chckr(t_command *temp)
 	t_out = temp->out;
 	while (t != NULL)
 	{
-		if (!access(t->content[1], R_OK))
+		if (!access(t->content[1], W_OK | R_OK))
 		{
 			write (2, "BASHado: ", 9);
 			write (2, t->content[1], ft_strlen(t->content[1]));
@@ -131,7 +139,8 @@ void	redirection_core(t_command *temp)
 
 	t = temp->in;
 	t_out = temp->out;
-	redir_permission_chckr(temp);
+	close (fd[0]);
+	close (fd[1]);
 	if (t != NULL)
 		in_redirection(t, fd);
 	if (t_out == NULL && t != NULL)
@@ -144,6 +153,7 @@ void	redirection_core(t_command *temp)
 		execute_cmds(temp->args);
 	else if (t_out != NULL)
 		out_redirection(temp, t_out, fd);
+	redir_permission_chckr(temp);
 	close (fd[0]);
 	close (fd[1]);
 }

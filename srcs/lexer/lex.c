@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:58:04 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/15 17:26:25 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/16 03:58:03 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static int	replace_for_keywords(char **str)
 			str[i] = ft_str_replace(str[i], DOUBLELESS);
 		else if (ft_strcmp(str[i], ";"))
 			str[i] = ft_str_replace(str[i], SEMICOLON);
+		else if (ft_chr_in_set('\\', str[i]))
+			str[i] = ft_str_replace(str[i], "ASCII92");
 	}
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/15 20:09:49 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/15 21:44:53 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ void	readline_loop(void)
 			continue ;
 		lex = parser_core(lex_core(buf));
 		if (global_error_chkr(lex))
+		{
+			printf ("Syntax error\n");
+			g_data.exit_val = 258;
 			continue ;
+		}
 		executor_core(lex);
 		free (buf);
 	}
@@ -86,6 +90,11 @@ int	global_error_chkr(char	**lex)
 			|| (ft_strcmp(lex[i], LESS)) || (ft_strcmp(lex[i], DOUBLELESS)))
 			if (lex[i + 1] == NULL)
 				return (-1);
+	i = -1;
+	while (lex[++i])
+		if ((ft_strcmp(lex[i], SEMICOLON)) || (ft_strcmp(lex[i], "ASCII92")))
+			return (-1);
+			
 	if (ft_strcmp (lex[ft_doublestrlen(lex) - 1], PIPE))
 		return (1);
 	return (0);

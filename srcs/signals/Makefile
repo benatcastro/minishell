@@ -4,7 +4,7 @@ INCLUDES =	-I ../../includes/	\
 			-I /usr/include/readline \
 			
 OBJ_DIR	= ../../objs/minishell/
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g3
 ############SRCS##############
 SRC_FILES =	signal_handler		\
 			signals_core		\
