@@ -13,7 +13,8 @@
 		"types.h": "c",
 		"wildcards.h": "c",
 		"builtins.h": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"__locale": "c"
 	},
 	"files.autoSave": "afterDelay",
 	"editor.tabCompletion": "off",

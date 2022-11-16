@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 18:21:54 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/09/21 15:43:44 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:23:44 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,11 @@ char	**ft_doublestrdup(char **str)
 
 	if (!str)
 		return (NULL);
-	result = (char **)malloc(sizeof(char *) * (ft_doublestrlen(str) + 1));
+	result = ft_calloc((ft_doublestrlen(str) + 1), sizeof(char *));
 	if (!result)
 		return (NULL);
 	i = -1;
 	while (str[++i])
 		result[i] = ft_strdup(str[i]);
-	result[i] = 0;
 	return (result);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 05:45:07 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/15 20:15:44 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:21:50 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,10 +155,8 @@ void	ft_export_arg(char **args)
 {
 	int		i;
 	char	**temp;
-	char	**uns;
 
 	i = 0;
-	uns = NULL;
 	while (args[++i])
 	{
 		if (export_arg_chkr(args[i]) == -1)

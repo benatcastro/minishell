@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/16 16:08:32 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:31:10 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,12 @@ int	env_comparer(char *s, char *env_s)
 	if (len != len_s)
 		return (0);
 	while (env_s[++i])
-		if (env_s[i] == s[i] && i == len - 1)
+	{
+		if (env_s[i] == s[i] && (i == (len - 1)))
 			return (1);
+		else if (i == len - 1)
+			break ;
+	}
 	return (0);
 }
 
@@ -82,14 +86,18 @@ void	builtins(char **cont)
 	int		i;
 	char	cwd[256];
 
-	i = -1;
+	i = 0;
 	if (!ft_strncmp(cont[0], "cd", 3))
 		exit(0);
 	else if (!ft_strncmp(cont[0], "env", 4))
 	{
-		while (g_data.env[++i])
+		//ft_doubleprint(g_data.env);
+		while (g_data.env[i])
+		{
 			if (env_printable(g_data.env[i]) == 1)
 				printf ("%s\n", g_data.env[i]);
+			i++;
+		}
 	}
 	else if (!ft_strncmp(cont[0], "pwd", 4))
 		printf("%s\n", getcwd(cwd, sizeof(cwd)));
