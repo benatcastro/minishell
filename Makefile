@@ -1,88 +1,89 @@
-#############NAMES###########
 NAME = minishell
-##########DIRECTORIES########
-SRC_DIR = srcs/
-OBJ_DIR = objs/$(NAME)/
-INC_DIR = includes/
-LIB_DIR = libraries/
 
-#############UTILS###########
+LIBFT_PATH		=	./42lib
+LIBFT			=	$(LIBFT_PATH)/42lib.a
+
+SRC = srcs/core/ms_main.c \
+srcs/core/utils.c \
+srcs/builtins/builtins_core.c \
+srcs/builtins/cd.c \
+srcs/builtins/echo.c \
+srcs/builtins/exit.c \
+srcs/builtins/export.c \
+srcs/builtins/unset.c \
+srcs/expander/expander_core.c \
+srcs/expander/expander_env_rep.c \
+srcs/expander/expander_splitter.c \
+srcs/expander/expander_utils.c \
+srcs/lexer/lex_utils.c \
+srcs/lexer/lex.c \
+srcs/executor/executor_core.c \
+srcs/executor/executor_main.c \
+srcs/executor/executor_utils.c \
+srcs/executor/executor_utils2.c \
+srcs/executor/fill_cmd_table.c \
+srcs/executor/node_manager.c \
+srcs/executor/redir.c \
+srcs/executor/redirections.c \
+srcs/executor/special_split.c \
+srcs/node_fncs/free_nodes.c \
+srcs/node_fncs/ft_nodelast.c \
+srcs/node_fncs/ft_nodeadd_back.c \
+srcs/node_fncs/node_utils.c \
+srcs/parser/parser_core.c \
+srcs/parser/parser_errors.c \
+srcs/parser/parser_utils.c \
+srcs/signals/signal_handler.c \
+srcs/signals/signals_core.c \
+srcs/wildcards/dir_fncs.c \
+srcs/wildcards/wildcards_core.c \
+
+OBJ = $(SRC:.c=.o)
+
+RM = rm -f
+ARRC = ar rc
+
+GREEN = \033[1;32m
+RED = \033[1;31m
+YEL = \033[1;33m
+WHT = \033[1;37m
+EOC = \033[1;0m
+
+INCLUDES = -I includes/
 CC = gcc
-RM = rm -rf
-42Lib = make -C srcs/
-#############FLAGS###########
-RD_FLAGS	= -I/Users/$(USER)/.brew/opt/readline/include -lreadline -L/Users/$(USER)/.brew/opt/readline/lib/
-SANITIZE	= -fsanitize=address -g3
-VALGRIND	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
-CFLAGS		= -Wall -Werror -Wextra #-g3 -fsanitize=address
-INC_FLAGS	= -I $(INC_DIR)
-LIB_FLAGS	= $(LIB_DIR)42lib.a
-
-#############NAMES###########
-RAW_OBJS =	ms_main			\
-			lexer_core		\
-			replace_quotes	\
-			signals_core	\
-			signal_handler	\
-			parser_core		\
-			parser_errors	\
-			parser_utils	\
-			expander_core	\
-			expander_utils	\
-			executor_core	\
-			node_manager	\
-			fill_cmd_table	\
-			ft_nodeaddback	\
-			ft_nodelast		\
-			node_utils		\
-			builtins_core	\
-
-OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(RAW_OBJS)))
-
-
+FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address -I /Users/$(USER)/.brew/opt/readline/include
+RD_FLAGS = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib/
+.c.o: $(SRC)
+	@$(CC) $(INCLUDES) $(FLAGS) -c -o $@ $<
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+m: $(NAME)
 
-	@echo "\033[33mCompiling minishell project...\033[0m"
-	$(CC) $(CFLAGS) $(SANITIZE) $(OBJ_DIR)*.o $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) -o $(NAME)
-	@echo "\033[92mminishell has been successfully compiled!\033[0m"
-
-$(NAME_VALGRIND): $(OBJS)
-
-	@echo "\033[33mCompiling minishell project...\033[0m"
-	$(CC) $(CFLAGS) $(OBJ_DIR)*.o $(RD_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) -o $(NAME)
-	@echo "\033[92mminishell has been successfully compiled!\033[0m"
-
-
-$(OBJS):
-	mkdir -p objs/minishell/
-	echo "\033[33mCompiling 42lib...\033[0m"
+$(NAME): $(OBJ)
+	@echo "$(WHT)Compiling 42lib...$(EOC)"
 	make -C 42lib/
-	echo "\033[33mCompiling minishell objects...\033[0m"
-	mkdir -p objs/minishell/
-	make -C srcs/core
-	make -C srcs/lexer
-	make -C srcs/parser
-	make -C srcs/signals
-	make -C srcs/expander
-	make -C srcs/executor
-	make -C srcs/node_fncs
-	make -C srcs/builtins
-	make -C srcs/wildcards
+	@echo "$(WHT)Compiling minishell...$(EOC)"
+	@$(CC) $(FLAGS) $(RD_FLAGS) $(INCLUDES) -o $(NAME) $(OBJ) libraries/42lib.a
+	@echo "$(GREEN)minishell build completed.$(EOC)"
+
+%.o: %.c
+	$(CC) $(INCLUDES) $(FLAGS) -c $^ -o $@
+
+clean:
+	@echo "$(WHT)Removing o-files...$(EOC)"
+	$(RM) $(OBJ)
+	@echo "$(GREEN)clean done.$(EOC)"
+
+fclean: clean
+	make fclean -C 42lib/
+	@echo "$(WHT)Removing binary -files...$(EOC)"
+	$(RM) $(NAME)
+	@echo "$(GREEN)fclean done.$(EOC)"
 
 run: all
 	./$(NAME)
 
-valgrind: $(NAME_VALGRIND)
-	$(VALGRIND) ./$(NAME)
-clean:
-	@$(RM) objs/
-
-fclean: clean
-	make fclean -C 42lib/
-	$(RM) $(NAME)
 re: fclean all
 
-.PHONY: all foo clean fclean re
+.PHONY: clean re fclean all m
