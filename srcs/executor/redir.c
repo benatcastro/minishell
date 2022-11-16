@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 19:38:01 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/10 21:43:00 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:09:45 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	redirection_in(t_command **cmd_node, char	**args)
 		if ((ft_strcmp(args[i], LESS))
 			|| (ft_strcmp(args[i], DOUBLELESS)))
 		{
-			temp = malloc(sizeof(char *) * 3);
+			temp = ft_calloc(3, sizeof(char *));
 			temp[0] = ft_strdup(args[i]);
 			temp[1] = ft_strdup(args[i + 1]);
 			temp[2] = 0;
@@ -74,8 +74,7 @@ void	redirection_ag(t_command **cmd_head, char	**args)
 		else
 			a++;
 	}
-	temp = ft_calloc(a + 1, sizeof(char **));
-	temp[a + 1] = NULL;
+	temp = ft_calloc(a + 1, sizeof(char *));
 	i = -1;
 	e = 0;
 	while (args[++i])

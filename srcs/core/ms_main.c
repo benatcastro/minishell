@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/16 04:44:16 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:12:49 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int argc, char **argv, char **env)
 	g_data.ms_pid = get_pid();
 	g_data.env = ft_doublestrdup(env);
 	g_data.exit_val = 0;
-	rebuild_env("OLDPWD");
+	//rebuild_env("OLDPWD");
 	rl_catch_signals = 0;
 	signals_core();
 	readline_loop();
@@ -94,7 +94,6 @@ int	global_error_chkr(char	**lex)
 	while (lex[++i])
 		if ((ft_strcmp(lex[i], SEMICOLON)) || (ft_strcmp(lex[i], "ASCII92")))
 			return (-1);
-			
 	if (ft_strcmp (lex[ft_doublestrlen(lex) - 1], PIPE))
 		return (1);
 	return (0);

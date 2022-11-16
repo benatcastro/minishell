@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:06:33 by umartin-          #+#    #+#             */
-/*   Updated: 2022/10/19 19:37:24 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:29:48 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ft_substr_exec(char const *s, unsigned int start, size_t len)
 	s += start;
 	if (len > ft_strlen(s))
 		len = ft_strlen(s);
-	result = (char *)malloc(sizeof(char) * (len + 2));
+	result = ft_calloc((len + 2), sizeof(char));
 	if (!result)
 		return (NULL);
 	ft_strlcpy_exec(result, s, len + 1);

@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 01:37:30 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/10/07 19:25:52 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:00:17 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_strdup(const char *s1)
 
 	if (!s1)
 		return (NULL);
-	result = malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	result = ft_calloc((ft_strlen(s1) + 1), sizeof(char));
 	if (!result)
 		return (NULL);
 	i = -1;

@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/15 21:10:18 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:14:00 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,8 @@ void	exec_morepipes(t_command **cmd_table, pid_t pid[3], int i[2])
 	}
 	last_pipe(pid, temp, fd);
 	special_builtins(temp);
-	i[1] = 0;
-	while (i[1]++ < 3)
+	i[1] = -1;
+	while (++i[1] < 3)
 		waitpid(pid[i[1]], &g_data.exit_val, 0);
 	get_exit_status();
 	g_data.sub_pid = 0;

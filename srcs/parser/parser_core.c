@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/15 19:25:58 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:10:30 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	**parser_core(char **str)
 
 	i = -1;
 	aux = NULL;
-	dub = malloc(sizeof(char *) * (ft_doublestrlen(str) + 1));
+	dub = ft_calloc((ft_doublestrlen(str) + 1), sizeof(char *));
 	while (++i != ft_doublestrlen(str))
 	{
 		aux = parser_quotes(str[i]);
@@ -56,7 +56,7 @@ char	**parser_double_quote_free(char **str)
 			c++;
 	}
 	i = -1;
-	rtn = malloc(sizeof(char *) * (ft_doublestrlen(str) - c + 1));
+	rtn = ft_calloc((ft_doublestrlen(str) - c + 1), sizeof(char *));
 	while (str[++i])
 	{
 		if (str[i][0] == 34 && str[i][1] == 34)
@@ -64,7 +64,9 @@ char	**parser_double_quote_free(char **str)
 		else
 			rtn[++d] = ft_strdup(str[i]);
 	}
-	return (rtn[d + 1] = 0, ft_doublefree(str), rtn);
+	rtn[d + 1] = NULL;
+	ft_doublefree(str);
+	return (rtn);
 }
 
 int	parser_quote_error_chk(char *str)
@@ -103,7 +105,7 @@ char	**parser_quotes(char *str)
 	int		n;
 	char	**temp;
 
-	temp = malloc(sizeof(char *) * (parser_arg_num(str)) + 1);
+	temp = ft_calloc((parser_arg_num(str)) + 1, sizeof(char *));
 	temp[(parser_arg_num(str))] = NULL;
 	i = -1;
 	n = 0;

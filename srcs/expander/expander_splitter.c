@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 20:16:53 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/15 19:56:14 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:30:07 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*ft_strdup_free(char *s1)
 	char	*result;
 	int		i;
 
-	result = malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	result = ft_calloc((ft_strlen(s1) + 1), sizeof(char));
 	if (!result)
 		return (NULL);
 	i = -1;

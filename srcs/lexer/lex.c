@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:58:04 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/16 03:58:03 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:23:08 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*lex_first_spc_rm(char *str)
 			(ft_strlen(str) - i - (ft_strlen(str) - e - 1) + 1));
 	while (i <= e)
 		rtn[u++] = str[i++];
-	rtn[u + 1] = 0;
+	rtn[u] = 0;
 	return (rtn);
 }
 
@@ -78,14 +78,14 @@ char	**temp_maker(char *rtn)
 	char	**temp;
 	int		c;
 
-	temp = malloc(sizeof(char *) * 3);
+	temp = ft_calloc(3, sizeof(char *));
 	if (rtn[0] == '|')
 	{
 		c = 0;
-		t1 = malloc(sizeof(char) * 2);
+		t1 = ft_calloc(2, sizeof(char));
 		t1[0] = '|';
 		t1[1] = 0;
-		t2 = malloc(sizeof(char) * ft_strlen(rtn));
+		t2 = ft_calloc(ft_strlen(rtn), sizeof(char));
 		while (rtn[++c])
 			t2[c - 1] = rtn[c];
 		t2[c - 1] = 0;
@@ -93,10 +93,10 @@ char	**temp_maker(char *rtn)
 	if (rtn[0] == '<' && rtn[1] != '<')
 	{
 		c = 0;
-		t1 = malloc(sizeof(char) * 2);
+		t1 =ft_calloc(2, sizeof(char));
 		t1[0] = '<';
 		t1[1] = 0;
-		t2 = malloc(sizeof(char) * ft_strlen(rtn));
+		t2 = ft_calloc(ft_strlen(rtn), sizeof(char));
 		while (rtn[++c])
 			t2[c - 1] = rtn[c];
 		t2[c - 1] = 0;
@@ -104,11 +104,11 @@ char	**temp_maker(char *rtn)
 	if (rtn[0] == '<' && rtn[1] == '<')
 	{
 		c = 1;
-		t1 = malloc(sizeof(char) * 3);
+		t1 = ft_calloc(3, sizeof(char));
 		t1[0] = '<';
 		t1[1] = '<';
 		t1[2] = 0;
-		t2 = malloc(sizeof(char) * ft_strlen(rtn) - 1);
+		t2 = ft_calloc(ft_strlen(rtn) - 1, sizeof(char));
 		while (rtn[++c])
 			t2[c - 2] = rtn[c];
 		t2[c - 2] = 0;
@@ -116,10 +116,10 @@ char	**temp_maker(char *rtn)
 	if (rtn[0] == '>' && rtn[1] != '>')
 	{
 		c = 0;
-		t1 = malloc(sizeof(char) * 2);
+		t1 =ft_calloc(2, sizeof(char));
 		t1[0] = '>';
 		t1[1] = 0;
-		t2 = malloc(sizeof(char) * ft_strlen(rtn));
+		t2 = ft_calloc(ft_strlen(rtn), sizeof(char));
 		while (rtn[++c])
 			t2[c - 1] = rtn[c];
 		t2[c - 1] = 0;
@@ -127,11 +127,11 @@ char	**temp_maker(char *rtn)
 	if (rtn[0] == '>' && rtn[1] == '>')
 	{
 		c = 1;
-		t1 = malloc(sizeof(char) * 3);
+		t1 = ft_calloc(3, sizeof(char));
 		t1[0] = '>';
 		t1[1] = '>';
 		t1[2] = 0;
-		t2 = malloc(sizeof(char) * ft_strlen(rtn) - 1);
+		t2 = ft_calloc(ft_strlen(rtn) - 1, sizeof(char));
 		while (rtn[++c])
 			t2[c - 2] = rtn[c];
 		t2[c - 2] = 0;
@@ -162,7 +162,7 @@ char	**pipe_redir_replacer(char **rtn)
 		else
 			c++;
 	}
-	fin = malloc(sizeof(char *) * c + 1);
+	fin = ft_calloc(c + 1,sizeof(char *));
 	i = -1;
 	c = 0;
 	while (rtn[++i])
@@ -180,7 +180,7 @@ char	**pipe_redir_replacer(char **rtn)
 		else
 			fin[c++] = ft_strdup(rtn[i]);
 	}
-	fin[c] = NULL;
+	fin[c] = 0;
 	return (fin);
 }
 
@@ -193,7 +193,8 @@ char	**lex_core(char *str)
 	str = lex_first_spc_rm(str);
 	if (parser_quote_error_chk(str))
 		exit (0);
-	rtn = malloc(sizeof(char *) * (lex_memory_splitter(str)) + 1);
+	rtn = ft_calloc((lex_memory_splitter(str)) + 1, sizeof(char *));
+	// rtn = malloc(sizeof(char *) * (lex_memory_splitter(str)) + 1);
 	rtn = lex_splitter(str, rtn);
 	rtn = pipe_redir_replacer(rtn);
 	replace_for_keywords(rtn);

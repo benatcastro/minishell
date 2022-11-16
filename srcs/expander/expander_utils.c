@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:19:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/15 19:48:45 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:10:10 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**expander(char	*str)
 	char	**temp;
 	char	*aux;
 
-	temp = malloc(sizeof(char *) * (expand_arg_num(str)) + 1);
+	temp = ft_calloc((expand_arg_num(str)) + 1, sizeof(char *));
 	temp = expand_splitter(str, temp);
 	i = -1;
 	i = -1;
@@ -49,13 +49,14 @@ int	expand_arg_num(char *str)
 		return (1);
 	while (str[e])
 	{
-		if (str[e] == 36)
+		if (str[e] && str[e] == '$')
 			expand_arg_num_ut(str, &e, &c);
 		else
 		{
 			c++;
 			while ((str[e]) && ((str[e] != '$')))
 				e++;
+			break ;
 		}
 		e++;
 	}
