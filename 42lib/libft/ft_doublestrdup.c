@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_doublestrdup.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 18:21:54 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/11/16 18:23:44 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:04:11 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /**
  * @brief attempts to duplicate the double pointer pointed by str to a new
  * allocated double pointer.
- * 
+ *
  * @param str the double pointer to be duplicated.
  * @return char** the allocated new double pointer or NULL if the allocation
  * failed or str was nonexisting.
@@ -34,5 +34,6 @@ char	**ft_doublestrdup(char **str)
 	i = -1;
 	while (str[++i])
 		result[i] = ft_strdup(str[i]);
+	result[i] = NULL;
 	return (result);
 }

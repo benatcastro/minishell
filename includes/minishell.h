@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/16 18:41:38 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:04:24 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct s_data
 
 t_data	g_data;
 
-void	print_env(char **env);
 void	builtins(char **cont);
 int		ft_quote_checker(char *buf);
 void	print_double_str(char **str);

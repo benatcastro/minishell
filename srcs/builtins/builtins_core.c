@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/16 18:42:41 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:06:44 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,12 @@ void	builtins(char **cont)
 	int		i;
 	char	cwd[256];
 
-	i = 0;
+	i = -1;
 	if (!ft_strncmp(cont[0], "cd", 3))
 		exit(0);
 	else if (!ft_strncmp(cont[0], "env", 4))
-	print_env(g_data.env);
+		while (g_data.env[++i])
+			printf("%s\n", g_data.env[i]);
 	else if (!ft_strncmp(cont[0], "pwd", 4))
 		printf("%s\n", getcwd(cwd, sizeof(cwd)));
 	else if (!ft_strncmp(cont[0], "exit", 5))
