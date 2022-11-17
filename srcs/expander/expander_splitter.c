@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 20:16:53 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/16 16:30:07 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/17 20:31:23 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,17 @@ char	**expand_splitter(char *str, char **rtn)
 	aux = NULL;
 	e = -1;
 	n = 0;
-	if (str[0] == SINGLE_QUOTE)
-		return (rtn[0] = ft_strdup(str), rtn[1] = 0, rtn);
 	while (str[++e])
 	{
 		l = e;
-		if (str[e] == 36)
+		if (str[e] && str[e] == SINGLE_QUOTE)
+		{
+			e++;
+			while ((str[e]) && ((str[e] != SINGLE_QUOTE)))
+				e++;
+			rtn[n] = expand_splitter_ut2(str, aux, &e, &l);
+		}
+		else if (str[e] == '$')
 		{
 			expand_splitter_ut(str, &e);
 			rtn[n] = expand_splitter_ut2(str, aux, &e, &l);
@@ -43,7 +48,7 @@ char	**expand_splitter(char *str, char **rtn)
 		}
 		n++;
 	}
-	return (rtn[n] = 0, rtn);
+	return (rtn);
 }
 
 char	*expand_splitter_ut2(char *str, char *aux, int *e, int *l)
@@ -68,7 +73,8 @@ void	expand_splitter_ut(char *str, int *e)
 	else
 	{
 		(*e)++;
-		while ((str[(*e)]) && ((str[(*e)] != '$') && (str[(*e)] != 32)))
+		while ((str[(*e)]) && ((str[(*e)] != '$') && (str[(*e)] != 32)
+		&& (str[(*e)] != SINGLE_QUOTE)))
 			(*e)++;
 		(*e)--;
 	}

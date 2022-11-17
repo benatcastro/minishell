@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 05:45:07 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/17 15:11:45 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/17 18:00:47 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,15 +139,12 @@ void	export_temp(char **temp, char *str)
 	i = -1;
 	while (++i < num_until_equal(str))
 		t1[i] = str[i];
-	t1[i] = 0;
 	c = 0;
 	i = (num_until_equal(str));
-	while (i++ <= (int)ft_strlen(str))
+	while (++i <= (int)ft_strlen(str))
 		t2[c++] = str[i];
-	t2[c] = 0;
 	temp[0] = t1;
 	temp[1] = t2;
-	temp[2] = NULL;
 }
 
 void	ft_export_arg(char **args)
@@ -167,7 +164,7 @@ void	ft_export_arg(char **args)
 		}
 		else if (export_arg_chkr(args[i]) > 0)
 		{
-			temp = ft_calloc(2, sizeof(char *));
+			temp = ft_calloc(3, sizeof(char *));
 			export_temp(temp, args[i]);
 			if (find_in_env(temp[0]) != NULL)
 				rebuild_env(temp[0]);

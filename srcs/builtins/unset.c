@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 06:45:32 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/16 19:09:12 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/17 17:55:56 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	rebuild_env(char *var)
 
 	i = -1;
 	j = -1;
-	new_env = ft_calloc(ft_doublestrlen(g_data.env), sizeof(char *));
+	new_env = ft_calloc(ft_doublestrlen(g_data.env) + 1, sizeof(char *));
 	while (g_data.env[++i])
 		if (!env_comparer(var, g_data.env[i]))
 			new_env[++j] = ft_strdup(g_data.env[i]);
