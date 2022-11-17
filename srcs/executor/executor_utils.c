@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/17 14:59:29 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/17 21:08:44 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void	special_builtins(t_command *temp)
 	}
 	else if (ft_strcmp(temp->args[0], "unset"))
 		unset_builtin(temp->args);
+	else if (ft_strcmp(temp->args[0], "exit"))
+		exit_builtin();
 	g_data.sub_pid = 0;
 }
 

@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/15 21:35:17 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/17 21:00:35 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,10 @@ static void	bin_executor(char **args)
 	path = bin_path_finder(args, &exit_val);
 	if (path)
 		exec_return = execve(path, args, g_data.env);
-	if (exec_return == 0 && exit_val != 1)
+	else
+		exec_return = execve(args[0], args, g_data.env);
+	if ((exec_return == -1 && exit_val != 1)
+		|| (exec_return == 0 && exit_val != 1))
 	{
 		printf("%s%s: command not found\n", PROMPT, args[0]);
 		exit (127);
