@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/17 14:57:29 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/17 15:12:26 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,17 +85,15 @@ void	builtins(char **cont)
 {
 	int		i;
 	char	cwd[256];
-	char	**env;
 
 	i = -1;
-	env = ft_doublestrdup(g_data.env);
 	if (!ft_strncmp(cont[0], "cd", 3))
 		exit(0);
 	else if (!ft_strncmp(cont[0], "env", 4))
 	{
-		while (env[++i])
-			if (env_printable(env[i]))
-				printf("%s\n", env[i]);
+		while (g_data.env[++i])
+			if (env_printable(g_data.env[i]) == 1)
+				printf("%s\n", g_data.env[i]);
 	}
 	else if (!ft_strncmp(cont[0], "pwd", 4))
 		printf("%s\n", getcwd(cwd, sizeof(cwd)));

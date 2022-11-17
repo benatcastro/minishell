@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 05:45:07 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/17 14:54:24 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/17 15:11:45 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_doublestradd(char *arg)
 	temp = ft_doublestrdup(g_data.env);
 	i = ft_doublestrlen(g_data.env);
 	ft_doublefree(g_data.env);
-	g_data.env = ft_calloc(i + 1, sizeof(char *));
+	g_data.env = ft_calloc(i + 2, sizeof(char *));
 	while (temp[++c])
 		g_data.env[c] = temp[c];
 	g_data.env[i] = arg;
