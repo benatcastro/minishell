@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/14 19:35:23 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/17 14:43:28 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	fd_closer(int fd[2][2])
 	{
 		if (close (fd[0][i]))
 			return ;
-		if (close (fd[1][i]))
+	if (close (fd[1][i]))
 			return ;
 		i++;
 	}

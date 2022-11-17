@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_doublestrdup.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 18:21:54 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/11/16 19:04:11 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/17 14:53:52 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ char	**ft_doublestrdup(char **str)
 	i = -1;
 	while (str[++i])
 		result[i] = ft_strdup(str[i]);
-	result[i] = NULL;
+//	result[i] = NULL;
 	return (result);
 }

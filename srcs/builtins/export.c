@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 05:45:07 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/16 18:36:44 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/17 14:54:24 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	ft_doublestradd(char *arg)
 	while (temp[++c])
 		g_data.env[c] = temp[c];
 	g_data.env[i] = arg;
-	g_data.env[i + 1] = 0;
 }
 
 int	export_directory_chk(char *arg)

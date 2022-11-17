@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/16 17:14:00 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/17 14:59:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ void	exec_morepipes(t_command **cmd_table, pid_t pid[3], int i[2])
 	f[0] = 0;
 	f[1] = 1;
 	temp = (*cmd_table);
-	fd_closer(fd);
 	if (pipe (fd[0]) == -1 || pipe (fd[1]) == -1)
 		exit (0);
 	if (temp->next != NULL && temp->next->next == NULL)
