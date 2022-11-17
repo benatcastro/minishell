@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/17 21:08:44 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/17 21:13:23 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	special_builtins(t_command *temp)
 	if (!temp->args[0])
 		return ;
 	g_data.sub_pid = 1;
-	if (temp->next != NULL)
+	if (temp->next != NULL || temp->prev != NULL)
 		return ;
 	if (ft_strcmp(temp->args[0], "cd"))
 		cd_builtin(temp->args);
