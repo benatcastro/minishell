@@ -51,7 +51,9 @@ EOC = \033[1;0m
 
 INCLUDES = -I includes/
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -I /Users/$(USER)/.brew/opt/readline/include -g3 -fsanitize=address 
+FLAGS =	#-Wall -Wextra -Werror \
+		-I /Users/$(USER)/.brew/opt/readline/include -g3 -fsanitize=address
+
 RD_FLAGS = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib/
 .c.o: $(SRC)
 	@$(CC) $(INCLUDES) $(FLAGS) -c -o $@ $<

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:31:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/17 19:50:31 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:41:35 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*expand_trimmer(char	*str)
 	{
 		rtn[c] = str[i];
 		c++;
-	}	
+	}
 	rtn[i] = 0;
 	return (rtn);
 }
@@ -75,7 +75,7 @@ char	*expand_first_trimmer(char	*str)
 
 // char	**simple_splitter(char *str)
 // {
-	
+
 // }
 
 char	*expander_main(char	*str)
@@ -83,10 +83,8 @@ char	*expander_main(char	*str)
 	char	**rtn;
 	char	*temp;
 	char	*r;
-	int		i;
 
 	rtn = NULL;
-	i = -1;
 	if (str[0] == SINGLE_QUOTE)
 		return (expand_trimmer(str));
 	else if (str[0] == DOUBLE_QUOTE)

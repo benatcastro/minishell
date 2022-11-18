@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lex.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:58:04 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/16 16:23:08 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:41:47 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,10 +186,8 @@ char	**pipe_redir_replacer(char **rtn)
 
 char	**lex_core(char *str)
 {
-	int		i;
 	char	**rtn;
 
-	i = -1;
 	str = lex_first_spc_rm(str);
 	if (parser_quote_error_chk(str))
 		exit (0);
