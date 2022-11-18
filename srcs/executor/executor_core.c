@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/17 14:43:28 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:45:09 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	executor_core(char **cmd)
 		pipe_core(aux->cmds);
 		aux = aux->next;
 	}
-	//free_command_table_nodes(&table_head);
+	free_command_table_nodes(&table_head);
 	// print_table(&table_head);
 	return (1);
 }

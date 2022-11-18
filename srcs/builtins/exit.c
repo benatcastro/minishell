@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:15:31 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/17 21:10:25 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:46:03 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 
 int	exit_builtin(void)
 {
-	// if (!g_data.sub_pid)
-	// {
-	// 	printf("exit");
-	// }
+	ft_doublefree(g_data.env);
 	printf("exit\n");
 	exit(0);
 	return (0);
