@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:32:32 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/19 17:10:35 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/19 17:53:10 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@
 char	*double_writer(char *buf)
 {
 	write (1, "> ", 2);
-	buf = get_next_line(1);
+	buf = gnl(1);
 	buf = ft_strdup_n_rem(buf);
-	if ((!buf) || (buf == NULL))
-		double_writer(buf);
 	return (buf);
 }
 
@@ -36,7 +34,7 @@ void	doubleless_func(char *temp, int fd)
 	signal(SIGQUIT, SIG_DFL);
 	buf = NULL;
 	buf = double_writer(buf);
-	if (!buf || ft_strcmp(buf, temp))
+	if (buf != NULL && ft_strcmp(buf, temp))
 	{
 		signal(SIGINT, (void *)signal_reciever);
 		signal(SIGQUIT, (void *)signal_reciever);
@@ -44,8 +42,13 @@ void	doubleless_func(char *temp, int fd)
 	}
 	signal(SIGINT, (void *)signal_reciever);
 	signal(SIGQUIT, (void *)signal_reciever);
-	write(fd, buf, ft_strlen(buf));
-	write(fd, "\n", 1);
+	if (buf == NULL)
+		write(fd, "\n", 1);
+	else
+	{
+		write(fd, buf, ft_strlen(buf));
+		write(fd, "\n", 1);
+	}
 	doubleless_func(temp, fd);
 }
 

@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:10:18 by umartin-          #+#    #+#             */
-/*   Updated: 2022/02/08 17:52:31 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/19 17:19:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,10 @@ char	*ft_strjoin_gnl(char *final, char *rd)
 	size_t	j;
 
 	if (!final)
-	{
-		final = (char *)malloc(1 * sizeof(char));
-		final[0] = '\0';
-	}
+		final = ft_calloc(sizeof(char), 1);
 	if (!final || !rd)
 		return (NULL);
-	result = malloc(sizeof(char) * ((ft_strlen_gnl(final)
+	result = ft_calloc(sizeof(char), ((ft_strlen_gnl(final)
 					+ ft_strlen_gnl(rd)) + 1));
 	if (result == NULL)
 		return (NULL);

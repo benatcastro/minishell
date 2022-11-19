@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 16:35:40 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/19 16:23:30 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/19 17:16:19 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*ft_read_static_gnl(int fd, char *final)
 	char	*rd;
 	int		i;
 
-	rd = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	rd = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
 	if (!rd)
 		return (NULL);
 	i = 1;

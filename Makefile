@@ -25,6 +25,7 @@ srcs/executor/executor_utils2.c \
 srcs/executor/fill_cmd_table.c \
 srcs/executor/node_manager.c \
 srcs/executor/redir.c \
+srcs/executor/gnl.c \
 srcs/executor/redirections.c \
 srcs/executor/special_split.c \
 srcs/node_fncs/free_nodes.c \
