@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 06:45:32 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/17 17:55:56 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/19 15:07:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void	unset_builtin(char **args)
 		if (var_checker(args[i]))
 			rebuild_env(args[i]);
 		else
-			i++;
+			continue;
 	}
 }

@@ -54,8 +54,6 @@ INCLUDES = -I includes/
 CC = gcc
 FLAGS = -Wall -Wextra -Werror -I /Users/$(USER)/.brew/opt/readline/include -g3 -fsanitize=address 
 RD_FLAGS = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib/
-.c.o: $(SRC)
-	@$(CC) $(INCLUDES) $(FLAGS) -c -o $@ $<
 
 all: $(NAME)
 
@@ -69,7 +67,7 @@ $(NAME): $(OBJ)
 	@echo "$(GREEN)minishell build completed.$(EOC)"
 
 %.o: %.c
-	$(CC) $(INCLUDES) $(FLAGS) -c $^ -o $@
+	@$(CC) $(INCLUDES) $(FLAGS) -c $^ -o $@
 
 clean:
 	@echo "$(WHT)Removing o-files...$(EOC)"

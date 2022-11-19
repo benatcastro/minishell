@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/19 13:31:08 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/19 14:33:53 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ int				second_pipe_op(t_command *temp,
 					int fd[2], int *pid);
 
 #endif
-
-
 
 	// pid[2] = fork();
 	// if (pid[2] == 0)

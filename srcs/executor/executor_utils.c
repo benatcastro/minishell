@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/19 13:49:28 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/19 15:36:27 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,4 @@ void	exec_morepipes(t_command **cmd_table, pid_t pid[3], int i[2], int f[2])
 		waitpid(pid[i[1]], &g_data.exit_val, 0);
 	get_exit_status();
 	g_data.sub_pid = 0;
-	unlink(".temp");
 }
