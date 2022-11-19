@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:15:31 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/19 14:39:28 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/19 19:06:07 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 
 int	exit_builtin(void)
 {
-	// if (!g_data.sub_pid)
-	// {
-	// 	printf("exit");
-	// }
+	ft_doublefree(g_data.env);
 	printf("exit\n");
 	exit(0);
 	return (0);

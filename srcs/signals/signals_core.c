@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:24:20 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/12 14:45:39 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/18 18:42:10 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	signals_core(void)
 	struct sigaction	sig_data;
 
 	sig_data.sa_sigaction = signal_reciever;
-	sigemptyset (&sig_data.sa_flags);
+	sigemptyset (&sig_data.sa_mask);
 	sig_data.sa_flags = SA_SIGINFO;
 	sigaction(SIGINT, &sig_data, NULL);
 	sigaction(SIGQUIT, &sig_data, NULL);

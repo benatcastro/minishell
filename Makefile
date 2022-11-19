@@ -53,7 +53,13 @@ EOC = \033[1;0m
 
 INCLUDES = -I includes/
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -I /Users/$(USER)/.brew/opt/readline/include -g3 -fsanitize=address 
+VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --supressions=readline_supression.supp
+SANITIZE = -fsanitize=adress -g3
+FLAGS =	-Wall -Wextra -Werror \
+		$(RD_FLAGS)		\
+		$(SANITIZE)		\
+
+
 RD_FLAGS = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib/
 
 all: $(NAME)
@@ -85,7 +91,7 @@ run: all
 	./$(NAME)
 
 valgrind: all
-	valgrind --leak-check=full ./$(NAME)
+	$(VALGRIND) ./$(NAME)
 
 re: fclean all
 

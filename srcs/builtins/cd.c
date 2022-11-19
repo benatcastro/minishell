@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/17 17:57:41 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:44:47 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	update_env(char *old_cwd)
 	new_cwd = getcwd(NULL, 0);
 	temp[1] = ft_strdup(ft_strjoin("PWD=", new_cwd));
 	ft_export_arg(temp);
+	ft_doublefree(temp);
 }
 
 void	cd_builtin(char **args)

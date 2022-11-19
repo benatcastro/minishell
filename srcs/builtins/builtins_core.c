@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/17 21:07:51 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:48:57 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,8 @@ int	env_printable(char *arg)
 void	builtins(char **cont)
 {
 	int		i;
-	char	*cwd;
 
 	i = -1;
-	cwd = getcwd(NULL, 0);
 	if (!ft_strncmp(cont[0], "cd", 3))
 		exit(0);
 	else if (!ft_strncmp(cont[0], "env", 4))
@@ -99,7 +97,7 @@ void	builtins(char **cont)
 	else if (!ft_strncmp(cont[0], "pwd", 4))
 		printf("%s\n", getcwd(NULL, 0));
 	else if (!ft_strncmp(cont[0], "exit", 5))
-		exit(0);
+		exit_builtin();
 	else if (!ft_strncmp(cont[0], "echo", 5))
 		builtins_echo(cont);
 	else if (!ft_strncmp(cont[0], "export", 7))

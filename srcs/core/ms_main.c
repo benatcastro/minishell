@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/16 19:08:10 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:48:16 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int	main(int argc, char **argv, char **env)
 	rl_catch_signals = 0;
 	signals_core();
 	readline_loop();
-	printf("exit\n");
-	return (0);
+	exit_builtin();
+	return (g_data.exit_val);
 }
 
 int	global_error_chkr(char	**lex)
