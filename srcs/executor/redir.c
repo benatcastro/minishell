@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 19:38:01 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/16 17:09:45 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/19 19:12:20 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,17 @@ void	redirection_out(t_command **cmd_node, char	**args)
 	}
 }
 
+void	redirection_ag_var(char	**args, int *a, int *i)
+{
+	if ((ft_strcmp(args[(*i)], GREATER))
+		|| (ft_strcmp(args[(*i)], DOUBLEGREATER))
+		|| (ft_strcmp(args[(*i)], LESS))
+		|| (ft_strcmp(args[(*i)], DOUBLELESS)))
+		(*i)++;
+	else
+		(*a)++;
+}
+
 void	redirection_ag(t_command **cmd_head, char	**args)
 {
 	char	**temp;
@@ -65,15 +76,7 @@ void	redirection_ag(t_command **cmd_head, char	**args)
 	i = -1;
 	a = 0;
 	while (args[++i])
-	{
-		if ((ft_strcmp(args[i], GREATER))
-			|| (ft_strcmp(args[i], DOUBLEGREATER))
-			|| (ft_strcmp(args[i], LESS))
-			|| (ft_strcmp(args[i], DOUBLELESS)))
-			i++;
-		else
-			a++;
-	}
+		redirection_ag_var(args, &a, &i);
 	temp = ft_calloc(a + 1, sizeof(char *));
 	i = -1;
 	e = 0;

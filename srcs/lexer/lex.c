@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lex.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:58:04 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/18 18:41:47 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/19 22:17:11 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ static int	replace_for_keywords(char **str)
 	return (1);
 }
 
+// void	temp_utis_pipe
+
 char	**temp_maker(char *rtn)
 {
 	char	*t1;
@@ -93,7 +95,7 @@ char	**temp_maker(char *rtn)
 	if (rtn[0] == '<' && rtn[1] != '<')
 	{
 		c = 0;
-		t1 =ft_calloc(2, sizeof(char));
+		t1 = ft_calloc(2, sizeof(char));
 		t1[0] = '<';
 		t1[1] = 0;
 		t2 = ft_calloc(ft_strlen(rtn), sizeof(char));
@@ -116,7 +118,7 @@ char	**temp_maker(char *rtn)
 	if (rtn[0] == '>' && rtn[1] != '>')
 	{
 		c = 0;
-		t1 =ft_calloc(2, sizeof(char));
+		t1 = ft_calloc(2, sizeof(char));
 		t1[0] = '>';
 		t1[1] = 0;
 		t2 = ft_calloc(ft_strlen(rtn), sizeof(char));

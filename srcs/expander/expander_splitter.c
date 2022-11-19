@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 20:16:53 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/17 20:31:23 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/19 20:18:08 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,35 @@
 
 char	**expand_splitter(char *str, char **rtn)
 {
-	int		e;
-	int		n;
-	int		l;
+	int		e[3];
 	char	*aux;
 
 	aux = NULL;
-	e = -1;
-	n = 0;
-	while (str[++e])
+	e[0] = -1;
+	e[1] = 0;
+	while (str[++e[0]])
 	{
-		l = e;
-		if (str[e] && str[e] == SINGLE_QUOTE)
+		e[2] = e[0];
+		if (str[e[0]] && str[e[0]] == SINGLE_QUOTE)
 		{
-			e++;
-			while ((str[e]) && ((str[e] != SINGLE_QUOTE)))
-				e++;
-			rtn[n] = expand_splitter_ut2(str, aux, &e, &l);
+			e[0]++;
+			while ((str[e[0]]) && ((str[e[0]] != SINGLE_QUOTE)))
+				e[0]++;
+			rtn[e[1]] = expand_splitter_ut2(str, aux, &e[0], &e[2]);
 		}
-		else if (str[e] == '$')
+		else if (str[e[0]] == '$')
 		{
-			expand_splitter_ut(str, &e);
-			rtn[n] = expand_splitter_ut2(str, aux, &e, &l);
+			expand_splitter_ut(str, &e[0]);
+			rtn[e[1]] = expand_splitter_ut2(str, aux, &e[0], &e[2]);
 		}
 		else
 		{
-			while ((str[e]) && ((str[e] != '$')))
-				e++;
-			e--;
-			rtn[n] = expand_splitter_ut2(str, aux, &e, &l);
+			while ((str[e[0]]) && ((str[e[0]] != '$')))
+				e[0]++;
+			e[0]--;
+			rtn[e[1]] = expand_splitter_ut2(str, aux, &e[0], &e[2]);
 		}
-		n++;
+		e[1]++;
 	}
 	return (rtn);
 }
@@ -74,7 +72,7 @@ void	expand_splitter_ut(char *str, int *e)
 	{
 		(*e)++;
 		while ((str[(*e)]) && ((str[(*e)] != '$') && (str[(*e)] != 32)
-		&& (str[(*e)] != SINGLE_QUOTE)))
+				&& (str[(*e)] != SINGLE_QUOTE)))
 			(*e)++;
 		(*e)--;
 	}

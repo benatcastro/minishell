@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:19:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/17 20:34:08 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/19 20:23:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ char	**expander(char	*str)
 	return (temp);
 }
 
+void	expand_arg_num_ut2(char *str, int *e, int *c)
+{
+	(*c)++;
+	(*e)++;
+	while ((str[(*e)]) && ((str[(*e)] != SINGLE_QUOTE)))
+		(*e)++;
+	(*e)++;
+}
+
 int	expand_arg_num(char *str)
 {
 	int		e;
@@ -46,13 +55,7 @@ int	expand_arg_num(char *str)
 	while (str[++e])
 	{
 		if (str[e] && str[e] == SINGLE_QUOTE)
-		{
-			c++;
-			e++;
-			while ((str[e]) && ((str[e] != SINGLE_QUOTE)))
-				e++;
-			e++;
-		}
+			expand_arg_num_ut2(str, &e, &c);
 		else if (str[e] && str[e] == '$')
 			expand_arg_num_ut(str, &e, &c);
 		else

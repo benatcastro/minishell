@@ -27,6 +27,7 @@ srcs/executor/node_manager.c \
 srcs/executor/redir.c \
 srcs/executor/gnl.c \
 srcs/executor/redirections.c \
+srcs/executor/redirection_utils.c \
 srcs/executor/special_split.c \
 srcs/node_fncs/free_nodes.c \
 srcs/node_fncs/ft_nodelast.c \
@@ -54,13 +55,10 @@ EOC = \033[1;0m
 INCLUDES = -I includes/
 CC = gcc
 VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --supressions=readline_supression.supp
-SANITIZE = -fsanitize=adress -g3
-FLAGS =	-Wall -Wextra -Werror \
-		$(RD_FLAGS)		\
-		$(SANITIZE)		\
-
-
 RD_FLAGS = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib/
+FLAGS = -Wall -Wextra -Werror -I /Users/$(USER)/.brew/opt/readline/include -g3 -fsanitize=address
+
+
 
 all: $(NAME)
 
