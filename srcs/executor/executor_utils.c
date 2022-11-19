@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/17 21:13:23 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/19 13:49:28 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ int	last_pipe(int *pid, t_command *temp, int fd[2][2])
 
 void	special_builtins(t_command *temp)
 {
+	char	**env;
+
+	env = ft_doublestrdup(g_data.env);
 	if (!temp->args[0])
 		return ;
 	g_data.sub_pid = 1;
@@ -88,7 +91,7 @@ void	special_builtins(t_command *temp)
 	else if (ft_strcmp(temp->args[0], "export"))
 	{
 		if (!temp->args[1])
-			ft_export_no_arg();
+			ft_export_no_arg(env);
 		else
 			ft_export_arg(temp->args);
 	}
@@ -99,21 +102,14 @@ void	special_builtins(t_command *temp)
 	g_data.sub_pid = 0;
 }
 
-void	exec_morepipes(t_command **cmd_table, pid_t pid[3], int i[2])
+void	exec_morepipes(t_command **cmd_table, pid_t pid[3], int i[2], int f[2])
 {
 	t_command		*temp;
 	int				fd[2][2];
-	int				f[2];
 
-	f[0] = 0;
-	f[1] = 1;
-	temp = (*cmd_table);
 	if (pipe (fd[0]) == -1 || pipe (fd[1]) == -1)
 		exit (0);
-	if (temp->next != NULL && temp->next->next == NULL)
-		f[0] = 1;
-	if (temp->next == NULL)
-		f[1] = 0;
+	temp = (*cmd_table);
 	first_pipe(pid, temp, fd, f);
 	special_builtins(temp);
 	if (temp->next == NULL)
@@ -127,7 +123,6 @@ void	exec_morepipes(t_command **cmd_table, pid_t pid[3], int i[2])
 	}
 	last_pipe(pid, temp, fd);
 	special_builtins(temp);
-	i[1] = -1;
 	while (++i[1] < 3)
 		waitpid(pid[i[1]], &g_data.exit_val, 0);
 	get_exit_status();

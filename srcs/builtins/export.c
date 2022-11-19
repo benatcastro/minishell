@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 05:45:07 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/17 18:00:47 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/19 13:52:17 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,53 +67,38 @@ int	export_arg_chkr(char *arg)
 	return (cont);
 }
 
-void	ft_doubleprint_err(char **str)
+void	export_no_arg_var(int *i, int *f, int *c, char **env)
 {
-	int	i;
-
-	i = 0;
-	if (!str || !str[0])
+	while ((*i) != ft_doublestrlen(env) - 1)
 	{
-		write(2, "Error\n", 6);
-		return ;
-	}
-	while (str[i])
-	{
-		write (2, str[i], ft_strlen(str[i]));
-		write (2, "\n", 1);
-		i++;
+		(*i)++;
+		if (env[(*i)][(*f)] < env[(*c)][(*f)])
+			(*c) = (*i);
+		else if (env[(*i)][(*f)] == env[(*c)][(*f)])
+		{
+			(*i)--;
+			(*f)++;
+			continue ;
+		}
+		(*f) = 0;
 	}
 }
 
-void	ft_export_no_arg(void)
+void	ft_export_no_arg(char	**env)
 {
 	int		i;
 	int		f;
 	int		c;
 	int		e;
 	char	*aux;
-	char	**env;
 
-	env = ft_doublestrdup(g_data.env);
 	e = 0;
 	f = 0;
 	while (e != ft_doublestrlen(env) - 1)
 	{
 		i = e;
 		c = i;
-		while (i != ft_doublestrlen(env) - 1)
-		{
-			i++;
-			if (env[i][f] < env[c][f])
-				c = i;
-			else if (env[i][f] == env[c][f])
-			{
-				i--;
-				f++;
-				continue ;
-			}
-			f = 0;
-		}
+		export_no_arg_var(&i, &f, &c, env);
 		aux = env[e];
 		env[e] = env[c];
 		env[c] = aux;
@@ -121,54 +106,5 @@ void	ft_export_no_arg(void)
 	}
 	i = -1;
 	while (env[++i])
-	{
-		printf ("declare -x ");
-		printf ("%s\n", env[i]);
-	}
-}
-
-void	export_temp(char **temp, char *str)
-{
-	char	*t1;
-	char	*t2;
-	int		i;
-	int		c;
-
-	t1 = ft_calloc(num_until_equal(str) + 1, sizeof(char *));
-	t2 = ft_calloc((ft_strlen(str) - num_until_equal(str)), sizeof(char *));
-	i = -1;
-	while (++i < num_until_equal(str))
-		t1[i] = str[i];
-	c = 0;
-	i = (num_until_equal(str));
-	while (++i <= (int)ft_strlen(str))
-		t2[c++] = str[i];
-	temp[0] = t1;
-	temp[1] = t2;
-}
-
-void	ft_export_arg(char **args)
-{
-	int		i;
-	char	**temp;
-
-	i = 0;
-	while (args[++i])
-	{
-		if (export_arg_chkr(args[i]) == -1)
-			return ;
-		else if (export_arg_chkr(args[i]) == 0)
-		{
-			if (find_in_env(args[i]) == NULL)
-				ft_doublestradd(args[i]);
-		}
-		else if (export_arg_chkr(args[i]) > 0)
-		{
-			temp = ft_calloc(3, sizeof(char *));
-			export_temp(temp, args[i]);
-			if (find_in_env(temp[0]) != NULL)
-				rebuild_env(temp[0]);
-			ft_doublestradd(args[i]);
-		}
-	}
+		printf ("declare -x %s\n", env[i]);
 }

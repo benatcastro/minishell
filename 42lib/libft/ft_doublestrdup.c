@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 18:21:54 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/11/17 14:53:52 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/19 13:33:04 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ char	**ft_doublestrdup(char **str)
 	i = -1;
 	while (str[++i])
 		result[i] = ft_strdup(str[i]);
-//	result[i] = NULL;
 	return (result);
 }

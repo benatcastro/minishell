@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/15 20:04:36 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/19 13:31:08 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char			*bin_path_finder(char **args, int *exit);
 //static void		bin_executor(char **args);
 void			execute_cmds(char **args);
 void			exec_morepipes(t_command **cmd_table,
-					pid_t pid[3], int i[2]);
+					pid_t pid[3], int i[2], int f[2]);
 int				first_pipe_op(t_command *temp,
 					int fd[2], int *pid);
 int				second_pipe_op(t_command *temp,

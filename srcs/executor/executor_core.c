@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/17 14:43:28 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/19 13:30:51 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,24 @@ void	pipe_core(t_command **cmd_table)
 	t_command		*temp;
 	int				i[2];
 	pid_t			pid[3];
+	int				f[2];
 
+	f[0] = 0;
+	f[1] = 1;
+	temp = (*cmd_table);
+	if (temp->next != NULL && temp->next->next == NULL)
+		f[0] = 1;
+	if (temp->next == NULL)
+		f[1] = 0;
 	i[0] = 1;
+	i[1] = -1;
 	temp = (*cmd_table);
 	while (temp->next)
 	{
 		temp = temp->next;
 		i[0]++;
 	}
-	exec_morepipes(cmd_table, pid, i);
+	exec_morepipes(cmd_table, pid, i, f);
 }
 
 int	executor_core(char **cmd)
@@ -64,7 +73,5 @@ int	executor_core(char **cmd)
 		pipe_core(aux->cmds);
 		aux = aux->next;
 	}
-	//free_command_table_nodes(&table_head);
-	// print_table(&table_head);
 	return (1);
 }

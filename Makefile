@@ -10,6 +10,7 @@ srcs/builtins/cd.c \
 srcs/builtins/echo.c \
 srcs/builtins/exit.c \
 srcs/builtins/export.c \
+srcs/builtins/export_utils.c \
 srcs/builtins/unset.c \
 srcs/expander/expander_core.c \
 srcs/expander/expander_env_rep.c \

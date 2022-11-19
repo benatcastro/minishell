@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/17 21:00:35 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/19 13:23:21 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	execute_cmds(char **args)
 	if (!args || args[0] == NULL)
 	{
 		unlink (".temp");
-		exit(0) ;
+		exit(0);
 	}
 	if (arg_is_wildcard(args))
 		args = wildcard_core(args);
