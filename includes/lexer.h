@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 12:51:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/21 16:15:12 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:20:04 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char		**lex_splitter(char *str, char **temp);
 char		**lex_core(char *str);
 void		lex_splitter_ut(char **temp, char *str, int i[2], int *n);
 void		lex_splitter_quote_ut(char *str, int *e);
-static int	replace_for_keywords(char **str);
+void		replace_for_keywords(char **str);
 
 ///////////////////// TEMP /////////////////////
 char		**temp_utis_pipe(char *rtn);

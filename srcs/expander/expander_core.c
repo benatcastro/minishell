@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:31:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/18 18:41:35 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/21 17:19:50 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ char	*expand_trimmer(char	*str)
 		rtn[c] = str[i];
 		c++;
 	}
-	rtn[i] = 0;
 	return (rtn);
 }
 
@@ -69,14 +68,8 @@ char	*expand_first_trimmer(char	*str)
 		rtn[c] = str[i];
 		c++;
 	}
-	rtn[i] = 0;
 	return (rtn);
 }
-
-// char	**simple_splitter(char *str)
-// {
-
-// }
 
 char	*expander_main(char	*str)
 {

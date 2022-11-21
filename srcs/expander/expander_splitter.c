@@ -6,13 +6,29 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 20:16:53 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/21 16:24:25 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:28:54 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 #include "minishell.h"
 #include "lexer.h"
+
+void	expand_splitter_ut_ut(char *str, char *aux, int e[3], char **rtn)
+{
+	e[0]++;
+	while ((str[e[0]]) && ((str[e[0]] != SINGLE_QUOTE)))
+		e[0]++;
+	rtn[e[1]] = expand_splitter_ut2(str, aux, &e[0], &e[2]);
+}
+
+void	expand_splitter_ut_ut2(char *str, char *aux, int e[3], char **rtn)
+{
+	while ((str[e[0]]) && ((str[e[0]] != '$')))
+		e[0]++;
+	e[0]--;
+	rtn[e[1]] = expand_splitter_ut2(str, aux, &e[0], &e[2]);
+}
 
 char	**expand_splitter(char *str, char **rtn)
 {
@@ -26,24 +42,14 @@ char	**expand_splitter(char *str, char **rtn)
 	{
 		e[2] = e[0];
 		if (str[e[0]] && str[e[0]] == SINGLE_QUOTE)
-		{
-			e[0]++;
-			while ((str[e[0]]) && ((str[e[0]] != SINGLE_QUOTE)))
-				e[0]++;
-			rtn[e[1]] = expand_splitter_ut2(str, aux, &e[0], &e[2]);
-		}
+			expand_splitter_ut_ut(str, aux, e, rtn);
 		else if (str[e[0]] == '$')
 		{
 			expand_splitter_ut(str, &e[0]);
 			rtn[e[1]] = expand_splitter_ut2(str, aux, &e[0], &e[2]);
 		}
 		else
-		{
-			while ((str[e[0]]) && ((str[e[0]] != '$')))
-				e[0]++;
-			e[0]--;
-			rtn[e[1]] = expand_splitter_ut2(str, aux, &e[0], &e[2]);
-		}
+			expand_splitter_ut_ut2(str, aux, e, rtn);
 		e[1]++;
 	}
 	return (rtn);
@@ -76,20 +82,4 @@ void	expand_splitter_ut(char *str, int *e)
 			(*e)++;
 		(*e)--;
 	}
-}
-
-char	*ft_strdup_free(char *s1)
-{
-	char	*result;
-	int		i;
-
-	result = ft_calloc((ft_strlen(s1) + 1), sizeof(char));
-	if (!result)
-		return (NULL);
-	i = -1;
-	while (s1[++i])
-		result[i] = s1[i];
-	result[i] = 0;
-	free(s1);
-	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:56:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/21 16:14:55 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:15:21 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	lex_splitter_quote_ut(char *str, int *e)
 		(*e)++;
 }
 
-static int	replace_for_keywords(char **str)
+void	replace_for_keywords(char **str)
 {
 	int	i;
 
@@ -118,5 +118,4 @@ static int	replace_for_keywords(char **str)
 		else if (ft_chr_in_set('\\', str[i]))
 			str[i] = ft_str_replace(str[i], "ASCII92");
 	}
-	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:29:59 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/19 20:09:38 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:29:08 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,20 @@ int	num_until_equal(char *str)
 		i++;
 	}
 	return (0);
+}
+
+char	*ft_strdup_free(char *s1)
+{
+	char	*result;
+	int		i;
+
+	result = ft_calloc((ft_strlen(s1) + 1), sizeof(char));
+	if (!result)
+		return (NULL);
+	i = -1;
+	while (s1[++i])
+		result[i] = s1[i];
+	result[i] = 0;
+	free(s1);
+	return (result);
 }
