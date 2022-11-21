@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 05:45:07 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/19 13:52:17 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/21 19:23:28 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_doublestradd(char *arg)
 	while (temp[++c])
 		g_data.env[c] = temp[c];
 	g_data.env[i] = arg;
+	ft_doublefree(temp);
 }
 
 int	export_directory_chk(char *arg)

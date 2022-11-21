@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/19 19:16:57 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/21 19:34:06 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	executor_core(char **cmd)
 
 	table_head = NULL;
 	create_command_table(&table_head, cmd);
+	// ft_doublefree(cmd);
 	aux = table_head;
 	while (aux)
 	{

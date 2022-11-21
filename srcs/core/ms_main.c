@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/21 17:26:39 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/21 19:35:51 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,13 @@ void	readline_loop(char *buf, char **lex, char *tmp)
 		{
 			printf ("Syntax error\n");
 			g_data.exit_val = 258;
+			free (buf);
+			ft_doublefree(lex);
 			continue ;
 		}
-		executor_core(lex);
 		free (buf);
+		executor_core(lex);
+		ft_doublefree(lex);
 	}
 }
 

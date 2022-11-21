@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:19:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/19 20:23:29 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/21 20:22:02 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**expander(char	*str)
 
 	temp = ft_calloc((expand_arg_num(str)) + 1, sizeof(char *));
 	temp = expand_splitter(str, temp);
-	i = -1;
+	free(str);
 	i = -1;
 	while (temp[++i])
 	{
