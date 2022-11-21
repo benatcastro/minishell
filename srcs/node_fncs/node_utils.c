@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:20:33 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/04 20:25:05 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:20:25 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "nodes.h"
 #include "executor.h"
 #include "stdio.h"
-
 
 void	print_double_str_tab(char **str)
 {

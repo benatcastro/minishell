@@ -18,6 +18,7 @@ srcs/expander/expander_splitter.c \
 srcs/expander/expander_utils.c \
 srcs/lexer/lex_utils.c \
 srcs/lexer/lex.c \
+srcs/lexer/temp_utils.c \
 srcs/executor/executor_core.c \
 srcs/executor/executor_main.c \
 srcs/executor/executor_utils.c \
