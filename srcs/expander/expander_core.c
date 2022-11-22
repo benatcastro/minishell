@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:31:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/21 19:21:11 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:58:18 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*expand_trimmer(char	*str)
 		rtn[c] = str[i];
 		c++;
 	}
-	return (rtn);
+	return (free(str), rtn);
 }
 
 char	*expand_first_trimmer(char	*str)
@@ -72,6 +72,44 @@ char	*expand_first_trimmer(char	*str)
 	return (rtn);
 }
 
+char	*untrimmer(char *str)
+{
+	char	*rtn;
+	int		i;
+	int		c;
+
+	i = 1;
+	c = -1;
+	rtn = ft_calloc(sizeof(char), ft_strlen(str) + 3);
+	rtn[0] = SINGLE_QUOTE;
+	while (str[++c])
+	{
+		rtn[i] = str[c];
+		i++;
+	}
+	rtn[i] = SINGLE_QUOTE;
+	free(str);
+	return(rtn);
+}
+
+char	**single_quote_expander(char **rtn)
+{
+	int		i;
+	char	*aux;
+
+	i = -1;
+	while (rtn[++i])
+	{
+		if (rtn[i][0] == SINGLE_QUOTE)
+		{
+			aux = expand_trimmer(rtn[i]);
+			aux = double_joiner(expander(aux));
+			rtn[i] = untrimmer(aux);
+		}
+	}
+	return (rtn);
+}
+
 char	*expander_main(char	*str)
 {
 	char	**rtn;
@@ -85,13 +123,10 @@ char	*expander_main(char	*str)
 	{
 		temp = expand_trimmer(str);
 		rtn = expander(temp);
-		if (str)
-			free (str);
-		if (temp)
-			free (temp);
 	}
 	else
 		rtn = expander(str);
+	rtn = single_quote_expander(rtn);
 	r = double_joiner(rtn);
 	if (rtn != NULL)
 		ft_doublefree(rtn);

@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:32:32 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/19 20:02:54 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:11:36 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void	redirection_core(t_command *temp)
 	t = temp->in;
 	t_out = temp->out;
 	head = NULL;
-	close (fd[0]);
-	close (fd[1]);
+	// close (fd[0]);
+	// close (fd[1]);
 	if (t != NULL)
 		in_redirection(t, fd);
 	if (t_out == NULL && t != NULL)
