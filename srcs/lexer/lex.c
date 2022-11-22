@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:58:04 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/21 21:15:15 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:03:53 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	pipe_redir_rep_mem(char **rtn, int *i, int *c)
 		else
 			(*c)++;
 	}
+	(*i) = -1;
 }
 
 char	**pipe_redir_replacer(char **rtn)
@@ -85,7 +86,6 @@ char	**pipe_redir_replacer(char **rtn)
 
 	pipe_redir_rep_mem(rtn, &i, &c);
 	fin = ft_calloc(c + 1, sizeof(char *));
-	i = -1;
 	c = 0;
 	while (rtn[++i])
 	{
@@ -98,10 +98,10 @@ char	**pipe_redir_replacer(char **rtn)
 			temp = temp_maker(rtn[i]);
 			fin[c++] = ft_strdup(temp[0]);
 			fin[c++] = ft_strdup(temp[1]);
+			ft_doublefree(temp);
 		}
 		else
 			fin[c++] = ft_strdup(rtn[i]);
-//		ft_doublefree(temp);
 	}
 	return (ft_doublefree(rtn), fin[c] = 0, fin);
 }

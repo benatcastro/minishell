@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:48:40 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/21 21:13:18 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:12:28 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "lexer.h"
 #include "expander.h"
 
-char	**  temp_utis_pipe(char *rtn)
+char	**temp_utis_pipe(char *rtn)
 {
 	char	**temp;
 	char	*t1;
