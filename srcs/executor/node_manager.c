@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:26:42 by bena              #+#    #+#             */
-/*   Updated: 2022/11/19 19:08:54 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:56:39 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_command_table	*create_command_table_node(char **cmds)
 	node->cmds = ft_calloc(1, sizeof(t_command));
 	ft_memset(node->cmds, 0, sizeof(t_command));
 	node->key = key;
-	//node->f_cmd = ft_doublestrdup(cmds);
 	key++;
 	create_cmd(node->cmds, cmds);
 	return (node);
