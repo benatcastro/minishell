@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 05:48:45 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/22 18:04:59 by umartin-         ###   ########.fr       */
+/*   Created: 2022/09/28 16:28:22 by becastro          #+#    #+#             */
+/*   Updated: 2022/11/15 21:50:10 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "signals.h"
+#include <stdio.h>
 #include "minishell.h"
 
-void	builtins_echo(char **cont)
+void	signal_reciever(int signal, siginfo_t *data, void *ucontext)
 {
-	int	i;
-
-	if (!cont[1])
-		return ((void)printf("\n"));
-	if (!ft_strncmp(cont[1], "-n", 3))
+	(void)data;
+	(void)ucontext;
+	if (signal == SIGINT && !g_data.sub_pid)
 	{
-		i = 1;
-		while (cont[++i])
-		{
-			printf("%s", cont[i]);
-			if (cont[i + 1] != NULL)
-				printf(" ");
-		}
-	}
-	else
-	{
-		i = 0;
-		while (cont[++i])
-		{
-			printf("%s", cont[i]);
-			if (cont[i + 1] != NULL)
-				printf(" ");
-		}
 		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+	else if ((signal == SIGINT || signal == SIGQUIT) && g_data.sub_pid)
+	{
+		g_data.exit_val = 130;
+		g_data.sub_pid = 0;
+		printf("\r");
+		printf("\n");
+		rl_on_new_line();
 	}
 }

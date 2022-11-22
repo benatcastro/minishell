@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_doublestrlen.c                                  :+:      :+:    :+:   */
+/*   parser_errors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 18:25:01 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/11/22 19:04:34 by umartin-         ###   ########.fr       */
+/*   Created: 2022/09/29 13:36:23 by umartin-          #+#    #+#             */
+/*   Updated: 2022/09/29 14:18:06 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
+#include "parser.h"
+#include "lexer.h"
 
-/**
- * @brief counts the number of lines the double pointer pointed by str has.
- * 
- * @param str the double pointer to count.
- * @return int the number of lines str has.
- */
-int	ft_doublestrlen(char **str)
+void	parser_quote_error_chk_utl_sq(char *str, int *b, int *i)
 {
-	int	i;
+	while ((size_t)(*i)++ != ft_strlen(str))
+	{
+		if (str[*i] == 39)
+		{
+			*b = 0;
+			break ;
+		}
+	}
+}
 
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+void	parser_quote_error_chk_utl_dq(char *str, int *b, int *i)
+{
+	while ((size_t)(*i)++ != ft_strlen(str))
+	{
+		if (str[*i] == 34)
+		{
+			*b = 0;
+			break ;
+		}
+	}
 }

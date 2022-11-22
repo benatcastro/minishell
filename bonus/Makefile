@@ -1,10 +1,9 @@
-NAME = minishell
-BONUS = full_minishell
+BONUS = ../full_minishell
 
-LIBFT_PATH		=	./42lib
+LIBFT_PATH		=	../42lib
 LIBFT			=	$(LIBFT_PATH)/42lib.a
 
-SRC = srcs/core/ms_main.c \
+SRC_BONUS = srcs/core/ms_main.c \
 srcs/core/utils.c \
 srcs/builtins/builtins_core.c \
 srcs/builtins/cd.c \
@@ -43,7 +42,7 @@ srcs/signals/signals_core.c \
 srcs/wildcards/dir_fncs.c \
 srcs/wildcards/wildcards_core.c \
 
-OBJ = $(SRC:.c=.o)
+OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 RM = rm -f
 ARRC = ar rc
@@ -54,50 +53,43 @@ YEL = \033[1;33m
 WHT = \033[1;37m
 EOC = \033[1;0m
 
-INCLUDES = -I includes/
-INCLUDES_BONUS = -I bonus/includes/
+INCLUDES_BONUS = -I includes/
 CC = gcc
 VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=readline_supp
 RD_FLAGS = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib/
 FLAGS = -Wall -Wextra -Werror -I /Users/$(USER)/.brew/opt/readline/include -g3 -fsanitize=address
 
-all: $(NAME)
-
 bonus: $(BONUS)
 
-m: $(NAME)
-
-$(NAME): $(OBJ)
+$(BONUS): $(OBJ_BONUS)
 	@echo "$(WHT)Compiling 42lib...$(EOC)"
-	make -C 42lib/
-	@echo "$(WHT)Compiling minishell...$(EOC)"
-	@$(CC) $(FLAGS) $(RD_FLAGS) $(INCLUDES) -o $(NAME) $(OBJ) libraries/42lib.a
-	@echo "$(GREEN)minishell build completed.$(EOC)"
-
-$(BONUS):
-	make -C bonus/
+	make -C ../42lib/
+	@echo ""
+	@echo "$(WHT)Compiling:$(EOC)"
+	@echo ""
+	@echo "$(RED) ******       **      ******** **      **                **         "
+	@echo "$(RED)/*////**     ****    **////// /**     /**               /**         "
+	@echo "$(RED)/*   /**    **//**  /**       /**     /**  ******       /**  ****** "
+	@echo "$(RED)/******    **  //** /*********/********** //////**   ****** **////**"
+	@echo "$(RED)/*//// ** **********////////**/**//////**  *******  **///**/**   /**"
+	@echo "$(RED)/*    /**/**//////**       /**/**     /** **////** /**  /**/**   /**"
+	@echo "$(RED)/******* /**     /** ******** /**     /**//********//******//****** "
+	@echo "$(RED)///////  //      // ////////  //      //  ////////  //////  //////  $(EOC)"
+	@echo ""
+	@echo "$(YEL)Full 42 minishell with bonus :D $(EOC)"
+	@echo ""
+	@echo ""
+	@$(CC) $(FLAGS) $(RD_FLAGS) $(INCLUDES_BONUS) -o $(BONUS) $(OBJ_BONUS) ../libraries/42lib.a
 
 %.o: %.c
-	@$(CC) $(INCLUDES) $(FLAGS) -c $^ -o $@
+	@$(CC) $(INCLUDES_BONUS) $(FLAGS) -c $^ -o $@
 
 clean:
-	@echo "$(WHT)Removing o-files...$(EOC)"
-	$(RM) $(OBJ)
-	@echo "$(GREEN)clean done.$(EOC)"
+	@$(RM) $(OBJ_BONUS) $(BONUS)
 
-fclean: clean
-	make fclean -C 42lib/
-	make clean -C bonus/
-	@echo "$(WHT)Removing binary -files...$(EOC)"
-	$(RM) $(NAME) $(BONUS)
-	@echo "$(GREEN)fclean done.$(EOC)"
-
-run: all
-	./$(NAME)
-
-valgrind: all
-	$(VALGRIND) ./$(NAME)
+run: bonus
+	./$(BONUS)
 
 re: fclean all
 
-.PHONY: clean re fclean all m
+.PHONY: clean re fclean bonus

@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_doublestrlen.c                                  :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 18:25:01 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/11/22 19:04:34 by umartin-         ###   ########.fr       */
+/*   Created: 2022/11/13 05:48:45 by becastro          #+#    #+#             */
+/*   Updated: 2022/11/22 18:09:42 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-/**
- * @brief counts the number of lines the double pointer pointed by str has.
- * 
- * @param str the double pointer to count.
- * @return int the number of lines str has.
- */
-int	ft_doublestrlen(char **str)
+void	builtins_echo(char **cont)
 {
 	int	i;
 
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	if (!cont[1])
+		return ((void)printf("\n"));
+	if (!ft_strncmp(cont[1], "-n", 3))
+	{
+		i = 1;
+		while (cont[++i])
+		{
+			printf("%s", cont[i]);
+			if (cont[i + 1] != NULL)
+				printf(" ");
+		}
+	}
+	else
+	{
+		i = 0;
+		while (cont[++i])
+		{
+			printf("%s", cont[i]);
+			if (cont[i + 1] != NULL)
+				printf(" ");
+		}
+		printf("\n");
+	}
 }

@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_doublestrlen.c                                  :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 18:25:01 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/11/22 19:04:34 by umartin-         ###   ########.fr       */
+/*   Created: 2022/11/09 05:15:31 by becastro          #+#    #+#             */
+/*   Updated: 2022/11/22 15:01:07 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "builtins.h"
+#include "minishell.h"
 
-/**
- * @brief counts the number of lines the double pointer pointed by str has.
- * 
- * @param str the double pointer to count.
- * @return int the number of lines str has.
- */
-int	ft_doublestrlen(char **str)
+int	exit_builtin(void)
 {
-	int	i;
-
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	ft_doublefree(g_data.env);
+	printf("exit\n");
+	exit(0);
+	return (0);
 }
