@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 06:45:32 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/21 19:29:54 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:29:08 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	rebuild_env(char *var)
 		if (!env_comparer(var, g_data.env[i]))
 			new_env[++j] = ft_strdup(g_data.env[i]);
 	ft_doublefree(g_data.env);
-	g_data.env = new_env;
+	g_data.env = ft_doublestrdup(new_env);
+	ft_doublefree(new_env);
 }
 
 void	unset_builtin(char **args)

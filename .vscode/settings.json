@@ -14,7 +14,8 @@
 		"wildcards.h": "c",
 		"builtins.h": "c",
 		"sstream": "c",
-		"__locale": "c"
+		"__locale": "c",
+		"complex": "c"
 	},
 	"files.autoSave": "afterDelay",
 	"editor.tabCompletion": "off",
