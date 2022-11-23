@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:26:42 by bena              #+#    #+#             */
-/*   Updated: 2022/11/22 18:59:31 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/22 20:08:26 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "nodes.h"
 #include "lexer.h"
 
-t_command_table	*create_command_table_node(char **cmds, unsigned int separator)
+t_command_table	*create_command_table_node(char **cmds)
 {
 	t_command_table		*node;
 	static unsigned int	key;
@@ -26,7 +26,6 @@ t_command_table	*create_command_table_node(char **cmds, unsigned int separator)
 	node->cmds = ft_calloc(1, sizeof(t_command));
 	ft_memset(node->cmds, 0, sizeof(t_command));
 	node->key = key;
-	node->separator = separator;
 	key++;
 	create_cmd(node->cmds, cmds);
 	return (node);
@@ -38,13 +37,13 @@ t_command_table	**create_command_table(t_command_table **head, char **cmds)
 
 	i = -1;
 	if (!(*head))
-		(*head) = create_command_table_node(cmds, NOSEPARATOR);
+		(*head) = create_command_table_node(cmds);
 	while (cmds[++i])
 	{
 		if (ft_strcmp(cmds[i], DOUBLEPIPE))
-			ft_tableadd_back(head, create_command_table_node(&cmds[i + 1], ORSEPARATOR));
+			ft_tableadd_back(head, create_command_table_node(&cmds[i + 1]));
 		if (ft_strcmp(cmds[i], DOUBLEAMPERSAND))
-			ft_tableadd_back(head, create_command_table_node(&cmds[i + 1], AMPERSANDSEPARATOR));			
+			ft_tableadd_back(head, create_command_table_node(&cmds[i + 1]));			
 	}
 	return (head);
 }

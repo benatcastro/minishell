@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 01:08:01 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/09 14:50:28 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:15:40 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ static void	free_redir_nodes(t_redir **head)
 {
 	t_redir	*aux;
 
-	if (!head)
+	if (!(*head))
 		return ;
 	while (head)
 	{
 		aux = (*head);
-		(*head) = (*head)->next;
+		if ((*head)->next)
+			(*head) = (*head)->next;
 		free(aux);
 	}
 }
