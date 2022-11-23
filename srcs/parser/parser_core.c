@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/23 18:33:15 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/23 18:35:48 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	**parser_core(char **str)
 
 	i = -1;
 	aux = NULL;
-	dub = ft_calloc((ft_doublestrlen(str) + 1s), sizeof(char *));
+	dub = ft_calloc((ft_doublestrlen(str) + 1), sizeof(char *));
 	while (++i != ft_doublestrlen(str))
 	{
 		aux = parser_quotes(str[i]);
