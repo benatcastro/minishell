@@ -59,7 +59,7 @@ VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes 
 RD_FLAGS = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib/
 FLAGS = -Wall -Wextra -Werror -I /Users/$(USER)/.brew/opt/readline/include -g3 -fsanitize=address
 
-bonus: $(BONUS)
+all: $(BONUS)
 
 $(BONUS): $(OBJ_BONUS)
 	@echo "$(WHT)Compiling 42lib...$(EOC)"
@@ -87,7 +87,14 @@ $(BONUS): $(OBJ_BONUS)
 clean:
 	@$(RM) $(OBJ_BONUS) $(BONUS)
 
-run: bonus
+fclean: clean
+	make fclean -C ../42lib/
+	make clean -C bonus/
+	@echo "$(WHT)Removing binary -files...$(EOC)"
+	$(RM) $(NAME) $(BONUS)
+	@echo "$(GREEN)fclean done.$(EOC)"
+
+run: all
 	./$(BONUS)
 
 re: fclean all
