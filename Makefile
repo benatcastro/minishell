@@ -67,14 +67,14 @@ bonus: $(BONUS)
 
 m: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME):
 	@echo "$(WHT)Compiling 42lib...$(EOC)"
-	make -C 42lib/
-	@echo "$(WHT)Compiling minishell...$(EOC)"
-	@$(CC) $(FLAGS) $(RD_FLAGS) $(INCLUDES) -o $(NAME) $(OBJ) libraries/42lib.a
-	@echo "$(GREEN)minishell build completed.$(EOC)"
+	make -C mandatory/42lib/
+	make -C mandatory/
 
 $(BONUS):
+	@echo "$(WHT)Compiling 42lib...$(EOC)"
+	make -C bonus/42lib/
 	make -C bonus/
 
 %.o: %.c
@@ -82,18 +82,23 @@ $(BONUS):
 
 clean:
 	@echo "$(WHT)Removing o-files...$(EOC)"
-	$(RM) $(OBJ)
+	@$(RM) $(OBJ)
 	@echo "$(GREEN)clean done.$(EOC)"
 
 fclean: clean
-	make fclean -C 42lib/
+	make fclean -C mandatory/42lib/
+	make fclean -C bonus/42lib/
 	make clean -C bonus/
+	make clean -C mandatory/
 	@echo "$(WHT)Removing binary -files...$(EOC)"
 	$(RM) $(NAME) $(BONUS)
 	@echo "$(GREEN)fclean done.$(EOC)"
 
-run: all
+mrun: all
 	./$(NAME)
+
+brun: bonus
+	./$(BONUS)
 
 valgrind: all
 	$(VALGRIND) ./$(NAME)

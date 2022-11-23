@@ -1,6 +1,6 @@
 BONUS = ../full_minishell
 
-LIBFT_PATH		=	../42lib
+LIBFT_PATH		=	./42lib
 LIBFT			=	$(LIBFT_PATH)/42lib.a
 
 SRC_BONUS = srcs/core/ms_main.c \
@@ -62,8 +62,6 @@ FLAGS = -Wall -Wextra -Werror -I /Users/$(USER)/.brew/opt/readline/include -g3 -
 all: $(BONUS)
 
 $(BONUS): $(OBJ_BONUS)
-	@echo "$(WHT)Compiling 42lib...$(EOC)"
-	make -C ../42lib/
 	@echo ""
 	@echo "$(WHT)Compiling:$(EOC)"
 	@echo ""
@@ -79,24 +77,12 @@ $(BONUS): $(OBJ_BONUS)
 	@echo "$(YEL)Full 42 minishell with bonus :D $(EOC)"
 	@echo ""
 	@echo ""
-	@$(CC) $(FLAGS) $(RD_FLAGS) $(INCLUDES_BONUS) -o $(BONUS) $(OBJ_BONUS) ../libraries/42lib.a
+	@$(CC) $(FLAGS) $(RD_FLAGS) $(INCLUDES_BONUS) -o $(BONUS) $(OBJ_BONUS) ./libraries/42lib.a
 
 %.o: %.c
 	@$(CC) $(INCLUDES_BONUS) $(FLAGS) -c $^ -o $@
 
 clean:
-	@$(RM) $(OBJ_BONUS) $(BONUS)
-
-fclean: clean
-	make fclean -C ../42lib/
-	make clean -C bonus/
-	@echo "$(WHT)Removing binary -files...$(EOC)"
-	$(RM) $(NAME) $(BONUS)
-	@echo "$(GREEN)fclean done.$(EOC)"
-
-run: all
-	./$(BONUS)
-
-re: fclean all
+	@$(RM) $(OBJ_BONUS)
 
 .PHONY: clean re fclean bonus

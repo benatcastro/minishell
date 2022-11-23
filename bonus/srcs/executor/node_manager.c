@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:26:42 by bena              #+#    #+#             */
-/*   Updated: 2022/11/19 19:08:54 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/22 20:08:26 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_command_table	*create_command_table_node(char **cmds)
 	node->cmds = ft_calloc(1, sizeof(t_command));
 	ft_memset(node->cmds, 0, sizeof(t_command));
 	node->key = key;
-	//node->f_cmd = ft_doublestrdup(cmds);
 	key++;
 	create_cmd(node->cmds, cmds);
 	return (node);
@@ -40,9 +39,12 @@ t_command_table	**create_command_table(t_command_table **head, char **cmds)
 	if (!(*head))
 		(*head) = create_command_table_node(cmds);
 	while (cmds[++i])
-		if (ft_strcmp(cmds[i], DOUBLEAMPERSAND)
-			|| ft_strcmp(cmds[i], DOUBLEPIPE))
+	{
+		if (ft_strcmp(cmds[i], DOUBLEPIPE))
 			ft_tableadd_back(head, create_command_table_node(&cmds[i + 1]));
+		if (ft_strcmp(cmds[i], DOUBLEAMPERSAND))
+			ft_tableadd_back(head, create_command_table_node(&cmds[i + 1]));			
+	}
 	return (head);
 }
 

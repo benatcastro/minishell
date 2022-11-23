@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:20:33 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/21 16:20:25 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:44:12 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,12 @@ void	print_table(t_command_table **table_head)
 	{
 		printf("=====================\n");
 		printf("Table Key: (%d)\n", aux->key);
+		if (aux->separator == 1)
+			printf ("Separator: &&\n");
+		if (aux->separator == 0)
+			printf ("Separator: ||\n");
+		if (aux->separator == 3)
+			printf("Separtor 404\n");
 		printf("Prev (%p) Current (%p) Next (%p)\n", aux->prev, aux, aux->next);
 		print_cmd(aux->cmds);
 		aux = aux->next;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/22 14:36:08 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:53:10 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,7 @@ void	special_builtins(t_command *temp)
 
 	env = ft_doublestrdup(g_data.env);
 	if (!temp->args[0] || temp->next != NULL || temp->prev != NULL)
-	{
-		ft_doublefree(env);
-		return ;
-	}
+		return ((void)ft_doublefree(env));
 	g_data.sub_pid = 1;
 	if (ft_strcmp(temp->args[0], "cd"))
 		cd_builtin(temp->args);
@@ -100,7 +97,7 @@ void	special_builtins(t_command *temp)
 		unset_builtin(temp->args);
 	else if (ft_strcmp(temp->args[0], "exit"))
 		exit_builtin();
-	//ft_doublefree(env);
+	ft_doublefree(env);
 	g_data.sub_pid = 0;
 }
 

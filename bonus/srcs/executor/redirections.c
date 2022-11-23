@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:32:32 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/22 15:11:36 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/23 16:38:30 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,22 @@ void	permission_printer(t_redir *t, int i)
 	}
 }
 
+void	heredoc_utils(char *str, int fd)
+{
+	fd = open(".temp", O_CREAT | O_RDWR
+			| O_TRUNC | O_APPEND, 0644);
+	doubleless_func(str, fd);
+	unlink(".temp");
+	close (fd);
+}
+
 void	in_redirection(t_redir *t, int fd[2])
 {
 	while (t->next != NULL)
 	{
-		if (access(t->content[1], F_OK) == -1)
+		if (ft_strcmp(t->content[0], DOUBLELESS))
+			heredoc_utils(t->content[1], fd[0]);
+		else if (access(t->content[1], F_OK) == -1)
 			exit (0);
 		t = t->next;
 	}

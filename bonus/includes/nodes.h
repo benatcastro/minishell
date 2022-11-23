@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   nodes.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:30:45 by bena              #+#    #+#             */
-/*   Updated: 2022/11/09 01:47:59 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/22 20:08:08 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef NODES_H
 # define NODES_H
 # include "executor.h"
+
+//separator 0 == && 1 == || 3 == 404
+
 
 t_command		*ft_cmdlast(t_command *lst);
 t_command_table	*ft_tablelast(t_command_table *lst);

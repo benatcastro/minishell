@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 19:21:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/19 19:22:47 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/23 16:34:40 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 char	*double_writer(char *buf)
 {
 	write (1, "> ", 2);
-	buf = gnl(1);
+	buf = gnl(0);
 	buf = ft_strdup_n_rem(buf);
 	return (buf);
 }
