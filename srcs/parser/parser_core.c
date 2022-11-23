@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_core.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/22 19:50:03 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/23 18:33:15 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	**parser_core(char **str)
 
 	i = -1;
 	aux = NULL;
-	dub = ft_calloc((ft_doublestrlen(str) + 1), sizeof(char *));
+	dub = ft_calloc((ft_doublestrlen(str) + 1s), sizeof(char *));
 	while (++i != ft_doublestrlen(str))
 	{
 		aux = parser_quotes(str[i]);
@@ -33,7 +33,6 @@ char	**parser_core(char **str)
 		dub[i] = ft_strdup(rtn);
 		free (rtn);
 	}
-	dub[i] = 0;
 	ft_doublefree (str);
 	return (dub);
 }

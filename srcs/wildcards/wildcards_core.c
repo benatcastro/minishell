@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcards_core.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:28:46 by bena              #+#    #+#             */
-/*   Updated: 2022/11/19 20:03:56 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/23 18:34:32 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ char	**wildcard_core(char **args)
 	wildcard_arg = parse_wildcards(dfiles, wildcard_arg);
 	args = dfiles;
 	free(pwd);
-	//ft_doubleprint(dfiles);
 	return (dfiles);
 }

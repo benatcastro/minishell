@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/18 18:48:57 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/23 18:26:15 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "parser.h"
 #include "executor.h"
 #include "builtins.h"
+
+extern t_data	g_data;
 
 int	env_comparer(char *s, char *env_s)
 {

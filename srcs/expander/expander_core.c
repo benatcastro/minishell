@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:31:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/22 16:58:18 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/23 18:33:43 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	*untrimmer(char *str)
 	}
 	rtn[i] = SINGLE_QUOTE;
 	free(str);
-	return(rtn);
+	return (rtn);
 }
 
 char	**single_quote_expander(char **rtn)

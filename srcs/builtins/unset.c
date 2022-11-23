@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 06:45:32 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/22 18:12:45 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/23 18:27:08 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "minishell.h"
+
+extern t_data	g_data;
 
 int	var_checker(char *var)
 {

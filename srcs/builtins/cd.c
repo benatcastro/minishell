@@ -6,13 +6,15 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/18 18:44:47 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/23 18:26:26 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "minishell.h"
 #include <dirent.h>
+
+extern t_data	g_data;
 
 int	valid_path(char *path)
 {
