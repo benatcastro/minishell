@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/23 19:00:29 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:17:58 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,12 @@ int	executor_core(char **cmd)
 
 	table_head = NULL;
 	create_command_table(&table_head, cmd);
-	// ft_doublefree(cmd);
 	aux = table_head;
 	while (aux)
 	{
 		pipe_core(aux->cmds);
 		aux = aux->next;
 	}
-	// print_table(&table_head);
 	free_command_table_nodes(&table_head);
 	return (1);
 }

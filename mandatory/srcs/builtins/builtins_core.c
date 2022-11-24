@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/23 19:00:29 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 13:30:50 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	builtins(char **cont)
 	else if (!ft_strncmp(cont[0], "pwd", 4))
 		printf("%s\n", getcwd(NULL, 0));
 	else if (!ft_strncmp(cont[0], "exit", 5))
-		exit_builtin();
+		exit (0);
 	else if (!ft_strncmp(cont[0], "echo", 5))
 		builtins_echo(cont);
 	else if (!ft_strncmp(cont[0], "export", 7))

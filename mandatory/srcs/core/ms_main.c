@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 01:38:34 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 13:30:20 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	main(int argc, char **argv, char **env)
 	rl_catch_signals = 0;
 	signals_core();
 	readline_loop(buf, lex, tmp);
-	exit_builtin();
+	exit_builtin(NULL, 0);
 	return (g_data.exit_val);
 }
 

@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 01:37:44 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:20:45 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,14 @@ int	parser_quote_error_chk(char *str)
 		{
 			if (b == 1)
 				b = 0;
-			if (b == 2)
-				continue ;
-			else
+			else if (b == 0)
 				b = 1;
 		}
 		else if (str[i] == 34)
 		{
-			if (b == 1)
-				continue ;
 			if (b == 2)
 				b = 0;
-			else
+			else if (b == 0)
 				b = 2;
 		}
 	}

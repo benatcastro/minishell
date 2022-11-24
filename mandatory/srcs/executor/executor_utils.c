@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 01:43:35 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:16:44 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,46 +19,11 @@
 
 int	first_pipe(int *pid, t_command *temp, int fd[2][2], int f[2])
 {
-	t_redir		*t_in;
-
 	g_data.sub_pid = 1;
 	if (f[1] == 1)
-	{
-		pid[0] = fork();
-		if (pid[0] == 0)
-		{
-			redir_link(&temp, temp->args);
-			t_in = temp->in;
-			if (t_in != NULL)
-			{
-				in_redirection(t_in, fd[f[0]]);
-				dup2(fd[f[0]][0], STDIN_FILENO);
-				close (fd[f[0]][0]);
-				unlink(".temp");
-			}
-			dup2(fd[f[0]][1], STDOUT_FILENO);
-			fd_closer(fd);
-			redirection_core(temp);
-		}
-	}
+		first_pipe_more(&pid[0], temp, fd, f);
 	else
-	{
-		pid[0] = fork();
-		if (pid[0] == 0)
-		{
-			redir_link(&temp, temp->args);
-			t_in = temp->in;
-			if (t_in != NULL)
-			{
-				in_redirection(t_in, fd[f[0]]);
-				dup2(fd[f[0]][0], STDIN_FILENO);
-				close (fd[f[0]][0]);
-				unlink(".temp");
-			}
-			redir_link(&temp, temp->args);
-			redirection_core(temp);
-		}
-	}
+		first_pipe_only(&pid[0], temp, fd, f);
 	waitpid(pid[0], &g_data.exit_val, 0);
 	get_exit_status();
 	g_data.sub_pid = 0;
@@ -108,24 +73,28 @@ int	last_pipe(int *pid, t_command *temp, int fd[2][2])
 void	special_builtins(t_command *temp)
 {
 	char	**env;
+	int		i;
 
+	i = 0;
 	env = ft_doublestrdup(g_data.env);
-	// if (!temp->args[0] || temp->next != NULL || temp->prev != NULL)
-	// 	return ((void)ft_doublefree(env));
+	if (!temp->args[0] || temp->next != NULL || temp->prev != NULL)
+		i = 1;
 	g_data.sub_pid = 1;
 	if (ft_strcmp(temp->args[0], "cd"))
 		cd_builtin(temp->args);
 	else if (ft_strcmp(temp->args[0], "export"))
 	{
+		if (i == 1)
+			return ((void)ft_doublefree(env));
 		if (!temp->args[1])
 			ft_export_no_arg(env);
 		else
 			ft_export_arg(temp->args);
 	}
 	else if (ft_strcmp(temp->args[0], "unset"))
-		unset_builtin(temp->args);
+		unset_builtin(temp->args, i);
 	else if (ft_strcmp(temp->args[0], "exit"))
-		exit_builtin(temp->args);
+		exit_builtin(temp->args, i);
 	ft_doublefree(env);
 	g_data.sub_pid = 0;
 }

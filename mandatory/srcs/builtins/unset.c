@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 06:45:32 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/23 19:00:29 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 13:02:45 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,12 @@ void	rebuild_env(char *var)
 	ft_doublefree(new_env);
 }
 
-void	unset_builtin(char **args)
+void	unset_builtin(char **args, int c)
 {
 	int	i;
 
+	if (c == 1)
+		return ;
 	if (ft_doublestrlen(args) <= 1)
 		return ;
 	i = 0;

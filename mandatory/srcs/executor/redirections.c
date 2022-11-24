@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:32:32 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/23 19:12:47 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:27:39 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	heredoc_utils(char *str, int fd)
 {
 	fd = open(".temp", O_CREAT | O_RDWR
 			| O_TRUNC | O_APPEND, 0644);
-	write (2, "ENTRA\n", 6);
 	doubleless_func(str, fd);
 	unlink(".temp");
 	close (fd);

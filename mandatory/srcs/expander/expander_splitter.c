@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 20:16:53 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 01:34:38 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:33:57 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,29 @@
 
 char	**expand_splitter(char *str, char **rtn)
 {
-	int		e;
-	int		n;
+	int		e[2];
 	int		l;
 	char	*aux;
 
-	e = -1;
-	n = 0;
+	e[0] = -1;
+	e[1] = 0;
 	aux = NULL;
-	while (str[++e])
+	while (str[++e[0]])
 	{
-		l = e;
-		if (str[e] == 36)
+		l = e[0];
+		if (str[e[0]] == 36)
 		{
-			expand_splitter_ut(str, &e);
-			rtn[n] = expand_splitter_ut2(str, aux, &e, &l);
+			expand_splitter_ut(str, &e[0]);
+			rtn[e[1]] = expand_splitter_ut2(str, aux, &e[0], &l);
 		}
 		else
 		{
-			while ((str[e]) && ((str[e] != '$')))
-				e++;
-			e--;
-			rtn[n] = expand_splitter_ut2(str, aux, &e, &l);
+			while ((str[e[0]]) && ((str[e[0]] != '$')))
+				e[0]++;
+			e[0]--;
+			rtn[e[1]] = expand_splitter_ut2(str, aux, &e[0], &l);
 		}
-		n++;
+		e[1]++;
 	}
 	return (rtn);
 }

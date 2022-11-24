@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:31:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 01:01:34 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:35:09 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,23 +111,4 @@ char	*expander_main(char	*str)
 	r = double_joiner(rtn);
 	ft_doublefree(rtn);
 	return (r);
-}
-
-char	*double_joiner(char **temp)
-{
-	int		i;
-	char	*aux;
-	char	*rtn;
-
-	i = 1;
-	rtn = ft_strdup(temp[0]);
-	while (temp[i])
-	{
-		aux = ft_strdup(temp[i]);
-		rtn = ft_strjoin(rtn, aux);
-		i++;
-		if ((aux))
-			free (aux);
-	}
-	return (rtn);
 }
