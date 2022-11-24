@@ -6,15 +6,15 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 17:22:32 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/19 19:00:48 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:00:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executor.h"
-#include "minishell.h"
+#include "../includes/executor.h"
+#include "../includes/minishell.h"
 #include <unistd.h>
-#include "nodes.h"
-#include "signals.h"
+#include "../includes/nodes.h"
+#include "../includes/signals.h"
 
 char	*gnl(int fd)
 {

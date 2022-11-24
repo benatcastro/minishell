@@ -6,51 +6,40 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 20:16:53 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/21 17:28:54 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 00:30:01 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expander.h"
-#include "minishell.h"
-#include "lexer.h"
-
-void	expand_splitter_ut_ut(char *str, char *aux, int e[3], char **rtn)
-{
-	e[0]++;
-	while ((str[e[0]]) && ((str[e[0]] != SINGLE_QUOTE)))
-		e[0]++;
-	rtn[e[1]] = expand_splitter_ut2(str, aux, &e[0], &e[2]);
-}
-
-void	expand_splitter_ut_ut2(char *str, char *aux, int e[3], char **rtn)
-{
-	while ((str[e[0]]) && ((str[e[0]] != '$')))
-		e[0]++;
-	e[0]--;
-	rtn[e[1]] = expand_splitter_ut2(str, aux, &e[0], &e[2]);
-}
+#include "../includes/expander.h"
+#include "../includes/minishell.h"
+#include "../includes/lexer.h"
 
 char	**expand_splitter(char *str, char **rtn)
 {
-	int		e[3];
+	int		e;
+	int		n;
+	int		l;
 	char	*aux;
 
+	e = -1;
+	n = 0;
 	aux = NULL;
-	e[0] = -1;
-	e[1] = 0;
-	while (str[++e[0]])
+	while (str[++e])
 	{
-		e[2] = e[0];
-		if (str[e[0]] && str[e[0]] == SINGLE_QUOTE)
-			expand_splitter_ut_ut(str, aux, e, rtn);
-		else if (str[e[0]] == '$')
+		l = e;
+		if (str[e] == 36)
 		{
-			expand_splitter_ut(str, &e[0]);
-			rtn[e[1]] = expand_splitter_ut2(str, aux, &e[0], &e[2]);
+			expand_splitter_ut(str, &e);
+			rtn[n] = expand_splitter_ut2(str, aux, &e, &l);
 		}
 		else
-			expand_splitter_ut_ut2(str, aux, e, rtn);
-		e[1]++;
+		{
+			while ((str[e]) && ((str[e] != '$')))
+				e++;
+			e--;
+			rtn[n] = expand_splitter_ut2(str, aux, &e, &l);
+		}
+		n++;
 	}
 	return (rtn);
 }
@@ -77,8 +66,7 @@ void	expand_splitter_ut(char *str, int *e)
 	else
 	{
 		(*e)++;
-		while ((str[(*e)]) && ((str[(*e)] != '$') && (str[(*e)] != 32)
-				&& (str[(*e)] != SINGLE_QUOTE)))
+		while ((str[(*e)]) && ((str[(*e)] != '$') && (str[(*e)] != 32)))
 			(*e)++;
 		(*e)--;
 	}

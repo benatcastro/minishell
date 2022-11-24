@@ -6,12 +6,12 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:15:31 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/22 15:01:07 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:00:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
-#include "minishell.h"
+#include "../includes/builtins.h"
+#include "../includes/minishell.h"
 
 int	exit_builtin(void)
 {

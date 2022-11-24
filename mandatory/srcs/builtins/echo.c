@@ -6,11 +6,11 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 05:48:45 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/22 18:04:59 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:00:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 void	builtins_echo(char **cont)
 {

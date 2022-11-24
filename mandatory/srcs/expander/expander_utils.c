@@ -6,13 +6,13 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:19:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/22 15:33:37 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 01:02:05 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expander.h"
-#include "minishell.h"
-#include "lexer.h"
+#include "../includes/expander.h"
+#include "../includes/minishell.h"
+#include "../includes/lexer.h"
 
 char	**expander(char	*str)
 {
@@ -20,9 +20,10 @@ char	**expander(char	*str)
 	char	**temp;
 	char	*aux;
 
+	if (!str)
+		return (NULL);
 	temp = ft_calloc((expand_arg_num(str)) + 1, sizeof(char *));
 	temp = expand_splitter(str, temp);
-	free(str);
 	i = -1;
 	while (temp[++i])
 	{
@@ -30,19 +31,9 @@ char	**expander(char	*str)
 		{
 			aux = env_finder(temp[i]);
 			temp[i] = ft_strdup(aux);
-			free (aux);
 		}
 	}
 	return (temp);
-}
-
-void	expand_arg_num_ut2(char *str, int *e, int *c)
-{
-	(*c)++;
-	(*e)++;
-	while ((str[(*e)]) && ((str[(*e)] != SINGLE_QUOTE)))
-		(*e)++;
-	(*e)++;
 }
 
 int	expand_arg_num(char *str)
@@ -54,14 +45,12 @@ int	expand_arg_num(char *str)
 	c = 0;
 	while (str[++e])
 	{
-		if (str[e] && str[e] == SINGLE_QUOTE)
-			expand_arg_num_ut2(str, &e, &c);
-		else if (str[e] && str[e] == '$')
+		if (str[e] == '$')
 			expand_arg_num_ut(str, &e, &c);
 		else
 		{
 			c++;
-			while ((str[e]) && ((str[e] != '$')) && ((str[e] != SINGLE_QUOTE)))
+			while ((str[e]) && ((str[e] != '$')))
 				e++;
 			e--;
 		}
@@ -79,8 +68,7 @@ void	expand_arg_num_ut(char *str, int *e, int *c)
 	}
 	(*c)++;
 	(*e)++;
-	while ((str[(*e)]) && ((str[(*e)] != '$') && (str[(*e)] != 32)
-			&& (str[(*e)] != SINGLE_QUOTE)))
+	while ((str[(*e)]) && ((str[(*e)] != '$') && (str[(*e)] != 32)))
 		(*e)++;
 	(*e)--;
 }

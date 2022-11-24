@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_checkfile.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 23:34:19 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/08/21 18:17:45 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:00:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 #include <fcntl.h>
 #include <unistd.h>
 

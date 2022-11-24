@@ -6,13 +6,13 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 23:20:48 by bena              #+#    #+#             */
-/*   Updated: 2022/11/19 14:33:17 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:05:03 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dirent.h"
-#include "minishell.h"
-#include "wildcards.h"
+#include "../includes/minishell.h"
+#include "../includes/wildcards.h"
 
 void	create_dfiles(char *path, char **dfiles)
 {

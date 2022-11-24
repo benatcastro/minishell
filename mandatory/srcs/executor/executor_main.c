@@ -6,16 +6,16 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/19 15:47:36 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 00:08:57 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executor.h"
-#include "wildcards.h"
-#include "minishell.h"
+#include "../includes/executor.h"
+#include "../includes/wildcards.h"
+#include "../includes/minishell.h"
 #include <unistd.h>
-#include "nodes.h"
-#include "builtins.h"
+#include "../includes/nodes.h"
+#include "../includes/builtins.h"
 
 int	builtin_checker(char **args)
 {
@@ -91,7 +91,8 @@ static void	bin_executor(char **args)
 		printf("%s%s: command not found\n", PROMPT, args[0]);
 		exit (127);
 	}
-	else if (exec_return == 0 && exit_val == 1)
+	else if ((exec_return == -1 && exit_val == 1)
+		|| (exec_return == 0 && exit_val == 1))
 	{
 		printf("%s%s: No such file or directory\n", PROMPT, args[0]);
 		exit (127);

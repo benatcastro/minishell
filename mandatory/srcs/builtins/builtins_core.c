@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/18 18:48:57 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/23 19:00:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "lexer.h"
-#include "parser.h"
-#include "executor.h"
-#include "builtins.h"
+#include "../includes/minishell.h"
+#include "../includes/lexer.h"
+#include "../includes/parser.h"
+#include "../includes/executor.h"
+#include "../includes/builtins.h"
 
 int	env_comparer(char *s, char *env_s)
 {

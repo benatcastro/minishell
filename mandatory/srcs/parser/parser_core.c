@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parser_core.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/22 19:50:03 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/24 00:45:35 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "parser.h"
-#include "lexer.h"
-#include "expander.h"
+#include "../includes/minishell.h"
+#include "../includes/parser.h"
+#include "../includes/lexer.h"
+#include "../includes/expander.h"
 
 char	**parser_core(char **str)
 {

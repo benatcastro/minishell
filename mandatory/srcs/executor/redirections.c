@@ -6,15 +6,15 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:32:32 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/23 16:41:46 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:12:47 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executor.h"
-#include "minishell.h"
+#include "../includes/executor.h"
+#include "../includes/minishell.h"
 #include <unistd.h>
-#include "nodes.h"
-#include "signals.h"
+#include "../includes/nodes.h"
+#include "../includes/signals.h"
 
 void	permission_printer(t_redir *t, int i)
 {
@@ -101,28 +101,42 @@ void	out_redirection(t_command *temp, t_redir *t_out,
 	close (fd[1]);
 }
 
+// void	redirection_core(t_command *temp)
+// {
+// 	t_redir		*head;
+// 	t_redir		*t;
+// 	t_redir		*t_out;
+// 	int			fd[2];
+
+// 	t = temp->in;
+// 	t_out = temp->out;
+// 	head = NULL;
+// 	if (t != NULL)
+// 		in_redirection(t, fd);
+// 	if (t_out == NULL && t != NULL)
+// 	{
+// 		dup2(fd[0], STDIN_FILENO);
+// 		close (fd[0]);
+// 		unlink(".temp");
+// 		execute_cmds(temp->args);
+// 	}
+// 	if (t_out == NULL && t == NULL)
+// 		execute_cmds(temp->args);
+// 	else if (t_out != NULL)
+// 		out_redirection(temp, t_out, head, fd);
+// 	close (fd[0]);
+// 	close (fd[1]);
+// }
+
 void	redirection_core(t_command *temp)
 {
 	t_redir		*head;
-	t_redir		*t;
 	t_redir		*t_out;
 	int			fd[2];
 
-	t = temp->in;
 	t_out = temp->out;
 	head = NULL;
-	// close (fd[0]);
-	// close (fd[1]);
-	if (t != NULL)
-		in_redirection(t, fd);
-	if (t_out == NULL && t != NULL)
-	{
-		dup2(fd[0], STDIN_FILENO);
-		close (fd[0]);
-		unlink(".temp");
-		execute_cmds(temp->args);
-	}
-	if (t_out == NULL && t == NULL)
+	if (t_out == NULL)
 		execute_cmds(temp->args);
 	else if (t_out != NULL)
 		out_redirection(temp, t_out, head, fd);

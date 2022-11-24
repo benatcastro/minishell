@@ -6,13 +6,13 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:06:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/19 19:04:22 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:04:11 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "executor.h"
-#include "libft.h"
+#include "../includes/minishell.h"
+#include "../includes/executor.h"
+#include "../includes/libft.h"
 #include "stdio.h"
 
 size_t	count_args(char **args)

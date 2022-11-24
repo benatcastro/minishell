@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_nodeadd_back.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:46:11 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/11/04 03:32:15 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/23 19:00:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "nodes.h"
+#include "../includes/nodes.h"
 
 /**
  * @brief appends a node to the back of the list pointed by lst.

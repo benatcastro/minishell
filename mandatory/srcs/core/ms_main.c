@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/22 19:06:21 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/24 00:53:53 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "lexer.h"
-#include "parser.h"
-#include "executor.h"
-#include "signals.h"
-#include "builtins.h"
+#include "../includes/minishell.h"
+#include "../includes/lexer.h"
+#include "../includes/parser.h"
+#include "../includes/executor.h"
+#include "../includes/signals.h"
+#include "../includes/builtins.h"
 #include <errno.h>
 
 void	readline_loop(char *buf, char **lex, char *tmp)

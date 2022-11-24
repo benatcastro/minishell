@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_nodelast.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 22:43:37 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/11/04 02:45:18 by bena             ###   ########.fr       */
+/*   Updated: 2022/11/23 19:00:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "nodes.h"
+#include "../includes/nodes.h"
 
 /**
  * @brief returns a pointer to the lists last node.

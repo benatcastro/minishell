@@ -6,13 +6,13 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:31:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/22 16:58:18 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 01:01:34 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expander.h"
-#include "minishell.h"
-#include "lexer.h"
+#include "../includes/expander.h"
+#include "../includes/minishell.h"
+#include "../includes/lexer.h"
 
 char	*expander_core(char **cmds)
 {
@@ -89,24 +89,6 @@ char	*untrimmer(char *str)
 	}
 	rtn[i] = SINGLE_QUOTE;
 	free(str);
-	return(rtn);
-}
-
-char	**single_quote_expander(char **rtn)
-{
-	int		i;
-	char	*aux;
-
-	i = -1;
-	while (rtn[++i])
-	{
-		if (rtn[i][0] == SINGLE_QUOTE)
-		{
-			aux = expand_trimmer(rtn[i]);
-			aux = double_joiner(expander(aux));
-			rtn[i] = untrimmer(aux);
-		}
-	}
 	return (rtn);
 }
 
@@ -126,10 +108,8 @@ char	*expander_main(char	*str)
 	}
 	else
 		rtn = expander(str);
-	rtn = single_quote_expander(rtn);
 	r = double_joiner(rtn);
-	if (rtn != NULL)
-		ft_doublefree(rtn);
+	ft_doublefree(rtn);
 	return (r);
 }
 

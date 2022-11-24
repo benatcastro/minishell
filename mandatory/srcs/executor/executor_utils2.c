@@ -6,16 +6,16 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 21:32:42 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/19 15:22:40 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:00:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executor.h"
-#include "wildcards.h"
-#include "minishell.h"
+#include "../includes/executor.h"
+#include "../includes/wildcards.h"
+#include "../includes/minishell.h"
 #include <unistd.h>
-#include "nodes.h"
-#include "builtins.h"
+#include "../includes/nodes.h"
+#include "../includes/builtins.h"
 
 int	first_pipe_op(t_command *temp, int fd[2], int *pid)
 {

@@ -6,13 +6,13 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:36:23 by umartin-          #+#    #+#             */
-/*   Updated: 2022/09/29 14:18:06 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:00:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "parser.h"
-#include "lexer.h"
+#include "../includes/minishell.h"
+#include "../includes/parser.h"
+#include "../includes/lexer.h"
 
 void	parser_quote_error_chk_utl_sq(char *str, int *b, int *i)
 {

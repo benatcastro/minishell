@@ -3,22 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/22 17:53:10 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/23 23:25:25 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executor.h"
-#include "wildcards.h"
-#include "minishell.h"
+#include "../includes/executor.h"
+#include "../includes/wildcards.h"
+#include "../includes/minishell.h"
 #include <unistd.h>
-#include "nodes.h"
-#include "builtins.h"
+#include "../includes/nodes.h"
+#include "../includes/builtins.h"
 
 int	first_pipe(int *pid, t_command *temp, int fd[2][2], int f[2])
 {
+	t_redir		*t_in;
+
 	g_data.sub_pid = 1;
 	if (f[1] == 1)
 	{
@@ -26,6 +28,14 @@ int	first_pipe(int *pid, t_command *temp, int fd[2][2], int f[2])
 		if (pid[0] == 0)
 		{
 			redir_link(&temp, temp->args);
+			t_in = temp->in;
+			if (t_in != NULL)
+			{
+				in_redirection(t_in, fd[f[0]]);
+				dup2(fd[f[0]][0], STDIN_FILENO);
+				close (fd[f[0]][0]);
+				unlink(".temp");
+			}
 			dup2(fd[f[0]][1], STDOUT_FILENO);
 			fd_closer(fd);
 			redirection_core(temp);
@@ -36,6 +46,15 @@ int	first_pipe(int *pid, t_command *temp, int fd[2][2], int f[2])
 		pid[0] = fork();
 		if (pid[0] == 0)
 		{
+			redir_link(&temp, temp->args);
+			t_in = temp->in;
+			if (t_in != NULL)
+			{
+				in_redirection(t_in, fd[f[0]]);
+				dup2(fd[f[0]][0], STDIN_FILENO);
+				close (fd[f[0]][0]);
+				unlink(".temp");
+			}
 			redir_link(&temp, temp->args);
 			redirection_core(temp);
 		}
@@ -48,11 +67,16 @@ int	first_pipe(int *pid, t_command *temp, int fd[2][2], int f[2])
 
 int	middle_pipes(int *pid, t_command *temp, int fd[2][2])
 {
+	t_redir		*t_in;
+
 	g_data.sub_pid = 1;
 	pid[1] = fork();
 	if (pid[1] == 0)
 	{
 		redir_link(&temp, temp->args);
+		t_in = temp->in;
+		if (t_in != NULL)
+			in_redirection(t_in, fd[0]);
 		dup2(fd[0][0], STDIN_FILENO);
 		dup2(fd[1][1], STDOUT_FILENO);
 		fd_closer(fd);
@@ -63,11 +87,16 @@ int	middle_pipes(int *pid, t_command *temp, int fd[2][2])
 
 int	last_pipe(int *pid, t_command *temp, int fd[2][2])
 {
+	t_redir		*t_in;
+
 	g_data.sub_pid = 1;
 	pid[2] = fork();
 	if (pid[2] == 0)
 	{
 		redir_link(&temp, temp->args);
+		t_in = temp->in;
+		if (t_in != NULL)
+			in_redirection(t_in, fd[1]);
 		dup2(fd[1][0], STDIN_FILENO);
 		fd_closer (fd);
 		redirection_core(temp);

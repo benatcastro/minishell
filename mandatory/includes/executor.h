@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/22 18:57:27 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:02:45 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@ int				second_pipe_op(t_command *temp,
 					int fd[2], int *pid);
 char			*gnl(int fd);
 void			doubleless_func(char *temp, int fd);
+
+///////////////////////REDIS//////////////////////////////
+void		in_redirection(t_redir *t, int fd[2]);
 
 #endif
 

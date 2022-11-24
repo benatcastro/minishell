@@ -6,16 +6,16 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/22 20:17:22 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:00:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executor.h"
-#include "wildcards.h"
-#include "minishell.h"
+#include "../includes/executor.h"
+#include "../includes/wildcards.h"
+#include "../includes/minishell.h"
 #include <unistd.h>
-#include "nodes.h"
-#include "builtins.h"
+#include "../includes/nodes.h"
+#include "../includes/builtins.h"
 
 //Los args de esta funcion deberian de ser el input lexeado y parseado
 //y la futura struct
