@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/23 23:25:25 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 01:43:35 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ void	special_builtins(t_command *temp)
 	char	**env;
 
 	env = ft_doublestrdup(g_data.env);
-	if (!temp->args[0] || temp->next != NULL || temp->prev != NULL)
-		return ((void)ft_doublefree(env));
+	// if (!temp->args[0] || temp->next != NULL || temp->prev != NULL)
+	// 	return ((void)ft_doublefree(env));
 	g_data.sub_pid = 1;
 	if (ft_strcmp(temp->args[0], "cd"))
 		cd_builtin(temp->args);
@@ -125,7 +125,7 @@ void	special_builtins(t_command *temp)
 	else if (ft_strcmp(temp->args[0], "unset"))
 		unset_builtin(temp->args);
 	else if (ft_strcmp(temp->args[0], "exit"))
-		exit_builtin();
+		exit_builtin(temp->args);
 	ft_doublefree(env);
 	g_data.sub_pid = 0;
 }

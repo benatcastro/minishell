@@ -35,7 +35,6 @@ srcs/node_fncs/ft_nodelast.c \
 srcs/node_fncs/ft_nodeadd_back.c \
 srcs/node_fncs/node_utils.c \
 srcs/parser/parser_core.c \
-srcs/parser/parser_errors.c \
 srcs/parser/parser_utils.c \
 srcs/signals/signal_handler.c \
 srcs/signals/signals_core.c \

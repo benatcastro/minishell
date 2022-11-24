@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 00:45:35 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 01:37:44 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,20 +78,24 @@ int	parser_quote_error_chk(char *str)
 	{
 		if (str[i] == 39)
 		{
-			b = 1;
-			if ((size_t)i + 1 == ft_strlen(str))
-				break ;
-			parser_quote_error_chk_utl_sq(str, &b, &i);
+			if (b == 1)
+				b = 0;
+			if (b == 2)
+				continue ;
+			else
+				b = 1;
 		}
 		else if (str[i] == 34)
 		{
-			b = 1;
-			if ((size_t)i + 1 == ft_strlen(str))
-				break ;
-			parser_quote_error_chk_utl_dq(str, &b, &i);
+			if (b == 1)
+				continue ;
+			if (b == 2)
+				b = 0;
+			else
+				b = 2;
 		}
 	}
-	if (b == 1)
+	if (b != 0)
 		printf ("BASHado: Error: unclosed quotes\n");
 	return (b);
 }

@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:16:38 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/19 13:51:15 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 01:43:58 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	rebuild_env(char *var);
 void	unset_builtin(char **args);
 int		get_env_index(char *s);
 char	*find_in_env(char *s);
-int		exit_builtin(void);
+int		exit_builtin(char **str);
 void	cd_builtin(char **args);
 void	builtins_echo(char **cont);
 void	ft_export_no_arg(char	**env);
