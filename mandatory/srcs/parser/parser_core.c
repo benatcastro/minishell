@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 17:38:42 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:48:15 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	**parser_core(char **str)
 
 	i = -1;
 	aux = NULL;
-	dub = ft_calloc((ft_doublestrlen(str) - 2), sizeof(char *));
+	dub = ft_calloc((ft_doublestrlen(str) + 1), sizeof(char *));
 	while (++i != ft_doublestrlen(str))
 	{
 		aux = parser_quotes(str[i]);
