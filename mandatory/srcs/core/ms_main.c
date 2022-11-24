@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 16:39:30 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 18:53:03 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	readline_loop(char *buf, char **lex, char *tmp)
 		lex = parser_core(lex_core(buf));
 		if (global_error_chkr(lex))
 		{
-			printf ("Syntax error\n");
+			printf ("BASHado: syntax error\n");
 			g_data.exit_val = 258;
 			free (buf);
 			ft_doublefree(lex);
