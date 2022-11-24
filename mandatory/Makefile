@@ -23,7 +23,6 @@ srcs/executor/executor_core.c \
 srcs/executor/executor_main.c \
 srcs/executor/executor_utils.c \
 srcs/executor/executor_utils2.c \
-srcs/executor/executor_first_pipe.c \
 srcs/executor/fill_cmd_table.c \
 srcs/executor/node_manager.c \
 srcs/executor/redir.c \
@@ -36,6 +35,7 @@ srcs/node_fncs/ft_nodelast.c \
 srcs/node_fncs/ft_nodeadd_back.c \
 srcs/node_fncs/node_utils.c \
 srcs/parser/parser_core.c \
+srcs/parser/parser_errors.c \
 srcs/parser/parser_utils.c \
 srcs/signals/signal_handler.c \
 srcs/signals/signals_core.c \
@@ -59,9 +59,15 @@ VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes 
 RD_FLAGS = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib/
 FLAGS = -Wall -Wextra -Werror -I /Users/$(USER)/.brew/opt/readline/include -g3 -fsanitize=address
 
+
+
 all: $(NAME)
 
+m: $(NAME)
+
 $(NAME): $(OBJ)
+	@echo "$(WHT)Compiling 42lib...$(EOC)"
+	make -C 42lib/
 	@echo "$(WHT)Compiling minishell...$(EOC)"
 	@$(CC) $(FLAGS) $(RD_FLAGS) $(INCLUDES) -o $(NAME) $(OBJ) libraries/42lib.a
 	@echo "$(GREEN)minishell build completed.$(EOC)"
@@ -70,8 +76,22 @@ $(NAME): $(OBJ)
 	@$(CC) $(INCLUDES) $(FLAGS) -c $^ -o $@
 
 clean:
-	@$(RM) $(OBJ)
+	@echo "$(WHT)Removing o-files...$(EOC)"
+	$(RM) $(OBJ)
+	@echo "$(GREEN)clean done.$(EOC)"
+
+fclean: clean
+	make fclean -C 42lib/
+	@echo "$(WHT)Removing binary -files...$(EOC)"
+	$(RM) $(NAME)
+	@echo "$(GREEN)fclean done.$(EOC)"
+
+run: all
+	./$(NAME)
+
+valgrind: all
+	$(VALGRIND) ./$(NAME)
 
 re: fclean all
 
-.PHONY: clean re fclean
+.PHONY: clean re fclean all m

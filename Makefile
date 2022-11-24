@@ -1,61 +1,40 @@
-NAME = minishell
-BONUS = full_minishell
-
-RM = rm -f
-ARRC = ar rc
-
-GREEN = \033[1;32m
-RED = \033[1;31m
-YEL = \033[1;33m
-WHT = \033[1;37m
-EOC = \033[1;0m
-
-INCLUDES = -I mandatory/includes/
-INCLUDES_BONUS = -I bonus/includes/
-CC = gcc
-VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=readline_supp
-RD_FLAGS = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib/
-FLAGS = -Wall -Wextra -Werror -I /Users/$(USER)/.brew/opt/readline/include -g3 -fsanitize=address
-
-all: $(NAME)
-
-bonus: $(BONUS)
-
-m: $(NAME)
-
-$(NAME):
-	@echo "$(WHT)Compiling 42lib...$(EOC)"
-	make -C mandatory/42lib/
-	make -C mandatory/
-
-$(BONUS):
-	@echo "$(WHT)Compiling 42lib...$(EOC)"
-	make -C bonus/42lib/
-	make -C bonus/
+.SILENT:
+all:
+	make --no-print-directory -C mandatory
 
 clean:
-	@echo "$(WHT)Removing o-files...$(EOC)"
-	@$(RM) $(OBJ)
-	@echo "$(GREEN)clean done.$(EOC)"
+	make clean --no-print-directory -C mandatory
 
-fclean: clean
-	make fclean -C mandatory/42lib/
-	# make fclean -C bonus/42lib/
-	# make clean -C bonus/
-	make clean -C mandatory/
-	@echo "$(WHT)Removing binary -files...$(EOC)"
-	$(RM) $(NAME) $(BONUS)
-	@echo "$(GREEN)fclean done.$(EOC)"
+fclean:
+	make fclean --no-print-directory -C mandatory
 
-mrun: all
-	./$(NAME)
+re:
+	make re --no-print-directory -C mandatory
 
-brun: bonus
-	./$(BONUS)
+run:
+	make fclean --no-print-directory -C mandatory
 
-valgrind: all
-	$(VALGRIND) ./$(NAME)
+valgrind:
+	make valgrind --no-print-directory -C mandatory
 
-re: fclean all
+bonus:
+	make --no-print-directory -C bonus
 
-.PHONY: clean re fclean all m
+clean_bonus:
+	make clean --no-print-directory -C bonus
+
+fclean_bonus:
+	make fclean --no-print-directory -C bonus
+
+re_bonus:
+	make re --no-print-directory -C bonus
+
+run_bonus:
+	make run --no-print-directory -C bonus
+
+valgrind_bonus:
+	make valgrind --no-print-directory -C bonus
+
+fclean_all: fclean fclean_bonus
+
+.PHONY: all clean fclean re run valgrind bonus clean_bonus fclean_bonus re_bonus run_bonus valgrind_bonus fclean_all
