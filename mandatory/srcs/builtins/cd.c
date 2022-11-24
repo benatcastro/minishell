@@ -6,12 +6,12 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 01:41:19 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 15:02:41 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/builtins.h"
-#include "../includes/minishell.h"
+#include "builtins.h"
+#include "minishell.h"
 #include <dirent.h>
 
 int	valid_path(char *path)

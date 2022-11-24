@@ -6,15 +6,15 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 13:30:50 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 15:02:41 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-#include "../includes/lexer.h"
-#include "../includes/parser.h"
-#include "../includes/executor.h"
-#include "../includes/builtins.h"
+#include "minishell.h"
+#include "lexer.h"
+#include "parser.h"
+#include "executor.h"
+#include "builtins.h"
 
 int	env_comparer(char *s, char *env_s)
 {

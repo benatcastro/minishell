@@ -6,11 +6,11 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:48:16 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/11/23 19:00:29 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 15:02:41 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 /**
  * @brief compares byte string s1 against byte string s2.

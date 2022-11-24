@@ -6,14 +6,14 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 19:38:01 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/23 19:00:29 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 15:02:41 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/executor.h"
-#include "../includes/minishell.h"
+#include "executor.h"
+#include "minishell.h"
 #include <unistd.h>
-#include "../includes/nodes.h"
+#include "nodes.h"
 
 void	redirection_in(t_command **cmd_node, char	**args)
 {

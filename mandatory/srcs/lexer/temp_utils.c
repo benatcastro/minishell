@@ -6,14 +6,14 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:48:40 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/23 19:00:29 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 15:02:41 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-#include "../includes/parser.h"
-#include "../includes/lexer.h"
-#include "../includes/expander.h"
+#include "minishell.h"
+#include "parser.h"
+#include "lexer.h"
+#include "expander.h"
 
 char	**temp_utis_pipe(char *rtn)
 {

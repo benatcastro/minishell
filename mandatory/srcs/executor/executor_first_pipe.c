@@ -6,16 +6,16 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:16:26 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 14:16:52 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 15:02:41 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/executor.h"
-#include "../includes/wildcards.h"
-#include "../includes/minishell.h"
+#include "executor.h"
+#include "wildcards.h"
+#include "minishell.h"
 #include <unistd.h>
-#include "../includes/nodes.h"
-#include "../includes/builtins.h"
+#include "nodes.h"
+#include "builtins.h"
 
 void	first_pipe_only(int *pid, t_command *temp, int fd[2][2], int f[2])
 {

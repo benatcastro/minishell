@@ -6,14 +6,14 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 14:20:45 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 15:02:41 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-#include "../includes/parser.h"
-#include "../includes/lexer.h"
-#include "../includes/expander.h"
+#include "minishell.h"
+#include "parser.h"
+#include "lexer.h"
+#include "expander.h"
 
 char	**parser_core(char **str)
 {

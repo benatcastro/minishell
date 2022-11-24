@@ -6,12 +6,12 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:06:33 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/23 19:00:29 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 15:02:41 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/executor.h"
-#include "../includes/minishell.h"
+#include "executor.h"
+#include "minishell.h"
 #include <unistd.h>
 
 static int	ft_doublesize(const char *s, char c)

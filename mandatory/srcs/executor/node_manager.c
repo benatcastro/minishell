@@ -6,15 +6,15 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:26:42 by bena              #+#    #+#             */
-/*   Updated: 2022/11/24 14:18:30 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 15:02:41 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/executor.h"
-#include "../includes/minishell.h"
-#include "../includes/libft.h"
-#include "../includes/nodes.h"
-#include "../includes/lexer.h"
+#include "executor.h"
+#include "minishell.h"
+#include "libft.h"
+#include "nodes.h"
+#include "lexer.h"
 
 t_command_table	*create_command_table_node(char **cmds)
 {

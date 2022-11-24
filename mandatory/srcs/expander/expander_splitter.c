@@ -6,13 +6,13 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 20:16:53 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 14:33:57 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 15:02:41 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/expander.h"
-#include "../includes/minishell.h"
-#include "../includes/lexer.h"
+#include "expander.h"
+#include "minishell.h"
+#include "lexer.h"
 
 char	**expand_splitter(char *str, char **rtn)
 {
