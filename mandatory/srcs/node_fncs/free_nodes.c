@@ -6,12 +6,13 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 01:08:01 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 19:05:30 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 22:10:57 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "nodes.h"
 #include <stdlib.h>
+#include "minishell.h"
 #include "libft.h"
 
 static void	free_redir_nodes(t_redir **head)
@@ -40,7 +41,12 @@ static void	free_command_nodes(t_command **head)
 	while (*head)
 	{
 		aux = (*head);
+		// printf("ENTRA\n");
+		// ft_doubleprint((*head)->args);
 		ft_doublefree((*head)->args);
+		// printf("ENTRA2\n");
+		// (*head)->args = NULL;
+		// ft_doubleprint((*head)->args);
 		free(aux->out);
 		free(aux->in);
 		(*head) = (*head)->next;
