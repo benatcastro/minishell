@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:58:04 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 16:58:14 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 22:25:25 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	**pipe_redir_replacer(char **rtn)
 	c = 0;
 	while (rtn[++i])
 	{
-		if ((rtn[i][0] == '|' && rtn[i][1])
+		if ((rtn[i][0] == '|' && rtn[i][1] && rtn[i][1] != '|')
 			|| (rtn[i][0] == '>' && rtn[i][1] == '>' && rtn[i][2])
 			|| (rtn[i][0] == '>' && rtn[i][1] != '>' && rtn[i][1])
 			|| (rtn[i][0] == '<' && rtn[i][1] == '<' && rtn[i][2])
@@ -103,7 +103,7 @@ char	**pipe_redir_replacer(char **rtn)
 		else
 			fin[c++] = ft_strdup(rtn[i]);
 	}
-	return (ft_doublefree(rtn), fin[c] = 0, fin);
+	return (ft_doublefree(rtn), fin);
 }
 
 char	**lex_core(char *str)
