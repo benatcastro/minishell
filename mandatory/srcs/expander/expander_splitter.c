@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 20:16:53 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 17:48:31 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 18:15:44 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**expand_splitter(char *str, char **rtn)
 		}
 		e[1]++;
 	}
-	return (rtn);
+	return (free(str), str = NULL, rtn);
 }
 
 char	*expand_splitter_ut2(char *str, char *aux, int *e, int *l)
@@ -66,7 +66,8 @@ void	expand_splitter_ut(char *str, int *e)
 		(*e)++;
 		while ((str[(*e)]) && ((str[(*e)] != 32))
 			&& ((str[(*e)] < 33) || (str[(*e)] > 47))
-			&& ((str[(*e)] < 58) || (str[(*e)] > 64)))
+			&& ((str[(*e)] < 58) || (str[(*e)] > 62))
+			&& ((str[(*e)] < 64) || (str[(*e)] > 64)))
 			(*e)++;
 		(*e)--;
 	}

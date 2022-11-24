@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:19:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 17:51:39 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 19:20:41 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	**expander(char	*str)
 		{
 			aux = env_finder(temp[i]);
 			temp[i] = ft_strdup(aux);
+			free (aux);
 		}
 	}
 	return (temp);
@@ -70,7 +71,8 @@ void	expand_arg_num_ut(char *str, int *e, int *c)
 	(*e)++;
 	while ((str[(*e)]) && ((str[(*e)] != 32))
 		&& ((str[(*e)] < 33) || (str[(*e)] > 47))
-		&& ((str[(*e)] < 58) || (str[(*e)] > 64)))
+		&& ((str[(*e)] < 58) || (str[(*e)] > 62))
+		&& ((str[(*e)] < 64) || (str[(*e)] > 64)))
 		(*e)++;
 	(*e)--;
 }
@@ -81,7 +83,7 @@ char	*ft_strjoin_free(char *s1, char *s2)
 
 	if (!s1 || !s2)
 		return (NULL);
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	str = ft_calloc(sizeof(char), (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!str)
 		return (NULL);
 	ft_strlcpy(str, s1, (ft_strlen(s1) + 1));

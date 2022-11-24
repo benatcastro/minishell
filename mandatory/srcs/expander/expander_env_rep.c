@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:29:59 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 17:54:24 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 20:00:12 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,8 @@ char	*double_joiner(char **temp)
 	while (temp[i])
 	{
 		aux = ft_strdup(temp[i]);
-		rtn = ft_strjoin(rtn, aux);
+		rtn = ft_strjoin_free(rtn, aux);
 		i++;
-		if ((aux))
-			free (aux);
 	}
 	return (rtn);
 }

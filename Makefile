@@ -12,7 +12,7 @@ re:
 	make re --no-print-directory -C mandatory
 
 run:
-	make fclean --no-print-directory -C mandatory
+	make run --no-print-directory -C mandatory
 
 valgrind:
 	make valgrind --no-print-directory -C mandatory
