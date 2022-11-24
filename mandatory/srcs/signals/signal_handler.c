@@ -6,13 +6,15 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:28:22 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 15:02:41 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:02:20 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "signals.h"
 #include <stdio.h>
 #include "minishell.h"
+
+extern t_data	g_data;
 
 void	signal_reciever(int signal, siginfo_t *data, void *ucontext)
 {

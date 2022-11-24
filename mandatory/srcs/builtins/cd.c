@@ -6,13 +6,15 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 15:02:41 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 16:46:12 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "minishell.h"
 #include <dirent.h>
+
+extern t_data	g_data;
 
 int	valid_path(char *path)
 {

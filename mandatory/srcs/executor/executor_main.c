@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 15:02:41 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 16:53:23 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <unistd.h>
 #include "nodes.h"
 #include "builtins.h"
+
+extern t_data	g_data;
 
 int	builtin_checker(char **args)
 {

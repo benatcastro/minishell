@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   parser_errors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 08:27:16 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 16:44:23 by umartin-         ###   ########.fr       */
+/*   Created: 2022/09/29 13:36:23 by umartin-          #+#    #+#             */
+/*   Updated: 2022/09/29 14:18:06 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "parser.h"
+#include "lexer.h"
 
-extern t_data	g_data;
-
-void	print_double_str(char **str)
+void	parser_quote_error_chk_utl_sq(char *str, int *b, int *i)
 {
-	int	i;
-
-	i = -1;
-	while (str[++i])
-		printf("str[%d] == %s\n", i, str[i]);
+	while ((size_t)(*i)++ != ft_strlen(str))
+	{
+		if (str[*i] == 39)
+		{
+			*b = 0;
+			break ;
+		}
+	}
 }
 
-void	get_exit_status(void)
+void	parser_quote_error_chk_utl_dq(char *str, int *b, int *i)
 {
-	int	temp_status;
-
-	temp_status = g_data.exit_val;
-	if (WIFEXITED(temp_status))
-		g_data.exit_val = (WEXITSTATUS(temp_status));
+	while ((size_t)(*i)++ != ft_strlen(str))
+	{
+		if (str[*i] == 34)
+		{
+			*b = 0;
+			break ;
+		}
+	}
 }

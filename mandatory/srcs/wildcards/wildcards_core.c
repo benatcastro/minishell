@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:28:46 by bena              #+#    #+#             */
-/*   Updated: 2022/11/24 15:02:41 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:02:44 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ char	**wildcard_core(char **args)
 	wildcard_arg = parse_wildcards(dfiles, wildcard_arg);
 	args = dfiles;
 	free(pwd);
-	//ft_doubleprint(dfiles);
 	return (dfiles);
 }

@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:26:42 by bena              #+#    #+#             */
-/*   Updated: 2022/11/24 15:02:41 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 16:55:01 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,9 @@ t_command_table	**create_command_table(t_command_table **head, char **cmds)
 	if (!(*head))
 		(*head) = create_command_table_node(cmds);
 	while (cmds[++i])
-	{
-		if (ft_strcmp(cmds[i], DOUBLEPIPE))
+		if (ft_strcmp(cmds[i], DOUBLEAMPERSAND)
+			|| ft_strcmp(cmds[i], DOUBLEPIPE))
 			ft_tableadd_back(head, create_command_table_node(&cmds[i + 1]));
-		if (ft_strcmp(cmds[i], DOUBLEAMPERSAND))
-			ft_tableadd_back(head,
-				create_command_table_node(&cmds[i + 1]));
-	}
 	return (head);
 }
 
