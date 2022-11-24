@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:26:42 by bena              #+#    #+#             */
-/*   Updated: 2022/11/22 17:56:39 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/24 00:47:21 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "nodes.h"
 #include "lexer.h"
 
-t_command_table	*create_command_table_node(char **cmds)
+t_command_table	*create_command_table_node(char **cmds, short _separator)
 {
 	t_command_table		*node;
 	static unsigned int	key;
@@ -26,6 +26,7 @@ t_command_table	*create_command_table_node(char **cmds)
 	node->cmds = ft_calloc(1, sizeof(t_command));
 	ft_memset(node->cmds, 0, sizeof(t_command));
 	node->key = key;
+	node->separator = _separator;
 	key++;
 	create_cmd(node->cmds, cmds);
 	return (node);
@@ -37,11 +38,15 @@ t_command_table	**create_command_table(t_command_table **head, char **cmds)
 
 	i = -1;
 	if (!(*head))
-		(*head) = create_command_table_node(cmds);
+		(*head) = create_command_table_node(cmds, NO_S);
+	doubleprint()
 	while (cmds[++i])
-		if (ft_strcmp(cmds[i], DOUBLEAMPERSAND)
-			|| ft_strcmp(cmds[i], DOUBLEPIPE))
-			ft_tableadd_back(head, create_command_table_node(&cmds[i + 1]));
+	{
+		if (ft_strcmp(cmds[i], DOUBLEAMPERSAND))
+			ft_tableadd_back(head, create_command_table_node(&cmds[i + 1], 0));
+		if (ft_strcmp(cmds[i], DOUBLEPIPE))
+			ft_tableadd_back(head, create_command_table_node(&cmds[i + 1], 1));
+	}
 	return (head);
 }
 
@@ -68,8 +73,12 @@ t_command	**create_cmd(t_command **cmd_head, char **cmds)
 	if (!(*cmd_head))
 		ft_cmdadd_back(cmd_head, create_cmd_node(cmds));
 	while (cmds[++i])
+	{
+		if (ft_strcmp(cmds[i], DOUBLEPIPE))
+			break ;
 		if (ft_strcmp(cmds[i], PIPE))
 			ft_cmdadd_back(cmd_head, create_cmd_node(&cmds[i + 1]));
+	}
 	return (cmd_head);
 }
 

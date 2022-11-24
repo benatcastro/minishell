@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/19 19:23:09 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 00:23:01 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@
 # define DOUBLELESS "<DOUBLELESS>"
 
 # define SEMICOLON "<SEMICOLON>"
+
+enum e_separators
+{
+	AND_S,
+	OR_S,
+	NO_S,
+};
 
 typedef struct s_redir
 {
@@ -52,6 +59,7 @@ typedef struct s_command
 typedef struct s_command_table
 {
 	unsigned int			key;
+	unsigned short			separator;
 	unsigned int			exit_status;
 	struct s_command		**cmds;
 	struct s_command_table	*prev;

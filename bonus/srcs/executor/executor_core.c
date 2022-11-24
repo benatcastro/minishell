@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/22 17:58:00 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/24 00:28:28 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	executor_core(char **cmd)
 		pipe_core(aux->cmds);
 		aux = aux->next;
 	}
+	print_table(&table_head);
 	free_command_table_nodes(&table_head);
 	return (1);
 }
