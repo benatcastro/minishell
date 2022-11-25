@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_env_rep.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:29:59 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 20:00:12 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/25 10:53:45 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*env_finder(char *str)
 	if (str[0] == 36)
 		return (p);
 	else if (str[0] == 63)
-		return (ft_itoa(g_data.exit_val));
+		return (ft_itoa(g_data.exit_val)); //esto da leaks :)
 	while (g_data.env[++i])
 	{
 		if ((!ft_strncmp(str, g_data.env[i], (num_until_equal(g_data.env[i]))))

@@ -42,6 +42,7 @@ srcs/signals/signal_handler.c \
 srcs/signals/signals_core.c \
 srcs/wildcards/dir_fncs.c \
 srcs/wildcards/wildcards_core.c \
+srcs/wildcards/wildcards_parser.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -58,7 +59,7 @@ INCLUDES = -I includes/
 CC = gcc
 VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=readline_supp
 RD_FLAGS = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib/
-FLAGS = -Wall -Wextra -Werror -I /Users/$(USER)/.brew/opt/readline/include -g3 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -I /Users/$(USER)/.brew/opt/readline/include -g3 #-fsanitize=address
 
 
 
