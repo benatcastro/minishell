@@ -82,7 +82,7 @@ clean:
 	@echo "$(GREEN)clean done.$(EOC)"
 
 fclean: clean
-	make fclean -C 42lib/
+	@make fclean -C 42lib/
 	@echo "$(WHT)Removing binary -files...$(EOC)"
 	$(RM) $(NAME)
 	@echo "$(GREEN)fclean done.$(EOC)"

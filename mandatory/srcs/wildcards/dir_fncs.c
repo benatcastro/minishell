@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dir_fncs.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 23:20:48 by bena              #+#    #+#             */
-/*   Updated: 2022/11/24 17:02:35 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/25 07:03:45 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	create_dfiles(char *path, char **dfiles)
 	dir_ptr = opendir(path);
 	while (true)
 	{
-		temp = ft_strdup(get_dir_files(dir_ptr, s_dir));
+		temp = get_dir_files(dir_ptr, s_dir);
 		if (temp == NULL)
 			break ;
 		if (temp[0] != '.')
 		{
-			dfiles[index] = temp;
+			dfiles[index] = ft_strdup(temp);
 			index++;
 		}
 	}
@@ -45,8 +45,8 @@ int	get_dir_size(char *path)
 	struct dirent	*s_dir;
 	int				sz;
 
-	s_dir = NULL;
 	dir_ptr = opendir(path);
+	s_dir = readdir(dir_ptr);
 	sz = 0;
 	while (s_dir != NULL)
 	{

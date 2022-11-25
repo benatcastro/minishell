@@ -44,9 +44,9 @@ gnl: mk_dirs
 clean:
 	$(RM) ../objs/
 	@clear
-	@echo "Clean done"
+#	@echo "Clean done"
 
 fclean: clean
 	@rm -rf $(LIB_DIR)
-	@echo "Fclean done"
+#	@echo "Fclean done"
 re: clean all

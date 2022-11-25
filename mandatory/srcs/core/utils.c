@@ -3,16 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 08:27:16 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 16:44:23 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/25 09:21:25 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 extern t_data	g_data;
+
+char	**ft_doublestrjoin(char **s1, char **s2)
+{
+	char	**new;
+	int		len;
+	int		i;
+	int		j;
+
+	len = ft_doublestrlen(s1) + ft_doublestrlen(s2);
+	new = ft_calloc(len, sizeof(char *));
+	i = -1;
+	while (++i < ft_doublestrlen(s1) - 1)
+		new[i] = ft_strdup(s1[i]);
+	j = -1;
+	while (++j < ft_doublestrlen(s2))
+		new[i + j] = ft_strdup(s2[j]);
+	return (new);
+}
 
 void	print_double_str(char **str)
 {
