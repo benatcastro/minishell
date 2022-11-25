@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:20:33 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 16:58:41 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/25 05:53:47 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,12 @@ void	print_table(t_command_table **table_head)
 	{
 		printf("=====================\n");
 		printf("Table Key: (%d)\n", aux->key);
+		if (aux->separator == EMPTY)
+			printf("Separator: No Separator\n");
+		if (aux->separator == AND)
+			printf("Separator: AND\n");
+		if (aux->separator == OR)
+			printf("Separator: OR\n");
 		printf("Prev (%p) Current (%p) Next (%p)\n", aux->prev, aux, aux->next);
 		print_cmd(aux->cmds);
 		aux = aux->next;

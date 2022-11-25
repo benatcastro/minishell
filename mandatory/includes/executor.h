@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/24 16:39:05 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/25 05:50:23 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@
 
 # define SEMICOLON "<SEMICOLON>"
 
+enum e_separators
+{
+	EMPTY,
+	AND,
+	OR,
+};
 typedef struct s_redir
 {
 	char				**content;
@@ -53,7 +59,7 @@ typedef struct s_command
 typedef struct s_command_table
 {
 	unsigned int			key;
-	unsigned int			exit_status;
+	unsigned short			separator;
 	struct s_command		**cmds;
 	struct s_command_table	*prev;
 	struct s_command_table	*next;

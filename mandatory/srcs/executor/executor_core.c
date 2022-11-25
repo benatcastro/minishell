@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/25 05:15:17 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/25 06:36:59 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,53 @@ void	pipe_core(t_command **cmd_table)
 	exec_morepipes(cmd_table, pid, i, f);
 }
 
+static t_command_table	*separator_checker(t_command_table *node)
+{
+	if (node->next && node->next->separator != EMPTY)
+	{
+		if (node->next->separator == AND)
+		{
+			pipe_core(node->cmds);
+			if (g_data.exit_val != 0)
+				node = node->next->next;
+			else
+				node = node->next;
+		}
+		else if (node->next->separator == OR)
+		{
+			pipe_core(node->cmds);
+			if (g_data.exit_val == 0)
+				node = node->next->next;
+			else
+				node = node->next;
+		}
+	}
+	return (node);
+}
+
+static void	execution_loop(t_command_table **table_head)
+{
+	t_command_table	*aux;
+
+	aux = (*table_head);
+	while (aux)
+	{
+		aux = separator_checker(aux);
+		if (aux)
+		{
+			pipe_core(aux->cmds);
+			aux = aux->next;
+		}
+	}
+}
+
 int	executor_core(char **cmd)
 {
 	t_command_table	*table_head;
-	t_command_table	*aux;
 
 	table_head = NULL;
 	create_command_table(&table_head, cmd);
-	aux = table_head;
-	while (aux)
-	{
-		pipe_core(aux->cmds);
-		aux = aux->next;
-	}
+	execution_loop(&table_head);
 	ft_doublefree(cmd);
 	free_command_table_nodes(&table_head);
 	return (1);
