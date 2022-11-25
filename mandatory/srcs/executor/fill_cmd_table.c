@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:06:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 22:53:15 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/25 02:54:36 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,7 @@ void	fill_cmd(t_command *node, char **cmds)
 
 	i = -1;
 	argc = count_args(cmds);
-	printf("Argc: %zu Fill cmds args:\n", argc);
-	print_double_str(cmds);
 	node->args = ft_calloc(argc + 1, sizeof(char *));
 	while (++i < (int)argc)
-	{
-		node->args[i] = ft_strdup(cmds[0]);
-		free(cmds[0]);
-		cmds++;
-	}
+		node->args[i] = cmds[i];
 }
