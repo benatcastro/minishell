@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 13:34:50 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/25 04:16:01 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/25 04:36:00 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,36 +34,6 @@ void	export_temp(char **temp, char *str)
 	temp[1] = t2;
 }
 
-void	ft_export_free(char **args)
-{
-	int		i;
-	char	**temp;
-
-	i = 0;
-	fprintf(stderr, "expor args:\n");
-	ft_doubleprint(args);
-	while (args[++i])
-	{
-		if (export_arg_chkr(args[i]) == -1)
-			return ;
-		else if (export_arg_chkr(args[i]) == 0)
-		{
-			if (find_in_env(args[i]) == NULL)
-				ft_doublestradd(args[i]);
-		}
-		else if (export_arg_chkr(args[i]) > 0)
-		{
-			temp = ft_calloc(3, sizeof(char *));
-			export_temp(temp, args[i]);
-			if (find_in_env(temp[0]) != NULL)
-				rebuild_env(temp[0]);
-			ft_doublestradd(args[i]);
-		}
-		ft_doublefree(temp);
-		// ft_doublefree(args);
-	}
-}
-
 void	ft_export_arg(char **args)
 {
 	int		i;
@@ -87,6 +57,7 @@ void	ft_export_arg(char **args)
 				rebuild_env(temp[0]);
 			ft_doublestradd(args[i]);
 		}
+		ft_doublefree(temp);
 	}
 }
 

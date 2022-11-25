@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/25 04:15:41 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/25 04:36:30 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,22 @@ void	update_env(char *old_cwd)
 		temp = ft_calloc(3, sizeof(char *));
 		temp[0] = ft_strdup("export");
 		temp[1] = ft_strjoin("OLD", find_in_env("PWD"));
-		ft_export_free(temp);
+		ft_export_arg(temp);
+		ft_doublefree(temp);
 	}
 	rebuild_env("OLDPWD");
 	temp = ft_calloc(3, sizeof(char *));
 	temp[0] = ft_strdup("export");
 	temp[1] = ft_strjoin("OLDPWD=", old_cwd);
-	ft_export_free(temp);
+	ft_export_arg(temp);
+	ft_doublefree(temp);
 	rebuild_env("PWD");
 	new_cwd = getcwd(NULL, 0);
 	temp = ft_calloc(3, sizeof(char *));
 	temp[0] = ft_strdup("export");
 	temp[1] = ft_strjoin("PWD=", new_cwd);
-
-	ft_export_free(temp);
+	ft_export_arg(temp);
+	ft_doublefree(temp);
 	free(new_cwd);
 }
 
