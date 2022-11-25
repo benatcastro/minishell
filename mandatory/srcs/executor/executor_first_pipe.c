@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:16:26 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 15:02:41 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/25 21:12:57 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	first_pipe_only(int *pid, t_command *temp, int fd[2][2], int f[2])
 		redir_link(&temp, temp->args);
 		redirection_core(temp);
 	}
+	waitpid(pid[0], &g_data.exit_val, 0);
 }
 
 void	first_pipe_more(int *pid, t_command *temp, int fd[2][2], int f[2])

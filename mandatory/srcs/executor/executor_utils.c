@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 16:54:36 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/25 21:22:52 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ int	first_pipe(int *pid, t_command *temp, int fd[2][2], int f[2])
 		first_pipe_more(&pid[0], temp, fd, f);
 	else
 		first_pipe_only(&pid[0], temp, fd, f);
-	waitpid(pid[0], &g_data.exit_val, 0);
-	get_exit_status();
-	g_data.sub_pid = 0;
 	return (0);
 }
 
@@ -104,6 +101,7 @@ void	exec_morepipes(t_command **cmd_table, pid_t pid[3], int i[2], int f[2])
 	t_command		*temp;
 	int				fd[2][2];
 
+	(void)i;
 	if (pipe (fd[0]) == -1 || pipe (fd[1]) == -1)
 		exit (0);
 	temp = (*cmd_table);
@@ -120,8 +118,9 @@ void	exec_morepipes(t_command **cmd_table, pid_t pid[3], int i[2], int f[2])
 	}
 	last_pipe(pid, temp, fd);
 	special_builtins(temp);
-	while (++i[1] < 3)
-		waitpid(pid[i[1]], &g_data.exit_val, 0);
+	waitpid(pid[0], &g_data.exit_val, 0);
+	waitpid(pid[1], &g_data.exit_val, 0);
+	waitpid(pid[2], &g_data.exit_val, 0);
 	get_exit_status();
 	g_data.sub_pid = 0;
 }

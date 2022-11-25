@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 22:29:46 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/25 21:30:36 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int argc, char **argv, char **env)
 	tmp = NULL;
 	if (argc != 1)
 		return (0);
-	(void)argv;
+	argv = NULL;
 	g_data.ms_pid = get_pid();
 	g_data.env = ft_doublestrdup(env);
 	g_data.exit_val = 0;
@@ -74,8 +74,7 @@ int	main(int argc, char **argv, char **env)
 int	global_error_chkr_ut(char	**lex, int i)
 {
 	if ((ft_strcmp(lex[i], GREATER)) || (ft_strcmp(lex[i], DOUBLEGREATER))
-		|| (ft_strcmp(lex[i], LESS)) || (ft_strcmp(lex[i], DOUBLELESS))
-		|| (ft_strcmp(lex[i], PIPE)) || (ft_strcmp(lex[i], DOUBLEPIPE)))
+		|| (ft_strcmp(lex[i], LESS)) || (ft_strcmp(lex[i], DOUBLELESS)))
 		if ((lex[i + 1] && ft_strcmp(lex[i + 1], GREATER))
 			|| (lex[i + 1] && ft_strcmp(lex[i + 1], DOUBLEGREATER))
 			|| (lex[i + 1] && ft_strcmp(lex[i + 1], LESS))
@@ -83,6 +82,12 @@ int	global_error_chkr_ut(char	**lex, int i)
 			|| (lex[i + 1] && ft_strcmp(lex[i + 1], PIPE))
 			|| (lex[i + 1] && ft_strcmp(lex[i + 1], DOUBLEPIPE)))
 			return (-1);
+	if ((ft_strcmp(lex[i], PIPE)) || (ft_strcmp(lex[i], DOUBLEPIPE)))
+		if ((ft_strcmp(lex[i + 1], PIPE))
+			|| (ft_strcmp(lex[i + 1], DOUBLEPIPE)))
+			return (-1);
+	if ((ft_strcmp(lex[i], DOUBLEAMPERSAND)) || (ft_strcmp(lex[i], DOUBLEPIPE)))
+		return (-1);
 	return (0);
 }
 
