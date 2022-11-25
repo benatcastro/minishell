@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 01:08:01 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/25 02:50:39 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/25 05:15:45 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	free_command_nodes(t_command **head)
 	while (*head)
 	{
 		aux = (*head);
-		ft_doublefree((*head)->args);
+		free((*head)->args);
 		free(aux->out);
 		free(aux->in);
 		(*head) = (*head)->next;

@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:26:42 by bena              #+#    #+#             */
-/*   Updated: 2022/11/25 02:50:30 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/25 05:14:54 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ t_command_table	**create_command_table(t_command_table **head, char **cmds)
 		if (ft_strcmp(cmds[i], DOUBLEAMPERSAND)
 			|| ft_strcmp(cmds[i], DOUBLEPIPE))
 			ft_tableadd_back(head, create_command_table_node(&cmds[i + 1]));
-	free(cmds);
 	return (head);
 }
 
