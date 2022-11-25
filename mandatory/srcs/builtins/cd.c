@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/25 01:23:13 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/25 03:52:58 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	cd_builtin(char **args)
 	path = args[1];
 	if (ft_doublestrlen(args) == 1 && find_in_env("HOME"))
 		path = find_in_env("HOME") + 5;
+	else if (!path)
+		return (free(cwd), (void)printf("%scd: HOME not set\n", PROMPT));
 	if (ft_strcmp(path, "-") && find_in_env("OLDPWD"))
 		path = find_in_env("OLDPWD") + 7;
 	if (path[0] == '~')

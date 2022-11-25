@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_doublefree.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 18:22:56 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/11/24 16:46:57 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/25 03:55:18 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ int	ft_doublefree(char **str)
 	while (str[++i])
 		free(str[i]);
 	free(str);
+	str = NULL;
 	return (0);
 }
