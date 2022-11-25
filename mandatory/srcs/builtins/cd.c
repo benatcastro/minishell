@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/25 03:52:58 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/25 04:15:41 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,25 @@ void	update_env(char *old_cwd)
 	char	**temp;
 	char	*new_cwd;
 
-	temp = ft_calloc(3, sizeof(char *));
 	if (!find_in_env("OLDPWD"))
 	{
+		temp = ft_calloc(3, sizeof(char *));
 		temp[0] = ft_strdup("export");
 		temp[1] = ft_strjoin("OLD", find_in_env("PWD"));
-		ft_export_arg(temp);
+		ft_export_free(temp);
 	}
 	rebuild_env("OLDPWD");
+	temp = ft_calloc(3, sizeof(char *));
 	temp[0] = ft_strdup("export");
 	temp[1] = ft_strjoin("OLDPWD=", old_cwd);
-	ft_export_arg(temp);
+	ft_export_free(temp);
 	rebuild_env("PWD");
-	temp[0] = ft_strdup("export");
 	new_cwd = getcwd(NULL, 0);
-	temp[1] = ft_strdup(ft_strjoin("PWD=", new_cwd));
-	ft_export_arg(temp);
-	ft_doublefree(temp);
+	temp = ft_calloc(3, sizeof(char *));
+	temp[0] = ft_strdup("export");
+	temp[1] = ft_strjoin("PWD=", new_cwd);
+
+	ft_export_free(temp);
 	free(new_cwd);
 }
 
