@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_cmd_table.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:06:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 21:25:31 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/24 22:53:15 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,13 @@ void	fill_cmd(t_command *node, char **cmds)
 
 	i = -1;
 	argc = count_args(cmds);
+	printf("Argc: %zu Fill cmds args:\n", argc);
+	print_double_str(cmds);
 	node->args = ft_calloc(argc + 1, sizeof(char *));
 	while (++i < (int)argc)
 	{
-		node->args[i] = cmds[0];
+		node->args[i] = ft_strdup(cmds[0]);
+		free(cmds[0]);
 		cmds++;
 	}
 }

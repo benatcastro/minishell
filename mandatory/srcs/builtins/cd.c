@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 16:46:12 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/25 01:23:13 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	update_env(char *old_cwd)
 	}
 	rebuild_env("OLDPWD");
 	temp[0] = ft_strdup("export");
-	temp[1] = ft_strdup(ft_strjoin("OLDPWD=", old_cwd));
+	temp[1] = ft_strjoin("OLDPWD=", old_cwd);
 	ft_export_arg(temp);
 	rebuild_env("PWD");
 	temp[0] = ft_strdup("export");
@@ -70,6 +70,7 @@ void	update_env(char *old_cwd)
 	temp[1] = ft_strdup(ft_strjoin("PWD=", new_cwd));
 	ft_export_arg(temp);
 	ft_doublefree(temp);
+	free(new_cwd);
 }
 
 void	cd_builtin(char **args)
@@ -77,7 +78,7 @@ void	cd_builtin(char **args)
 	char	*path;
 	char	*cwd;
 
-	cwd = ft_strdup(getcwd(NULL, 0));
+	cwd = getcwd(NULL, 0);
 	path = args[1];
 	if (ft_doublestrlen(args) == 1 && find_in_env("HOME"))
 		path = find_in_env("HOME") + 5;
@@ -88,10 +89,11 @@ void	cd_builtin(char **args)
 	if (path == NULL || !check_dir(path))
 	{
 		g_data.exit_val = 1;
-		return ;
+		return (free(cwd));
 	}
 	if (ft_strcmp(path, "-") && find_in_env("OLDPWD"))
 		path = find_in_env("OLDPWD") + 7;
 	chdir(path);
 	update_env(cwd);
+	free(cwd);
 }
