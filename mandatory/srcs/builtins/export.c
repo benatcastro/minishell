@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 05:45:07 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 16:52:19 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/25 04:30:22 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_doublestradd(char *arg)
 	env[i] = arg;
 	g_data.env = ft_doublestrdup(env);
 	ft_doublefree(temp);
+	free(env);
 }
 
 int	export_directory_chk(char *arg)
