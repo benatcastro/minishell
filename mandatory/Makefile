@@ -22,7 +22,6 @@ srcs/lexer/temp_utils.c \
 srcs/executor/executor_core.c \
 srcs/executor/executor_main.c \
 srcs/executor/executor_utils.c \
-srcs/executor/executor_first_pipe.c \
 srcs/executor/executor_utils2.c \
 srcs/executor/fill_cmd_table.c \
 srcs/executor/node_manager.c \

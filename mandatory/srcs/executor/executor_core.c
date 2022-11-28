@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/25 05:15:17 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/28 21:27:41 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,33 @@ void	fd_closer(int fd[2][2])
 	}
 }
 
+void	fd_closer_shell(t_shell *shell)
+{
+	close(shell->fd[0][0]);
+	close(shell->fd[0][1]);
+	close(shell->fd[1][0]);
+	close(shell->fd[1][1]);
+}
+
+void	ft_allocator(t_shell *shell, t_command *temp)
+{
+	int	i;
+
+	i = 0;
+	while (temp != NULL)
+	{
+		i++;
+		temp = temp->next;
+	}
+	shell->np = i;
+	pipe(shell->fd[0]);
+	pipe(shell->fd[1]);
+}
+
 void	pipe_core(t_command **cmd_table)
 {
 	t_command		*temp;
 	int				i[2];
-	pid_t			pid[3];
 	int				f[2];
 
 	f[0] = 0;
@@ -57,7 +79,7 @@ void	pipe_core(t_command **cmd_table)
 		temp = temp->next;
 		i[0]++;
 	}
-	exec_morepipes(cmd_table, pid, i, f);
+	exec_morepipes(cmd_table);
 }
 
 int	executor_core(char **cmd)
