@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/25 05:50:23 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/28 21:39:46 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,14 @@ typedef struct s_command_table
 	struct s_command_table	*next;
 }	t_command_table;
 
+typedef struct s_shell
+{
+	pid_t	pid;
+	int		np;
+	int		fd[2][2];
+
+}			t_shell;
+
 //////////////////FNCS////////////////////////////
 
 int				executor_core(char **cmd);
@@ -83,14 +91,15 @@ char			*env_path_maker(char *val, int *i);
 char			*bin_path_finder(char **args, int *exit);
 //static void		bin_executor(char **args);
 void			execute_cmds(char **args);
-void			exec_morepipes(t_command **cmd_table,
-					pid_t pid[3], int i[2], int f[2]);
+void			exec_morepipes(t_command **cmd_table);
 int				first_pipe_op(t_command *temp,
 					int fd[2], int *pid);
 int				second_pipe_op(t_command *temp,
 					int fd[2], int *pid);
 char			*gnl(int fd);
 void			doubleless_func(char *temp, int fd);
+void			fd_closer_shell(t_shell *shell);
+void			ft_allocator(t_shell *shell, t_command *temp);
 
 ///////////////////////REDIS//////////////////////////////
 void			in_redirection(t_redir *t, int fd[2]);

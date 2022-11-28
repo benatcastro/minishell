@@ -22,7 +22,6 @@ srcs/lexer/temp_utils.c \
 srcs/executor/executor_core.c \
 srcs/executor/executor_main.c \
 srcs/executor/executor_utils.c \
-srcs/executor/executor_first_pipe.c \
 srcs/executor/executor_utils2.c \
 srcs/executor/fill_cmd_table.c \
 srcs/executor/node_manager.c \
@@ -59,7 +58,7 @@ INCLUDES = -I includes/
 CC = gcc
 VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=readline_supp
 RD_FLAGS = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib/
-FLAGS = -Wall -Wextra -Werror -I /Users/$(USER)/.brew/opt/readline/include -g3 #-fsanitize=address
+FLAGS = -Wall -Wextra -Werror -I /Users/$(USER)/.brew/opt/readline/include -g3 -fsanitize=address
 
 
 
