@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/29 20:48:23 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/29 21:27:06 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,7 @@ void	special_builtins(t_command *temp)
 	if (ft_strcmp(temp->args[0], "cd"))
 		cd_builtin(temp->args);
 	else if (ft_strcmp(temp->args[0], "export"))
-	{
-		if (i == 1)
-			return ((void)ft_doublefree(env));
-		if (!temp->args[1])
-			ft_export_no_arg(env);
-		else
-			ft_export_arg(temp->args);
-	}
+		ft_export_arg(temp->args);
 	else if (ft_strcmp(temp->args[0], "unset"))
 		unset_builtin(temp->args, i);
 	else if (ft_strcmp(temp->args[0], "exit"))
@@ -110,7 +103,7 @@ void	child_pro(t_command *temp, t_shell *shell, int id)
 
 	g_data.sub_pid = 1;
 	redir_link(&temp, temp->args);
-		t_in = temp->in;
+	t_in = temp->in;
 	temp->args = paren_checker(temp->args);
 	if (t_in != NULL)
 		in_redirection(t_in, shell->fd[0]);

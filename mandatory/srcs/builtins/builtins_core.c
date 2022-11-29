@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/29 19:42:45 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/29 21:23:02 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,12 @@ void	builtins(char **cont)
 	else if (!ft_strncmp(cont[0], "echo", 5))
 		builtins_echo(cont);
 	else if (!ft_strncmp(cont[0], "export", 7))
-		exit(0);
+	{
+		if (cont[1] == NULL)
+			ft_export_no_arg(ft_doublestrdup(g_data.env));
+		else
+			exit(0);
+	}
 	else if (!ft_strncmp(cont[0], "unset", 6))
 		exit(0);
 	exit (0);
