@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 09:26:48 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/25 11:14:34 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/29 16:35:14 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,11 @@ int	wildcard_parser(char *file, char *arg)
 	split_arg = ft_split(arg, '*');
 	if (!split_arg || !split_arg[0])
 		return (ft_doublefree(split_arg), 1);
+	fprintf(stderr, "SPLITTED ARG:\n");
 	ft_doubleprint(split_arg);
 	i = -1;
+	if (!start)
+		i = 0;
 	if (start)
 		while (file[++i])
 			if (ft_strnstr(&file[i], split_arg[0], ft_strlen(split_arg[0])))
@@ -61,21 +64,21 @@ int	wildcard_parser(char *file, char *arg)
 			matches++;
 		if (matches == ft_doublestrlen(split_arg))
 			break ;
+		i++;
 	}
 	if (end)
 	{
 		if (ft_strnstr(file, split_arg[ft_doublestrlen(split_arg) - 1],
 				ft_strlen(split_arg[ft_doublestrlen(split_arg) - 1])))
 		{
-			matches++;
+
+			// matches++;
 			end = 2;
 		}
+		fprintf(stderr, "test: %s\n", ft_);
 	}
-			// if (ft_strchr(file, '*')[1] != 0)
-			// 	end = 2;
-	fprintf(stderr, "file after parse: %s end: %d\n", temp, end);
+	fprintf(stderr, "file: %s end: %d matches : %d need %d\n", temp, end, matches, ft_doublestrlen(split_arg));
 	if (matches == ft_doublestrlen(split_arg) && (end == 2 || end == 0))
 		return ((void)printf("Valid file\n"), 1);
 	return (0);
 }
-
