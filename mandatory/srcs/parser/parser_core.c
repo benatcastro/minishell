@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 22:13:39 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/29 20:12:08 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,31 @@ int	parser_quote_error_chk(char *str)
 	return (b);
 }
 
+int	parser_paren_error_chk(char *str)
+{
+	int	i;
+	int	b;
+
+	i = -1;
+	b = 0;
+//	printf("STR = %s\n", str);
+	while (str[++i])
+	{
+		if (str[i] == 40)
+			b++;
+		else if (str[i] == 41)
+		{
+			if (b == 0)
+				return (printf("BASHado: Error: unclosed parentheses\n"), 1);
+			else
+				b--;
+		}
+	}
+	if (b != 0)
+		printf ("BASHado: Error: unclosed parentheses\n");
+	return (b);
+}
+
 char	**parser_quotes(char *str)
 {
 	int		i;
@@ -110,6 +135,8 @@ char	**parser_quotes(char *str)
 			parser_double_q(str, temp, &i, &n);
 		else if (str[i] == SINGLE_QUOTE)
 			parser_single_q(str, temp, &i, &n);
+		else if (str[i] == 40)
+			parser_paren(str, temp, &i, &n);
 		else
 			parser_no_q(str, temp, &i, &n);
 	}
@@ -133,11 +160,18 @@ int	parser_arg_num(char *str)
 			while (str[e] != q)
 				e++;
 		}
+		else if (str[e] == 40)
+		{
+			c++;
+			while (str[e] != 41)
+				e++;
+		}
 		else
 		{
 			c++;
 			while ((str[e])
-				&& (str[e] != SINGLE_QUOTE) && (str[e] != DOUBLE_QUOTE))
+				&& (str[e] != SINGLE_QUOTE)
+				&& (str[e] != DOUBLE_QUOTE) && (str[e] != 40))
 				e++;
 			e--;
 		}

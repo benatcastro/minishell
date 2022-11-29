@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/25 09:07:29 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:40:31 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_data
 	int		ms_pid;
 	int		sub_pid;
 	int		exit_val;
+	char	*shell_path;
 	char	**env;
 }	t_data;
 
@@ -44,6 +45,7 @@ t_data	g_data;
 char	**ft_doublestrjoin(char **s1, char **s2);
 void	builtins(char **cont);
 int		ft_quote_checker(char *buf);
+int		parser_paren_error_chk(char *str);
 void	print_double_str(char **str);
 int		signals_core(void);
 void	print_double_str(char **str);
@@ -51,5 +53,6 @@ char	**ft_split_exec(char const *s, char c);
 int		global_error_chkr(char	**lex);
 char	*env_finder(char *str);
 void	get_exit_status(void);
+char	*expand_trimmer(char	*str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:31:37 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 19:15:08 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/29 15:08:25 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ char	*expander_main(char	*str)
 	rtn = NULL;
 	if (str[0] == SINGLE_QUOTE)
 		return (expand_trimmer(str));
+	else if (str[0] == 40)
+		return (str);
 	else if (str[0] == DOUBLE_QUOTE)
 	{
 		temp = expand_trimmer(str);

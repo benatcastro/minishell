@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:58:47 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 17:02:07 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/29 15:03:43 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,27 @@ void	parser_single_q(char *str, char **temp, int *i, int *n)
 	(*n)++;
 }
 
+void	parser_paren(char *str, char **temp, int *i, int *n)
+{
+	int		u;
+	int		c;
+	char	*aux;
+
+	u = *i;
+	c = 0;
+	(*i)++;
+	while ((str[*i]) != 41)
+		(*i)++;
+	aux = ft_calloc(sizeof(char *),
+			((*i - u)) + 2);
+	while (u <= *i)
+		aux[c++] = str[u++];
+	aux[c] = 0;
+	temp[*n] = ft_strdup(aux);
+	free (aux);
+	(*n)++;
+}
+
 void	parser_no_q(char *str, char **temp, int *i, int *n)
 {
 	int		u;
@@ -67,7 +88,8 @@ void	parser_no_q(char *str, char **temp, int *i, int *n)
 	c = 0;
 	while (str[*i])
 	{
-		if ((str[*i] == DOUBLE_QUOTE) || (str[*i] == SINGLE_QUOTE))
+		if ((str[*i] == DOUBLE_QUOTE) || (str[*i] == SINGLE_QUOTE)
+			|| (str[*i] == 40))
 		{
 			(*i)--;
 			break ;

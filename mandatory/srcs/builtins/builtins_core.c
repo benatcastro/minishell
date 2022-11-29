@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:07:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/25 04:00:20 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:42:45 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	builtins(char **cont)
 	else if (!ft_strncmp(cont[0], "echo", 5))
 		builtins_echo(cont);
 	else if (!ft_strncmp(cont[0], "export", 7))
-		exit_builtin(cont, 0);
+		exit(0);
 	else if (!ft_strncmp(cont[0], "unset", 6))
 		exit(0);
 	exit (0);
