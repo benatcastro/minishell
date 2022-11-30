@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/28 21:39:41 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 19:33:15 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,6 @@
 
 //Los args de esta funcion deberian de ser el input lexeado y parseado
 //y la futura struct
-
-void	fd_closer(int fd[2][2])
-{
-	int	i;
-
-	i = 0;
-	while (i < 2)
-	{
-		if (close (fd[0][i]))
-			return ;
-		if (close (fd[1][i]))
-			return ;
-		i++;
-	}
-}
-
-void	fd_closer_shell(t_shell *shell)
-{
-	close(shell->fd[0][0]);
-	close(shell->fd[0][1]);
-	close(shell->fd[1][0]);
-	close(shell->fd[1][1]);
-}
 
 void	ft_allocator(t_shell *shell, t_command *temp)
 {

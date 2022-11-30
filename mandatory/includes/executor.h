@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/30 15:51:11 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 19:33:53 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,9 @@ void			doubleless_func(char *temp, int fd);
 void			fd_closer_shell(t_shell *shell);
 void			ft_allocator(t_shell *shell, t_command *temp);
 void			redirection_ag_var(char	**args, int *a, int *i);
+char			**redir_remover(char **args);
+void			fd_closer_shell(t_shell *shell);
+void			fd_closer(int fd[2][2]);
 
 ///////////////////////REDIS//////////////////////////////
 void			in_redirection(t_redir *t, int fd[2]);
@@ -108,6 +111,7 @@ void			first_pipe_only(int *pid, t_command *temp,
 					int fd[2][2], int f[2]);
 void			first_pipe_more(int *pid, t_command *temp,
 					int fd[2][2], int f[2]);
+void			env_printer(void);
 
 #endif
 

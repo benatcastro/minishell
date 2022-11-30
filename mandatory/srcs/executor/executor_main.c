@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/29 21:23:04 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 18:13:10 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,13 @@ static void	bin_executor(char **args)
 	if ((exec_return == -1 && exit_val != 1)
 		|| (exec_return == 0 && exit_val != 1))
 	{
-		printf("%s%s: command not found\n", PROMPT, args[0]);
+		printf("BASHado: %s: command not found\n", args[0]);
 		exit (127);
 	}
 	else if ((exec_return == -1 && exit_val == 1)
 		|| (exec_return == 0 && exit_val == 1))
 	{
-		printf("%s%s: No such file or directory\n", PROMPT, args[0]);
+		printf("BASHado: %s: No such file or directory\n", args[0]);
 		exit (127);
 	}
 	exit (exec_return);

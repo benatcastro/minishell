@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:16:38 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/25 04:36:34 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/30 18:52:04 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	rebuild_env(char *var);
 void	unset_builtin(char **args, int c);
 int		get_env_index(char *s);
 char	*find_in_env(char *s);
-int		exit_builtin(char **str, int i);
+void	exit_builtin(char **str, int i);
 void	cd_builtin(char **args);
 void	builtins_echo(char **cont);
 void	ft_export_no_arg(char	**env);

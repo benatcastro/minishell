@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/29 19:08:51 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 19:32:10 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,15 @@ void	readline_loop(char *buf, char **lex, char *tmp)
 	}
 }
 
+void	arg_loop_error(char *buf, char **lex)
+{
+	printf ("BASHado: syntax error\n");
+	g_data.exit_val = 258;
+	free (buf);
+	ft_doublefree(lex);
+	exit (0);
+}
+
 void	arg_loop(char *buf, char **lex, char *tmp, char **str)
 {
 	int	i;
@@ -71,13 +80,7 @@ void	arg_loop(char *buf, char **lex, char *tmp, char **str)
 		exit (0);
 	lex = parser_core(lex_core(buf));
 	if (global_error_chkr(lex))
-	{
-		printf ("BASHado: syntax error\n");
-		g_data.exit_val = 258;
-		free (buf);
-		ft_doublefree(lex);
-		exit (0);
-	}
+		arg_loop_error(buf, lex);
 	free (buf);
 	executor_core(lex);
 	exit (0);
@@ -110,63 +113,3 @@ int	main(int argc, char **argv, char **env)
 	exit_builtin(NULL, 0);
 	return (g_data.exit_val);
 }
-
-int	global_error_chkr_ut(char	**lex, int i)
-{
-	if ((ft_strcmp(lex[i], GREATER)) || (ft_strcmp(lex[i], DOUBLEGREATER))
-		|| (ft_strcmp(lex[i], LESS)) || (ft_strcmp(lex[i], DOUBLELESS)))
-		if ((lex[i + 1] && ft_strcmp(lex[i + 1], GREATER))
-			|| (lex[i + 1] && ft_strcmp(lex[i + 1], DOUBLEGREATER))
-			|| (lex[i + 1] && ft_strcmp(lex[i + 1], LESS))
-			|| (lex[i + 1] && ft_strcmp(lex[i + 1], DOUBLELESS))
-			|| (lex[i + 1] && ft_strcmp(lex[i + 1], PIPE))
-			|| (lex[i + 1] && ft_strcmp(lex[i + 1], DOUBLEPIPE)))
-			return (-1);
-	if ((ft_strcmp(lex[i], PIPE)) || (ft_strcmp(lex[i], DOUBLEPIPE)))
-		if (!lex[i + 1] || (ft_strcmp(lex[i + 1], PIPE))
-			|| (ft_strcmp(lex[i + 1], DOUBLEPIPE)))
-			return (-1);
-	return (0);
-}
-
-int	global_error_chkr(char	**lex)
-{
-	int	i;
-
-	i = -1;
-	// while (lex[++i])
-	// 	if (lex[i][0] == 40 && (lex[i + 1] != NULL
-	// 					|| (i != 0 && lex[i - 1] != NULL)))
-	// 		return (-1);
-	if (!lex || lex[0] == NULL)
-		return (-1);
-	if (ft_strcmp(lex[0], "<PIPE>"))
-		return (1);
-	i = -1;
-	while (lex[++i])
-		if (global_error_chkr_ut(lex, i) == -1)
-			return (-1);
-	i = -1;
-	while (lex[++i])
-		if ((ft_strcmp(lex[i], GREATER)) || (ft_strcmp(lex[i], DOUBLEGREATER))
-			|| (ft_strcmp(lex[i], LESS)) || (ft_strcmp(lex[i], DOUBLELESS)))
-			if (lex[i + 1] == NULL)
-				return (-1);
-	i = -1;
-	while (lex[++i])
-		if ((ft_strcmp(lex[i], SEMICOLON)) || (ft_strcmp(lex[i], "ASCII92")))
-			return (-1);
-	if (ft_strcmp (lex[ft_doublestrlen(lex) - 1], PIPE))
-		return (1);
-	return (0);
-}
-
-// int	ft_strlen_sh(const char *str)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (str[i])
-// 		i++;
-// 	return (i);
-// }

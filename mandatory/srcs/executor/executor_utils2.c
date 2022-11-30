@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 21:32:42 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 16:54:25 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 19:33:19 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,3 +61,27 @@ char	*ft_strdup_n_rem(const char *s1)
 		result[i] = s1[i];
 	return (result);
 }
+
+void	fd_closer(int fd[2][2])
+{
+	int	i;
+
+	i = 0;
+	while (i < 2)
+	{
+		if (close (fd[0][i]))
+			return ;
+		if (close (fd[1][i]))
+			return ;
+		i++;
+	}
+}
+
+void	fd_closer_shell(t_shell *shell)
+{
+	close(shell->fd[0][0]);
+	close(shell->fd[0][1]);
+	close(shell->fd[1][0]);
+	close(shell->fd[1][1]);
+}
+
