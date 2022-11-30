@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:28:46 by bena              #+#    #+#             */
-/*   Updated: 2022/11/29 16:00:04 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/30 10:45:16 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ char	**wildcard_core(char **args)
 {
 	char	*pwd;
 	char	**dfiles;
+	char	**final_files;
 	int		i;
-	(void)args;
-	// if (&arg_is_wildcard == NULL)
-		// return (NULL);
+
+	final_files = NULL;
 	pwd = getcwd(NULL, 0);
 	dfiles = ft_calloc(get_dir_size(pwd) + 1, sizeof(char *));
 	create_dfiles(pwd, dfiles);

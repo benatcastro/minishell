@@ -6,13 +6,28 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 09:26:48 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/30 08:46:28 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/30 10:47:56 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wildcards.h"
 #include "libft.h"
 #include <stdio.h>
+
+static char	*reverse_search(const char *haystack, const char *needle)
+{
+	int	i;
+
+	i = ft_strlen(haystack);
+	while (i >= 0)
+	{
+		if (haystack[i] == needle[0]
+			&& ft_strncmp(&haystack[i], needle, ft_strlen(needle)) == 0)
+			return ((char *)&haystack[i]);
+		i--;
+	}
+	return (NULL);
+}
 
 static void	initializer(int *start, int *end, char *arg)
 {
@@ -34,23 +49,22 @@ static void	initializer(int *start, int *end, char *arg)
  * @param arg -> arg containing wildcard
  * @return 1 if compatible 0 if not
  */
-int	wildcard_parser(char *file, char *arg)
+void	wildcard_parser(char *file, char *arg, char **final_args)
 {
 	char	**split_arg;
 	int		start;
 	int		end;
 	int		i;
 	int		matches;
-	char	*temp;
 
 	matches = 0;
-	temp = ft_strdup(file);
 	initializer(&start, &end, arg);
 	split_arg = ft_split(arg, '*');
 	if (!split_arg || !split_arg[0])
-		return (ft_doublefree(split_arg), 1);
-	fprintf(stderr, "SPLITTED ARG:\n");
-	ft_doubleprint(split_arg);
+		return ((void)ft_doublefree(split_arg));
+	// fprintf(stderr, "FILE: %s\nSPLITTED ARG:\n", file);
+	// ft_doubleprint(split_arg);
+	// fprintf(stderr, "\n");
 	i = -1;
 	if (!start)
 		i = 0;
@@ -69,14 +83,14 @@ int	wildcard_parser(char *file, char *arg)
 	}
 	if (end)
 	{
-		if (ft_strnstr(file, split_arg[ft_doublestrlen(split_arg) - 1],
-				ft_strlen(split_arg[ft_doublestrlen(split_arg) - 1])))
+		if (reverse_search(file, split_arg[ft_doublestrlen(split_arg) - 1])
+			&& reverse_search(file, split_arg[ft_doublestrlen(split_arg) - 1])[1])
 			end = 2;
-			fprintf(stderr, "test: %s\n", ft_strnstr(file, split_arg[ft_doublestrlen(split_arg) - 1],
-				ft_strlen(split_arg[ft_doublestrlen(split_arg) - 1])));
+		// fprintf(stderr, "Reverse search tests: %s\n", reverse_search(file, split_arg[ft_doublestrlen(split_arg) - 1]));
 	}
-	fprintf(stderr, "file: %s end: %d matches : %d need %d\n", temp, end, matches, ft_doublestrlen(split_arg));
+	// fprintf(stderr, "end: %d matches : %d need %d\n===========================================================\n", end, matches, ft_doublestrlen(split_arg));
 	if (matches == ft_doublestrlen(split_arg) && (end == 2 || end == 0))
-		return ((void)printf("Valid file\n"), 1);
+		add_s
+		// return ((void)printf("Valid file\n===========================================================\n"), 1);
 	return (0);
 }
