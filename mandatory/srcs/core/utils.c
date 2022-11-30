@@ -6,13 +6,35 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 08:27:16 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/25 10:57:24 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/30 10:49:58 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 extern t_data	g_data;
+
+void	add_str(char **dst, char *arg)
+{
+	char	**new;
+	int		i;
+
+	if (!dst && arg)
+	{
+		new = ft_calloc(2, sizeof(char *));
+		dst[0] = ft_strdup(arg);
+		free (arg);
+	}
+	if (!arg || !dst || !dst[0])
+		return ;
+	new = ft_calloc(ft_doublestrlen(dst) + 1, sizeof(char *));
+	i = -1;
+	while (dst[++i])
+		new[i] = ft_strdup(dst[i]);
+	new[i] = arg;
+	ft_doublefree(dst);
+	dst = new;
+}
 
 char	**ft_doublestrjoin(char **s1, char **s2)
 {
