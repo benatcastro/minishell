@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/29 20:48:39 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:51:11 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ char			*gnl(int fd);
 void			doubleless_func(char *temp, int fd);
 void			fd_closer_shell(t_shell *shell);
 void			ft_allocator(t_shell *shell, t_command *temp);
+void			redirection_ag_var(char	**args, int *a, int *i);
 
 ///////////////////////REDIS//////////////////////////////
 void			in_redirection(t_redir *t, int fd[2]);

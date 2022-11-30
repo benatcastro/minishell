@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/29 21:27:06 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:50:47 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,53 @@
 #include "nodes.h"
 #include "builtins.h"
 
+char	**redir_remover(char **args)
+{
+	char	**temp;
+	int		i;
+	int		e;
+	int		a;
+
+	i = -1;
+	a = 0;
+	while (args[++i])
+		redirection_ag_var(args, &a, &i);
+	temp = ft_calloc(a + 1, sizeof(char *));
+	i = -1;
+	e = 0;
+	while (args[++i])
+	{
+		if ((ft_strcmp(args[i], GREATER))
+			|| (ft_strcmp(args[i], DOUBLEGREATER))
+			|| (ft_strcmp(args[i], LESS))
+			|| (ft_strcmp(args[i], DOUBLELESS)))
+			i++;
+		else
+			temp[e++] = ft_strdup(args[i]);
+	}
+	return (temp);
+}
+
 void	special_builtins(t_command *temp)
 {
 	char	**env;
+	char	**ar;
 	int		i;
 
 	i = 0;
 	env = ft_doublestrdup(g_data.env);
 	if (!temp->args[0] || temp->next != NULL || temp->prev != NULL)
 		i = 1;
+	ar = redir_remover(temp->args);
 	g_data.sub_pid = 1;
-	if (ft_strcmp(temp->args[0], "cd"))
-		cd_builtin(temp->args);
-	else if (ft_strcmp(temp->args[0], "export"))
-		ft_export_arg(temp->args);
-	else if (ft_strcmp(temp->args[0], "unset"))
-		unset_builtin(temp->args, i);
-	else if (ft_strcmp(temp->args[0], "exit"))
-		exit_builtin(temp->args, i);
+	if (ft_strcmp(ar[0], "cd"))
+		cd_builtin(ar);
+	else if (ft_strcmp(ar[0], "export"))
+		ft_export_arg(ar);
+	else if (ft_strcmp(ar[0], "unset"))
+		unset_builtin(ar, i);
+	else if (ft_strcmp(ar[0], "exit"))
+		exit_builtin(ar, i);
 	ft_doublefree(env);
 	g_data.sub_pid = 0;
 }
