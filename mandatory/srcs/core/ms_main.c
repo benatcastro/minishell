@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/29 12:51:24 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/30 11:36:46 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,9 @@ int	global_error_chkr_ut(char	**lex, int i)
 		if (!lex[i + 1] || (ft_strcmp(lex[i + 1], PIPE))
 			|| (ft_strcmp(lex[i + 1], DOUBLEPIPE)))
 			return (-1);
-	// if ((ft_strcmp(lex[i], DOUBLEAMPERSAND)) || (ft_strcmp(lex[i], DOUBLEPIPE)))
-		// return (-1);
+	if (((ft_strcmp(lex[i], DOUBLEAMPERSAND))
+			|| (ft_strcmp(lex[i], DOUBLEPIPE))) && lex[i + 1] == NULL)
+		return (-1);
 	return (0);
 }
 
