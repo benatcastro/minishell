@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 19:21:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 16:55:22 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:59:15 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@
 
 char	*double_writer(char *buf)
 {
-	write (1, "> ", 2);
-	buf = gnl(0);
-	buf = ft_strdup_n_rem(buf);
+	// write (1, "> ", 2);
+	// buf = gnl(0);
+	// buf = ft_strdup_n_rem(buf);
+	buf = readline("> ");
 	return (buf);
 }
 
@@ -50,4 +51,33 @@ void	doubleless_func(char *temp, int fd)
 		write(fd, "\n", 1);
 	}
 	doubleless_func(temp, fd);
+}
+
+char	**redir_remover(char **args)
+{
+	char	**temp;
+	int		i;
+	int		e;
+	int		a;
+
+	i = -1;
+	a = 0;
+	while (args[++i])
+		redirection_ag_var(args, &a, &i);
+	if (a == 0)
+		return (NULL);
+	temp = ft_calloc(a + 1, sizeof(char *));
+	i = -1;
+	e = 0;
+	while (args[++i])
+	{
+		if ((ft_strcmp(args[i], GREATER))
+			|| (ft_strcmp(args[i], DOUBLEGREATER))
+			|| (ft_strcmp(args[i], LESS))
+			|| (ft_strcmp(args[i], DOUBLELESS)))
+			i++;
+		else
+			temp[e++] = ft_strdup(args[i]);
+	}
+	return (temp);
 }

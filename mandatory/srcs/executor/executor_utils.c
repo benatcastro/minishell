@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/28 21:31:48 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:50:54 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,27 @@
 void	special_builtins(t_command *temp)
 {
 	char	**env;
+	char	**ar;
 	int		i;
 
 	i = 0;
 	env = ft_doublestrdup(g_data.env);
 	if (!temp->args[0] || temp->next != NULL || temp->prev != NULL)
 		i = 1;
+	ar = redir_remover(temp->args);
+	if (ar == NULL)
+		return ;
 	g_data.sub_pid = 1;
-	if (ft_strcmp(temp->args[0], "cd"))
-		cd_builtin(temp->args);
-	else if (ft_strcmp(temp->args[0], "export"))
-	{
-		if (i == 1)
-			return ((void)ft_doublefree(env));
-		if (!temp->args[1])
-			ft_export_no_arg(env);
-		else
-			ft_export_arg(temp->args);
-	}
-	else if (ft_strcmp(temp->args[0], "unset"))
-		unset_builtin(temp->args, i);
-	else if (ft_strcmp(temp->args[0], "exit"))
-		exit_builtin(temp->args, i);
+	if (ft_strcmp(ar[0], "cd"))
+		cd_builtin(ar);
+	else if (ft_strcmp(ar[0], "export"))
+		ft_export_arg(ar);
+	else if (ft_strcmp(ar[0], "unset"))
+		unset_builtin(ar, i);
+	else if (ft_strcmp(ar[0], "exit"))
+		exit_builtin(ar, i);
 	ft_doublefree(env);
+	ft_doublefree(ar);
 	g_data.sub_pid = 0;
 }
 

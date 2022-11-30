@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/28 21:16:48 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:46:44 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,11 @@ int	global_error_chkr(char	**lex)
 	i = -1;
 	while (lex[++i])
 		if ((ft_strcmp(lex[i], SEMICOLON)) || (ft_strcmp(lex[i], "ASCII92")))
+			return (-1);
+		i = -1;
+	while (lex[++i])
+		if ((lex[i][0] == '<' || lex[i][0] == '>')
+			&& (lex[i][1] == '<' || lex[i][1] == '>' || lex[i][1] == '|'))
 			return (-1);
 	if (ft_strcmp (lex[ft_doublestrlen(lex) - 1], PIPE))
 		return (1);

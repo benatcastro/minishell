@@ -10,6 +10,7 @@ srcs/builtins/cd.c \
 srcs/builtins/echo.c \
 srcs/builtins/exit.c \
 srcs/builtins/export.c \
+srcs/builtins/env_utils.c \
 srcs/builtins/export_utils.c \
 srcs/builtins/unset.c \
 srcs/expander/expander_core.c \
@@ -57,7 +58,7 @@ INCLUDES = -I includes/
 CC = gcc
 VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=readline_supp
 RD_FLAGS = -lreadline -L /Users/$(USER)/.brew/opt/readline/lib/
-FLAGS = -Wall -Wextra -Werror -I /Users/$(USER)/.brew/opt/readline/include -g3 #-fsanitize=address
+FLAGS = -Wall -Wextra -Werror -I /Users/$(USER)/.brew/opt/readline/include -g3 -fsanitize=address
 
 
 

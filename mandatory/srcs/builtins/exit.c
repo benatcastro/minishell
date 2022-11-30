@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:15:31 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 16:51:56 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:41:27 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,14 @@ void	exit_args(char **str)
 	b = 0;
 	c = -1;
 	if (str[2] != NULL)
+	{
 		write (2, "BASHado: exit: too many arguments\n", 34);
+		g_data.exit_val = 1;
+	}
 	if (ft_isnum(str[1]) != 0)
 	{
 		write (2, "BASHado: exit: numeric argument required\n", 41);
+		g_data.exit_val = 255;
 		b = 1;
 	}
 	if (b == 0)

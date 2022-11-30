@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:19:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 19:20:41 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:15:45 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ char	**expander(char	*str)
 		{
 			aux = env_finder(temp[i]);
 			temp[i] = ft_strdup(aux);
-			free (aux);
 		}
 	}
 	return (temp);
