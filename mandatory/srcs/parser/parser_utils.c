@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:58:47 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/29 15:03:43 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 20:08:10 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,7 @@ void	parser_no_q(char *str, char **temp, int *i, int *n)
 		}
 		(*i)++;
 	}
-	aux = ft_calloc(sizeof(char *),
-			((*i - u)) + 2);
+	aux = ft_calloc(sizeof(char *), ((*i - u)) + 2);
 	while (u <= *i)
 		aux[c++] = str[u++];
 	aux[c] = 0;

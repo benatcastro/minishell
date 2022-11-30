@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/30 19:33:53 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 19:45:58 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void			redirection_ag_var(char	**args, int *a, int *i);
 char			**redir_remover(char **args);
 void			fd_closer_shell(t_shell *shell);
 void			fd_closer(int fd[2][2]);
+char			**paren_checker(char **lex);
 
 ///////////////////////REDIS//////////////////////////////
 void			in_redirection(t_redir *t, int fd[2]);

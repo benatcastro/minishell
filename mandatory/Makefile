@@ -19,12 +19,14 @@ srcs/expander/expander_env_rep.c \
 srcs/expander/expander_splitter.c \
 srcs/expander/expander_utils.c \
 srcs/lexer/lex_utils.c \
+srcs/lexer/lex_utils2.c \
 srcs/lexer/lex.c \
 srcs/lexer/temp_utils.c \
 srcs/executor/executor_core.c \
 srcs/executor/executor_main.c \
 srcs/executor/executor_utils.c \
 srcs/executor/executor_utils2.c \
+srcs/executor/executor_utils3.c \
 srcs/executor/fill_cmd_table.c \
 srcs/executor/node_manager.c \
 srcs/executor/redir.c \

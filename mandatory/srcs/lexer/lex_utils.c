@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:56:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/29 14:54:31 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 19:58:34 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,7 @@ int	lex_memory_splitter(char *str)
 				e++;
 		}
 		if (str[e] == 40)
-		{
-			q = 41;
-			e++;
-			while (str[e] != q)
-				e++;
-		}
+			lex_glob_ut(str, &e);
 	}
 	return (c);
 }
@@ -68,11 +63,7 @@ char	**lex_splitter(char *str, char **temp)
 		if ((str[i[0]] == SINGLE_QUOTE) || (str[i[0]] == DOUBLE_QUOTE))
 			lex_splitter_quote_ut(str, &i[0]);
 		if (str[i[0]] == 40)
-		{
-			i[0]++;
-			while (str[i[0]] != 41)
-				i[0]++;
-		}
+			lex_glob_ut(str, &i[0]);
 	}
 	if (i[0] > i[1])
 		lex_splitter_ut(temp, str, i, &n);
@@ -103,32 +94,4 @@ void	lex_splitter_quote_ut(char *str, int *e)
 	(*e)++;
 	while (str[(*e)] != q)
 		(*e)++;
-}
-
-void	replace_for_keywords(char **str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-	{
-		if (ft_strcmp(str[i], "&&"))
-			str[i] = ft_str_replace(str[i], DOUBLEAMPERSAND);
-		else if (ft_strcmp(str[i], "|"))
-			str[i] = ft_str_replace(str[i], PIPE);
-		else if (ft_strcmp(str[i], "||"))
-			str[i] = ft_str_replace(str[i], DOUBLEPIPE);
-		else if (ft_strcmp(str[i], ">"))
-			str[i] = ft_str_replace(str[i], GREATER);
-		else if (ft_strcmp(str[i], ">>"))
-			str[i] = ft_str_replace(str[i], DOUBLEGREATER);
-		else if (ft_strcmp(str[i], "<"))
-			str[i] = ft_str_replace(str[i], LESS);
-		else if (ft_strcmp(str[i], "<<"))
-			str[i] = ft_str_replace(str[i], DOUBLELESS);
-		else if (ft_strcmp(str[i], ";"))
-			str[i] = ft_str_replace(str[i], SEMICOLON);
-		else if (ft_chr_in_set('\\', str[i]))
-			str[i] = ft_str_replace(str[i], "ASCII92");
-	}
 }

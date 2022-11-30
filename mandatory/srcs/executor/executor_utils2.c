@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 21:32:42 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/30 19:33:19 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 19:49:55 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,3 @@ void	fd_closer_shell(t_shell *shell)
 	close(shell->fd[1][0]);
 	close(shell->fd[1][1]);
 }
-

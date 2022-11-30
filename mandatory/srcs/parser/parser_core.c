@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/29 20:12:08 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 20:08:37 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,40 +141,4 @@ char	**parser_quotes(char *str)
 			parser_no_q(str, temp, &i, &n);
 	}
 	return (temp);
-}
-
-int	parser_arg_num(char *str)
-{
-	int		e;
-	int		c;
-	char	q;
-
-	e = -1;
-	c = 0;
-	while (str[++e])
-	{
-		if ((str[e] == SINGLE_QUOTE) || (str[e] == DOUBLE_QUOTE))
-		{
-			c++;
-			q = str[e++];
-			while (str[e] != q)
-				e++;
-		}
-		else if (str[e] == 40)
-		{
-			c++;
-			while (str[e] != 41)
-				e++;
-		}
-		else
-		{
-			c++;
-			while ((str[e])
-				&& (str[e] != SINGLE_QUOTE)
-				&& (str[e] != DOUBLE_QUOTE) && (str[e] != 40))
-				e++;
-			e--;
-		}
-	}
-	return (c);
 }
