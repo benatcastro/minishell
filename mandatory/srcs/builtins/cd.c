@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/25 04:36:30 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:24:08 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	cd_builtin(char **args)
 	char	*path;
 	char	*cwd;
 
+	ft_doubleprint(args);
 	cwd = getcwd(NULL, 0);
 	path = args[1];
 	if (ft_doublestrlen(args) == 1 && find_in_env("HOME"))

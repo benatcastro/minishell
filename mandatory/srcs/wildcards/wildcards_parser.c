@@ -6,11 +6,12 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 09:26:48 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/30 10:47:56 by becastro         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:14:04 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wildcards.h"
+#include "minishell.h"
 #include "libft.h"
 #include <stdio.h>
 
@@ -49,7 +50,7 @@ static void	initializer(int *start, int *end, char *arg)
  * @param arg -> arg containing wildcard
  * @return 1 if compatible 0 if not
  */
-void	wildcard_parser(char *file, char *arg, char **final_args)
+char	*wildcard_parser(char *file, char *arg)
 {
 	char	**split_arg;
 	int		start;
@@ -61,10 +62,7 @@ void	wildcard_parser(char *file, char *arg, char **final_args)
 	initializer(&start, &end, arg);
 	split_arg = ft_split(arg, '*');
 	if (!split_arg || !split_arg[0])
-		return ((void)ft_doublefree(split_arg));
-	// fprintf(stderr, "FILE: %s\nSPLITTED ARG:\n", file);
-	// ft_doubleprint(split_arg);
-	// fprintf(stderr, "\n");
+		return (ft_doublefree(split_arg), NULL);
 	i = -1;
 	if (!start)
 		i = 0;
@@ -82,15 +80,10 @@ void	wildcard_parser(char *file, char *arg, char **final_args)
 		i++;
 	}
 	if (end)
-	{
 		if (reverse_search(file, split_arg[ft_doublestrlen(split_arg) - 1])
-			&& reverse_search(file, split_arg[ft_doublestrlen(split_arg) - 1])[1])
+			&& reverse_search(file,split_arg[ft_doublestrlen(split_arg) - 1])[1])
 			end = 2;
-		// fprintf(stderr, "Reverse search tests: %s\n", reverse_search(file, split_arg[ft_doublestrlen(split_arg) - 1]));
-	}
-	// fprintf(stderr, "end: %d matches : %d need %d\n===========================================================\n", end, matches, ft_doublestrlen(split_arg));
 	if (matches == ft_doublestrlen(split_arg) && (end == 2 || end == 0))
-		add_s
-		// return ((void)printf("Valid file\n===========================================================\n"), 1);
-	return (0);
+		return (ft_doublefree(split_arg), file);
+	return (ft_doublefree(split_arg), NULL);
 }

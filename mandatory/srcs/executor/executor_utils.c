@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/28 21:31:48 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:09:19 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	exec_morepipes(t_command **cmd_table)
 		{
 			special_builtins(temp);
 			waitpid (shell->pid, &g_data.exit_val, 0);
+			g_data.sub_pid = 0;
 			ft_repiper(shell);
 			temp = temp->next;
 		}
