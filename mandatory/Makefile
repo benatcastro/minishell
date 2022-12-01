@@ -1,4 +1,4 @@
-NAME = ./minishell
+NAME = ../minishell
 
 LIBFT_PATH		=	./42lib
 LIBFT			=	$(LIBFT_PATH)/42lib.a

@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:36:23 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/30 20:08:42 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/01 02:24:29 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	parser_quote_error_chk_utl_dq(char *str, int *b, int *i)
 
 void	parser_arg_num_ut(char *str, int *e, char q, int *c)
 {
+	int	b;
+
 	if ((str[(*e)] == SINGLE_QUOTE) || (str[(*e)] == DOUBLE_QUOTE))
 	{
 		(*c)++;
@@ -50,8 +52,19 @@ void	parser_arg_num_ut(char *str, int *e, char q, int *c)
 	else if (str[(*e)] == 40)
 	{
 		(*c)++;
-		while (str[(*e)] != 41)
-			(*e)++;
+		b = 0;
+		while (str[++(*e)])
+		{
+			if (str[(*e)] == 40)
+				b++;
+			if (str[(*e)] == 41)
+			{
+				if (b == 0)
+					break ;
+				else
+					b--;
+			}
+		}
 	}
 	else
 	{

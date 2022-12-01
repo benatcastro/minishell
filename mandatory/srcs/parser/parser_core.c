@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/30 20:08:37 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/01 02:23:46 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ int	parser_paren_error_chk(char *str)
 
 	i = -1;
 	b = 0;
-//	printf("STR = %s\n", str);
 	while (str[++i])
 	{
 		if (str[i] == 40)

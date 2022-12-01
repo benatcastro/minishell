@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:58:47 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/30 20:08:10 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/01 02:22:55 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,20 @@ void	parser_paren(char *str, char **temp, int *i, int *n)
 	u = *i;
 	c = 0;
 	(*i)++;
-	while ((str[*i]) != 41)
+	while (str[(*i)])
+	{
+		if (str[(*i)] == 40)
+			c++;
+		if (str[(*i)] == 41)
+		{
+			if (c == 0)
+				break ;
+			else
+				c--;
+		}
 		(*i)++;
+	}
+	c = 0;
 	aux = ft_calloc(sizeof(char *),
 			((*i - u)) + 2);
 	while (u <= *i)
