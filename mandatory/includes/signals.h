@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:24:53 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/12 14:43:45 by bena             ###   ########.fr       */
+/*   Updated: 2022/12/01 21:09:16 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 
 int		signals_core(void);
 int		get_pid(void);
-void	signal_reciever(int singal, siginfo_t *data, void *ucontext);
+void	signal_reciever(int signal);
 
 #endif

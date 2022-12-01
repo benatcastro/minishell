@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/30 17:46:44 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/01 21:40:51 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@ void	readline_loop(char *buf, char **lex, char *tmp)
 {
 	while (1)
 	{
+		g_data.sub_pid = 0;
 		free(tmp);
 		buf = readline(PROMPT);
 		if (!buf)
+		{
+			unlink(".temp");
 			break ;
+		}
 		tmp = ft_strtrim(buf, " ");
 		if (buf[0] == '\0' || !tmp[0])
 			continue ;
@@ -65,7 +69,8 @@ int	main(int argc, char **argv, char **env)
 	g_data.exit_val = 0;
 	rebuild_env("OLDPWD");
 	rl_catch_signals = 0;
-	signals_core();
+	signal(SIGINT, signal_reciever);
+	signal(SIGQUIT, signal_reciever);
 	readline_loop(buf, lex, tmp);
 	exit_builtin(NULL, 0);
 	return (g_data.exit_val);

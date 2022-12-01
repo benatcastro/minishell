@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/30 17:50:54 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/01 21:35:33 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	special_builtins(t_command *temp)
 		exit_builtin(ar, i);
 	ft_doublefree(env);
 	ft_doublefree(ar);
-	g_data.sub_pid = 0;
 }
 
 void	ft_repiper(t_shell *shell)
@@ -69,7 +68,6 @@ void	child_pro(t_command *temp, t_shell *shell, int id)
 {
 	t_redir		*t_in;
 
-	g_data.sub_pid = 1;
 	redir_link(&temp, temp->args);
 		t_in = temp->in;
 	if (t_in != NULL)
@@ -101,6 +99,7 @@ void	exec_morepipes(t_command **cmd_table)
 	while (++i < shell->np)
 	{
 		close(shell->fd[0][1]);
+		g_data.sub_pid = 1;
 		shell->pid = fork();
 		if (shell->pid == 0)
 			child_pro(temp, shell, i);
@@ -112,6 +111,7 @@ void	exec_morepipes(t_command **cmd_table)
 			temp = temp->next;
 		}
 	}
+	rl_catch_signals = 0;
 	fd_closer_shell(shell);
 	free(shell);
 }
