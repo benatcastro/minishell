@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/02 16:20:18 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/02 17:39:15 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	special_builtins(t_command *temp)
 
 void	ft_repiper(t_shell *shell)
 {
+	get_exit_status();
 	close(shell->fd[0][1]);
 	close(shell->fd[0][0]);
 	shell->fd[0][0] = shell->fd[1][0];
