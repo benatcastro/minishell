@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:28:22 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/01 21:36:28 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/02 16:10:34 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	signal_reciever(int signal)
 	}
 	if (signal == SIGINT && g_data.sub_pid == 1)
 	{
+		g_data.exit_val = 130;
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
-		g_data.exit_val = 130;
 		g_data.sub_pid = 0;
 	}
 	// else if ((signal == SIGINT || signal == SIGQUIT) && g_data.sub_pid)

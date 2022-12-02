@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/02 14:45:08 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/02 16:20:18 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ void	exec_morepipes(t_command **cmd_table)
 			child_pro(temp, shell, i);
 		else
 		{
-			special_builtins(temp);
 			waitpid (shell->pid, &g_data.exit_val, 0);
+			special_builtins(temp);
 			ft_repiper(shell);
 			temp = temp->next;
 		}
