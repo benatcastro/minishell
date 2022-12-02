@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:28:46 by bena              #+#    #+#             */
-/*   Updated: 2022/12/02 22:03:04 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/02 22:09:29 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,27 @@ int	is_wildcard(char *s)
 
 char	**wildcard_arg_manager(char **args)
 {
-	int	i;
+	int		i;
+	int		j;
+	char	**new;
+	char	**wc_split;
 
+	new = NULL;
 	i = -1;
 	while (args[++i])
 	{
 		if (ft_chr_in_set('*', args[i]))
-
+		{
+			wc_split = wildcard_core(args[i]);
+			j = -1;
+			while (wc_split[++j])
+				new = add_str(new, wc_split[j]);
+			ft_doublefree(wc_split);
+		}
+		else
+			new = add_str(new, args[i]);
 	}
+	return (new);
 }
 
 char	**wildcard_core(char *arg)
@@ -86,12 +99,8 @@ char	**wildcard_core(char *arg)
 	create_dfiles(pwd, dfiles);
 	i = -1;
 	while (dfiles[++i])
-	{
 		if (wildcard_parser(dfiles[i], arg))
 			parsed_files = add_str(parsed_files, dfiles[i]);
-	}
-	//fprintf(stderr, "WD CORE PARSED FILES:\n");
-	// ft_doubleprint(parsed_files);
 	free(pwd);
 	if (!parsed_files && is_wildcard(arg) == 1)
 		return (dfiles);

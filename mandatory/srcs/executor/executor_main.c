@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/02 21:55:46 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/02 22:08:47 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	execute_cmds(char **args)
 		exit(0);
 	if (arg_is_wildcard(&args[1]))
 	{
-		args = ft_doublestrjoin(args, wildcard_core(args[1]));
+		args = ft_doublestrjoin(args, wildcard_arg_manager(&args[1]));
 		// ft_doubleprint(args);
 	}
 	if (builtin_checker(args))
