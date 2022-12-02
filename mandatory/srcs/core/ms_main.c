@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/02 15:00:10 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:30:36 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void	readline_loop(char *buf, char **lex, char *tmp)
 		if (buf[0] == '\0' || !tmp[0])
 			continue ;
 		add_history(buf);
-		if (parser_quote_error_chk(buf) != 0
-			|| parser_paren_error_chk(buf) != 0)
+		if (parser_q_error_chk(buf) != 0 || parser_paren_error_chk(buf) != 0)
 			continue ;
 		lex = parser_core(lex_core(buf));
 		if (global_error_chkr(lex))
@@ -76,7 +75,7 @@ void	arg_loop(char *buf, char **lex, char *tmp, char **str)
 	if (buf[0] == '\0' || !tmp[0])
 		exit (0);
 	add_history(buf);
-	if (parser_quote_error_chk(buf) != 0
+	if (parser_q_error_chk(buf) != 0
 		|| parser_paren_error_chk(buf) != 0)
 		exit (0);
 	lex = parser_core(lex_core(buf));

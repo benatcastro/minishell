@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:58:04 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/01 02:20:19 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:30:36 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ char	**lex_core(char *str)
 	char	**rtn;
 
 	str = lex_first_spc_rm(str);
-	if (parser_quote_error_chk(str))
+	if (parser_q_error_chk(str))
 		exit (0);
 	rtn = ft_calloc((lex_memory_splitter(str)) + 1, sizeof(char *));
 	rtn = lex_splitter(str, rtn);

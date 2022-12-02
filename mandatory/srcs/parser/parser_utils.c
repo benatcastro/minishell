@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:58:47 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/01 02:22:55 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:21:11 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,11 @@ void	parser_single_q(char *str, char **temp, int *i, int *n)
 	(*n)++;
 }
 
-void	parser_paren(char *str, char **temp, int *i, int *n)
+void	parser_paren_ut(char *str, int *i)
 {
-	int		u;
-	int		c;
-	char	*aux;
+	int	c;
 
-	u = *i;
 	c = 0;
-	(*i)++;
 	while (str[(*i)])
 	{
 		if (str[(*i)] == 40)
@@ -78,9 +74,19 @@ void	parser_paren(char *str, char **temp, int *i, int *n)
 		}
 		(*i)++;
 	}
+}
+
+void	parser_paren(char *str, char **temp, int *i, int *n)
+{
+	int		u;
+	int		c;
+	char	*aux;
+
+	u = *i;
+	(*i)++;
+	parser_paren_ut(str, &(*i));
 	c = 0;
-	aux = ft_calloc(sizeof(char *),
-			((*i - u)) + 2);
+	aux = ft_calloc(sizeof(char *), ((*i - u)) + 2);
 	while (u <= *i)
 		aux[c++] = str[u++];
 	aux[c] = 0;

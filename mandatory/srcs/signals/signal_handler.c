@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:28:22 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/02 14:54:30 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:35:27 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	signal_reciever(int signal)
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
-		if (g_data.sub_pid == 1)
-			rl_redisplay();
+		rl_redisplay();
 	}
 	if (signal == SIGINT && g_data.sub_pid == 1)
 	{

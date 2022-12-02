@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:34:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/01 02:17:05 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:25:37 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,23 @@
 #include <unistd.h>
 #include "nodes.h"
 #include "builtins.h"
+
+void	paren_checker_ut2(char **lex, int *i, int *c)
+{
+	while (lex[0][(*i)])
+	{
+		if (lex[0][(*i)] == 40)
+			(*c)++;
+		if (lex[0][(*i)] == 41)
+		{
+			if ((*c) == 0)
+				break ;
+			else
+				(*c)--;
+		}
+		(*i)++;
+	}
+}
 
 void	paren_checker_ut(char **lex, int i, int c)
 {
@@ -32,19 +49,7 @@ void	paren_checker_ut(char **lex, int i, int c)
 	i = 1;
 	if (lex[0][0] == 40)
 	{
-		while (lex[0][i])
-		{
-			if (lex[0][i] == 40)
-				c++;
-			if (lex[0][i] == 41)
-			{
-				if (c == 0)
-					break ;
-				else
-					c--;
-			}
-			i++;
-		}
+		paren_checker_ut2(lex, &i, &c);
 		if (lex[0][i + 1] != 0)
 		{
 			write(2, "BASHado: syntax error: unexpected token\n", 40);

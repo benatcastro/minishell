@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 19:21:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/02 14:54:47 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:22:19 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	doubleless_func(char *temp, int fd)
 {
 	char	*buf;
 
-	g_data.sub_pid = 2;
 	if (!temp)
 		exit (0);
 	signal(SIGINT, SIG_DFL);
