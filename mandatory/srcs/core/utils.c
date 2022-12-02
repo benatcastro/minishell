@@ -6,15 +6,13 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 08:27:16 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/30 13:26:26 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/02 23:02:14 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 extern t_data	g_data;
-
-
 
 char	**ft_doublestrjoin(char **s1, char **s2)
 {
@@ -26,10 +24,10 @@ char	**ft_doublestrjoin(char **s1, char **s2)
 	len = ft_doublestrlen(s1) + ft_doublestrlen(s2);
 	new = ft_calloc(len, sizeof(char *));
 	i = -1;
-	while (++i < ft_doublestrlen(s1) - 1)
+	while (++i < ft_doublestrlen(s1) - 2 && ft_isprint(s1[i][0]))
 		new[i] = ft_strdup(s1[i]);
 	j = -1;
-	while (++j < ft_doublestrlen(s2) )
+	while (++j < ft_doublestrlen(s2))
 		new[i + j] = ft_strdup(s2[j]);
 	return (new);
 }

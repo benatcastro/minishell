@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:37:29 by bena              #+#    #+#             */
-/*   Updated: 2022/12/02 22:08:30 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/02 22:32:23 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <dirent.h>
 
+char	**add_str(char **src, char *arg);
 char	**wildcard_arg_manager(char **args);
 char	*wildcard_parser(char *file, char *arg);
 char	*arg_is_wildcard(char **args);

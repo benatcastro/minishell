@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:28:46 by bena              #+#    #+#             */
-/*   Updated: 2022/12/02 22:09:29 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/02 22:56:59 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*arg_is_wildcard(char **args)
 	return (NULL);
 }
 
-static char	**add_str(char **src, char *arg)
+char	**add_str(char **src, char *arg)
 {
 	char	**new;
 	int		i;
@@ -75,14 +75,16 @@ char	**wildcard_arg_manager(char **args)
 		if (ft_chr_in_set('*', args[i]))
 		{
 			wc_split = wildcard_core(args[i]);
+			if (!wc_split)
+				continue ;
 			j = -1;
 			while (wc_split[++j])
-				new = add_str(new, wc_split[j]);
-			ft_doublefree(wc_split);
+				new = add_str(new, ft_strdup(wc_split[j]));
 		}
 		else
 			new = add_str(new, args[i]);
 	}
+	ft_doubleprint(new);
 	return (new);
 }
 
@@ -106,7 +108,7 @@ char	**wildcard_core(char *arg)
 		return (dfiles);
 	if (!parsed_files)
 	{
-		parsed_files = ft_calloc(1, sizeof(char *));
+		parsed_files = ft_calloc(2, sizeof(char *));
 		parsed_files[0] = arg;
 		return (parsed_files);
 	}
