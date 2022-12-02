@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 08:27:16 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 16:44:23 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/02 18:31:15 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,6 @@ void	get_exit_status(void)
 	temp_status = g_data.exit_val;
 	if (WIFEXITED(temp_status))
 		g_data.exit_val = (WEXITSTATUS(temp_status));
+	if (WIFSIGNALED(temp_status))
+		g_data.exit_val = 130;
 }
