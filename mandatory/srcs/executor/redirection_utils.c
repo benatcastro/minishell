@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 19:21:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/30 18:12:58 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/02 14:54:47 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,10 @@
 #include "nodes.h"
 #include "signals.h"
 
-char	*double_writer(char *buf)
+void	fd_printer(int fd, char *buf)
 {
-	// write (1, "> ", 2);
-	// buf = gnl(0);
-	// buf = ft_strdup_n_rem(buf);
-	buf = readline("> ");
-	return (buf);
+	write(fd, buf, ft_strlen(buf));
+	write(fd, "\n", 1);
 }
 
 void	doubleless_func(char *temp, int fd)
@@ -35,23 +32,24 @@ void	doubleless_func(char *temp, int fd)
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	buf = NULL;
-	buf = double_writer(buf);
-	if (buf != NULL && ft_strcmp(buf, temp))
+	rl_catch_signals = 1;
+	while (1)
 	{
-		signal(SIGINT, (void *)signal_reciever);
-		signal(SIGQUIT, (void *)signal_reciever);
-		return ;
+		buf = readline("> ");
+		if (!buf)
+		{
+			unlink(".temp");
+			exit(0);
+		}
+		if (ft_strcmp(buf, temp))
+			return ;
+		if (buf == NULL)
+			write(fd, "\n", 1);
+		else
+			fd_printer(fd, buf);
 	}
-	signal(SIGINT, (void *)signal_reciever);
-	signal(SIGQUIT, (void *)signal_reciever);
-	if (buf == NULL)
-		write(fd, "\n", 1);
-	else
-	{
-		write(fd, buf, ft_strlen(buf));
-		write(fd, "\n", 1);
-	}
-	doubleless_func(temp, fd);
+	signal(SIGINT, signal_reciever);
+	signal(SIGQUIT, signal_reciever);
 }
 
 char	**redir_remover(char **args)

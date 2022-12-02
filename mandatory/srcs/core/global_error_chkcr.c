@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/30 19:15:28 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/30 19:27:11 by umartin-         ###   ########.fr       */
+/*   Created: 2022/12/02 14:51:00 by umartin-          #+#    #+#             */
+/*   Updated: 2022/12/02 14:54:20 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 #include "signals.h"
 #include "builtins.h"
 #include <errno.h>
+
+void	glob_err_chckr_error(char *buf, char **lex)
+{
+	printf ("BASHado: syntax error\n");
+	g_data.exit_val = 258;
+	free (buf);
+	ft_doublefree(lex);
+}
 
 int	global_error_chkr_ut(char	**lex, int i)
 {
