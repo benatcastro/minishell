@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/02 15:36:23 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/02 17:06:44 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static void	bin_executor(char **args)
 }
 
 void	execute_cmds(char **args)
-{ 
+{
 	if (!args || args[0] == NULL)
 		exit(0);
 	// if (arg_is_wildcard(args))
