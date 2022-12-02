@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 19:21:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/01 21:29:06 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/02 14:39:32 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,20 @@
 #include "nodes.h"
 #include "signals.h"
 
+void	fd_printer(int fd, char *buf)
+{
+	write(fd, buf, ft_strlen(buf));
+	write(fd, "\n", 1);
+}
+
 void	doubleless_func(char *temp, int fd)
 {
 	char	*buf;
 
 	if (!temp)
 		exit (0);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	buf = NULL;
 	rl_catch_signals = 1;
 	while (1)
@@ -37,11 +45,10 @@ void	doubleless_func(char *temp, int fd)
 		if (buf == NULL)
 			write(fd, "\n", 1);
 		else
-		{
-			write(fd, buf, ft_strlen(buf));
-			write(fd, "\n", 1);
-		}
+			fd_printer(fd, buf);
 	}
+	signal(SIGINT, signal_reciever);
+	signal(SIGQUIT, signal_reciever);
 }
 
 char	**redir_remover(char **args)

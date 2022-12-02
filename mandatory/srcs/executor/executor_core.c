@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/28 21:27:41 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/02 14:45:13 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	ft_allocator(t_shell *shell, t_command *temp)
 	int	i;
 
 	i = 0;
+	g_data.sub_pid = 1;
 	while (temp != NULL)
 	{
 		i++;

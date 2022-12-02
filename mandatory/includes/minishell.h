@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/24 17:03:04 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/02 14:52:12 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ char	**ft_split_exec(char const *s, char c);
 int		global_error_chkr(char	**lex);
 char	*env_finder(char *str);
 void	get_exit_status(void);
+void	glob_err_chckr_error(char *buf, char **lex);
 
 #endif

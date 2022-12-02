@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/01 21:35:33 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/02 14:45:08 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	exec_morepipes(t_command **cmd_table)
 	while (++i < shell->np)
 	{
 		close(shell->fd[0][1]);
-		g_data.sub_pid = 1;
 		shell->pid = fork();
 		if (shell->pid == 0)
 			child_pro(temp, shell, i);

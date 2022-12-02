@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:32:32 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/01 21:20:54 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/02 14:36:45 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,11 @@ void	in_redirection(t_redir *t, int fd[2])
 {
 	while (t->next != NULL)
 	{
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
 		if (ft_strcmp(t->content[0], DOUBLELESS))
 			heredoc_utils(t->content[1], fd[0]);
 		else if (access(t->content[1], F_OK) == -1)
 			exit (0);
 		t = t->next;
-		signal(SIGINT, signal_reciever);
-		signal(SIGQUIT, signal_reciever);
 	}
 	if (ft_strcmp(t->content[0], LESS))
 	{
@@ -68,14 +64,10 @@ void	in_redirection(t_redir *t, int fd[2])
 	}
 	else if (ft_strcmp(t->content[0], DOUBLELESS))
 	{
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
 		fd[0] = open(".temp", O_CREAT | O_RDWR
 				| O_TRUNC | O_APPEND, 0644);
 		doubleless_func(t->content[1], fd[0]);
 		fd[0] = open(".temp", O_RDONLY);
-		signal(SIGINT, signal_reciever);
-		signal(SIGQUIT, signal_reciever);
 	}
 }
 

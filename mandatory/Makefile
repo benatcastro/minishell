@@ -5,6 +5,7 @@ LIBFT			=	$(LIBFT_PATH)/42lib.a
 
 SRC = srcs/core/ms_main.c \
 srcs/core/utils.c \
+srcs/core/global_error_chkcr.c \
 srcs/builtins/builtins_core.c \
 srcs/builtins/cd.c \
 srcs/builtins/echo.c \
