@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/02 15:30:36 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/03 17:17:23 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	main(int argc, char **argv, char **env)
 	rl_catch_signals = 0;
 	if (argc != 1)
 	{
-		if (ft_strcmp(argv[1], "-c") == 0)
+		if (ft_strcmp(argv[1], "-c\0") == 0)
 			return (0);
 		else
 			arg_loop(buf, lex, tmp, argv);

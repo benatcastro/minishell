@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 06:45:32 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 16:44:46 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/03 17:17:01 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	rebuild_env(char *var)
 
 	i = -1;
 	j = -1;
+	if (!find_in_env(var))
+		return ;
 	new_env = ft_calloc(ft_doublestrlen(g_data.env), sizeof(char *));
 	while (g_data.env[++i])
 		if (!env_comparer(var, g_data.env[i]))
