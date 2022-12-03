@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 08:27:16 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/03 17:44:17 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/03 20:31:12 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ char	**str_to_double(char *str)
 {
 	char	**new;
 
+	if (!str)
+		return (NULL);
 	new = NULL;
 	new = ft_calloc(2, sizeof(char *));
 	new[0] = ft_strdup(str);

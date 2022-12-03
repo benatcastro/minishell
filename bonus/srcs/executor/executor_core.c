@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/12/03 18:18:11 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/03 20:44:28 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ static t_command_table	*separator_checker(t_command_table *node)
 {
 	if (node->next && node->next->separator != EMPTY)
 	{
-		if (node->next->separator == AND)
+		if (node->next
+			&& (node->next->separator == AND || node->separator == AND))
 		{
 			pipe_core(node->cmds);
 			if (g_data.exit_val != 0)
@@ -65,7 +66,8 @@ static t_command_table	*separator_checker(t_command_table *node)
 			else
 				node = node->next;
 		}
-		if (node->next->separator == OR || node->separator == OR)
+		if (node->next
+			&& (node->next->separator == OR || node->separator == OR))
 		{
 			pipe_core(node->cmds);
 			if (g_data.exit_val == 0)

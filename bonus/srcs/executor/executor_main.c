@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/03 16:47:56 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/03 20:32:35 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ void	execute_cmds(char **args)
 {
 	char	**cmd;
 
-	cmd = str_to_double(args[0]);
-	cmd = ft_split(args[0], ' ');
+	if (args && args[0])
+		cmd = str_to_double(args[0]);
 	if (!args || args[0] == NULL)
 		exit(0);
 	if (arg_is_wildcard(&args[1]))
