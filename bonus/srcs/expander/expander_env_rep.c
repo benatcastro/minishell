@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:29:59 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/02 15:36:53 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/03 16:22:00 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*env_finder(char *str)
 	if (str[0] == 36)
 		return (p);
 	else if (str[0] == 63)
-		return (ft_itoa(g_data.exit_val)); //esto da leaks :)
+		return (ft_itoa(g_data.exit_val));
 	while (g_data.env[++i])
 	{
 		if ((!ft_strncmp(str, g_data.env[i], (num_until_equal(g_data.env[i]))))
