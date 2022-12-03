@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:34:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/02 18:55:11 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/03 16:31:19 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	**paren_checker(char **lex)
 	paren_checker_ut(lex, i, c);
 	if (lex[0][0] == 40)
 	{
-		rtn = ft_calloc(3, sizeof(char *));
+		rtn = ft_calloc(4, sizeof(char *));
 		rtn[0] = ft_strjoin(g_data.shell_path, "/minishell_bonus");
 		rtn[1] = ft_strdup("-c");
 		rtn[2] = ft_strdup(expand_trimmer(lex[0]));
