@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/03 01:52:12 by bena             ###   ########.fr       */
+/*   Updated: 2022/12/03 02:51:03 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "nodes.h"
 #include "builtins.h"
 
-extern t_data g_data;
+extern t_data	g_data;
 
 void	special_builtins(t_command *temp)
 {

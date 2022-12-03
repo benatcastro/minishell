@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 09:26:48 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/03 02:19:00 by bena             ###   ########.fr       */
+/*   Updated: 2022/12/03 02:46:02 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,6 @@
 #include "minishell.h"
 #include "libft.h"
 #include <stdio.h>
-
-static char	*reverse_search(const char *haystack, const char *needle)
-{
-	int	i;
-
-	i = ft_strlen(haystack);
-	while (i >= 0)
-	{
-		if (haystack[i] == needle[0]
-			&& ft_strncmp(&haystack[i], needle, ft_strlen(needle)) == 0)
-			return ((char *)&haystack[i]);
-		i--;
-	}
-	return (NULL);
-}
 
 static void	initializer(int *start, int *end, char *arg)
 {
@@ -42,20 +27,44 @@ static void	initializer(int *start, int *end, char *arg)
 		*end = 0;
 }
 
-static int	start_parser(int *start, int *matches, char *file, char **split_arg)
+int	start_parser(int *start, int *matches, char *file, char **split_arg)
 {
 	int	i;
 
 	i = -1;
-	if ((!start))
+	if ((!*start))
 		i = 0;
 	if (*(start))
 		while (file[++i])
 			if (ft_strnstr(&file[i], split_arg[0], ft_strlen(split_arg[0]))
 				&& ft_strncmp(file, split_arg[0], ft_strlen(split_arg[0])))
-				*matches++;
+					matches++;
 	return (i);
 }
+
+int	iterator_parser(int i, int matches, char *file, char **split_arg)
+{
+	while (file[i] && split_arg[matches])
+	{
+		if (ft_strnstr(&file[i], split_arg[0], ft_strlen(split_arg[0])))
+			matches++;
+		if (matches == ft_doublestrlen(split_arg))
+			break ;
+		i++;
+	}
+	return (matches);
+}
+
+int	end_parser(int end, char *file, char **split_arg)
+{
+	if (end)
+		if (reverse_search(file, split_arg[ft_doublestrlen(split_arg) - 1])
+			&& reverse_search(file,
+				split_arg[ft_doublestrlen(split_arg) - 1])[1])
+			return (end = 2);
+	return (0);
+}
+
 /**
  * @brief
  * Takes a file from the directory and checks if it's compatible with wildcard
@@ -77,26 +86,9 @@ char	*wildcard_parser(char *file, char *arg)
 	initializer(&start, &end, arg);
 	if (!split_arg || !split_arg[0])
 		return (ft_doublefree(split_arg), NULL);
-	i = -1;
-	if (!start)
-		i = 0;
-	if (start)
-		while (file[++i])
-			if (ft_strnstr(&file[i], split_arg[0], ft_strlen(split_arg[0]))
-				&& ft_strncmp(file, split_arg[0], ft_strlen(split_arg[0])))
-				matches++;
-	while (file[i] && split_arg[matches])
-	{
-		if (ft_strnstr(&file[i], split_arg[0], ft_strlen(split_arg[0])))
-			matches++;
-		if (matches == ft_doublestrlen(split_arg))
-			break ;
-		i++;
-	}
-	if (end)
-		if (reverse_search(file, split_arg[ft_doublestrlen(split_arg) - 1])
-			&& reverse_search(file,split_arg[ft_doublestrlen(split_arg) - 1])[1])
-			end = 2;
+	i = start_parser(&start, &matches, file, split_arg);
+	matches = iterator_parser(i, matches, file, split_arg);
+	end = end_parser(end, file, split_arg);
 	if (matches == ft_doublestrlen(split_arg) && (end == 2 || end == 0))
 		return (ft_doublefree(split_arg), file);
 	return (ft_doublefree(split_arg), NULL);

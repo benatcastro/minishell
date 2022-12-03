@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/03 02:02:19 by bena             ###   ########.fr       */
+/*   Updated: 2022/12/03 02:50:37 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	cd_builtin(char **args)
 	char	*path;
 	char	*cwd;
 
-	// ft_doubleprint(args);
 	cwd = getcwd(NULL, 0);
 	path = args[1];
 	if (ft_doublestrlen(args) == 1 && find_in_env("HOME"))

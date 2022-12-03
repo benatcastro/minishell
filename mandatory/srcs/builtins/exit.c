@@ -6,14 +6,14 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:15:31 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/03 01:50:13 by bena             ###   ########.fr       */
+/*   Updated: 2022/12/03 02:50:20 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "minishell.h"
 
-extern t_data g_data;
+extern t_data	g_data;
 
 int	ft_isnum(char *c)
 {

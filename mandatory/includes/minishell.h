@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/03 02:10:44 by bena             ###   ########.fr       */
+/*   Updated: 2022/12/03 02:53:10 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_data
 	char	**env;
 }	t_data;
 
-
+char	*reverse_search(const char *haystack, const char *needle);
 char	**str_to_double(char *str);
 char	**ft_doublestrjoin(char **s1, char **s2);
 void	builtins(char **cont);

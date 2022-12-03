@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 08:27:16 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/03 02:15:47 by bena             ###   ########.fr       */
+/*   Updated: 2022/12/03 02:45:29 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,21 @@ char	**ft_doublestrjoin(char **s1, char **s2)
 	while (++j < ft_doublestrlen(s2) && s2[j])
 		new[i + j] = ft_strdup(s2[j]);
 	return (new);
+}
+
+char	*reverse_search(const char *haystack, const char *needle)
+{
+	int	i;
+
+	i = ft_strlen(haystack);
+	while (i >= 0)
+	{
+		if (haystack[i] == needle[0]
+			&& ft_strncmp(&haystack[i], needle, ft_strlen(needle)) == 0)
+			return ((char *)&haystack[i]);
+		i--;
+	}
+	return (NULL);
 }
 
 void	print_double_str(char **str)

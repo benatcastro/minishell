@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:29:59 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/03 01:50:36 by bena             ###   ########.fr       */
+/*   Updated: 2022/12/03 02:49:49 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "minishell.h"
 #include "lexer.h"
 
-extern t_data g_data;
+extern t_data	g_data;
 
 char	*env_finder(char *str)
 {
@@ -29,7 +29,7 @@ char	*env_finder(char *str)
 	if (str[0] == 36)
 		return (p);
 	else if (str[0] == 63)
-		return (ft_itoa(g_data.exit_val)); //esto da leaks :)
+		return (ft_itoa(g_data.exit_val));
 	while (g_data.env[++i])
 	{
 		if ((!ft_strncmp(str, g_data.env[i], (num_until_equal(g_data.env[i]))))

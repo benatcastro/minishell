@@ -6,7 +6,7 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/12/03 01:51:53 by bena             ###   ########.fr       */
+/*   Updated: 2022/12/03 02:51:40 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@
 #include "nodes.h"
 #include "builtins.h"
 
-//Los args de esta funcion deberian de ser el input lexeado y parseado
-//y la futura struct
-extern t_data g_data;
+extern t_data	g_data;
 
 void	fd_closer(int fd[2][2])
 {
