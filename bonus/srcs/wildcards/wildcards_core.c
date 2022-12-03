@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcards_core.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:28:46 by bena              #+#    #+#             */
-/*   Updated: 2022/11/25 10:08:24 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/03 15:59:23 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,63 +25,93 @@ char	*arg_is_wildcard(char **args)
 	return (NULL);
 }
 
-// static void	remove_wildcard_from_args(char **args)
-// {
-// 	int		i;
-// 	char	**new_args;
-
-// 	if (ft_doublestrlen(args) == 1)
-// 	{
-// 		ft_doublefree(args);
-// 		args = NULL;
-// 		return ;
-// 	}
-// 	new_args = ft_calloc(ft_doublestrlen(args) - 1, sizeof(char *));
-// 	i = -1;
-// 	while (args[++i])
-// 	{
-// 		if (!ft_chr_in_set('*', args[i]))
-// 			new_args[i] = ft_strdup(args[i]);
-// 	}
-// 	ft_doublefree(args);
-// 	args = new_args;
-// }
-
-/*static char	**rebuild_args(char **args, char **dfiles)
+char	**add_str(char **src, char *arg)
 {
-	char	**new_args;
+	char	**new;
 	int		i;
-	int		len;
+
+	if (!arg)
+		return (NULL);
+	i = -1;
+	if (src == NULL)
+	{
+		new = ft_calloc(2, sizeof(char *));
+		new[0] = ft_strdup(arg);
+		return (new);
+	}
+	else
+	{
+		new = ft_calloc(ft_doublestrlen(src) + 2, sizeof(char *));
+		while (src[++i])
+			new[i] = ft_strdup(src[i]);
+		new[i] = ft_strdup(arg);
+		return (new);
+	}
+	return (NULL);
+}
+
+int	is_wildcard(char *s)
+{
+	int	i;
 
 	i = -1;
-	len = ft_doublestrlen(dfiles); //+ ft_doublestrlen(dfiles);
-	new_args = ft_calloc(len, sizeof(char *));
-	while (++i < len)
-		new_args[i] = ft_strdup(dfiles[i]);
-	// ft_doublefree(args);
-	ft_doublefree(dfiles);
-	ft_doubleprint(new_args);
-	args = new_args;
-	return (new_args);
+	while (s[++i])
+		if (s[i] != '*')
+			return (0);
+	return (1);
+}
 
-}*/
+char	**wildcard_arg_manager(char **args)
+{
+	int		i;
+	int		j;
+	char	**new;
+	char	**wc_split;
 
-char	**wildcard_core(char **args)
+	new = NULL;
+	i = -1;
+	while (args[++i])
+	{
+		if (ft_chr_in_set('*', args[i]))
+		{
+			wc_split = wildcard_core(args[i]);
+			if (!wc_split)
+				continue ;
+			j = -1;
+			while (wc_split[++j])
+				new = add_str(new, ft_strdup(wc_split[j]));
+			if (wc_split)
+				ft_doublefree(wc_split);
+		}
+		else
+			new = add_str(new, args[i]);
+	}
+	return (new);
+}
+
+char	**wildcard_core(char *arg)
 {
 	char	*pwd;
 	char	**dfiles;
+	char	**parsed_files;
 	int		i;
-	(void)args;
-	// if (&arg_is_wildcard == NULL)
-		// return (NULL);
+
+	parsed_files = NULL;
 	pwd = getcwd(NULL, 0);
-	dfiles = ft_calloc(get_dir_size(pwd) + 1, sizeof(char *));
+	dfiles = ft_calloc(get_dir_size(pwd) + 2, sizeof(char *));
 	create_dfiles(pwd, dfiles);
 	i = -1;
 	while (dfiles[++i])
-		wildcard_parser(dfiles[i], args[0]);
-	// args = rebuild_args(args, dfiles);
-	return (NULL);
+		if (wildcard_parser(dfiles[i], arg))
+			parsed_files = add_str(parsed_files, dfiles[i]);
 	free(pwd);
-	return (dfiles);
+	if (!parsed_files && is_wildcard(arg) == 1)
+		return (dfiles);
+	if (!parsed_files)
+	{
+		parsed_files = ft_calloc(2, sizeof(char *));
+		parsed_files[0] = arg;
+		return (parsed_files);
+	}
+	return (parsed_files);
 }

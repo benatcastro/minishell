@@ -41,8 +41,6 @@ srcs/parser/parser_errors.c \
 srcs/parser/parser_utils.c \
 srcs/signals/signal_handler.c \
 srcs/signals/signals_core.c \
-srcs/wildcards/dir_fncs.c \
-srcs/wildcards/wildcards_core.c \
 
 OBJ = $(SRC:.c=.o)
 

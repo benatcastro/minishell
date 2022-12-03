@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/02 14:56:57 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/03 15:52:55 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ typedef struct s_data
 
 t_data	g_data;
 
+char	*reverse_search(const char *haystack, const char *needle);
 char	**ft_doublestrjoin(char **s1, char **s2);
+char	**str_to_double(char *str);
 void	builtins(char **cont);
 int		ft_quote_checker(char *buf);
 int		parser_paren_error_chk(char *str);

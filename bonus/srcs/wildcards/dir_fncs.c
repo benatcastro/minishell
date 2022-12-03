@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dir_fncs.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 23:20:48 by bena              #+#    #+#             */
-/*   Updated: 2022/11/25 07:03:45 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/03 15:59:10 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	create_dfiles(char *path, char **dfiles)
 			index++;
 		}
 	}
-	dfiles[index] = NULL;
 	closedir(dir_ptr);
 }
 

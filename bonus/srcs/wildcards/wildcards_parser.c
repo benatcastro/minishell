@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   wildcards_parser.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 09:26:48 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/25 11:14:34 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/03 15:59:36 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wildcards.h"
+#include "minishell.h"
 #include "libft.h"
 #include <stdio.h>
 
@@ -26,6 +27,44 @@ static void	initializer(int *start, int *end, char *arg)
 		*end = 0;
 }
 
+int	start_parser(int *start, int *matches, char *file, char **split_arg)
+{
+	int	i;
+
+	i = -1;
+	if ((!*start))
+		i = 0;
+	if (*(start))
+		while (file[++i])
+			if (ft_strnstr(&file[i], split_arg[0], ft_strlen(split_arg[0]))
+				&& ft_strncmp(file, split_arg[0], ft_strlen(split_arg[0])))
+					matches++;
+	return (i);
+}
+
+int	iterator_parser(int i, int matches, char *file, char **split_arg)
+{
+	while (file[i] && split_arg[matches])
+	{
+		if (ft_strnstr(&file[i], split_arg[0], ft_strlen(split_arg[0])))
+			matches++;
+		if (matches == ft_doublestrlen(split_arg))
+			break ;
+		i++;
+	}
+	return (matches);
+}
+
+int	end_parser(int end, char *file, char **split_arg)
+{
+	if (end)
+		if (reverse_search(file, split_arg[ft_doublestrlen(split_arg) - 1])
+			&& reverse_search(file,
+				split_arg[ft_doublestrlen(split_arg) - 1])[1])
+			return (end = 2);
+	return (0);
+}
+
 /**
  * @brief
  * Takes a file from the directory and checks if it's compatible with wildcard
@@ -34,48 +73,23 @@ static void	initializer(int *start, int *end, char *arg)
  * @param arg -> arg containing wildcard
  * @return 1 if compatible 0 if not
  */
-int	wildcard_parser(char *file, char *arg)
+char	*wildcard_parser(char *file, char *arg)
 {
 	char	**split_arg;
 	int		start;
 	int		end;
 	int		i;
 	int		matches;
-	char	*temp;
 
 	matches = 0;
-	temp = ft_strdup(file);
-	initializer(&start, &end, arg);
 	split_arg = ft_split(arg, '*');
+	initializer(&start, &end, arg);
 	if (!split_arg || !split_arg[0])
-		return (ft_doublefree(split_arg), 1);
-	ft_doubleprint(split_arg);
-	i = -1;
-	if (start)
-		while (file[++i])
-			if (ft_strnstr(&file[i], split_arg[0], ft_strlen(split_arg[0])))
-				matches++;
-	while (file[i] && split_arg[matches])
-	{
-		if (ft_strnstr(&file[i], split_arg[0], ft_strlen(split_arg[0])))
-			matches++;
-		if (matches == ft_doublestrlen(split_arg))
-			break ;
-	}
-	if (end)
-	{
-		if (ft_strnstr(file, split_arg[ft_doublestrlen(split_arg) - 1],
-				ft_strlen(split_arg[ft_doublestrlen(split_arg) - 1])))
-		{
-			matches++;
-			end = 2;
-		}
-	}
-			// if (ft_strchr(file, '*')[1] != 0)
-			// 	end = 2;
-	fprintf(stderr, "file after parse: %s end: %d\n", temp, end);
+		return (ft_doublefree(split_arg), NULL);
+	i = start_parser(&start, &matches, file, split_arg);
+	matches = iterator_parser(i, matches, file, split_arg);
+	end = end_parser(end, file, split_arg);
 	if (matches == ft_doublestrlen(split_arg) && (end == 2 || end == 0))
-		return ((void)printf("Valid file\n"), 1);
-	return (0);
+		return (ft_doublefree(split_arg), file);
+	return (ft_doublefree(split_arg), NULL);
 }
-

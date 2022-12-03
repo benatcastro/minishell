@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 08:27:16 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/02 19:42:06 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/03 16:13:39 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ char	**ft_doublestrjoin(char **s1, char **s2)
 	int		i;
 	int		j;
 
-	len = ft_doublestrlen(s1) + ft_doublestrlen(s2);
+	len = ft_doublestrlen(s1) + ft_doublestrlen(s2) + 1;
 	new = ft_calloc(len, sizeof(char *));
 	i = -1;
-	while (++i < ft_doublestrlen(s1) - 1)
+	while (++i < ft_doublestrlen(s1) && s1[i])
 		new[i] = ft_strdup(s1[i]);
 	j = -1;
-	while (++j < ft_doublestrlen(s2))
+	while (++j < ft_doublestrlen(s2) && s2[j])
 		new[i + j] = ft_strdup(s2[j]);
 	return (new);
 }
@@ -50,4 +50,29 @@ void	get_exit_status(void)
 		g_data.exit_val = (WEXITSTATUS(temp_status));
 	if (WIFSIGNALED(temp_status))
 		g_data.exit_val = 130;
+}
+
+char	*reverse_search(const char *haystack, const char *needle)
+{
+	int	i;
+
+	i = ft_strlen(haystack);
+	while (i >= 0)
+	{
+		if (haystack[i] == needle[0]
+			&& ft_strncmp(&haystack[i], needle, ft_strlen(needle)) == 0)
+			return ((char *)&haystack[i]);
+		i--;
+	}
+	return (NULL);
+}
+
+char	**str_to_double(char *str)
+{
+	char	**new;
+
+	new = NULL;
+	new = ft_calloc(2, sizeof(char *));
+	new[0] = ft_strdup(str);
+	return (new);
 }
