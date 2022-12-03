@@ -47,6 +47,6 @@ clean:
 	@echo "Clean done"
 
 fclean: clean
-	@rm -rf $(LIB_DIR)
+	@rm -rf ../objs$(LIB_DIR)
 	@echo "Fclean done"
 re: clean all

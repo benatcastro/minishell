@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 05:48:45 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 16:50:33 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/03 17:31:50 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	builtins_echo(char **cont)
 
 	if (!cont[1])
 		return ((void)printf("\n"));
-	if (!ft_strncmp(cont[1], "-n", 3))
+	if (cont[1][0] == '-' && cont[1][1] == 'n')
 	{
 		i = 1;
 		while (cont[++i])

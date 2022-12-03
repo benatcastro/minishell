@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 14:51:00 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/02 16:51:45 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/03 18:24:53 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	global_error_chkr_ut(char	**lex, int i)
 			|| (lex[i + 1] && ft_strcmp(lex[i + 1], PIPE))
 			|| (lex[i + 1] && ft_strcmp(lex[i + 1], DOUBLEPIPE)))
 			return (-1);
-	if ((ft_strcmp(lex[i], PIPE)) || (ft_strcmp(lex[i], DOUBLEPIPE)))
+	if ((ft_strcmp(lex[i], PIPE)) || (ft_strcmp(lex[i], DOUBLEPIPE)
+			|| (ft_strcmp(lex[i], DOUBLEAMPERSAND))))
 		if (!lex[i + 1] || (ft_strcmp(lex[i + 1], PIPE))
 			|| (ft_strcmp(lex[i + 1], DOUBLEPIPE)))
 			return (-1);

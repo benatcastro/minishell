@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 08:27:16 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/03 16:13:39 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/03 17:44:17 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,14 @@ void	get_exit_status(void)
 
 	temp_status = g_data.exit_val;
 	if (WIFEXITED(temp_status))
-		g_data.exit_val = (WEXITSTATUS(temp_status));
+		g_data.exit_val = WEXITSTATUS(temp_status);
 	if (WIFSIGNALED(temp_status))
-		g_data.exit_val = 130;
+	{
+		if (WTERMSIG(temp_status) == 2)
+			g_data.exit_val = 130;
+		else if ((WTERMSIG(temp_status) == 3))
+			g_data.exit_val = 131;
+	}
 }
 
 char	*reverse_search(const char *haystack, const char *needle)

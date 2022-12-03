@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/12/03 16:07:41 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/03 18:18:11 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static t_command_table	*separator_checker(t_command_table *node)
 			else
 				node = node->next;
 		}
-		else if (node->next->separator == OR)
+		if (node->next->separator == OR || node->separator == OR)
 		{
 			pipe_core(node->cmds);
 			if (g_data.exit_val == 0)
