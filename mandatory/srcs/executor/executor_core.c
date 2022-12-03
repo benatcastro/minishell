@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/11/28 21:39:41 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/03 01:51:53 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 //Los args de esta funcion deberian de ser el input lexeado y parseado
 //y la futura struct
+extern t_data g_data;
 
 void	fd_closer(int fd[2][2])
 {
@@ -62,15 +63,8 @@ void	pipe_core(t_command **cmd_table)
 {
 	t_command		*temp;
 	int				i[2];
-	int				f[2];
 
-	f[0] = 0;
-	f[1] = 1;
 	temp = (*cmd_table);
-	if (temp->next != NULL && temp->next->next == NULL)
-		f[0] = 1;
-	if (temp->next == NULL)
-		f[1] = 0;
 	i[0] = 1;
 	i[1] = -1;
 	temp = (*cmd_table);

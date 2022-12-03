@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/30 11:12:29 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/03 02:10:44 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ typedef struct s_data
 	char	**env;
 }	t_data;
 
-t_data	g_data;
 
+char	**str_to_double(char *str);
 char	**ft_doublestrjoin(char **s1, char **s2);
 void	builtins(char **cont);
 int		ft_quote_checker(char *buf);

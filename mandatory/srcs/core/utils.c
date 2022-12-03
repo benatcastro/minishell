@@ -3,16 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 08:27:16 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/02 23:02:14 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/03 02:15:47 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 extern t_data	g_data;
+
+char	**str_to_double(char *str)
+{
+	char	**new;
+
+	new = NULL;
+	new = ft_calloc(2, sizeof(char *));
+	new[0] = ft_strdup(str);
+	return (new);
+}
 
 char	**ft_doublestrjoin(char **s1, char **s2)
 {
@@ -21,13 +31,13 @@ char	**ft_doublestrjoin(char **s1, char **s2)
 	int		i;
 	int		j;
 
-	len = ft_doublestrlen(s1) + ft_doublestrlen(s2);
+	len = ft_doublestrlen(s1) + ft_doublestrlen(s2) + 1;
 	new = ft_calloc(len, sizeof(char *));
 	i = -1;
-	while (++i < ft_doublestrlen(s1) - 2 && ft_isprint(s1[i][0]))
+	while (++i < ft_doublestrlen(s1) && s1[i])
 		new[i] = ft_strdup(s1[i]);
 	j = -1;
-	while (++j < ft_doublestrlen(s2))
+	while (++j < ft_doublestrlen(s2) && s2[j])
 		new[i + j] = ft_strdup(s2[j]);
 	return (new);
 }

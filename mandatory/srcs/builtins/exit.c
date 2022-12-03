@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:15:31 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/24 16:51:56 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/03 01:50:13 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "minishell.h"
+
+extern t_data g_data;
 
 int	ft_isnum(char *c)
 {
@@ -28,11 +30,9 @@ int	ft_isnum(char *c)
 
 void	exit_args(char **str)
 {
-	int	c;
 	int	b;
 
 	b = 0;
-	c = -1;
 	if (str[2] != NULL)
 		write (2, "BASHado: exit: too many arguments\n", 34);
 	if (ft_isnum(str[1]) != 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcards_core.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:28:46 by bena              #+#    #+#             */
-/*   Updated: 2022/12/02 22:56:59 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/03 02:18:21 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ char	**wildcard_arg_manager(char **args)
 		else
 			new = add_str(new, args[i]);
 	}
+	fprintf(stderr, "====WILDCARD RETURN=====\n");
 	ft_doubleprint(new);
 	return (new);
 }
@@ -97,13 +98,15 @@ char	**wildcard_core(char *arg)
 
 	parsed_files = NULL;
 	pwd = getcwd(NULL, 0);
-	dfiles = ft_calloc(get_dir_size(pwd) + 1, sizeof(char *));
+	dfiles = ft_calloc(get_dir_size(pwd) + 2, sizeof(char *));
 	create_dfiles(pwd, dfiles);
 	i = -1;
 	while (dfiles[++i])
 		if (wildcard_parser(dfiles[i], arg))
 			parsed_files = add_str(parsed_files, dfiles[i]);
 	free(pwd);
+	// fprintf(stderr, "===PARSED FILES===\n");
+	// ft_doubleprint(parsed_files);
 	if (!parsed_files && is_wildcard(arg) == 1)
 		return (dfiles);
 	if (!parsed_files)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_main.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/02 22:48:16 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/03 02:11:12 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,18 @@ static void	bin_executor(char **args)
 
 void	execute_cmds(char **args)
 {
+	char	**cmd;
+
+	cmd = str_to_double(args[0]);
+	cmd = ft_split(args[0], ' ');
 	if (!args || args[0] == NULL)
 		exit(0);
 	if (arg_is_wildcard(&args[1]))
 	{
+
+		printf("STARTING ARGS\n");
 		ft_doubleprint(args);
-		args = ft_doublestrjoin(args, wildcard_arg_manager(&args[1]));
+		args = ft_doublestrjoin(cmd, wildcard_arg_manager(&args[1]));
 		printf("FINAL ARGS\n");
 		ft_doubleprint(args);
 	}

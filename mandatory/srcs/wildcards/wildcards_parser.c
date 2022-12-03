@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcards_parser.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 09:26:48 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/02 22:24:34 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/03 02:19:00 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ static char	*reverse_search(const char *haystack, const char *needle)
 	return (NULL);
 }
 
-static void	initializer(int *start, int *end, char *arg, char **split_arg)
+static void	initializer(int *start, int *end, char *arg)
 {
-	split_arg = ft_split(arg, '*');
 	if (arg[0] == '*')
 		*start = 1;
 	else
@@ -43,20 +42,20 @@ static void	initializer(int *start, int *end, char *arg, char **split_arg)
 		*end = 0;
 }
 
-// static int	start_parser(int *start, int *matches, char *file, char **split_arg)
-// {
-// 	int	i;
+static int	start_parser(int *start, int *matches, char *file, char **split_arg)
+{
+	int	i;
 
-// 	i = -1;
-// 	if ((!start))
-// 		i = 0;
-// 	if (*(start))
-// 		while (file[++i])
-// 			if (ft_strnstr(&file[i], split_arg[0], ft_strlen(split_arg[0]))
-// 				&& ft_strncmp(file, split_arg[0], ft_strlen(split_arg[0])))
-// 				*matches++;
-// 	return (i);
-// }
+	i = -1;
+	if ((!start))
+		i = 0;
+	if (*(start))
+		while (file[++i])
+			if (ft_strnstr(&file[i], split_arg[0], ft_strlen(split_arg[0]))
+				&& ft_strncmp(file, split_arg[0], ft_strlen(split_arg[0])))
+				*matches++;
+	return (i);
+}
 /**
  * @brief
  * Takes a file from the directory and checks if it's compatible with wildcard
@@ -74,8 +73,8 @@ char	*wildcard_parser(char *file, char *arg)
 	int		matches;
 
 	matches = 0;
-	split_arg = NULL;
-	initializer(&start, &end, arg, split_arg);
+	split_arg = ft_split(arg, '*');
+	initializer(&start, &end, arg);
 	if (!split_arg || !split_arg[0])
 		return (ft_doublefree(split_arg), NULL);
 	i = -1;

@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   expander_env_rep.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:29:59 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/25 10:53:45 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/03 01:50:36 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 #include "minishell.h"
 #include "lexer.h"
+
+extern t_data g_data;
 
 char	*env_finder(char *str)
 {
