@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:37:29 by bena              #+#    #+#             */
-/*   Updated: 2022/12/02 22:32:23 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/03 16:52:46 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 # define WILDCARDS_H
 # include <unistd.h>
 # include <dirent.h>
+
+typedef struct s_values
+{
+	int		start;
+	int		end;
+	int		i;
+	int		matches;
+	char	*file;
+	char	**split_arg;
+}	t_values;
 
 char	**add_str(char **src, char *arg);
 char	**wildcard_arg_manager(char **args);

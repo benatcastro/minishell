@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcards_parser.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 09:26:48 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/03 02:46:02 by bena             ###   ########.fr       */
+/*   Updated: 2022/12/03 17:10:09 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,54 +15,54 @@
 #include "libft.h"
 #include <stdio.h>
 
-static void	initializer(int *start, int *end, char *arg)
+static void	initializer(t_values *values, char *arg)
 {
 	if (arg[0] == '*')
-		*start = 1;
+		values->start = 1;
 	else
-		*start = 0;
+		values->start = 0;
 	if (arg[ft_strlen(arg) - 1] == '*')
-		*end = 1;
+		values->end = 1;
 	else
-		*end = 0;
+		values->end = 0;
 }
 
-int	start_parser(int *start, int *matches, char *file, char **split_arg)
+static void	start_parser(t_values *values)
 {
-	int	i;
-
-	i = -1;
-	if ((!*start))
-		i = 0;
-	if (*(start))
-		while (file[++i])
-			if (ft_strnstr(&file[i], split_arg[0], ft_strlen(split_arg[0]))
-				&& ft_strncmp(file, split_arg[0], ft_strlen(split_arg[0])))
-					matches++;
-	return (i);
+	values->i = -1;
+	if (!values->start)
+		values->i = 0;
+	if (values->start)
+		while (values->file[++values->i])
+			if (ft_strnstr(&values->file[values->i],
+					values->split_arg[0], ft_strlen(values->split_arg[0]))
+				&& ft_strncmp(values->file,
+					values->split_arg[0], ft_strlen(values->split_arg[0])))
+					values->matches++;
 }
 
-int	iterator_parser(int i, int matches, char *file, char **split_arg)
+static void	iterator_parser(t_values *values)
 {
-	while (file[i] && split_arg[matches])
+	while (values->file[values->i] && values->split_arg[values->matches])
 	{
-		if (ft_strnstr(&file[i], split_arg[0], ft_strlen(split_arg[0])))
-			matches++;
-		if (matches == ft_doublestrlen(split_arg))
+		if (ft_strnstr(&values->file[values->i],
+				values->split_arg[0], ft_strlen(values->split_arg[0])))
+			values->matches++;
+		if (values->matches == ft_doublestrlen(values->split_arg))
 			break ;
-		i++;
+		values->i++;
 	}
-	return (matches);
 }
 
-int	end_parser(int end, char *file, char **split_arg)
+static void	end_parser(t_values *values)
 {
-	if (end)
-		if (reverse_search(file, split_arg[ft_doublestrlen(split_arg) - 1])
-			&& reverse_search(file,
-				split_arg[ft_doublestrlen(split_arg) - 1])[1])
-			return (end = 2);
-	return (0);
+	if (values->end)
+		if (reverse_search(values->file,
+				values->split_arg[ft_doublestrlen(values->split_arg) - 1])
+			&& reverse_search(values->file,
+				values->split_arg[ft_doublestrlen(values->split_arg) - 1])[1])
+			values->end = 2;
+	values->end = 0;
 }
 
 /**
@@ -75,21 +75,19 @@ int	end_parser(int end, char *file, char **split_arg)
  */
 char	*wildcard_parser(char *file, char *arg)
 {
-	char	**split_arg;
-	int		start;
-	int		end;
-	int		i;
-	int		matches;
+	t_values	values;
 
-	matches = 0;
-	split_arg = ft_split(arg, '*');
-	initializer(&start, &end, arg);
-	if (!split_arg || !split_arg[0])
-		return (ft_doublefree(split_arg), NULL);
-	i = start_parser(&start, &matches, file, split_arg);
-	matches = iterator_parser(i, matches, file, split_arg);
-	end = end_parser(end, file, split_arg);
-	if (matches == ft_doublestrlen(split_arg) && (end == 2 || end == 0))
-		return (ft_doublefree(split_arg), file);
-	return (ft_doublefree(split_arg), NULL);
+	values.matches = 0;
+	values.file = file;
+	values.split_arg = ft_split(arg, '*');
+	initializer(&values, arg);
+	if (!values.split_arg || !values.split_arg[0])
+		return (ft_doublefree(values.split_arg), NULL);
+	start_parser(&values);
+	iterator_parser(&values);
+	end_parser(&values);
+	if (values.matches == ft_doublestrlen(values.split_arg)
+		&& (values.end == 2 || values.end == 0))
+		return (ft_doublefree(values.split_arg), file);
+	return (ft_doublefree(values.split_arg), NULL);
 }
