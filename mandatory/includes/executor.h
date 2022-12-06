@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:00:02 by bena              #+#    #+#             */
-/*   Updated: 2022/11/30 17:00:30 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:55:49 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void			fd_closer_shell(t_shell *shell);
 void			ft_allocator(t_shell *shell, t_command *temp);
 void			redirection_ag_var(char	**args, int *a, int *i);
 char			**redir_remover(char **args);
+void			heredoc_utils(char *str, int fd);
 
 ///////////////////////REDIS//////////////////////////////
 void			in_redirection(t_redir *t, int fd[2]);

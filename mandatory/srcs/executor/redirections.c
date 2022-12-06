@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:32:32 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/02 14:36:45 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:57:15 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,6 @@ void	permission_printer(t_redir *t, int i)
 		write (2, ": Permission denied\n", 20);
 		exit (1);
 	}
-}
-
-void	heredoc_utils(char *str, int fd)
-{
-	fd = open(".temp", O_CREAT | O_RDWR
-			| O_TRUNC | O_APPEND, 0644);
-	doubleless_func(str, fd);
-	unlink(".temp");
-	close (fd);
 }
 
 void	in_redirection(t_redir *t, int fd[2])
@@ -71,19 +62,28 @@ void	in_redirection(t_redir *t, int fd[2])
 	}
 }
 
-void	out_redirection(t_command *temp, t_redir *t_out,
-			t_redir *head, int fd[2])
+void	out_redirection_utils(t_redir *t_out, int fd[2])
 {
-	head = t_out;
 	while (t_out != NULL)
 	{
 		if (access(t_out->content[1], F_OK) == -1)
 			fd[1] = open(t_out->content[1], O_CREAT | O_RDWR, 0644);
 		else
+		{
 			if (access(t_out->content[1], W_OK) == -1)
 				permission_printer(t_out, 2);
+			else
+				open(t_out->content[1], O_TRUNC);
+		}
 		t_out = t_out->next;
 	}
+}
+
+void	out_redirection(t_command *temp, t_redir *t_out,
+			t_redir *head, int fd[2])
+{
+	head = t_out;
+	out_redirection_utils(t_out, fd);
 	t_out = head;
 	while (t_out->next != NULL)
 		t_out = t_out->next;

@@ -6,7 +6,7 @@
 /*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 19:21:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/02 15:22:19 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:58:41 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,13 @@ char	**redir_remover(char **args)
 			temp[e++] = ft_strdup(args[i]);
 	}
 	return (temp);
+}
+
+void	heredoc_utils(char *str, int fd)
+{
+	fd = open(".temp", O_CREAT | O_RDWR
+			| O_TRUNC | O_APPEND, 0644);
+	doubleless_func(str, fd);
+	unlink(".temp");
+	close (fd);
 }
