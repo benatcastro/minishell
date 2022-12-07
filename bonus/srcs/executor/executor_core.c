@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/12/07 15:08:08 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/07 15:41:47 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,21 @@ void	pipe_core(t_command **cmd_table)
 static t_command_table	*separator_checker(t_command_table *node)
 {
 	if (node->next && node->next->separator != EMPTY)
-	{		
-		if (node->next
-			&& (node->next->separator == OR || node->separator == OR))
-		{
-			pipe_core(node->cmds);
-			if (g_data.exit_val == 0)
-				node = node->next->next;
-			else
-				node = node->next;
-		}
-		else if (node->next
+	{
+		if (node && node->next
 			&& (node->next->separator == AND || node->separator == AND))
 		{
 			pipe_core(node->cmds);
 			if (g_data.exit_val != 0)
+				node = node->next->next;
+			else
+				node = node->next;
+		}
+		if (node && node->next
+			&& (node->next->separator == OR || node->separator == OR))
+		{
+			pipe_core(node->cmds);
+			if (g_data.exit_val == 0)
 				node = node->next->next;
 			else
 				node = node->next;
