@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/03 17:17:23 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/10 15:43:10 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	readline_loop(char *buf, char **lex, char *tmp)
 
 void	arg_loop_error(char *buf, char **lex)
 {
-	printf ("BASHado: syntax error\n");
+	printerr("%s syntax error\n", PROMPT_ERR);
 	g_data.exit_val = 258;
 	free (buf);
 	ft_doublefree(lex);

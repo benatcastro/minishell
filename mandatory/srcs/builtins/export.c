@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 05:45:07 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/25 04:30:22 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/10 15:50:34 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	export_arg_chkr(char *arg)
 		&& (export_directory_chk(arg) == 1))
 	{
 		g_data.exit_val = 1;
-		printf ("Invalid export argument: %s\n", arg);
+		printerr("Invalid export argument: %s\n", arg);
 		return (-1);
 	}
 	return (cont);

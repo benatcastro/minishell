@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   global_error_chkcr.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 14:51:00 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/02 14:52:05 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/10 15:44:59 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 void	glob_err_chckr_error(char *buf, char **lex)
 {
-	printf ("BASHado: syntax error\n");
+	printerr("%ssyntax error\n", PROMPT_ERR);
 	g_data.exit_val = 258;
 	free (buf);
 	ft_doublefree(lex);

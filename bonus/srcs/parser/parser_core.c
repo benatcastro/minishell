@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_core.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:20:38 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/02 15:30:36 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/10 15:49:17 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	parser_q_error_chk(char *str)
 		}
 	}
 	if (b != 0)
-		printf ("BASHado: Error: unclosed quotes\n");
+		printerr("%sError: unclosed quotes\n", PROMPT_ERR);
 	return (b);
 }
 
@@ -108,13 +108,14 @@ int	parser_paren_error_chk(char *str)
 		else if (str[i] == 41)
 		{
 			if (b == 0)
-				return (printf("BASHado: Error: unclosed parentheses\n"), 1);
+				return (printerr("%sError: unclosed parentheses\n",
+						PROMPT_ERR), 1);
 			else
 				b--;
 		}
 	}
 	if (b != 0)
-		printf ("BASHado: Error: unclosed parentheses\n");
+		printerr("%sError: unclosed parentheses\n", PROMPT_ERR);
 	return (b);
 }
 

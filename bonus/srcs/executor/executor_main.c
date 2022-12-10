@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_main.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:36:34 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/03 20:32:35 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/10 15:38:23 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,13 @@ static void	bin_executor(char **args)
 	if ((exec_return == -1 && exit_val != 1)
 		|| (exec_return == 0 && exit_val != 1))
 	{
-		printf("BASHado: %s: command not found\n", args[0]);
+		printerr("%s%s: command not found\n", PROMPT_ERR, args[0]);
 		exit (127);
 	}
 	else if ((exec_return == -1 && exit_val == 1)
 		|| (exec_return == 0 && exit_val == 1))
 	{
-		printf("BASHado: %s: No such file or directory\n", args[0]);
+		printerr("%s%s: No such file or directory\n", PROMPT_ERR, args[0]);
 		exit (127);
 	}
 	exit (exec_return);
