@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 13:34:50 by umartin-          #+#    #+#             */
-/*   Updated: 2022/11/30 17:01:17 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/10 14:24:07 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,15 @@ void	ft_doubleprint_err(char **str)
 	i = 0;
 	if (!str || !str[0])
 	{
-		write(2, "Error\n", 6);
+		// write(2, "Error\n", 6);
+		printerr("Error\n");
 		return ;
 	}
 	while (str[i])
 	{
-		write (2, str[i], ft_strlen(str[i]));
-		write (2, "\n", 1);
+		printerr("%s\n", str[i]);
+		// write (2, str[i], ft_strlen(str[i]));
+		// write (2, "\n", 1);
 		i++;
 	}
 }

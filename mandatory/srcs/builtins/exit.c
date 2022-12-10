@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:15:31 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/02 16:19:30 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/10 14:23:01 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ void	exit_args(char **str)
 	c = -1;
 	if (str[2] != NULL)
 	{
-		write (2, "BASHado: exit: too many arguments\n", 34);
+		// write (2, "BASHado: exit: too many arguments\n", 34);
+		printerr("%sexit: too many arguments\n");
 		g_data.exit_val = 1;
 	}
 	else if (ft_isnum(str[1]) != 0)
 	{
-		write (2, "BASHado: exit: numeric argument required\n", 41);
+		// write (2, "BASHado: exit: numeric argument required\n", 41);
+		printerr("%sexit: exit: numeric argument required\n", PROMPT_ERR);
 		g_data.exit_val = 255;
 		b = 1;
 	}

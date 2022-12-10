@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:43:58 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/03 16:22:47 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/10 14:31:31 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@
 # include "libft.h"
 # include "executor.h"
 
-# define PROMPT "BASHado > "
+# define PROMPT "BASHado-2.0 > "
+# define PROMPT_ERR "BASHado: "
 
 typedef struct s_data
 {
