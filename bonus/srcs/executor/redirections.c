@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:32:32 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/06 17:59:32 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/10 16:03:31 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,20 @@ void	permission_printer(t_redir *t, int i)
 {
 	if (i == 1)
 	{
-		write (2, "BASHado: ", 9);
-		write (2, t->content[1], ft_strlen(t->content[1]));
-		write (2, ": No such file or directory\n", 28);
+		// write (2, "BASHado: ", 9);
+		// write (2, t->content[1], ft_strlen(t->content[1]));
+		// write (2, ": No such file or directory\n", 28);
+		//los 3 writes equivalen a esta linea de abajo:
+		printerr("%s%s: No such file or directory", PROMPT_ERR, t->content[1]);
 		exit (1);
 	}
 	else if (i == 2)
 	{
-		write (2, "BASHado: ", 9);
-		write (2, t->content[1], ft_strlen(t->content[1]));
-		write (2, ": Permission denied\n", 20);
+		// write (2, "BASHado: ", 9);
+		// write (2, t->content[1], ft_strlen(t->content[1]));
+		// write (2, ": Permission denied\n", 20);
+		//aqui lo mismo
+		printerr("%s%s: Permission denied", PROMPT_ERR, t->content[1]);
 		exit (1);
 	}
 }

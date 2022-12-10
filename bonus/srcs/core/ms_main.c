@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:41:44 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/10 15:43:10 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/10 16:14:09 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	readline_loop(char *buf, char **lex, char *tmp)
 
 void	arg_loop_error(char *buf, char **lex)
 {
-	printerr("%s syntax error\n", PROMPT_ERR);
+	printerr("%ssyntax error\n", PROMPT_ERR);
 	g_data.exit_val = 258;
 	free (buf);
 	ft_doublefree(lex);
