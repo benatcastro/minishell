@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 11:27:46 by becastro          #+#    #+#             */
-/*   Updated: 2022/11/25 07:15:17 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/10 14:12:47 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
-
+# include <stdarg.h>
 # define BUFFER_SIZE 1
 
 typedef struct s_list
@@ -95,5 +95,13 @@ char	*ft_strjoin_gnl(char *final, char *rd);
 char	*ft_strchr_gnl(char *str, int c);
 
 size_t	ft_strlen_gnl(char *str);
-
+//Printf
+void	ft_type(char t, va_list args, int *num);
+void	ft_putchar_c(char c, int *num);
+void	ft_putstr_s(char *str, int *num);
+void	ft_putnbr_di(int nb, int *num);
+void	ft_putnbr_u(unsigned int nb, int *num);
+void	ft_puthexa_x(unsigned long int n, int *num);
+void	ft_puthexa_xx(unsigned long int n, int *num);
+int		printerr(const char *str, ...);
 #endif

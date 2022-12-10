@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 05:27:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/03 17:37:04 by umartin-         ###   ########.fr       */
+/*   Updated: 2022/12/10 14:10:39 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ static int	check_dir(char *path)
 	int	val;
 
 	if (ft_strcmp(path, "-") && !find_in_env("OLDPWD"))
-		return (printf("%scd: OLDPWD not set\n", PROMPT), 0);
+		return (printerr("%scd: OLDPWD not set\n", PROMPT), 0);
 	else if (ft_strcmp(path, "-") && find_in_env("OLDPWD"))
 		path = find_in_env("OLDPWD") + 7;
 	val = valid_path(path);
 	if (val == 0)
-		return ((printf("%scd: %s: No such file or directory\n",
+		return ((printerr("%scd: %s: No such file or directory\n",
 					PROMPT, path)), 0);
 	else if (val == -1)
-		return ((printf("%scd: %s: Permission denied\n",
+		return ((printerr("%scd: %s: Permission denied\n",
 					PROMPT, path)), 0);
 	return (1);
 }
