@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 13:34:50 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/10 14:18:28 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:14:10 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,12 @@ void	ft_doubleprint_err(char **str)
 	i = 0;
 	if (!str || !str[0])
 	{
-		// write(2, "Error\n", 6);
 		printerr("Error\n");
 		return ;
 	}
 	while (str[i])
 	{
-		write (2, str[i], ft_strlen(str[i]));
-		write (2, "\n", 1);
+		printerr("%s\n", str[i]);
 		i++;
 	}
 }

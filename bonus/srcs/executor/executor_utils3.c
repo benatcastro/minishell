@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:34:49 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/10 14:21:19 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:09:35 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	paren_checker_ut(char **lex, int i, int c)
 		if (lex[i][0] == 40 && (lex[i + 1] != NULL
 						|| (i != 0 && lex[i - 1] != NULL)))
 		{
-			// write(2, "BASHado: syntax error: unexpected token\n", 40);
 			printerr("%ssyntax error: unexpected token\n", PROMPT_ERR);
 			exit(1);
 		}
@@ -53,7 +52,6 @@ void	paren_checker_ut(char **lex, int i, int c)
 		paren_checker_ut2(lex, &i, &c);
 		if (lex[0][i + 1] != 0)
 		{
-			// write(2, "BASHado: syntax error: unexpected token\n", 40);
 			printerr("%ssyntax error: unexpected token\n", PROMPT_ERR);
 			exit(1);
 		}
