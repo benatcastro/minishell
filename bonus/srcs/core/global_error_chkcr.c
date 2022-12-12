@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   global_error_chkcr.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 14:51:00 by umartin-          #+#    #+#             */
-/*   Updated: 2022/12/10 15:43:58 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:27:53 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,13 @@ int	global_error_chkr_ut2(char	**lex, int i)
 		if ((ft_strcmp(lex[i], GREATER)) || (ft_strcmp(lex[i], DOUBLEGREATER))
 			|| (ft_strcmp(lex[i], LESS)) || (ft_strcmp(lex[i], DOUBLELESS)))
 			if (lex[i + 1] == NULL)
+				return (-1);
+	i = -1;
+	while (lex[++i])
+		if ((ft_strcmp(lex[i], DOUBLEAMPERSAND))
+			|| (ft_strcmp(lex[i], DOUBLEPIPE)))
+			if ((ft_strcmp(lex[i + 1], DOUBLEAMPERSAND))
+				|| (ft_strcmp(lex[i + 1], DOUBLEPIPE)))
 				return (-1);
 	i = -1;
 	while (lex[++i])

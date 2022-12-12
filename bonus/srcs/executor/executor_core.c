@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umartin- <umartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:56:05 by bena              #+#    #+#             */
-/*   Updated: 2022/12/07 17:57:48 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/12 17:18:01 by umartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,30 +53,13 @@ void	pipe_core(t_command **cmd_table)
 	exec_morepipes(cmd_table);
 }
 
-static t_command_table	*separator_checker(t_command_table *node)
+static int	exec_check(t_command **cmds)
 {
-	if ((node && node->next) && node->next->separator != EMPTY)
-	{
-		if (node->next
-			&& (node->next->separator == AND || node->separator == AND))
-		{
-			pipe_core(node->cmds);
-			if (g_data.exit_val != 0)
-				node = node->next->next;
-			else
-				node = node->next;
-		}
-		if (node && node->next
-			&& (node->next->separator == OR || node->separator == OR))
-		{
-			pipe_core(node->cmds);
-			if (g_data.exit_val == 0)
-				node = node->next->next;
-			else
-				node = node->next;
-		}
-	}
-	return (node);
+	if (g_data.exit_val == 0)
+		pipe_core(cmds);
+	else
+		return (1);
+	return (0);
 }
 
 static void	execution_loop(t_command_table **table_head)
@@ -84,21 +67,25 @@ static void	execution_loop(t_command_table **table_head)
 	t_command_table	*aux;
 
 	aux = (*table_head);
-	if (!aux->next)
-		return (pipe_core(aux->cmds));
-	if (!aux->next->next)
-	{
-		aux = separator_checker(aux);
-		while (aux)
-		{
-			pipe_core(aux->cmds);
-			if (aux)
-				aux = aux->next;
-		}
+	pipe_core(aux->cmds);
+	if (aux->next != NULL)
+		aux = aux->next;
+	else
 		return ;
+	while (aux != NULL)
+	{
+		if (aux->separator == AND)
+			if (exec_check(aux->cmds))
+				break ;
+		if (aux->separator == OR)
+		{
+			if (g_data.exit_val == 0)
+				break ;
+			else
+				pipe_core(aux->cmds);
+		}
+		aux = aux->next;
 	}
-	while (aux->next)
-		aux = separator_checker(aux);
 }
 
 int	executor_core(char **cmd)
